@@ -1,0 +1,60 @@
+---
+title: es-hangul
+---
+
+import Link from 'next/link';
+import { Callout, useTheme, Steps } from 'nextra-theme-docs';
+
+<style jsx global>{`
+  body {
+    background-image: radial-gradient(#ddd 1px, transparent 0), radial-gradient(#ddd 1px, transparent 0);
+    background-position:
+      0 0,
+      20px 20px;
+    background-size: 40px 40px;
+    word-break: keep-all;
+  }
+  .dark body {
+    background-image: radial-gradient(#333 1px, transparent 0), radial-gradient(#333 1px, transparent 0);
+  }
+`}</style>
+
+<img src="/og.png" style={{ width: '100%', maxWidth: 400, margin: '32px auto' }} />
+
+<div className="flex flex-col items-center justify-center gap-8 pt-6 text-center">
+  <div className="flex flex-col items-center gap-4">
+    <div className="relative text-3xl">
+      <h3 className="">현대적인 JavaScript 한글 라이브러리</h3>
+    </div>
+    <Callout className="w-full">
+      es-hangul은 편리하게 한글을 다룰 수 있도록 돕는 작은 JavaScript 라이브러리입니다. 초성을 검색하고, 조사를 붙이는
+      등의 동작을 편리하고 깔끔한 API로 제공합니다.
+    </Callout>
+  </div>
+</div>
+
+```tsx
+import { chosungIncludes } from 'es-hangul';
+
+const searchWord = '라면';
+const userInput = 'ㄹㅁ';
+
+const result = chosungIncludes(searchWord, userInput);
+console.log(result); // true
+```
+
+```tsx
+import { josa } from 'es-hangul';
+
+const word1 = '사과';
+const sentence1 = josa(word1, '을/를') + ' 먹었습니다.';
+console.log(sentence1); // '사과를 먹었습니다.'
+
+const word2 = '바나나';
+const sentence2 = josa(word2, '이/가') + ' 맛있습니다.';
+console.log(sentence2); // '바나나가 맛있습니다.'
+```
+
+<div className="mt-16 mb-20 text-center">
+  [Get Started](/docs/introduction) · [API](/docs/api/josa) · [GitHub Repository](https://github.com/toss/es-hangul)
+</div>
