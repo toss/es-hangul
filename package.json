@@ -1,0 +1,15 @@
+{
+  "name": "es-hangul",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "prettier": "^3.2.5",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.3"
+  }
+}
