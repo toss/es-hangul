@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+* body {
+  color: rgb(var(--foreground-rgb));
+  font-family:
+    Toss Product Sans,
+    Tossface,
+    -apple-system,
+    BlinkMacSystemFont,
+    Bazier Square,
+    Noto Sans KR,
+    Segoe UI,
+    Apple SD Gothic Neo,
+    Roboto,
+    Helvetica Neue,
+    Arial,
+    sans-serif,
+    Apple Color Emoji,
+    Segoe UI Emoji,
+    Segoe UI Symbol,
+    Noto Color Emoji;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
