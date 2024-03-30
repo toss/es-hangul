@@ -24,7 +24,7 @@ export function hasBatchim(str: string) {
 /**
  * @name getFirstConsonants
  * @description
- * 단어에서 초성을 추출합니다. (예: `토스` -> `'ㅌㅅ'`)
+ * 단어에서 초성을 추출합니다. (예: `사과` -> `'ㅅㄱ'`)
  * ```typescript
  * getFirstConsonants(
  *   // 초성을 추출할 단어
@@ -32,7 +32,7 @@ export function hasBatchim(str: string) {
  * ): string
  * ```
  * @example
- * getFirstConsonants('토스') // 'ㅌㅅ'
+ * getFirstConsonants('사과') // 'ㅅㄱ'
  * getFirstConsonants('리액트') // 'ㄹㅇㅌ'
  * getFirstConsonants('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
  */

@@ -17,8 +17,8 @@ describe('disassembleHangulToGroups', () => {
     ]);
   });
 
-  it('토스 짱', () => {
-    expect(disassembleHangulToGroups('토스 짱')).toEqual([['ㅌ', 'ㅗ'], ['ㅅ', 'ㅡ'], [' '], ['ㅉ', 'ㅏ', 'ㅇ']]);
+  it('사과 짱', () => {
+    expect(disassembleHangulToGroups('사과 짱')).toEqual([['ㅅ', 'ㅏ'], ['ㄱ', 'ㅗ', 'ㅏ'], [' '], ['ㅉ', 'ㅏ', 'ㅇ']]);
   });
 
   it('ㄵ', () => {
@@ -39,8 +39,8 @@ describe('disassembleHangul', () => {
     expect(disassembleHangul('값이 비싸다')).toEqual('ㄱㅏㅂㅅㅇㅣ ㅂㅣㅆㅏㄷㅏ');
   });
 
-  it('토스 짱', () => {
-    expect(disassembleHangul('토스 짱')).toEqual('ㅌㅗㅅㅡ ㅉㅏㅇ');
+  it('사과 짱', () => {
+    expect(disassembleHangul('사과 짱')).toEqual('ㅅㅏㄱㅗㅏ ㅉㅏㅇ');
   });
 
   it('ㄵ', () => {

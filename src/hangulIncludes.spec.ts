@@ -2,12 +2,12 @@ import { hangulIncludes } from './hangulIncludes';
 import { describe, it, expect } from 'vitest';
 
 describe('hangulIncludes', () => {
-  it('토스', () => {
-    expect(hangulIncludes('토스', '')).toBe(true);
-    expect(hangulIncludes('토스', 'ㅌ')).toBe(true);
-    expect(hangulIncludes('토스', '톳')).toBe(true);
-    expect(hangulIncludes('토스', '톱')).toBe(false);
-    expect(hangulIncludes('토스', '토스')).toBe(true);
+  it('사과', () => {
+    expect(hangulIncludes('사과', '')).toBe(true);
+    expect(hangulIncludes('사과', 'ㅅ')).toBe(true);
+    expect(hangulIncludes('사과', '삭')).toBe(true);
+    expect(hangulIncludes('사과', '삽')).toBe(false);
+    expect(hangulIncludes('사과', '사과')).toBe(true);
   });
 
   it('프론트엔드', () => {

@@ -21,7 +21,6 @@ function disassembleHangulToGroups(
 
 ```typescript
 disassembleHangulToGroups('값'); // [['ㄱ', 'ㅏ', 'ㅂ', 'ㅅ']]
-disassembleHangulToGroups('토스 짱'); // [['ㅌ', 'ㅗ'], ['ㅅ', 'ㅡ'], [' '], ['ㅉ', 'ㅏ', 'ㅇ']]
 disassembleHangulToGroups('ㅘ'); // [['ㅗ', 'ㅏ']]
 disassembleHangulToGroups('ㄵ'); // [['ㄴ', 'ㅈ']]
 ```

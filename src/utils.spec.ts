@@ -20,8 +20,8 @@ describe('hasBatchim', () => {
 });
 
 describe('getFirstConsonants', () => {
-  it('should extract the initial consonants "ㅌㅅ" from the word "토스"', () => {
-    expect(getFirstConsonants('토스')).toBe('ㅌㅅ');
+  it('should extract the initial consonants "ㅅㄱ" from the word "사과"', () => {
+    expect(getFirstConsonants('사과')).toBe('ㅅㄱ');
   });
   it('should extract the initial consonants "ㅍㄹㅌㅇㄷ" from the word "프론트엔드"', () => {
     expect(getFirstConsonants('프론트엔드')).toBe('ㅍㄹㅌㅇㄷ');
