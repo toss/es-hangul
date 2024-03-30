@@ -6,7 +6,7 @@ const config: DocsThemeConfig = {
   project: {
     link: 'https://github.com/toss/es-hangul',
   },
-  docsRepositoryBase: 'https://github.com/stoss/es-hangul/tree/main/docs',
+  docsRepositoryBase: 'https://github.com/toss/es-hangul/tree/main/docs',
   useNextSeoProps() {
     const { asPath } = useRouter();
     if (asPath !== '/') {
