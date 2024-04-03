@@ -2,34 +2,34 @@
 title: es-hangul
 ---
 
+
+import { useIsDarkMode } from '@/hooks/use-is-dark-mode';
 import Image from 'next/image';
-import { Link } from 'nextra-theme-docs';
+import {  useTheme } from 'nextra-theme-docs';
+import Link from 'next/link'
+
 
 export default function HomePage() {
+  const isDarkMode = useIsDarkMode();
+
   return (
     <div className="pb-20">
       <div className="flex flex-col items-center justify-center gap-8 pt-11 text-center">
-        <Image src="/es-hangul-logo.webp" alt="logo" width={400} height={241} />
+        <Image src={isDarkMode ? '/logo-white.png' : '/logo.png'} alt="logo" width={400} height={241} />
+        <span>{isDarkMode}</span>
         <div className="flex flex-col items-center gap-4">
           <div className="relative text-5xl font-bold">
-            <span>es-hangul</span><br/><br/>
+            <br />
             <strong>한글, 이제는 심플하고 스마트하게</strong>
           </div>
-          <br/>
+          <br />
           <p className="text-3xl">
-            한글을 쉽고, 선언적으로 다룰 수 있는 도구들을 제공합니다.<br/>반복적이고 복잡한 부분은
-            es-hangul에 위임한 뒤, 비즈니스에 집중할 수 있습니다.
+            한글을 쉽고, 선언적으로 다룰 수 있는 도구들을 제공합니다.
+            <br />
+            반복적이고 복잡한 부분은 es-hangul에 위임한 뒤, 비즈니스에 집중할 수 있습니다.
           </p>
         </div>
-        <div className='flex gap-4'>        
-          <Link href="/docs/story">
-          <button className="rounded-xl bg-gray-800 px-16 py-5 text-xl font-bold">시작하기</button>
-        </Link>
-        <Link href="/docs/api/josa">
-          <button className="rounded-xl bg-gray-800 px-16 py-5 text-xl font-bold">API</button>
-        </Link>
-        </div>
-
+        <div className="flex gap-4"></div>
       </div>
 
       <div className="h-14"></div>
@@ -41,9 +41,11 @@ export default function HomePage() {
           </div>
         ))}
       </div>
-    </div>
 
-);
+            <div className="h-14"></div>
+      <Link href="/docs/story" className='flex justify-end no-underline'> <button className="rounded-xl bg-gray-800 px-16 py-5 text-xl font-bold dark:text-gray-100">API 바로가기</button></Link>
+    </div>
+  );
 }
 
 export const FEATURE_ITEMS = [

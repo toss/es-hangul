@@ -1,3 +1,5 @@
+import { useIsDarkMode } from '@/hooks/use-is-dark-mode';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import type { DocsThemeConfig } from 'nextra-theme-docs';
 import { useConfig } from 'nextra-theme-docs';
@@ -15,7 +17,11 @@ const config: DocsThemeConfig = {
       };
     }
   },
-  logo: <span>es-hangul</span>,
+  logo: function useLogo() {
+    const isDarkMode = useIsDarkMode();
+
+    return <Image src={isDarkMode ? '/logo-white.png' : '/logo.png'} alt="logo" width={120} height={48} />;
+  },
   head: function useHead() {
     const { title } = useConfig();
     const { route } = useRouter();
@@ -28,8 +34,8 @@ const config: DocsThemeConfig = {
         <meta name="theme-color" content="#fff" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="Content-Language" content="en" />
-        <meta name="description" content="Make beautiful websites with Next.js & MDX." />
-        <meta name="og:description" content="Make beautiful websites with Next.js & MDX." />
+        <meta name="description" content="한글, 이제는 심플하고 스마트하게" />
+        <meta name="og:description" content="한글, 이제는 심플하고 스마트하게" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={socialCard} />
         <meta name="twitter:site:domain" content="nextra.site" />
@@ -62,23 +68,32 @@ const config: DocsThemeConfig = {
     toggleButton: true,
   },
   footer: {
-    text: (
-      <div className="flex w-full flex-col items-center sm:items-start">
-        <div>
-          <a
-            className="flex items-center gap-1 text-current"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="vercel.com homepage"
-            href="https://vercel.com?utm_source=nextra.site"
-          >
-            <span>Powered by</span>
-            <img src="/toss-logo.png" alt="Vercel.com" width="70" />
-          </a>
+    text: function useText() {
+      const isDarkMode = useIsDarkMode();
+
+      return (
+        <div className="flex w-full flex-col items-center sm:items-start">
+          <div>
+            <a
+              className="flex items-center gap-1 text-current"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="vercel.com homepage"
+              href="https://vercel.com?utm_source=nextra.site"
+            >
+              <span>Powered by</span>
+              <Image
+                src={isDarkMode ? '/toss-logo-white.png' : '/toss-logo-gray.png'}
+                alt="Vercel.com"
+                width="64"
+                height="32"
+              />
+            </a>
+          </div>
+          <p className="mt-6 text-xs">© {new Date().getFullYear()} The Opensource Project.</p>
         </div>
-        <p className="mt-6 text-xs">© {new Date().getFullYear()} The Opensource Project.</p>
-      </div>
-    ),
+      );
+    },
   },
   toc: {
     backToTop: true,
