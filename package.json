@@ -2,7 +2,6 @@
   "name": "es-hangul",
   "version": "1.0.4",
   "license": "MIT",
-  "packageManager": "pnpm@8.15.2",
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "typecheck": "tsc --noEmit",
