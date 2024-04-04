@@ -1,17 +1,49 @@
 {
   "name": "es-hangul",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.0.2",
   "license": "MIT",
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
-    "test": "vitest"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "publish": "changeset publish",
+    "version": "changeset version"
   },
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
   "devDependencies": {
     "@types/node": "^20.11.30",
     "prettier": "^3.2.5",
     "tsup": "^8.0.2",
     "typescript": "^5.4.3",
     "vitest": "^1.4.0"
+  },
+  "dependencies": {
+    "@changesets/cli": "^2.27.1"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "require": "./dist/index.js",
+        "import": "./dist/index.mjs",
+        "types": "./dist/index.d.ts"
+      },
+      "./package.json": "./package.json"
+    },
+    "import": "./dist/index.mjs",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts"
   }
 }
