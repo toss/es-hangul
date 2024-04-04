@@ -2,65 +2,57 @@
 title: es-hangul
 ---
 
-import { useIsDarkMode } from '@/hooks/use-is-dark-mode';
-import Image from 'next/image';
-import { useTheme } from 'nextra-theme-docs';
 import Link from 'next/link';
+import { Callout, useTheme, Steps } from 'nextra-theme-docs';
 
-export default function HomePage() {
-  const isDarkMode = useIsDarkMode();
+<style jsx global>{`
+  body {
+    background-image: radial-gradient(#ddd 1px, transparent 0), radial-gradient(#ddd 1px, transparent 0);
+    background-position:
+      0 0,
+      20px 20px;
+    background-size: 40px 40px;
+  }
+  .dark body {
+    background-image: radial-gradient(#333 1px, transparent 0), radial-gradient(#333 1px, transparent 0);
+  }
+`}</style>
 
-return (
-
-<div className="pb-20">
 <div className="flex flex-col items-center justify-center gap-8 pt-11 text-center">
-<Image src={isDarkMode ? '/logo-white.png' : '/logo.png'} alt="logo" width={400} height={241} />
-<span>{isDarkMode}</span>
-<div className="flex flex-col items-center gap-4">
-<div className="relative text-5xl font-bold">
-<br />
-<strong>한글을 다루는 모던한 방법</strong>
-</div>
-<br />
-<p className="text-3xl">
-한글을 쉽고, 선언적으로 다룰 수 있는 도구들을 제공합니다.
-<br />
-반복적이고 복잡한 부분은 es-hangul에 위임한 뒤, 비즈니스에 집중할 수 있습니다.
-</p>
-</div>
-<div className="flex gap-4"></div>
-</div>
-
-      <div className="h-14"></div>
-      <div className="flex flex-col items-start justify-between gap-8 md:flex-row">
-        {FEATURE_ITEMS.map(({ title, description }) => (
-          <div key={title} className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
-            <div className="text-xl font-bold">{title}</div>
-            <p className="text-lg">{description}</p>
-          </div>
-        ))}
-      </div>
-
-            <div className="h-14"></div>
-      <Link href="/docs/story" className='flex justify-end no-underline'> <button className="rounded-xl bg-gray-800 px-16 py-5 text-xl font-bold dark:text-gray-100">API 바로가기</button></Link>
+  <h1 className="text-center font-extrabold md:text-5xl mt-8">이에스-한글</h1>
+  <div className="flex flex-col items-center gap-4">
+    <div className="relative text-3xl">
+      <h3 className="">한글을 다루는 모던한 방법</h3>
     </div>
+    <Callout className="w-full">
+      한글을 쉽고, 선언적으로 다룰 수 있는 도구들을 제공합니다. 반복적이고 복잡한 부분은 es-hangul에 위임한 뒤,
+      비즈니스에 집중할 수 있습니다.
+    </Callout>
+  </div>
+</div>
 
-);
-}
+```tsx
+import { chosungIncludes } from 'es-hangul';
 
-export const FEATURE_ITEMS = [
-  {
-    title: '한국어 특성의 깊은 이해',
-    description:
-      '한국어의 독특한 특성인 초성, 중성, 종성을 기반으로 한 문자열 처리 기능은 한국어 처리에 있어 높은 수준의 정확성과 효율성을 제공해줍니다.',
-  },
-  {
-    title: '문장을 자연스럽게 만드는 도구',
-    description: '유동적으로 조사 등을 선택할 수 있게 함에 따라 자연스러운 문장 형성을 도와줍니다.',
-  },
-  {
-    title: '다양한 애플리케이션',
-    description:
-      '검색 엔진, 텍스트 에디터, 교육 플랫폼 등 다양한 종류의 애플리케이션에서 한글 처리를 위한 강력한 기능을 제공합니다.',
-  },
-];
+const searchWord = '라면';
+const userInput = 'ㄹㅁ';
+
+const result = chosungIncludes(searchWord, userInput);
+console.log(result); // true
+```
+
+```tsx
+import { josa } from 'es-hangul';
+
+const word1 = '사과';
+const sentence1 = josa(word1, '을/를') + ' 먹었습니다.';
+console.log(sentence1); // '사과를 먹었습니다.'
+
+const word2 = '바나나';
+const sentence2 = josa(word2, '이/가') + ' 맛있습니다.';
+console.log(sentence2); // '바나나가 맛있습니다.'
+```
+
+<div className="mt-16 mb-20 text-center">
+  [Get Started](/docs/story) · [API](/docs/api/josa) · [GitHub Repository](https://github.com/toss/es-hangul)
+</div>
