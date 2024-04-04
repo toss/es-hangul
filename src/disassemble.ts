@@ -8,7 +8,6 @@ export function disassembleHangulToGroups(str: string) {
    * 우선 map을 사용하지 않음으로써 문제를 회피함
    * @see https://sentry.io/organizations/toss/issues/2432344954/?project=1242586&referrer=slack
    * @see https://bugs.webkit.org/show_bug.cgi?id=211619
-   *
    */
   const result: string[][] = [];
 
