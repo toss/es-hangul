@@ -12,6 +12,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - run: corepack enable
 
       - name: Install Node.js
         uses: actions/setup-node@v4
