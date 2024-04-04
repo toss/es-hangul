@@ -7,8 +7,8 @@
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "typecheck": "tsc --noEmit",
     "test": "vitest",
-    "publish": "changeset publish",
-    "version": "changeset version"
+    "changeset:publish": "changeset publish",
+    "changeset:version": "changeset version"
   },
   "exports": {
     ".": {
