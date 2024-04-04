@@ -1,5 +1,5 @@
 [build]
-  publish = "docs/build"
+  publish = "docs/.next"
   command = "cd docs && yarn install && yarn build"
 
 [build.environment]
