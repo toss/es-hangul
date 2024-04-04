@@ -10,6 +10,7 @@ import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulC
  *   // 글자에 받침이 있는지 확인하고 싶은 문자열
  *   str: string
  * ): boolean
+ *
  * ```
  * @example
  * hasBatchim('값') // true
