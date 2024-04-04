@@ -1,6 +1,10 @@
 [build]
   publish = "docs/.next"
-  command = "cd docs && yarn install && yarn build"
+  command = "cd docs && yarn build"
 
 [build.environment]
-NETLIFY_USE_YARN="false"
+NETLIFY_USE_YARN="true"
+
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

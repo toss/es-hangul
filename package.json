@@ -1,5 +1,8 @@
 {
   "name": "es-hangul",
+  "workspaces": [
+    "docs"
+  ],
   "version": "1.0.4",
   "license": "MIT",
   "scripts": {
@@ -19,6 +22,7 @@
   },
   "main": "./dist/index.js",
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.0.0",
     "@types/node": "^20.11.30",
     "prettier": "^3.2.5",
     "tsup": "^8.0.2",
@@ -45,5 +49,6 @@
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts"
-  }
+  },
+  "packageManager": "yarn@4.1.1"
 }
