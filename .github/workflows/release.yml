@@ -21,7 +21,7 @@ jobs:
           cache: 'yarn'
 
       - name: Install Dependencies
-        run: yarn i
+        run: yarn install
 
       - name: Build
         run: yarn build
