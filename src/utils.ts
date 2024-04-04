@@ -11,7 +11,6 @@ import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulC
  *   str: string
  * ): boolean
  * ```
- *
  * @example
  * hasBatchim('값') // true
  * hasBatchim('토') // false
