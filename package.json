@@ -1,6 +1,6 @@
 {
   "name": "es-hangul",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": "MIT",
   "packageManager": "pnpm@8.15.2",
   "scripts": {
