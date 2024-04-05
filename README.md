@@ -1,3 +1,5 @@
+![es-hangul-og-logo3 (1)](https://github.com/toss/es-hangul/assets/69495129/433ddc8c-b32d-4c4c-8b60-5cc9cbe315d3)
+
 ## 기여하기
 
 es-hangul 라이브러리에 기여하고 싶다고 생각하셨다면 아래 문서를 참고해주세요.
