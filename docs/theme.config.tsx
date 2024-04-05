@@ -25,8 +25,6 @@ const config: DocsThemeConfig = {
   head: function useHead() {
     const { title } = useConfig();
     const { route } = useRouter();
-    const socialCard =
-      route === '/' || !title ? 'https://nextra.site/og.jpeg' : `https://nextra.site/api/og?title=${title}`;
 
     return (
       <>
@@ -37,11 +35,11 @@ const config: DocsThemeConfig = {
         <meta name="description" content="한글, 이제는 심플하고 스마트하게" />
         <meta name="og:description" content="한글, 이제는 심플하고 스마트하게" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content={socialCard} />
-        <meta name="twitter:site:domain" content="nextra.site" />
-        <meta name="twitter:url" content="https://nextra.site" />
-        <meta name="og:title" content={title ? title + ' – Nextra' : 'Nextra'} />
-        <meta name="og:image" content={socialCard} />
+        <meta name="twitter:image" content={'/og.png'} />
+        <meta name="twitter:site:domain" content="es-hangul.slash.page" />
+        <meta name="twitter:url" content="es-hangul.slash.page" />
+        <meta name="og:title" content={title ? title + ' – es-hangul' : 'es-hangul'} />
+        <meta name="og:image" content={'/og.png'} />
         <meta name="apple-mobile-web-app-title" content="Nextra" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.png" type="image/png" />
