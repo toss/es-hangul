@@ -32,8 +32,8 @@ const config: DocsThemeConfig = {
         <meta name="theme-color" content="#fff" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="Content-Language" content="en" />
-        <meta name="description" content="한글, 이제는 심플하고 스마트하게" />
-        <meta name="og:description" content="한글, 이제는 심플하고 스마트하게" />
+        <meta name="description" content="한글을 다루는 모던한 방법" />
+        <meta name="og:description" content="한글을 다루는 모던한 방법" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={'/og.png'} />
         <meta name="twitter:site:domain" content="es-hangul.slash.page" />
