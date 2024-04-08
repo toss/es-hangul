@@ -4,7 +4,7 @@
 
 한국어 | [English](./README-en_us.md)
 
-`es-hangul`은 JavaScript로 쉽게 한글을 다룰 수 있도록 하는 JavaScript 라이브러리입니다. 손쉽게 사용할 수 있는 모던한 라이브러리 API를 제공합니다. ECMAScript Modules을 사용하기 때문에, 사용자가 브라우저 환경에서 최소한의 코드를 내려받도록 할 수 있습니다.
+`es-hangul`은 쉽게 한글을 다룰 수 있도록 돕는 JavaScript 라이브러리입니다. 손쉽게 사용할 수 있는 모던한 라이브러리 API를 제공합니다. ECMAScript Modules을 사용하기 때문에, 사용자가 브라우저 환경에서 최소한의 코드를 내려받도록 할 수 있습니다.
 
 ## 사용 예시
 
