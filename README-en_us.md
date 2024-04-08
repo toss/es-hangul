@@ -1,6 +1,6 @@
 ![es-hangul logo](https://github.com/toss/es-hangul/assets/69495129/433ddc8c-b32d-4c4c-8b60-5cc9cbe315d3)
 
-## es-hangul
+# es-hangul
 
 [한국어](./README.md) | English
 
