@@ -76,19 +76,19 @@ const config: DocsThemeConfig = {
               className="flex items-center gap-1 text-current"
               target="_blank"
               rel="noopener noreferrer"
-              title="vercel.com homepage"
-              href="https://vercel.com?utm_source=nextra.site"
+              title="toss homepage"
+              href="https://toss.im"
             >
               <span>Powered by</span>
               <Image
                 src={isDarkMode ? '/toss-logo-white.png' : '/toss-logo-gray.png'}
-                alt="Vercel.com"
+                alt="Toss"
                 width="64"
                 height="32"
               />
             </a>
           </div>
-          <p className="mt-6 text-xs">© {new Date().getFullYear()} The Opensource Project.</p>
+          <p className="mt-6 text-xs">© {new Date().getFullYear()} Viva Republica, Inc.</p>
         </div>
       );
     },

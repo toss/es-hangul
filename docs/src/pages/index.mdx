@@ -12,21 +12,22 @@ import { Callout, useTheme, Steps } from 'nextra-theme-docs';
       0 0,
       20px 20px;
     background-size: 40px 40px;
+    word-break: keep-all;
   }
   .dark body {
     background-image: radial-gradient(#333 1px, transparent 0), radial-gradient(#333 1px, transparent 0);
   }
 `}</style>
 
-<div className="flex flex-col items-center justify-center gap-8 pt-11 text-center">
-  <h1 className="text-center font-extrabold md:text-5xl mt-8">이에스-한글</h1>
+<img src="/og.png" style={{ width: '100%', maxWidth: 400, margin: '32px auto' }} />
+
+<div className="flex flex-col items-center justify-center gap-8 pt-6 text-center">
   <div className="flex flex-col items-center gap-4">
     <div className="relative text-3xl">
-      <h3 className="">한글을 다루는 모던한 방법</h3>
+      <h3 className="">현대적인 JavaScript 한글 라이브러리</h3>
     </div>
     <Callout className="w-full">
-      한글을 쉽고, 선언적으로 다룰 수 있는 도구들을 제공합니다. 반복적이고 복잡한 부분은 es-hangul에 위임한 뒤,
-      비즈니스에 집중할 수 있습니다.
+      es-hangul은 편리하게 한글을 다룰 수 있도록 돕는 작은 JavaScript 라이브러리입니다. 초성을 검색하고, 조사를 붙이는 등의 동작을 편리하고 깔끔한 API로 제공합니다.
     </Callout>
   </div>
 </div>
