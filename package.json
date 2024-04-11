@@ -53,5 +53,18 @@
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts"
   },
+  "keywords": [
+    "한글",
+    "한국어",
+    "텍스트 처리",
+    "초성 검색",
+    "조사 처리",
+    "문자 분해",
+    "한국어 처리",
+    "hangul",
+    "korean",
+    "text processing",
+    "korean-language"
+  ],
   "packageManager": "yarn@4.1.1"
 }
