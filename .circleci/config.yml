@@ -51,8 +51,8 @@ jobs:
       - checkout
       - setup
       - run:
-          name: Prepack
-          command: yarn prepack
+          name: Build
+          command: yarn build
 
   check-peer:
     docker:
