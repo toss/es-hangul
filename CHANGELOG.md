@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.0.6
+
+### Patch Changes
+
+- 5af6f19: chore: github action + changeset을 테스트하기 위함입니다.
+
 ## 1.0.5
 
 ### Patch Changes
