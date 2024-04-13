@@ -29,13 +29,12 @@ export function josa(word: string, josa: JosaOption): string {
 josa.pick = josaPicker;
 
 function josaPicker(word: string, josa: JosaOption): string {
-  const wordWithoutLastBracket = removeLast완전한괄호(word);
+  const baseWord = remove완전한괄호(word);
 
-  const has받침 = hasBatchim(wordWithoutLastBracket);
+  const has받침 = hasBatchim(baseWord);
   let index = has받침 ? 0 : 1;
-  const lastChar = wordWithoutLastBracket[wordWithoutLastBracket.length - 1];
 
-  const is종성ㄹ = disassembleCompleteHangulCharacter(lastChar!)?.last === 'ㄹ';
+  const is종성ㄹ = disassembleCompleteHangulCharacter(baseWord[baseWord.length - 1]!)?.last === 'ㄹ';
 
   const isCaseOf로 = has받침 && is종성ㄹ && 로_조사.includes(josa);
 
@@ -43,7 +42,7 @@ function josaPicker(word: string, josa: JosaOption): string {
     index = index === 0 ? 1 : 0;
   }
 
-  const isEndsWith이 = lastChar === '이';
+  const isEndsWith이 = baseWord[baseWord.length - 1] === '이';
 
   if (josa === '이에요/예요' && isEndsWith이) {
     index = 1;
@@ -52,16 +51,6 @@ function josaPicker(word: string, josa: JosaOption): string {
   return josa.split('/')[index]!;
 }
 
-function removeLast완전한괄호(word: string) {
-  const endsWith완전한괄호 = checkEndsWith완전한괄호(word);
-
-  if (!endsWith완전한괄호) {
-    return word;
-  }
-
-  return word.replace(/\([^()]*\)(?=[^()]*$)/, '').trim();
-}
-
-function checkEndsWith완전한괄호(word: string) {
-  return /\([^)]*\)$/.test(word);
+function remove완전한괄호(word: string) {
+  return word.replace(/\([^()]*\)/g, '').trim();
 }
