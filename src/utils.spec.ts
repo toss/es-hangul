@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getFirstConsonants, hasBatchim } from './utils';
+import { canBeChosung, canBeJongsung, canBeJungsung, getFirstConsonants, hasBatchim } from './utils';
 
 describe('hasBatchim', () => {
   it('should return true for the character "값"', () => {
@@ -35,5 +35,68 @@ describe('getFirstConsonants', () => {
 
   it('should extract the initial consonants "ㄸㅇ ㅆㄱ" from the phrase "띄어 쓰기"', () => {
     expect(getFirstConsonants('띄어 쓰기')).toBe('ㄸㅇ ㅆㄱ');
+  });
+});
+
+describe('canBeChosung', () => {
+  it('ㄱ', () => {
+    expect(canBeChosung('ㄱ')).toBe(true);
+  });
+  it('ㅃ', () => {
+    expect(canBeChosung('ㅃ')).toBe(true);
+  });
+  it('ㅏ', () => {
+    expect(canBeChosung('ㅏ')).toBe(false);
+  });
+  it('ㅘ', () => {
+    expect(canBeChosung('ㅏ')).toBe(false);
+  });
+  it('ㄱㅅ', () => {
+    expect(canBeChosung('ㅏ')).toBe(false);
+  });
+  it('가', () => {
+    expect(canBeChosung('ㅏ')).toBe(false);
+  });
+});
+
+describe('canBeJungsung', () => {
+  it('ㅗㅏ', () => {
+    expect(canBeJungsung('ㅗㅏ')).toBe(true);
+  });
+  it('ㅏ', () => {
+    expect(canBeJungsung('ㅏ')).toBe(true);
+  });
+  it('ㄱ', () => {
+    expect(canBeJungsung('ㄱ')).toBe(false);
+  });
+  it('ㄱㅅ', () => {
+    expect(canBeJungsung('ㄱㅅ')).toBe(false);
+  });
+  it('가', () => {
+    expect(canBeJungsung('가')).toBe(false);
+  });
+});
+
+describe('canBeJongsung', () => {
+  it('ㄱ', () => {
+    expect(canBeJongsung('ㄱ')).toBe(true);
+  });
+  it('ㄱㅅ', () => {
+    expect(canBeJongsung('ㄱㅅ')).toBe(true);
+  });
+  it('ㅂㅅ', () => {
+    expect(canBeJongsung('ㅂㅅ')).toBe(true);
+  });
+  it('ㅎㄹ', () => {
+    expect(canBeJongsung('ㅎㄹ')).toBe(false);
+  });
+  it('ㅗㅏ', () => {
+    expect(canBeJongsung('ㅗㅏ')).toBe(false);
+  });
+  it('ㅏ', () => {
+    expect(canBeJongsung('ㅏ')).toBe(false);
+  });
+  it('가', () => {
+    expect(canBeJongsung('ㅏ')).toBe(false);
   });
 });
