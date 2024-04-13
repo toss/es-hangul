@@ -19,13 +19,11 @@ type JosaOption =
 const 로_조사: JosaOption[] = ['으로/로', '으로서/로서', '으로써/로써', '으로부터/로부터'];
 
 export function josa(word: string, josa: JosaOption): string {
-  const wordWithoutLastBracket = removeLast완전한괄호(word);
-
-  if (wordWithoutLastBracket.length === 0) {
+  if (word.length === 0) {
     return word;
   }
 
-  return word + josaPicker(wordWithoutLastBracket, josa);
+  return word + josaPicker(word, josa);
 }
 
 josa.pick = josaPicker;
