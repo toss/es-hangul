@@ -62,5 +62,5 @@ export function binaryAssembleHangul(source: string, nextCharacter: string) {
 
 export function assembleHangul(words: string[]) {
   const disassembled = disassembleHangul(words.join('')).split('');
-  return disassembled.reduce((result, current) => binaryAssembleHangul(result, current));
+  return disassembled.reduce(binaryAssembleHangul);
 }
