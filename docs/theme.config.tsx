@@ -98,7 +98,6 @@ const config: DocsThemeConfig = {
   toc: {
     backToTop: true,
   },
-  i18n: [{ locale: 'ko', text: '한국어' }],
 };
 
 export default config;
