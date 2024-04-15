@@ -8,9 +8,15 @@ import {
   NUMBER_OF_JUNGSUNG,
 } from './constants';
 
+interface ReturnTypeDisassembleCompleteHangulCharacter {
+  first: (typeof HANGUL_CHARACTERS_BY_FIRST_INDEX)[number];
+  middle: (typeof HANGUL_CHARACTERS_BY_MIDDLE_INDEX)[number];
+  last: (typeof HANGUL_CHARACTERS_BY_LAST_INDEX)[number];
+}
+
 export function disassembleCompleteHangulCharacter(
   letter: string
-): { first: string; middle: string; last: string } | undefined {
+): ReturnTypeDisassembleCompleteHangulCharacter | undefined {
   const charCode = letter.charCodeAt(0);
 
   const isCompleteHangul = COMPLETE_HANGUL_START_CHARCODE <= charCode && charCode <= COMPLETE_HANGUL_END_CHARCODE;
@@ -29,5 +35,5 @@ export function disassembleCompleteHangulCharacter(
     first: HANGUL_CHARACTERS_BY_FIRST_INDEX[firstIndex]!,
     middle: HANGUL_CHARACTERS_BY_MIDDLE_INDEX[middleIndex]!,
     last: HANGUL_CHARACTERS_BY_LAST_INDEX[lastIndex]!,
-  };
+  } as const;
 }
