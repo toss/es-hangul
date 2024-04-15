@@ -29,6 +29,10 @@ export function josa(word: string, josa: JosaOption): string {
 josa.pick = josaPicker;
 
 function josaPicker(word: string, josa: JosaOption): string {
+  if (word.length === 0) {
+    return josa.split('/')[0];
+  }
+
   const has받침 = hasBatchim(word);
   let index = has받침 ? 0 : 1;
 
