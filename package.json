@@ -6,22 +6,31 @@
   ],
   "version": "1.0.7",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "typecheck": "tsc --noEmit",
     "test": "vitest",
+    "test:publint": "yarn build && publint --strict",
     "changeset:publish": "changeset publish",
     "changeset:version": "changeset version"
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     },
     "./package.json": "./package.json"
   },
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
     "@netlify/plugin-nextjs": "^5.0.0",
@@ -31,6 +40,7 @@
     "eslint": "^7",
     "eslint-config-prettier": "^8.5.0",
     "prettier": "^3.2.5",
+    "publint": "^0.2.7",
     "tsup": "^8.0.2",
     "typescript": "^5.4.3",
     "vitest": "^1.4.0"
@@ -39,19 +49,7 @@
     "dist/*"
   ],
   "publishConfig": {
-    "access": "public",
-    "exports": {
-      ".": {
-        "require": "./dist/index.js",
-        "import": "./dist/index.mjs",
-        "types": "./dist/index.d.ts"
-      },
-      "./package.json": "./package.json"
-    },
-    "import": "./dist/index.mjs",
-    "main": "./dist/index.js",
-    "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts"
+    "access": "public"
   },
   "keywords": [
     "한글",

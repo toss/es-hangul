@@ -42,7 +42,16 @@ jobs:
       - run:
           name: Typecheck
           command: yarn tsc --noEmit
-
+  test:publint:
+    docker:
+      - image: cimg/node:20.12
+    parallelism: 2
+    steps:
+      - checkout
+      - setup
+      - run:
+          name: test:publint
+          command: yarn test:publint
   pre-pack:
     parallelism: 2
     docker:
@@ -53,7 +62,6 @@ jobs:
       - run:
           name: Build
           command: yarn build
-
   check-peer:
     docker:
       - image: cimg/node:20.12
@@ -63,7 +71,6 @@ jobs:
       - run:
           name: Check Peer Dependency
           command: ./.scripts/check-peer.sh || (echo "Peer Dependency 오류가 발생했습니다."; exit -1)
-
   test:
     docker:
       - image: cimg/node:20.12
@@ -75,7 +82,7 @@ jobs:
           name: vitest
           command: yarn vitest --reporter=junit > ./.junit
           environment:
-            YARN_ENABLE_IMMUTABLE_INSTALLS: 'false'
+            YARN_ENABLE_IMMUTABLE_INSTALLS: "false"
       - store_test_results:
           path: ./.junit
       - store_artifacts:
