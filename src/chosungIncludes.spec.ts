@@ -5,6 +5,7 @@ describe('chosungIncludes', () => {
   it('should return true when "ㅍㄹㅌ" is entered for searching "프론트엔드"', () => {
     expect(chosungIncludes('프론트엔드', 'ㅍㄹㅌ')).toBe(true);
   });
+
   it('should return true when "ㅍㄹㅌ" is entered for searching "00프론트엔드"', () => {
     expect(chosungIncludes('00프론트엔드', 'ㅍㄹㅌ')).toBe(true);
   });

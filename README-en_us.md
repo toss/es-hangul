@@ -31,7 +31,6 @@ const sentence2 = josa(word2, '이/가') + ' 맛있습니다.';
 console.log(sentence2); // '바나나가 맛있습니다.'
 ```
 
-
 ## Contributing
 
 We welcome contribution from everyone in the community. Read below for detailed contribution guide.
