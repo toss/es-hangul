@@ -1,4 +1,3 @@
-import { HANGUL_CHARACTERS_BY_FIRST_INDEX } from './constants';
 import { disassembleHangulToGroups } from './disassemble';
 import { canBeChosung, getFirstConsonants, hasValueInReadOnlyStringList } from './utils';
 
@@ -14,10 +13,12 @@ export function chosungIncludes(x: string, y: string) {
 }
 
 /*
- * @description 한글초성으로만 주어진 경우
+ * @description 공백을 제외한 문자열이 한글초성으로만 주어진 경우
  */
 function isOnlyInitialConsonant(str: string) {
-  return disassembleHangulToGroups(str).every(disassembled => {
+  const trimStr = str.replace(/\s/g, '');
+
+  return disassembleHangulToGroups(trimStr).every(disassembled => {
     return disassembled.length === 1 && canBeChosung(disassembled[0]);
   });
 }
