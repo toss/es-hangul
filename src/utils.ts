@@ -41,3 +41,11 @@ export function getFirstConsonants(word: string) {
     return `${firstConsonants}${consonant}`;
   }, '');
 }
+
+export function hasValueInReadOnlyStringList<T extends string>(list: readonly T[], value: string): value is T {
+  return list.some(item => item === value);
+}
+
+export function hasProperty<T extends object, K extends PropertyKey>(obj: T, key: K): key is K & keyof T {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
