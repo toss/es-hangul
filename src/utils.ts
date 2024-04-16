@@ -64,8 +64,8 @@ export function getFirstConsonants(word: string) {
  * canBeChosung('ㅏ') // false
  * canBeChosung('가') // false
  */
-export function canBeChosung(character: string) {
-  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_FIRST_INDEX,character);
+export function canBeChosung(character: string): character is (typeof HANGUL_CHARACTERS_BY_FIRST_INDEX)[number] {
+  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_FIRST_INDEX, character);
 }
 
 /**
@@ -86,7 +86,7 @@ export function canBeChosung(character: string) {
  * canBeChosung('ㄱㅅ') // false
  * canBeChosung('가') // false
  */
-export function canBeJungsung(character: string) {
+export function canBeJungsung(character: string): character is (typeof HANGUL_CHARACTERS_BY_MIDDLE_INDEX)[number] {
   return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_MIDDLE_INDEX, character);
 }
 
@@ -108,7 +108,7 @@ export function canBeJungsung(character: string) {
  * canBeChosung('ㅏ') // false
  * canBeChosung('ㅗㅏ') // false
  */
-export function canBeJongsung(character: string) {
+export function canBeJongsung(character: string): character is (typeof HANGUL_CHARACTERS_BY_LAST_INDEX)[number] {
   return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_LAST_INDEX, character);
 }
 
