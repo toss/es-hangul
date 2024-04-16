@@ -32,7 +32,7 @@ describe('combineHangulCharacter', () => {
 });
 
 describe('combineVowels', () => {
-  it('겹모음이 됧 수 있는 모음이 순서대로 입력되면 겹모음으로 합성한다.', () => {
+  it('겹모음이 될 수 있는 모음이 순서대로 입력되면 겹모음으로 합성한다.', () => {
     expect(combineVowels('ㅗ', 'ㅏ')).toBe('ㅘ');
     expect(combineVowels('ㅜ', 'ㅔ')).toBe('ㅞ');
     expect(combineVowels('ㅡ', 'ㅣ')).toBe('ㅢ');
