@@ -1,6 +1,10 @@
 {
-  "introduction": "es-hangul 이야기",
+  "introduction": "소개",
   "installation": "설치하기",
-  "features": "기술적 특징",
-  "api": "API"
+  "api": {
+    "title": "API",
+    "theme": {
+      "collapsed": false
+    }
+  }
 }

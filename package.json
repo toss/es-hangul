@@ -4,11 +4,11 @@
     ".",
     "docs"
   ],
-  "version": "1.0.7",
+  "version": "1.0.8",
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build": "tsup",
     "typecheck": "tsc --noEmit",
     "test": "vitest",
     "test:publint": "yarn build && publint --strict",
