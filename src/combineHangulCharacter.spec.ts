@@ -37,7 +37,7 @@ describe('combineVowels', () => {
     expect(combineVowels('ㅜ', 'ㅔ')).toBe('ㅞ');
     expect(combineVowels('ㅡ', 'ㅣ')).toBe('ㅢ');
   });
-  it('겹모음이 됧 수 있는 모음이라고 해도 틀린 순서로 입력되면 Join한다.', () => {
+  it('겹모음이 될 수 있는 모음이라고 해도 틀린 순서로 입력되면 Join한다.', () => {
     expect(combineVowels('ㅏ', 'ㅗ')).toBe('ㅏㅗ');
     expect(combineVowels('ㅣ', 'ㅡ')).toBe('ㅣㅡ');
   });
