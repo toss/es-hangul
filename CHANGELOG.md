@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.0.7
+
+### Patch Changes
+
+- b7df997: feat: Strictly manage constants by adding hasValueInStringList, hasPr…
+
 ## 1.0.6
 
 ### Patch Changes

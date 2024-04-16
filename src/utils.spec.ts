@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
-import { canBeChosung, canBeJongsung, canBeJungsung, getFirstConsonants, hasBatchim } from './utils';
+import { describe, expect, expectTypeOf, it } from 'vitest';
+import { canBeChosung, canBeJongsung, canBeJungsung, getFirstConsonants, hasBatchim, hasProperty, hasValueInReadOnlyStringList } from './utils';
 
 describe('hasBatchim', () => {
   it('should return true for the character "값"', () => {
@@ -35,6 +35,58 @@ describe('getFirstConsonants', () => {
 
   it('should extract the initial consonants "ㄸㅇ ㅆㄱ" from the phrase "띄어 쓰기"', () => {
     expect(getFirstConsonants('띄어 쓰기')).toBe('ㄸㅇ ㅆㄱ');
+  });
+});
+
+describe('hasValueInReadOnlyStringList', () => {
+  const testReadonlyList = ['ㄱ', 'ㄴ', 'ㄷ'] as const;
+
+  it('should return true if an element exists in a read-only string list', () => {
+    const testValue = 'ㄱ';
+
+    expect(hasValueInReadOnlyStringList(testReadonlyList, testValue)).toBeTruthy();
+  });
+
+  it('should return false if an element does not exist in a read-only string list', () => {
+    const testValue = 'ㄹ';
+
+    expect(hasValueInReadOnlyStringList(testReadonlyList, testValue)).toBeFalsy();
+  });
+
+  it('should narrow the type of the second argument if it is included in a read-only string list', () => {
+    const testValue = 'ㄱ' as string;
+
+    if (hasValueInReadOnlyStringList(testReadonlyList, testValue)) {
+      expectTypeOf(testValue).toEqualTypeOf<'ㄱ' | 'ㄴ' | 'ㄷ'>();
+    } else {
+      expectTypeOf(testValue).toEqualTypeOf<string>();
+    }
+  });
+});
+
+describe('hasProperty', () => {
+  const testObj = { ㄱ: 'ㄱ', ㄴ: 'ㄴ', ㄷ: 'ㄷ' } as const;
+
+  it('should return true if a property exists in a object', () => {
+    const testKey = 'ㄱ';
+
+    expect(hasProperty(testObj, testKey)).toBeTruthy();
+  });
+
+  it('should return false if a property does not exist in a object', () => {
+    const testKey = 'ㄹ';
+
+    expect(hasProperty(testObj, testKey)).toBeFalsy();
+  });
+
+  it('should narrow the type of the second argument if it is included in a object', () => {
+    const testKey = 'ㄱ' as string;
+
+    if (hasProperty(testObj, testKey)) {
+      expectTypeOf(testKey).toEqualTypeOf<'ㄱ' | 'ㄴ' | 'ㄷ'>();
+    } else {
+      expectTypeOf(testKey).toEqualTypeOf<string>();
+    }
   });
 });
 
