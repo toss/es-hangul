@@ -1,5 +1,17 @@
 # es-hangul
 
+## 1.0.8
+
+### Patch Changes
+
+- 73f221a: docs: nextra의 필요한 기능을 사용하고 문서를 간단명료하게 수정합니다
+
+## 1.0.7
+
+### Patch Changes
+
+- b7df997: feat: Strictly manage constants by adding hasValueInStringList, hasPr…
+
 ## 1.0.6
 
 ### Patch Changes

@@ -1,6 +1,4 @@
 import {
-  COMPLETE_HANGUL_END_CHARCODE,
-  COMPLETE_HANGUL_START_CHARCODE,
   HANGUL_CHARACTERS_BY_FIRST_INDEX,
   HANGUL_CHARACTERS_BY_LAST_INDEX,
   HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
@@ -67,7 +65,7 @@ export function getFirstConsonants(word: string) {
  * canBeChosung('가') // false
  */
 export function canBeChosung(character: string) {
-  return HANGUL_CHARACTERS_BY_FIRST_INDEX.includes(character);
+  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_FIRST_INDEX,character);
 }
 
 /**
@@ -89,7 +87,7 @@ export function canBeChosung(character: string) {
  * canBeChosung('가') // false
  */
 export function canBeJungsung(character: string) {
-  return HANGUL_CHARACTERS_BY_MIDDLE_INDEX.includes(character);
+  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_MIDDLE_INDEX, character);
 }
 
 /**
@@ -111,5 +109,13 @@ export function canBeJungsung(character: string) {
  * canBeChosung('ㅗㅏ') // false
  */
 export function canBeJongsung(character: string) {
-  return HANGUL_CHARACTERS_BY_LAST_INDEX.includes(character);
+  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_LAST_INDEX, character);
+}
+
+export function hasValueInReadOnlyStringList<T extends string>(list: readonly T[], value: string): value is T {
+  return list.some(item => item === value);
+}
+
+export function hasProperty<T extends object, K extends PropertyKey>(obj: T, key: K): key is K & keyof T {
+  return Object.prototype.hasOwnProperty.call(obj, key);
 }

@@ -31,7 +31,6 @@ const sentence2 = josa(word2, '이/가') + ' 맛있습니다.';
 console.log(sentence2); // '바나나가 맛있습니다.'
 ```
 
-
 ## 기여하기
 
 es-hangul 라이브러리에 기여하고 싶다고 생각하셨다면 아래 문서를 참고해주세요.

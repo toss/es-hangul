@@ -1,5 +1,6 @@
 import { DISASSEMBLED_CONSONANTS_BY_CONSONANT, DISASSEMBLED_VOWELS_BY_VOWEL } from './constants';
 import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
+import { hasProperty } from './utils';
 
 export function disassembleHangulToGroups(str: string) {
   /*
@@ -19,16 +20,16 @@ export function disassembleHangulToGroups(str: string) {
       continue;
     }
 
-    const disassembledConsonant = DISASSEMBLED_CONSONANTS_BY_CONSONANT[letter];
+    if (hasProperty(DISASSEMBLED_CONSONANTS_BY_CONSONANT, letter)) {
+      const disassembledConsonant = DISASSEMBLED_CONSONANTS_BY_CONSONANT[letter];
 
-    if (disassembledConsonant != null) {
       result.push([...disassembledConsonant]);
       continue;
     }
 
-    const disassembledVowel = DISASSEMBLED_VOWELS_BY_VOWEL[letter];
+    if (hasProperty(DISASSEMBLED_VOWELS_BY_VOWEL, letter)) {
+      const disassembledVowel = DISASSEMBLED_VOWELS_BY_VOWEL[letter];
 
-    if (disassembledVowel != null) {
       result.push([...disassembledVowel]);
       continue;
     }

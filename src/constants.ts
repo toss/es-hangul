@@ -7,7 +7,7 @@ export const NUMBER_OF_JUNGSUNG = 21;
  * ㄱ -> 'ㄱ'
  * ㄳ -> 'ㄱㅅ' 으로 나눈다.
  */
-export const DISASSEMBLED_CONSONANTS_BY_CONSONANT: { [letter: string]: string | undefined } = {
+export const DISASSEMBLED_CONSONANTS_BY_CONSONANT = {
   // 종성이 없는 경우 '빈' 초성으로 관리하는 것이 편리하여, 빈 문자열도 포함한다.
   '': '',
   ㄱ: 'ㄱ',
@@ -40,9 +40,9 @@ export const DISASSEMBLED_CONSONANTS_BY_CONSONANT: { [letter: string]: string | 
   ㅌ: 'ㅌ',
   ㅍ: 'ㅍ',
   ㅎ: 'ㅎ',
-};
+} as const;
 
-export const DISASSEMBLED_VOWELS_BY_VOWEL: { [letter: string]: string | undefined } = {
+export const DISASSEMBLED_VOWELS_BY_VOWEL = {
   ㅏ: 'ㅏ',
   ㅐ: 'ㅐ',
   ㅑ: 'ㅑ',
@@ -64,7 +64,7 @@ export const DISASSEMBLED_VOWELS_BY_VOWEL: { [letter: string]: string | undefine
   ㅡ: 'ㅡ',
   ㅢ: 'ㅡㅣ',
   ㅣ: 'ㅣ',
-};
+} as const;
 
 /**
  * 초성으로 올 수 있는 한글 글자
@@ -89,43 +89,45 @@ export const HANGUL_CHARACTERS_BY_FIRST_INDEX = [
   'ㅌ',
   'ㅍ',
   'ㅎ',
-];
+] as const;
 
 /**
  * 중성으로 올 수 있는 한글 글자
  */
-export const HANGUL_CHARACTERS_BY_MIDDLE_INDEX = Object.values(DISASSEMBLED_VOWELS_BY_VOWEL) as string[];
+export const HANGUL_CHARACTERS_BY_MIDDLE_INDEX = Object.values(DISASSEMBLED_VOWELS_BY_VOWEL);
 
 /**
  * 종성으로 올 수 있는 한글 글자
  */
-export const HANGUL_CHARACTERS_BY_LAST_INDEX = [
-  '',
-  'ㄱ',
-  'ㄲ',
-  'ㄳ',
-  'ㄴ',
-  'ㄵ',
-  'ㄶ',
-  'ㄷ',
-  'ㄹ',
-  'ㄺ',
-  'ㄻ',
-  'ㄼ',
-  'ㄽ',
-  'ㄾ',
-  'ㄿ',
-  'ㅀ',
-  'ㅁ',
-  'ㅂ',
-  'ㅄ',
-  'ㅅ',
-  'ㅆ',
-  'ㅇ',
-  'ㅈ',
-  'ㅊ',
-  'ㅋ',
-  'ㅌ',
-  'ㅍ',
-  'ㅎ',
-].map(consonant => DISASSEMBLED_CONSONANTS_BY_CONSONANT[consonant]!);
+export const HANGUL_CHARACTERS_BY_LAST_INDEX = (
+  [
+    '',
+    'ㄱ',
+    'ㄲ',
+    'ㄳ',
+    'ㄴ',
+    'ㄵ',
+    'ㄶ',
+    'ㄷ',
+    'ㄹ',
+    'ㄺ',
+    'ㄻ',
+    'ㄼ',
+    'ㄽ',
+    'ㄾ',
+    'ㄿ',
+    'ㅀ',
+    'ㅁ',
+    'ㅂ',
+    'ㅄ',
+    'ㅅ',
+    'ㅆ',
+    'ㅇ',
+    'ㅈ',
+    'ㅊ',
+    'ㅋ',
+    'ㅌ',
+    'ㅍ',
+    'ㅎ',
+  ] as const
+).map(consonant => DISASSEMBLED_CONSONANTS_BY_CONSONANT[consonant]);

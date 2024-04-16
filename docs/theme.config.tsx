@@ -49,11 +49,13 @@ const config: DocsThemeConfig = {
     );
   },
   editLink: {
-    text: 'Edit this page on GitHub →',
+    text: '이 페이지를 수정하기 →',
   },
   feedback: {
-    content: 'Question? Give us feedback →',
-    labels: 'feedback',
+    content: '이 페이지를 피드백하기 →',
+  },
+  search: {
+    placeholder: '검색어를 입력하세요...',
   },
   sidebar: {
     titleComponent({ title, type }) {
