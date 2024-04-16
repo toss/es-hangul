@@ -1,3 +1,8 @@
+import {
+  HANGUL_CHARACTERS_BY_FIRST_INDEX,
+  HANGUL_CHARACTERS_BY_LAST_INDEX,
+  HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
+} from './constants';
 import { disassembleHangulToGroups } from './disassemble';
 import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
 
@@ -40,6 +45,71 @@ export function getFirstConsonants(word: string) {
   return disassembleHangulToGroups(word).reduce((firstConsonants, [consonant]) => {
     return `${firstConsonants}${consonant}`;
   }, '');
+}
+
+/**
+ * @name canBeChosung
+ * @description
+ * 인자로 받은 문자가 초성으로 위치할 수 있는 문자인지 검사합니다.
+ * ```typescript
+ * canBeChosung(
+ *   // 대상 문자
+ *   character: string
+ * ): boolean
+ * ```
+ * @example
+ * canBeChosung('ㄱ') // true
+ * canBeChosung('ㅃ') // true
+ * canBeChosung('ㄱㅅ') // false
+ * canBeChosung('ㅏ') // false
+ * canBeChosung('가') // false
+ */
+export function canBeChosung(character: string) {
+  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_FIRST_INDEX,character);
+}
+
+/**
+ * @name canBeJungsung
+ * @description
+ * 인자로 받은 문자가 중성으로 위치할 수 있는 문자인지 검사합니다.
+ * ```typescript
+ * canBeJungsung(
+ *   // 대상 문자
+ *   character: string
+ * ): boolean
+ * ```
+ * @example
+ * canBeChosung('ㅏ') // true
+ * canBeChosung('ㅗㅏ') // true
+ * canBeChosung('ㅏㅗ') // false
+ * canBeChosung('ㄱ') // false
+ * canBeChosung('ㄱㅅ') // false
+ * canBeChosung('가') // false
+ */
+export function canBeJungsung(character: string) {
+  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_MIDDLE_INDEX, character);
+}
+
+/**
+ * @name canBeJongsung
+ * @description
+ * 인자로 받은 문자가 종성으로 위치할 수 있는 문자인지 검사합니다.
+ * ```typescript
+ * canBeJongsung(
+ *   // 대상 문자
+ *   character: string
+ * ): boolean
+ * ```
+ * @example
+ * canBeChosung('ㄱ') // true
+ * canBeChosung('ㄱㅅ') // true
+ * canBeChosung('ㅎㄹ') // false
+ * canBeChosung('가') // false
+ * canBeChosung('ㅏ') // false
+ * canBeChosung('ㅗㅏ') // false
+ */
+export function canBeJongsung(character: string) {
+  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_LAST_INDEX, character);
 }
 
 export function hasValueInReadOnlyStringList<T extends string>(list: readonly T[], value: string): value is T {

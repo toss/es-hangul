@@ -1,6 +1,6 @@
 import { HANGUL_CHARACTERS_BY_FIRST_INDEX } from './constants';
 import { disassembleHangulToGroups } from './disassemble';
-import { getFirstConsonants, hasValueInReadOnlyStringList } from './utils';
+import { canBeChosung, getFirstConsonants, hasValueInReadOnlyStringList } from './utils';
 
 export function chosungIncludes(x: string, y: string) {
   if (!isOnlyInitialConsonant(y)) {
@@ -18,6 +18,6 @@ export function chosungIncludes(x: string, y: string) {
  */
 function isOnlyInitialConsonant(str: string) {
   return disassembleHangulToGroups(str).every(disassembled => {
-    return disassembled.length === 1 && hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_FIRST_INDEX, disassembled[0]);
+    return disassembled.length === 1 && canBeChosung(disassembled[0]);
   });
 }
