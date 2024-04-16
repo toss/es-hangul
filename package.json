@@ -7,7 +7,7 @@
   "version": "1.0.7",
   "license": "MIT",
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build": "tsup",
     "typecheck": "tsc --noEmit",
     "test": "vitest",
     "changeset:publish": "changeset publish",
