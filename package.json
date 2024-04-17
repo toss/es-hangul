@@ -1,59 +1,6 @@
 {
   "name": "es-hangul",
-  "workspaces": [
-    ".",
-    "docs"
-  ],
   "version": "1.0.9",
-  "license": "MIT",
-  "scripts": {
-    "build": "tsup",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest",
-    "changeset:publish": "changeset publish",
-    "changeset:version": "changeset version"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
-    "./package.json": "./package.json"
-  },
-  "main": "./dist/index.js",
-  "devDependencies": {
-    "@changesets/changelog-github": "^0.5.0",
-    "@changesets/cli": "^2.27.1",
-    "@netlify/plugin-nextjs": "^5.0.0",
-    "@types/node": "^20.11.30",
-    "@typescript-eslint/eslint-plugin": "^5.39.0",
-    "@typescript-eslint/parser": "^5.39.0",
-    "eslint": "^7",
-    "eslint-config-prettier": "^8.5.0",
-    "prettier": "^3.2.5",
-    "tsup": "^8.0.2",
-    "typescript": "^5.4.3",
-    "vitest": "^1.4.0"
-  },
-  "files": [
-    "dist/*"
-  ],
-  "publishConfig": {
-    "access": "public",
-    "exports": {
-      ".": {
-        "require": "./dist/index.js",
-        "import": "./dist/index.mjs",
-        "types": "./dist/index.d.ts"
-      },
-      "./package.json": "./package.json"
-    },
-    "import": "./dist/index.mjs",
-    "main": "./dist/index.js",
-    "module": "./dist/index.mjs",
-    "types": "./dist/index.d.ts"
-  },
   "keywords": [
     "한글",
     "한국어",
@@ -67,5 +14,60 @@
     "text processing",
     "korean-language"
   ],
-  "packageManager": "yarn@4.1.1"
+  "license": "MIT",
+  "packageManager": "yarn@4.1.1",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "dist/*"
+  ],
+  "workspaces": [
+    ".",
+    "docs"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "changeset:publish": "changeset publish",
+    "changeset:version": "changeset version",
+    "packlint": "packlint sort -R",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.27.1",
+    "@netlify/plugin-nextjs": "^5.0.0",
+    "@types/node": "^20.11.30",
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0",
+    "eslint": "^7",
+    "eslint-config-prettier": "^8.5.0",
+    "packlint": "^0.2.4",
+    "prettier": "^3.2.5",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.3",
+    "vitest": "^1.4.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "exports": {
+      ".": {
+        "require": "./dist/index.js",
+        "import": "./dist/index.mjs",
+        "types": "./dist/index.d.ts"
+      },
+      "./package.json": "./package.json"
+    },
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.mjs"
+  }
 }
