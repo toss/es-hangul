@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
-  "changelog": ["@changesets/cli/changelog", { "repo": "toss/es-hangul" }],
+  "changelog": ["@changesets/changelog-github", { "repo": "toss/es-hangul" }],
   "commit": false,
   "linked": [],
   "access": "public",
