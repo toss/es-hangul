@@ -1,6 +1,5 @@
-import { HANGUL_CHARACTERS_BY_FIRST_INDEX } from './constants';
 import { disassembleHangulToGroups } from './disassemble';
-import { canBeChosung, getFirstConsonants, hasValueInReadOnlyStringList } from './utils';
+import { canBeChosung, getFirstConsonants } from './utils';
 
 export function chosungIncludes(x: string, y: string) {
   if (!isOnlyInitialConsonant(y)) {
@@ -8,7 +7,7 @@ export function chosungIncludes(x: string, y: string) {
   }
 
   const initialConsonantsX = getFirstConsonants(x).replace(/\s/g, '');
-  const initialConsonantsY = getFirstConsonants(y).replace(/\s/g, '');
+  const initialConsonantsY = getFirstConsonants(y);
 
   return initialConsonantsX.includes(initialConsonantsY);
 }
