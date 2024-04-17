@@ -1,5 +1,5 @@
 import { disassembleHangulToGroups } from './disassemble';
-import { canBeChosung, getFirstConsonants, hasValueInReadOnlyStringList } from './utils';
+import { canBeChosung, getFirstConsonants } from './utils';
 
 export function chosungIncludes(x: string, y: string) {
   if (!isOnlyInitialConsonant(y)) {
