@@ -15,9 +15,26 @@ function chosungIncludes(
 ): boolean;
 ```
 
+## Examples
+
 ```typescript
 chosungIncludes('프론트엔드', 'ㅍㄹㅌ'); // true
 chosungIncludes('00프론트엔드', 'ㅍㄹㅌ'); // true
 chosungIncludes('프론트엔드', 'ㅍㅌ'); // false
 chosungIncludes('프론트엔드', '푸롴트'); // false
+chosungIncludes('프론트엔드 개발자', 'ㅍㄹㅌㅇㄷ ㄱㅂㅈ'); // false
+```
+
+## Tips
+
+공백을 포함한 단어의 검색도 처리하고 싶다면, 다음과 같이 사용해보세요!
+
+```ts
+const word = '프론트엔드 개발자';
+const chosung = 'ㅍㄹㅌㅇㄷ ㄱㅂㅈ';
+
+const trimmedWord = word.replace(/\s/g, '');
+const trimmedChosung = chosung.replace(/\s/g, '');
+
+const 유저가_입력한_초성이_단어에_맞는가 = chosungIncludes(trimmedWord, trimmedChosung);
 ```
