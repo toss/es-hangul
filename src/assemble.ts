@@ -2,19 +2,29 @@ import { combineHangulCharacter, combineVowels, curriedCombineHangulCharacter } 
 import { disassembleHangul } from './disassemble';
 import { removeLastHangulCharacter } from './removeLastHangulCharacter';
 import { canBeChosung, canBeJongsung, canBeJungsung, hasBatchim } from './utils';
-import { excludeLastElement, joinString } from './_internal';
+import { excludeLastElement, isHangulAlphabet, joinString } from './_internal';
 
 export function binaryAssembleHangulCharacters(source: string, nextCharacter: string) {
+  if (source.length > 1) {
+    throw new Error(`Invalid source character: ${source}. Source must be one character.`);
+  }
+
+  if (nextCharacter !== ' ' && isHangulAlphabet(nextCharacter)) {
+    throw new Error(
+      `Invalid next character: ${nextCharacter}. Next character must be one of the chosung, jungsung, or jongsung.`
+    );
+  }
+
   const sourceJamo = disassembleHangul(source).split('');
 
-  // source에 모음 뿐이고 다음 글자도 모음
+  // source에 모음 뿐
   if (canBeJungsung(sourceJamo[0])) {
     return canBeJungsung(`${source}${nextCharacter}`)
       ? combineVowels(source, nextCharacter)
       : joinString(source, nextCharacter);
   }
 
-  const [_, 마지막_자모] = excludeLastElement(sourceJamo);
+  const [, 마지막_자모] = excludeLastElement(sourceJamo);
 
   // source가 자음 뿐이고 다음 글자가 모음
   if (sourceJamo.length === 1 && canBeJungsung(nextCharacter)) {

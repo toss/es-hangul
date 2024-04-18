@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { assert, describe, expect, it } from 'vitest';
 import { assembleHangul, binaryAssembleHangul, binaryAssembleHangulCharacters } from './assemble';
 
 describe('binaryAssembleHangulCharacters', () => {
@@ -42,6 +42,27 @@ describe('binaryAssembleHangulCharacters', () => {
 
   it('한 번에 입력할 수 없는 문자를 조합하면 단순 Join 한다', () => {
     expect(binaryAssembleHangulCharacters('뼈', 'ㅣ')).toEqual('뼈ㅣ');
+  });
+
+  it('소스가 두 글자 이상이라면 Invalid source 에러를 발생시킨다.', () => {
+    assert.throws(
+      () => binaryAssembleHangulCharacters('가나', 'ㄴ'),
+      Error,
+      'Invalid source character: 가나. Source must be one character.'
+    );
+  });
+
+  it('다음 문자가 초성, 중성, 종성, 공백 중 어디에도 해당하지 않는다면 Invalid next character 에러를 발생시킨다.', () => {
+    assert.throws(
+      () => binaryAssembleHangulCharacters('ㄱ', 'aa'),
+      Error,
+      'Invalid next character: aa. Next character must be one of the chosung, jungsung, or jongsung.'
+    );
+    assert.throws(
+      () => binaryAssembleHangulCharacters('ㄱ', 'ㅡㅏ'),
+      Error,
+      'Invalid next character: ㅡㅏ. Next character must be one of the chosung, jungsung, or jongsung.'
+    );
   });
 });
 
