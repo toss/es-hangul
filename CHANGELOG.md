@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.1.0
+
+### Minor Changes
+
+- [#53](https://github.com/toss/es-hangul/pull/53) [`314f0a9`](https://github.com/toss/es-hangul/commit/314f0a94e49aaa3202d724a0ae5a3cd4574e6bc3) Thanks [@evan-moon](https://github.com/evan-moon)! - feat: 한글 자모음을 인자로 입력받아 한글 문자로 합성하는 함수 추가
+
 ## 1.0.9
 
 ### Patch Changes
