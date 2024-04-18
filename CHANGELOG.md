@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.2.0
+
+### Minor Changes
+
+- [#56](https://github.com/toss/es-hangul/pull/56) [`e25b8b5`](https://github.com/toss/es-hangul/commit/e25b8b5d8b7a5739a66163233779f5cfa7ed8cdb) Thanks [@evan-moon](https://github.com/evan-moon)! - feat: removeLastHangulCharacter 추가
+
 ## 1.1.0
 
 ### Minor Changes
