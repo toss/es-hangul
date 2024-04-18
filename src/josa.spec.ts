@@ -73,6 +73,9 @@ describe('Hangul', () => {
   });
 
   describe('josa.pick', () => {
+    it('첫 번째 매개변수가 빈 문자열이라면 옵션중 첫 번째 값을 반환한다', () => {
+      expect(josa.pick('', '이/가')).toBe('이');
+    });
     it('주격조사', () => {
       expect(josa.pick('샴푸', '이/가')).toBe('가');
       expect(josa.pick('칫솔', '이/가')).toBe('이');
