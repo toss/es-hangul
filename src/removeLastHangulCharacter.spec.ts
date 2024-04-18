@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { removeLastHangulCharacter } from './removeLastHangulCharacter';
 
-describe('removeLastCharacter', () => {
+describe('removeLastHangulCharacter', () => {
   it('마지막 문자가 겹받침인 경우 홑받침으로 바꾼다', () => {
     expect(removeLastHangulCharacter('안녕하세요 값')).toBe('안녕하세요 갑');
   });
