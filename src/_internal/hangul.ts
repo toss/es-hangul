@@ -75,15 +75,15 @@ export function binaryAssembleHangulCharacters(source: string, nextCharacter: st
     `Invalid next character: ${nextCharacter}. Next character must be one of the chosung, jungsung, or jongsung.`
   );
 
-  const sourceJamo = disassembleHangulToGroups(source)[0];
+  const sourceJamos = disassembleHangulToGroups(source)[0];
 
-  const isSingleCharacter = sourceJamo.length === 1;
+  const isSingleCharacter = sourceJamos.length === 1;
   if (isSingleCharacter) {
-    const sourceCharacter = sourceJamo[0];
+    const sourceCharacter = sourceJamos[0];
     return binaryAssembleHangulAlphabets(sourceCharacter, nextCharacter);
   }
 
-  const [restJamos, lastJamo] = excludeLastElement(sourceJamo);
+  const [restJamos, lastJamo] = excludeLastElement(sourceJamos);
 
   const needLinking = canBeChosung(lastJamo) && canBeJungsung(nextCharacter);
   if (needLinking) {
