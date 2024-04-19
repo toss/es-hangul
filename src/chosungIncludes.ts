@@ -18,7 +18,12 @@ export function chosungIncludes(x: string, y: string) {
  * @description 문자열이 한글초성으로만 주어진 경우
  */
 function isOnlyInitialConsonant(str: string) {
-  return disassembleHangulToGroups(str).every(disassembled => {
+  const groups = disassembleHangulToGroups(str);
+  if (groups.length === 0) {
+    return false;
+  }
+
+  return groups.every(disassembled => {
     return disassembled.length === 1 && canBeChosung(disassembled[0]);
   });
 }
