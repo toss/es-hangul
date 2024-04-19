@@ -131,3 +131,42 @@ export const HANGUL_CHARACTERS_BY_LAST_INDEX = (
     'ㅎ',
   ] as const
 ).map(consonant => DISASSEMBLED_CONSONANTS_BY_CONSONANT[consonant]);
+
+/**
+ * 영문 대소문자를 구분한 자판 맵 객체
+ */
+export const KEYBOARD_MAP = {
+  q: 'ㅂ',
+  Q: 'ㅃ',
+  w: 'ㅈ',
+  W: 'ㅉ',
+  e: 'ㄷ',
+  E: 'ㄸ',
+  r: 'ㄱ',
+  R: 'ㄲ',
+  t: 'ㅅ',
+  T: 'ㅆ',
+  y: 'ㅛ',
+  u: 'ㅕ',
+  i: 'ㅑ',
+  o: 'ㅐ',
+  O: 'ㅒ',
+  p: 'ㅔ',
+  P: 'ㅖ',
+  a: 'ㅁ',
+  s: 'ㄴ',
+  d: 'ㅇ',
+  f: 'ㄹ',
+  g: 'ㅎ',
+  h: 'ㅗ',
+  j: 'ㅓ',
+  k: 'ㅏ',
+  l: 'ㅣ',
+  z: 'ㅋ',
+  x: 'ㅌ',
+  c: 'ㅊ',
+  v: 'ㅍ',
+  b: 'ㅠ',
+  n: 'ㅜ',
+  m: 'ㅡ',
+} as const;
