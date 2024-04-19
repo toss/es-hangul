@@ -14,6 +14,10 @@ describe('convertAlphabetToHangul', () => {
     expect(convertAlphabetToHangul('vm론트')).toBe('ㅍㅡㄹㅗㄴㅌㅡ');
   });
 
+  it('분해된 한글은 유지한다.', () => {
+    expect(convertAlphabetToHangul('ㅍㅡㄹㅗㄴㅌㅡ')).toBe('ㅍㅡㄹㅗㄴㅌㅡ');
+  });
+
   it('한글과 영문이 아닌 입력은 유지한다.', () => {
     expect(convertAlphabetToHangul('4월 / 20dlf!')).toBe('4ㅇㅜㅓㄹ / 20ㅇㅣㄹ!');
   });
