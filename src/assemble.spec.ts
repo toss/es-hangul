@@ -50,6 +50,11 @@ describe('binaryAssembleHangulCharacters', () => {
       Error,
       'Invalid source character: 가나. Source must be one character.'
     );
+    assert.throws(
+      () => binaryAssembleHangulCharacters('ㄱㄴ', 'ㅏ'),
+      Error,
+      'Invalid source character: ㄱㄴ. Source must be one character.'
+    );
   });
 
   it('다음 문자가 초성, 중성, 종성, 공백 중 어디에도 해당하지 않는다면 Invalid next character 에러를 발생시킨다.', () => {

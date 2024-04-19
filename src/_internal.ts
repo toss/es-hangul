@@ -20,5 +20,11 @@ export function isHangulAlphabet(
   | (typeof HANGUL_CHARACTERS_BY_FIRST_INDEX)[number]
   | (typeof HANGUL_CHARACTERS_BY_MIDDLE_INDEX)[number]
   | (typeof HANGUL_CHARACTERS_BY_LAST_INDEX)[number] {
-  return [canBeChosung, canBeJungsung, canBeJongsung].every(predicate => predicate(character) === false);
+  return [canBeChosung, canBeJungsung, canBeJongsung].some(predicate => predicate(character) === true);
+}
+
+export default function assert(condition: boolean, errorMessage?: string): asserts condition {
+  if (condition === false) {
+    throw new Error(errorMessage ?? 'Invalid condition');
+  }
 }
