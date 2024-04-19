@@ -2,11 +2,15 @@ import { describe, expect, it } from 'vitest';
 import { convertAlphabetToHangul } from './convertAlphabetToHangul ';
 
 describe('convertAlphabetToHangul', () => {
-  it('영문 타자를 한글 타자로 바꾼다.', () => {
+  it('알파벳을 한글 타자로 바꾼다.', () => {
     expect(convertAlphabetToHangul('abc')).toBe('ㅁㅠㅊ');
   });
 
-  it('한글 글자를 한글 자/모로 바꾼다.', () => {
+  it('쌍/자모음에 대응하지 않는 알파벳을 한글 타자로 바꾼다.', () => {
+    expect(convertAlphabetToHangul('ABC')).toBe('ㅁㅠㅊ');
+  });
+
+  it('한글 글자는 한글 자/모로 바꾼다.', () => {
     expect(convertAlphabetToHangul('vm론트')).toBe('ㅍㅡㄹㅗㄴㅌㅡ');
   });
 
