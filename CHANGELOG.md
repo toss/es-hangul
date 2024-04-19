@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.2.1
+
+### Patch Changes
+
+- [#42](https://github.com/toss/es-hangul/pull/42) [`f668e15`](https://github.com/toss/es-hangul/commit/f668e15318744e2c0195a826ef0d963de26072cb) Thanks [@BO-LIKE-CHICKEN](https://github.com/BO-LIKE-CHICKEN)! - fix: Handle spaces in initialConsonants search inputs properly
+
 ## 1.2.0
 
 ### Minor Changes
