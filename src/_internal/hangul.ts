@@ -113,6 +113,23 @@ export function binaryAssembleHangulCharacters(source: string, nextCharacter: st
   return joinString(source, nextCharacter);
 }
 
+/**
+ * @name binaryAssembleHangulCharacters
+ * @description
+ * 인자로 받은 한글 문장과 한글 문자 하나를 합성합니다.
+ * ```typescript
+ * binaryAssembleHangul(
+ *   // 한글 문장
+ *   source: string
+ *   // 한글 문자
+ *   nextCharacter: string
+ * ): string
+ * ```
+ * @example
+ * binaryAssembleHangul('저는 고양이를 좋아합닏', 'ㅏ') // 저는 고양이를 좋아합니다
+ * binaryAssembleHangul('저는 고양이를 좋아합', 'ㅅ') // 저는 고양이를 좋아핪
+ * binaryAssembleHangul('저는 고양이를 좋아하', 'ㅏ') // 저는 고양이를 좋아하ㅏ
+ */
 export function binaryAssembleHangul(source: string, nextCharacter: string) {
   const [rest, lastCharacter] = excludeLastElement(source.split(''));
   const needJoinString = isBlank(lastCharacter) || isBlank(nextCharacter);
