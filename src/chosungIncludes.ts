@@ -1,5 +1,5 @@
 import { disassembleHangulToGroups } from './disassemble';
-import { canBeChosung, getFirstConsonants } from './utils';
+import { canBeChosung, getChosung } from './utils';
 
 export function chosungIncludes(x: string, y: string) {
   const trimmedY = y.replace(/\s/g, '');
@@ -8,7 +8,7 @@ export function chosungIncludes(x: string, y: string) {
     return false;
   }
 
-  const chosungX = getFirstConsonants(x).replace(/\s/g, '');
+  const chosungX = getChosung(x).replace(/\s/g, '');
   const chosungY = trimmedY;
 
   return chosungX.includes(chosungY);
