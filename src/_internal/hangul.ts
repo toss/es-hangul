@@ -114,7 +114,7 @@ export function binaryAssembleHangulCharacters(source: string, nextCharacter: st
 }
 
 /**
- * @name binaryAssembleHangulCharacters
+ * @name binaryAssembleHangul
  * @description
  * 인자로 받은 한글 문장과 한글 문자 하나를 합성합니다.
  * ```typescript
