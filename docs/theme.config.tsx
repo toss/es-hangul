@@ -24,7 +24,6 @@ const config: DocsThemeConfig = {
   },
   head: function useHead() {
     const { title } = useConfig();
-    const { route } = useRouter();
 
     return (
       <>
