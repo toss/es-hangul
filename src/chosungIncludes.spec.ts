@@ -22,6 +22,10 @@ describe('chosungIncludes', () => {
     expect(chosungIncludes('프론트엔드 개발자', 'ㅍㄹㅌㅇㄷ ㄱㅂㅈ')).toBe(true);
   });
 
+  it('should return true when "ㅍㄹㅌㅇㄷ ㄱㅂㅈ" is entered for searching " "', () => {
+    expect(chosungIncludes('프론트엔드 개발자', ' ')).toBe(false);
+  });
+
   it('should return false when "푸롴트" is entered for searching "프론트엔드" as it does not only include the initial consonants.', () => {
     expect(chosungIncludes('프론트엔드', '푸롴트')).toBe(false);
   });
