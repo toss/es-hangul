@@ -2,7 +2,7 @@ import { disassembleHangulToGroups } from './disassemble';
 import { canBeChosung, getFirstConsonants } from './utils';
 
 export function chosungIncludes(x: string, y: string) {
-  const trimY = y.replace(/\s/g, '');
+  const trimmedY = y.replace(/\s/g, '');
 
   if (!isOnlyInitialConsonant(trimY)) {
     return false;
