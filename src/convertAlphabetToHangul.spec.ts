@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { convertAlphabetToHangul } from './convertAlphabetToHangul ';
+import { convertAlphabetToHangul } from './convertAlphabetToHangul';
 
 describe('convertAlphabetToHangul', () => {
   it('알파벳을 한글 타자로 바꾼다.', () => {
