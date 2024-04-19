@@ -1,5 +1,14 @@
 import { describe, expect, expectTypeOf, it } from 'vitest';
-import { canBeChosung, canBeJongsung, canBeJungsung, getFirstConsonants, hasBatchim, hasProperty, hasValueInReadOnlyStringList } from './utils';
+import {
+  canBeChosung,
+  canBeJongsung,
+  canBeJungsung,
+  getFirstConsonants,
+  hasBatchim,
+  hasProperty,
+  hasSingleBatchim,
+  hasValueInReadOnlyStringList,
+} from './utils';
 
 describe('hasBatchim', () => {
   it('should return true for the character "값"', () => {
@@ -16,6 +25,24 @@ describe('hasBatchim', () => {
   });
   it('should return false for the character "서"', () => {
     expect(hasBatchim('서')).toBe(false);
+  });
+});
+
+describe('hasSingleBatchim', () => {
+  it('홑받침을 받으면 true를 반환한다.', () => {
+    expect(hasSingleBatchim('공')).toBe(true);
+    expect(hasSingleBatchim('핫')).toBe(true);
+    expect(hasSingleBatchim('양')).toBe(true);
+    expect(hasSingleBatchim('신')).toBe(true);
+  });
+  it('겹받침을 받으면 false를 반환한다.', () => {
+    expect(hasSingleBatchim('값')).toBe(false);
+    expect(hasSingleBatchim('읊')).toBe(false);
+  });
+
+  it('받침이 없는 문자를 받으면 false를 반환한다.', () => {
+    expect(hasSingleBatchim('토')).toBe(false);
+    expect(hasSingleBatchim('서')).toBe(false);
   });
 });
 
