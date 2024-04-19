@@ -55,7 +55,17 @@ const config: DocsThemeConfig = {
     content: '이 페이지를 피드백하기 →',
   },
   search: {
-    placeholder: '검색어를 입력하세요...',
+    placeholder: function usePlaceholder() {
+      const { locale } = useRouter();
+
+      switch (locale) {
+        case 'en':
+        default:
+          return `Search...`;
+        case 'ko':
+          return '검색어를 입력하세요...';
+      }
+    },
   },
   sidebar: {
     titleComponent({ title, type }) {
@@ -98,6 +108,10 @@ const config: DocsThemeConfig = {
   toc: {
     backToTop: true,
   },
+  i18n: [
+    { locale: 'en', text: 'English' },
+    { locale: 'ko', text: '한국어' },
+  ]
 };
 
 export default config;
