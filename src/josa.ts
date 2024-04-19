@@ -29,10 +29,14 @@ export function josa(word: string, josa: JosaOption): string {
 josa.pick = josaPicker;
 
 function josaPicker(word: string, josa: JosaOption): string {
+  if (word.length === 0) {
+    return josa.split('/')[0];
+  }
+
   const has받침 = hasBatchim(word);
   let index = has받침 ? 0 : 1;
 
-  const is종성ㄹ = disassembleCompleteHangulCharacter(word[word.length - 1]!)?.last === 'ㄹ';
+  const is종성ㄹ = disassembleCompleteHangulCharacter(word[word.length - 1])?.last === 'ㄹ';
 
   const isCaseOf로 = has받침 && is종성ㄹ && 로_조사.includes(josa);
 
@@ -46,5 +50,5 @@ function josaPicker(word: string, josa: JosaOption): string {
     index = 1;
   }
 
-  return josa.split('/')[index]!;
+  return josa.split('/')[index];
 }
