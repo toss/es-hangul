@@ -4,12 +4,12 @@ import { canBeChosung, getFirstConsonants } from './utils';
 export function chosungIncludes(x: string, y: string) {
   const trimmedY = y.replace(/\s/g, '');
 
-  if (!isOnlyInitialConsonant(trimY)) {
+  if (!isOnlyInitialConsonant(trimmedY)) {
     return false;
   }
 
   const initialConsonantsX = getFirstConsonants(x).replace(/\s/g, '');
-  const initialConsonantsY = trimY;
+  const initialConsonantsY = trimmedY;
 
   return initialConsonantsX.includes(initialConsonantsY);
 }
