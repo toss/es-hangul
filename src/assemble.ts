@@ -13,8 +13,8 @@ import { binaryAssembleHangul } from './_internal/hangul';
  * ```
  * @example
  * assembleHangul(['아버지가', ' ', '방ㅇ', 'ㅔ ', '들ㅇ', 'ㅓ갑니다']) // 아버지가 방에 들어갑니다
- * assembleHangul(['아버지가', ' ', '방에 ', '들어갑니다'] // 아버지가 방에 들어갑니다
- * assembleHangul(['ㅇ', 'ㅏ', 'ㅂ', 'ㅓ', 'ㅈ', 'ㅣ'] // 아버지
+ * assembleHangul(['아버지가', ' ', '방에 ', '들어갑니다']) // 아버지가 방에 들어갑니다
+ * assembleHangul(['ㅇ', 'ㅏ', 'ㅂ', 'ㅓ', 'ㅈ', 'ㅣ']) // 아버지
  */
 export function assembleHangul(words: string[]) {
   const disassembled = disassembleHangul(words.join('')).split('');
