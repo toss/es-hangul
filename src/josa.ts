@@ -25,20 +25,8 @@ export function josa(word: string, josa: JosaOption): string {
 
   return word + josaPicker(word, josa);
 }
-
-export function taggedJosa(strings: TemplateStringsArray, [word, josa]: [string, JosaOption]) {
-  const [prefix, suffix] = strings;
-
-  if (word.length === 0) {
-    throw new Error('빈 문자열에 조사를 붙일 수 없습니다.');
-  }
-
-  const chosenJosa = josaPicker(word, josa);
-
-  return prefix + word + chosenJosa + suffix;
-}
-
 josa.pick = josaPicker;
+josa.tagged = taggedJosa;
 
 function josaPicker(word: string, josa: JosaOption): string {
   if (word.length === 0) {
@@ -63,4 +51,16 @@ function josaPicker(word: string, josa: JosaOption): string {
   }
 
   return josa.split('/')[index];
+}
+
+export function taggedJosa(strings: TemplateStringsArray, [word, josa]: [string, JosaOption]) {
+  const [prefix, suffix] = strings;
+
+  if (word.length === 0) {
+    throw new Error('빈 문자열에 조사를 붙일 수 없습니다.');
+  }
+
+  const chosenJosa = josaPicker(word, josa);
+
+  return prefix + word + chosenJosa + suffix;
 }
