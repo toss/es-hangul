@@ -6,7 +6,7 @@ title: hangulIncludes
 
 Checks if a Hangul string contains another Hangul string.
 
-For example, `사과` ('apple') contains `삭`, and `값이 비싸다` ('it is expensive') contains `갑` or `빘`.
+For example, `사과` contains `삭`, and `값이 비싸다` contains `갑` or `빘`.
 
 ```typescript
 function hangulIncludes(
