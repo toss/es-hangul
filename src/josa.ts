@@ -29,6 +29,10 @@ export function josa(word: string, josa: JosaOption): string {
 export function taggedJosa(strings: TemplateStringsArray, [word, josa]: [string, JosaOption]) {
   const [prefix, suffix] = strings;
 
+  if (word.length === 0) {
+    throw new Error('빈 문자열에 조사를 붙일 수 없습니다.');
+  }
+
   const chosenJosa = josaPicker(word, josa);
 
   return prefix + word + chosenJosa + suffix;
