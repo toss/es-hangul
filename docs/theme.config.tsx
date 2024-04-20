@@ -48,10 +48,30 @@ const config: DocsThemeConfig = {
     );
   },
   editLink: {
-    text: '이 페이지를 수정하기 →',
+    text: function EditLinkText() {
+      const { locale } = useRouter();
+
+      switch (locale) {
+        case 'ko':
+          return '이 페이지를 수정하기 →';
+        case 'en':
+        default:
+          return 'Edit this page →';
+      }
+    },
   },
   feedback: {
-    content: '이 페이지를 피드백하기 →',
+    content: function FeedbackContent() {
+      const { locale } = useRouter();
+
+      switch (locale) {
+        case 'ko':
+          return '이 페이지를 피드백하기 →';
+        case 'en':
+        default:
+          return 'Add feedback on this page →';
+      }
+    },
   },
   search: {
     placeholder: function usePlaceholder() {
