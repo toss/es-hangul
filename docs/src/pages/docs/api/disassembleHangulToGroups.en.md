@@ -4,11 +4,11 @@ title: disassembleHangulToGroups
 
 # disassembleHangulToGroups
 
-한글 문자열을 글자별로 초성/중성/종성 단위로 완전히 분리합니다.
+Completely separate a Hangul string into individual characters based on the initial consonant, medial vowel, and final consonant.
 
-`ㄵ`와 같은 겹자음은 `['ㄴ', 'ㅈ']`와 같이 풀고, `ㅘ`와 같은 겹모음은 `['ㅗ', 'ㅏ']`와 같이 풉니다.
+Complex consonants like `ㄵ` are split into `['ㄴ', 'ㅈ']`, and complex vowels like `ㅘ` are split into `['ㅗ', 'ㅏ']`.
 
-자세한 예시는 아래 Example을 참고하세요.
+For detailed examples, please refer to the section below.
 
 ```typescript
 function disassembleHangulToGroups(
