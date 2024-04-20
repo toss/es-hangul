@@ -4,11 +4,11 @@ title: josa
 
 # josa
 
-Attaches particles to a Hangul string such as '이/가', '을/를', '은/는', '으로/로', '와/과', '이나/나', 이란/란, 아/야, '이랑/랑', '이에요/예요', '으로서/로서', '으로써/로써', '으로부터/로부터'.
+Add a particle to a Hangul string. It can support particles like '이/가', '을/를', '은/는', '으로/로', '와/과', '이나/나', '이란/란', '아/야', '이랑/랑', '이에요/예요', '으로서/로서', '으로써/로써', '으로부터/로부터'.
 
 ```typescript
 function josa(
-  // The Hangul string to attach the particle to
+  // The Hangul string to add a particle
   word: string,
   // The particle to attach
   josa:
