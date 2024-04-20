@@ -4,7 +4,6 @@ title: disassembleHangul
 
 # disassembleHangul
 
-
 Completely separates a Hangul string into its individual characters by initial consonants, medial vowels, and final consonants, creating a single string.
 
 For detailed examples, see below.
