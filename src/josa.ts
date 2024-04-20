@@ -26,6 +26,14 @@ export function josa(word: string, josa: JosaOption): string {
   return word + josaPicker(word, josa);
 }
 
+export function taggedJosa(strings: TemplateStringsArray, [word, josa]: [string, JosaOption]) {
+  const [prefix, suffix] = strings;
+
+  const chosenJosa = josaPicker(word, josa);
+
+  return prefix + word + chosenJosa + suffix;
+}
+
 josa.pick = josaPicker;
 
 function josaPicker(word: string, josa: JosaOption): string {
