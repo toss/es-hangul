@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { josa } from './josa';
+import { josa, taggedJosa } from './josa';
 
 describe('Hangul', () => {
   describe('josa', () => {
@@ -142,6 +142,26 @@ describe('Hangul', () => {
     });
     it('어떤 행동의 출발점이나 비롯되는 대상임을 나타내는 격 조사 ㄹ 받침 예외처리', () => {
       expect(josa.pick('동굴', '으로부터/로부터')).toBe('로부터');
+    });
+  });
+
+  describe('taggedJosa', () => {
+    it('prefix만 있는 경우', () => {
+      expect(taggedJosa`나는 프론트엔드 ${['개발자', '이에요/예요']}`).toBe('나는 프론트엔드 개발자예요');
+    });
+
+    it('suffix만 있는 경우', () => {
+      expect(taggedJosa`${['개발자', '은/는']} 여러 전문 분야가 있어요.`).toBe('개발자는 여러 전문 분야가 있어요.');
+    });
+
+    it('prefix와 suffix가 모두 있는 경우', () => {
+      expect(taggedJosa`es-hangul은 쉽게 ${['한글', '을/를']} 다룰 수 있도록 돕는 JavaScript 라이브러리입니다.`).toBe(
+        'es-hangul은 쉽게 한글을 다룰 수 있도록 돕는 JavaScript 라이브러리입니다.'
+      );
+    });
+
+    it('빈 문자열이 들어온 경우', () => {
+      expect(() => taggedJosa`${['', '은/는']} 조사를 가질 수 없어요`).toThrowError;
     });
   });
 });
