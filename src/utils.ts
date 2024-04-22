@@ -43,9 +43,12 @@ export function hasBatchim(str: string) {
  */
 export function hasSingleBatchim(str: string) {
   const lastChar = str[str.length - 1]!;
-  const disassembled = disassembleHangul(lastChar);
+  if (hasBatchim(lastChar) === false) {
+    return false;
+  }
 
-  return hasBatchim(lastChar) && disassembled.length === 3;
+  const disassembled = disassembleHangul(lastChar);
+  return disassembled.length === 3;
 }
 
 /**
