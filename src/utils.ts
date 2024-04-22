@@ -3,7 +3,7 @@ import {
   HANGUL_CHARACTERS_BY_LAST_INDEX,
   HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
 } from './constants';
-import { disassembleHangulToGroups } from './disassemble';
+import { disassembleHangul, disassembleHangulToGroups } from './disassemble';
 import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
 
 /**
@@ -24,6 +24,31 @@ export function hasBatchim(str: string) {
   const lastChar = str[str.length - 1]!;
   const disassembled = disassembleCompleteHangulCharacter(lastChar);
   return disassembled != null && disassembled.last !== '';
+}
+
+/**
+ * @name hasSingleBatchim
+ * @description
+ * 한글 문자열의 마지막 글자가 홑받침이 있는지 확인합니다.
+ * ```typescript
+ * hasSingleBatchim(
+ *   // 글자에 받침이 있는지 확인하고 싶은 문자열
+ *   str: string
+ * ): boolean
+ * ```
+ * @example
+ * hasSingleBatchim('갑') // true
+ * hasSingleBatchim('값') // false
+ * hasSingleBatchim('토') // false
+ */
+export function hasSingleBatchim(str: string) {
+  const lastChar = str[str.length - 1]!;
+  if (hasBatchim(lastChar) === false) {
+    return false;
+  }
+
+  const disassembled = disassembleHangul(lastChar);
+  return disassembled.length === 3;
 }
 
 /**

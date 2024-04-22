@@ -1,5 +1,17 @@
 # es-hangul
 
+## 1.3.0
+
+### Minor Changes
+
+- [#64](https://github.com/toss/es-hangul/pull/64) [`ed33cd9`](https://github.com/toss/es-hangul/commit/ed33cd904decad440c38d6d4d5bbf596c1c552f7) Thanks [@evan-moon](https://github.com/evan-moon)! - feat: 한글 문장과 문자가 담긴 배열을 인자로 받아 규칙에 맞게 합성하는 `assemble` 함수 추가
+
+## 1.2.1
+
+### Patch Changes
+
+- [#42](https://github.com/toss/es-hangul/pull/42) [`f668e15`](https://github.com/toss/es-hangul/commit/f668e15318744e2c0195a826ef0d963de26072cb) Thanks [@BO-LIKE-CHICKEN](https://github.com/BO-LIKE-CHICKEN)! - fix: Handle spaces in initialConsonants search inputs properly
+
 ## 1.2.0
 
 ### Minor Changes

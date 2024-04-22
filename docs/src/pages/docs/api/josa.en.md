@@ -4,13 +4,13 @@ title: josa
 
 # josa
 
-한글 문자열에 `'이/가'`, `'을/를'`, `'은/는'`, `'으로/로'`, `'와/과'`, `'이나/나'`, `이란/란`, `아/야`, `'이랑/랑'`, `'이에요/예요'`, `'으로서/로서'`, `'으로써/로써'`, `'으로부터/로부터'` 와 같은 조사를 붙여줍니다.
+Add a particle to a Hangul string. It can support particles like '이/가', '을/를', '은/는', '으로/로', '와/과', '이나/나', '이란/란', '아/야', '이랑/랑', '이에요/예요', '으로서/로서', '으로써/로써', '으로부터/로부터'.
 
 ```typescript
 function josa(
-  // 조사를 붙일 한글 문자열
+  // The Hangul string to add a particle
   word: string,
-  // 붙일 조사
+  // The particle to attach
   josa:
     | '이/가'
     | '을/를'

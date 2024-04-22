@@ -24,7 +24,6 @@ const config: DocsThemeConfig = {
   },
   head: function useHead() {
     const { title } = useConfig();
-    const { route } = useRouter();
 
     return (
       <>
@@ -49,13 +48,43 @@ const config: DocsThemeConfig = {
     );
   },
   editLink: {
-    text: '이 페이지를 수정하기 →',
+    text: function EditLinkText() {
+      const { locale } = useRouter();
+
+      switch (locale) {
+        case 'ko':
+          return '이 페이지를 수정하기 →';
+        case 'en':
+        default:
+          return 'Edit this page →';
+      }
+    },
   },
   feedback: {
-    content: '이 페이지를 피드백하기 →',
+    content: function FeedbackContent() {
+      const { locale } = useRouter();
+
+      switch (locale) {
+        case 'ko':
+          return '이 페이지를 피드백하기 →';
+        case 'en':
+        default:
+          return 'Add feedback on this page →';
+      }
+    },
   },
   search: {
-    placeholder: '검색어를 입력하세요...',
+    placeholder: function usePlaceholder() {
+      const { locale } = useRouter();
+
+      switch (locale) {
+        case 'en':
+        default:
+          return `Search...`;
+        case 'ko':
+          return '검색어를 입력하세요...';
+      }
+    },
   },
   sidebar: {
     titleComponent({ title, type }) {
@@ -98,6 +127,10 @@ const config: DocsThemeConfig = {
   toc: {
     backToTop: true,
   },
+  i18n: [
+    { locale: 'en', text: 'English' },
+    { locale: 'ko', text: '한국어' },
+  ]
 };
 
 export default config;

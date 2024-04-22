@@ -1,0 +1,10 @@
+{
+  "introduction": "Introduction",
+  "installation": "Installation",
+  "api": {
+    "title": "Usage",
+    "theme": {
+      "collapsed": false
+    }
+  }
+}
