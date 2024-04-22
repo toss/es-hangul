@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.3.0
+
+### Minor Changes
+
+- [#64](https://github.com/toss/es-hangul/pull/64) [`ed33cd9`](https://github.com/toss/es-hangul/commit/ed33cd904decad440c38d6d4d5bbf596c1c552f7) Thanks [@evan-moon](https://github.com/evan-moon)! - feat: 한글 문장과 문자가 담긴 배열을 인자로 받아 규칙에 맞게 합성하는 `assemble` 함수 추가
+
 ## 1.2.1
 
 ### Patch Changes
