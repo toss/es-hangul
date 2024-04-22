@@ -135,7 +135,7 @@ export const HANGUL_CHARACTERS_BY_LAST_INDEX = (
 /**
  * 영문 대소문자 알파벳을 한글로 맵핑한 객체
  */
-export const KEYBOARD_MAP = {
+export const QWERTY_KEYBOARD_MAP = {
   q: 'ㅂ',
   Q: 'ㅃ',
   w: 'ㅈ',
