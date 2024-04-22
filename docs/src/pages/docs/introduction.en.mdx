@@ -1,0 +1,81 @@
+import { Steps, Callout } from 'nextra/components';
+
+# Introduction to es-hangul
+
+[![npm version](https://img.shields.io/npm/v/es-hangul?color=000&labelColor=000&logo=npm&label=)](https://www.npmjs.com/package/es-hangul) [![npm](https://img.shields.io/npm/dm/es-hangul?color=000&labelColor=000)](https://www.npmjs.com/package/es-hangul)
+
+When developing products that handle Hangul, tasks such as initial consonant search and accurate particle attachment often need to be performed. In addition, there are cases where you need to separate or combine Hangul elements like initial consonants, vowels, and final consonants. es-hangul helps to easily and quickly implement these frequently occurring Hangul-related functions in business.
+
+<br />
+
+## Key features
+
+<Steps>
+
+### Lightweight and Tree-shakable
+
+By using ECMAScript Modules, you can include only the functions you use in your application. For example, if you use the `josa` function, only the related logic is included in the application. Additionally, by providing the minimum necessary code for handling Hangul, you can reduce the size of the JavaScript downloaded by users. (The entire library is about 1KB when compressed with Gzip.) [![es-hangul's badge](https://deno.bundlejs.com/?q=es-hangul&badge=detailed)](https://bundlejs.com/?q=es-hangul)
+
+### Battle-tested
+
+We strive to test all features with the goal of achieving 100% coverage.
+
+[![codecov](https://codecov.io/gh/toss/es-hangul/branch/main/graph/badge.svg?token=토큰추가가필요합니다)](https://codecov.io/gh/toss/es-hangul)
+
+### TypeScript Support
+
+Our library provides strong typing, allowing for easy detection of type errors during the development phase.
+
+### Full Support for Hangul-related Features
+
+Our library provides a [modern API](./api/chosungIncludes) that can be conveniently used in various applications.
+
+#### First Consonant Search ([chosungIncludes](./api/chosungIncludes))
+
+It checks whether an initial consonant is included in a specific word. For example, you can easily find out if the word '라면' (ramyeon) contains the initial consonants 'ㄹㅁ'.
+
+```tsx /chosungIncludes/
+import { chosungIncludes } from 'es-hangul';
+
+const searchWord = '라면';
+const userInput = 'ㄹㅁ';
+
+const result = chosungIncludes(searchWord, userInput);
+console.log(result); // true
+```
+
+#### Disassembling Hangul Characters ([disassembleHangul](./api/disassembleHangul))
+
+You can decompose a given Hangul string into initial consonants, vowels, and final consonants, and return it in array form to allow for more detailed analysis or modification of the string.
+
+```tsx /disassembleHangul/
+import { disassembleHangul } from 'es-hangul';
+
+const word = '안녕하세요';
+const disassembled = disassembleHangul(word);
+console.log(disassembled); // 'ㅇㅏㄴㄴㅕㅇㅎㅏㅅㅔㅇㅛ'
+```
+
+#### Handling Particles ([josa](./api/josa))
+
+It automatically selects the appropriate particle based on whether the last letter of a word has a final consonant or not.
+
+```tsx /josa/
+import { josa } from 'es-hangul';
+
+const word1 = '사과';
+const sentence1 = josa(word1, '을/를') + ' 먹었습니다.';
+console.log(sentence1); // '사과를 먹었습니다.'
+
+const word2 = '바나나';
+const sentence2 = josa(word2, '이/가') + ' 맛있습니다.';
+console.log(sentence2); // '바나나가 맛있습니다.'
+```
+
+<Callout type="info">
+
+If you have a good idea for handling Hangul well, please let us know. [Suggest a feature via GitHub Issue](https://github.com/toss/es-hangul/issues/new?assignees=&labels=feature&projects=&template=feature_request.yml&title=%5BFeature%5D%3A)
+
+</Callout>
+
+</Steps>
