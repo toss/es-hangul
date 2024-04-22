@@ -133,7 +133,7 @@ export const HANGUL_CHARACTERS_BY_LAST_INDEX = (
 ).map(consonant => DISASSEMBLED_CONSONANTS_BY_CONSONANT[consonant]);
 
 /**
- * qwerty 키보드 자판의 대소문자를 구분한 영어 알파벳 알파벳을 한글 음소와 맵핑한 객체
+ * qwerty 키보드 자판의 대소문자를 구분한 영어 알파벳을 한글 음소와 맵핑한 객체
  */
 export const QWERTY_KEYBOARD_MAP = {
   q: 'ㅂ',
