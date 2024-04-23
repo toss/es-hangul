@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.3.1
+
+### Patch Changes
+
+- [#68](https://github.com/toss/es-hangul/pull/68) [`0c784ff`](https://github.com/toss/es-hangul/commit/0c784ffadddf0353c8232a6d487f74f63d8695bf) Thanks [@99mini](https://github.com/99mini)! - feat: 영문 알파벳을 qwerty 자판에 매칭되는 한글로 변환하는 함수 추가
+
 ## 1.3.0
 
 ### Minor Changes
