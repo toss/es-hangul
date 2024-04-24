@@ -27,5 +27,5 @@ export function convertQwertyToHangul(word: string): string {
   if (!word) {
     return '';
   }
-  return assembleHangul([...convertQwertyToHangulAlphabet(word).split('')]);
+  return assembleHangul([...convertQwertyToHangulAlphabet(word)]);
 }

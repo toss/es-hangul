@@ -18,14 +18,14 @@ import { excludeLastElement } from './_internal';
  * removeLastHangulCharacter('일요일') // 일요이
  */
 export function removeLastHangulCharacter(words: string) {
-  const disassembedGroups = disassembleHangulToGroups(words);
-  const lastCharacter = disassembedGroups.at(-1);
+  const disassembledGroups = disassembleHangulToGroups(words);
+  const lastCharacter = disassembledGroups.at(-1);
 
   if (lastCharacter == null) {
     return '';
   }
 
-  const withoutLastCharacter = disassembedGroups
+  const withoutLastCharacter = disassembledGroups
     .filter(v => v !== lastCharacter)
     .map(([first, middle, last]) => {
       if (middle != null) {
