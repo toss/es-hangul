@@ -52,7 +52,29 @@ export function hasSingleBatchim(str: string) {
 }
 
 /**
+ * @name getChosung
+ * @description
+ * 단어에서 초성을 추출합니다. (예: `사과` -> `'ㅅㄱ'`)
+ * ```typescript
+ * getChosung(
+ *   // 초성을 추출할 단어
+ *   word: string
+ * ): string
+ * ```
+ * @example
+ * getChosung('사과') // 'ㅅㄱ'
+ * getChosung('리액트') // 'ㄹㅇㅌ'
+ * getChosung('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
+ */
+export function getChosung(word: string) {
+  return disassembleHangulToGroups(word).reduce((chosung, [consonant]) => {
+    return `${chosung}${consonant}`;
+  }, '');
+}
+
+/**
  * @name getFirstConsonants
+ * @deprecated getChosung을 사용해 주세요.
  * @description
  * 단어에서 초성을 추출합니다. (예: `사과` -> `'ㅅㄱ'`)
  * ```typescript

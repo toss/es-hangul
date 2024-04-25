@@ -1,23 +1,23 @@
 import { disassembleHangulToGroups } from './disassemble';
-import { canBeChosung, getFirstConsonants } from './utils';
+import { canBeChosung, getChosung } from './utils';
 
 export function chosungIncludes(x: string, y: string) {
   const trimmedY = y.replace(/\s/g, '');
 
-  if (!isOnlyInitialConsonant(trimmedY)) {
+  if (!isOnlyChosung(trimmedY)) {
     return false;
   }
 
-  const initialConsonantsX = getFirstConsonants(x).replace(/\s/g, '');
-  const initialConsonantsY = trimmedY;
+  const chosungX = getChosung(x).replace(/\s/g, '');
+  const chosungY = trimmedY;
 
-  return initialConsonantsX.includes(initialConsonantsY);
+  return chosungX.includes(chosungY);
 }
 
 /*
  * @description 문자열이 한글초성으로만 주어진 경우
  */
-function isOnlyInitialConsonant(str: string) {
+function isOnlyChosung(str: string) {
   const groups = disassembleHangulToGroups(str);
   if (groups.length === 0) {
     return false;

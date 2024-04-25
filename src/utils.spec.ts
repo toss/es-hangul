@@ -3,7 +3,7 @@ import {
   canBeChosung,
   canBeJongsung,
   canBeJungsung,
-  getFirstConsonants,
+  getChosung,
   hasBatchim,
   hasProperty,
   hasSingleBatchim,
@@ -46,22 +46,22 @@ describe('hasSingleBatchim', () => {
   });
 });
 
-describe('getFirstConsonants', () => {
+describe('getChosung', () => {
   it('should extract the initial consonants "ㅅㄱ" from the word "사과"', () => {
-    expect(getFirstConsonants('사과')).toBe('ㅅㄱ');
+    expect(getChosung('사과')).toBe('ㅅㄱ');
   });
   it('should extract the initial consonants "ㅍㄹㅌㅇㄷ" from the word "프론트엔드"', () => {
-    expect(getFirstConsonants('프론트엔드')).toBe('ㅍㄹㅌㅇㄷ');
+    expect(getChosung('프론트엔드')).toBe('ㅍㄹㅌㅇㄷ');
   });
   it('should extract the initial consonants "ㄴㅈ" from the consonants "ㄴㅈ"', () => {
-    expect(getFirstConsonants('ㄴㅈ')).toBe('ㄴㅈ');
+    expect(getChosung('ㄴㅈ')).toBe('ㄴㅈ');
   });
   it('should extract the initial consonants "ㄹㅇㅌ" from the word "리액트"', () => {
-    expect(getFirstConsonants('리액트')).toBe('ㄹㅇㅌ');
+    expect(getChosung('리액트')).toBe('ㄹㅇㅌ');
   });
 
   it('should extract the initial consonants "ㄸㅇ ㅆㄱ" from the phrase "띄어 쓰기"', () => {
-    expect(getFirstConsonants('띄어 쓰기')).toBe('ㄸㅇ ㅆㄱ');
+    expect(getChosung('띄어 쓰기')).toBe('ㄸㅇ ㅆㄱ');
   });
 });
 
