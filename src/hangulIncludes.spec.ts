@@ -1,5 +1,4 @@
 import { hangulIncludes } from './hangulIncludes';
-import { describe, it, expect } from 'vitest';
 
 describe('hangulIncludes', () => {
   it('사과', () => {

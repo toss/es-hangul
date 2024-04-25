@@ -1,4 +1,3 @@
-import { describe, expect, it } from 'vitest';
 import { convertQwertyToHangul, convertQwertyToHangulAlphabet } from './convertQwertyToHangulAlphabet';
 
 describe('convertQwertyToHangulAlphabet', () => {

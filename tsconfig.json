@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["vitest/globals"],
     "target": "es2016",
     "module": "commonjs",
     "esModuleInterop": true,

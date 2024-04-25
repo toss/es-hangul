@@ -1,4 +1,3 @@
-import { describe, it, expect, assert } from 'vitest';
 import { combineHangulCharacter, combineVowels } from './combineHangulCharacter';
 
 describe('combineHangulCharacter', () => {
