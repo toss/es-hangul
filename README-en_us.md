@@ -2,7 +2,7 @@
 
 # es-hangul
 
-[한국어](./README.md) | English
+[한국어](https://github.com/toss/es-hangul/blob/main/README.md) | English
 
 es-hangul is a library that makes it easy to handle [Hangul](https://en.wikipedia.org/wiki/Hangul) in JavaScript. It provides a modern API that is easy to use. Because it uses ECMAScript Modules, users can download the minimum amount of code when used in a browser environment.
 
@@ -35,11 +35,11 @@ console.log(sentence2); // '바나나가 맛있습니다.'
 
 We welcome contribution from everyone in the community. Read below for detailed contribution guide.
 
-[CONTRIBUTING](./.github/CONTRIBUTING.md)
+[CONTRIBUTING](https://github.com/toss/es-hangul/blob/main/.github/CONTRIBUTING.md)
 
 ## License
 
-MIT © Viva Republica, Inc. See [LICENSE](./LICENSE) for details.
+MIT © Viva Republica, Inc. See [LICENSE](https://github.com/toss/es-hangul/blob/main/LICENSE) for details.
 
 <a title="토스" href="https://toss.im">
   <picture>

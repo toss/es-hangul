@@ -2,7 +2,7 @@
 
 # es-hangul
 
-한국어 | [English](./README-en_us.md)
+한국어 | [English](https://github.com/toss/es-hangul/blob/main/README-en_us.md)
 
 `es-hangul`은 쉽게 한글을 다룰 수 있도록 돕는 JavaScript 라이브러리입니다. 편리하게 사용할 수 있는 모던한 라이브러리 API를 제공합니다. ECMAScript Modules을 사용하기 때문에, 사용자가 브라우저 환경에서 최소한의 코드를 내려받도록 할 수 있습니다.
 
@@ -35,11 +35,11 @@ console.log(sentence2); // '바나나가 맛있습니다.'
 
 es-hangul 라이브러리에 기여하고 싶다고 생각하셨다면 아래 문서를 참고해주세요.
 
-[CONTRIBUTING](./.github/CONTRIBUTING.md)
+[CONTRIBUTING](https://github.com/toss/es-hangul/blob/main/.github/CONTRIBUTING.md)
 
 ## 라이선스
 
-MIT © Viva Republica, Inc. [LICENSE](./LICENSE) 파일을 참고하세요.
+MIT © Viva Republica, Inc. [LICENSE](https://github.com/toss/es-hangul/blob/main/LICENSE) 파일을 참고하세요.
 
 <a title="토스" href="https://toss.im">
   <picture>
