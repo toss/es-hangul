@@ -73,6 +73,28 @@ export function getChosung(word: string) {
 }
 
 /**
+ * @name getFirstConsonants
+ * @deprecated getChosung을 사용해 주세요.
+ * @description
+ * 단어에서 초성을 추출합니다. (예: `사과` -> `'ㅅㄱ'`)
+ * ```typescript
+ * getFirstConsonants(
+ *   // 초성을 추출할 단어
+ *   word: string
+ * ): string
+ * ```
+ * @example
+ * getFirstConsonants('사과') // 'ㅅㄱ'
+ * getFirstConsonants('리액트') // 'ㄹㅇㅌ'
+ * getFirstConsonants('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
+ */
+export function getFirstConsonants(word: string) {
+  return disassembleHangulToGroups(word).reduce((firstConsonants, [consonant]) => {
+    return `${firstConsonants}${consonant}`;
+  }, '');
+}
+
+/**
  * @name canBeChosung
  * @description
  * 인자로 받은 문자가 초성으로 위치할 수 있는 문자인지 검사합니다.
