@@ -14,6 +14,7 @@
     "text processing",
     "korean-language"
   ],
+  "repository": "github:toss/es-hangul",
   "license": "MIT",
   "packageManager": "yarn@4.1.1",
   "exports": {
