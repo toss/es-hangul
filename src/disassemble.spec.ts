@@ -1,4 +1,3 @@
-import { describe, expect, it } from 'vitest';
 import { disassembleHangul, disassembleHangulToGroups } from './disassemble';
 
 describe('disassembleHangulToGroups', () => {

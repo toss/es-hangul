@@ -5,6 +5,7 @@ export default defineConfig({
   test: {
     name: packageJson.name,
     dir: './src',
+    globals: true,
     coverage: {
       provider: 'istanbul',
       include: ['src/**/*'],

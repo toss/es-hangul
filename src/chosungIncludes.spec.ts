@@ -1,4 +1,3 @@
-import { describe, expect, it } from 'vitest';
 import { chosungIncludes } from './chosungIncludes';
 
 describe('chosungIncludes', () => {
