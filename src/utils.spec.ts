@@ -11,22 +11,22 @@ import {
 
 describe('hasBatchim', () => {
   describe('받침이 있다고 판단되는 경우', () => {
-    it('should return true for the character "값"', () => {
+    it('"값" 문자에서 받침이 있으므로 true를 반환한다.', () => {
       expect(hasBatchim('값')).toBe(true);
     });
-    it('should return true for the character "공"', () => {
+    it('"공" 문자에서 받침이 있으므로 true를 반환한다.', () => {
       expect(hasBatchim('공')).toBe(true);
     });
-    it('should return true for the character "읊"', () => {
+    it('"읊" 문자에서 받침이 있으므로 true를 반환한다.', () => {
       expect(hasBatchim('읊')).toBe(true);
     });
   });
 
   describe('받침이 없다고 판단되는 경우', () => {
-    it('should return false for the character "토"', () => {
+    it('"토" 문자에서 받침이 없으므로 false를 반환한다.', () => {
       expect(hasBatchim('토')).toBe(false);
     });
-    it('should return false for the character "서"', () => {
+    it('"서" 문자에서 받침이 없으므로 false를 반환한다.', () => {
       expect(hasBatchim('서')).toBe(false);
     });
   });
@@ -54,20 +54,20 @@ describe('hasSingleBatchim', () => {
 });
 
 describe('getChosung', () => {
-  it('should extract the initial consonants "ㅅㄱ" from the word "사과"', () => {
+  it('"사과" 단어에서 초성 "ㅅㄱ"을 추출한다.', () => {
     expect(getChosung('사과')).toBe('ㅅㄱ');
   });
-  it('should extract the initial consonants "ㅍㄹㅌㅇㄷ" from the word "프론트엔드"', () => {
+  it('"프론트엔드" 단어에서 초성 "ㅍㄹㅌㅇㄷ"을 추출한다.', () => {
     expect(getChosung('프론트엔드')).toBe('ㅍㄹㅌㅇㄷ');
   });
-  it('should extract the initial consonants "ㄴㅈ" from the consonants "ㄴㅈ"', () => {
+  it('"ㄴㅈ" 문자에서 초성 "ㄴㅈ"을 추출한다.', () => {
     expect(getChosung('ㄴㅈ')).toBe('ㄴㅈ');
   });
-  it('should extract the initial consonants "ㄹㅇㅌ" from the word "리액트"', () => {
+  it('"리액트" 단어에서 초성 "ㄹㅇㅌ"을 추출한다.', () => {
     expect(getChosung('리액트')).toBe('ㄹㅇㅌ');
   });
 
-  it('should extract the initial consonants "ㄸㅇ ㅆㄱ" from the phrase "띄어 쓰기"', () => {
+  it('"띄어 쓰기" 문장에서 초성 "ㄸㅇ ㅆㄱ"을 추출한다.', () => {
     expect(getChosung('띄어 쓰기')).toBe('ㄸㅇ ㅆㄱ');
   });
 });
@@ -75,19 +75,19 @@ describe('getChosung', () => {
 describe('hasValueInReadOnlyStringList', () => {
   const testReadonlyList = ['ㄱ', 'ㄴ', 'ㄷ'] as const;
 
-  it('should return true if an element exists in a read-only string list', () => {
+  it('read-only 문자열 리스트에 요소가 존재한다면 true를 반환한다.', () => {
     const testValue = 'ㄱ';
 
     expect(hasValueInReadOnlyStringList(testReadonlyList, testValue)).toBeTruthy();
   });
 
-  it('should return false if an element does not exist in a read-only string list', () => {
+  it('read-only 문자열 리스트에 요소가 존재하지 않으면 false를 반환한다.', () => {
     const testValue = 'ㄹ';
 
     expect(hasValueInReadOnlyStringList(testReadonlyList, testValue)).toBeFalsy();
   });
 
-  it('should narrow the type of the second argument if it is included in a read-only string list', () => {
+  it('read-only 문자열 리스트에 요소가 존재한다면 두 번째 인자의 타입을 좁힌다.', () => {
     const testValue = 'ㄱ' as string;
 
     if (hasValueInReadOnlyStringList(testReadonlyList, testValue)) {
@@ -101,19 +101,19 @@ describe('hasValueInReadOnlyStringList', () => {
 describe('hasProperty', () => {
   const testObj = { ㄱ: 'ㄱ', ㄴ: 'ㄴ', ㄷ: 'ㄷ' } as const;
 
-  it('should return true if a property exists in a object', () => {
+  it('객체에 속성이 존재하면 true를 반환한다.', () => {
     const testKey = 'ㄱ';
 
     expect(hasProperty(testObj, testKey)).toBeTruthy();
   });
 
-  it('should return false if a property does not exist in a object', () => {
+  it('객체에 속성이 존재하지 않으면 false를 반환한다.', () => {
     const testKey = 'ㄹ';
 
     expect(hasProperty(testObj, testKey)).toBeFalsy();
   });
 
-  it('should narrow the type of the second argument if it is included in a object', () => {
+  it('객체에 속성이 존재한다면 두 번째 인자의 타입을 좁힌다.', () => {
     const testKey = 'ㄱ' as string;
 
     if (hasProperty(testObj, testKey)) {

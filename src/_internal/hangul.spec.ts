@@ -1,14 +1,15 @@
 import { binaryAssembleHangulCharacters, binaryAssembleHangul, isHangulAlphabet, isHangulCharacter } from './hangul';
 
 describe('isHangul*', () => {
-  it('isHangulCharacter는 완성된 한글 문자를 받으면 true를 반환한다', () => {
+  it('isHangulCharacter는 완성된 한글 문자를 받으면 true를 반환한다.', () => {
     expect(isHangulCharacter('가')).toBe(true);
     expect(isHangulCharacter('값')).toBe(true);
     expect(isHangulCharacter('ㄱ')).toBe(false);
     expect(isHangulCharacter('ㅏ')).toBe(false);
     expect(isHangulCharacter('a')).toBe(false);
   });
-  it('isHangulAlphabet은 조합되지않은 한글 문자를 받으면 true를 반환한다', () => {
+
+  it('isHangulAlphabet은 조합되지않은 한글 문자를 받으면 true를 반환한다.', () => {
     expect(isHangulAlphabet('가')).toBe(false);
     expect(isHangulAlphabet('값')).toBe(false);
     expect(isHangulAlphabet('ㄱ')).toBe(true);
@@ -47,13 +48,13 @@ describe('binaryAssembleHangulCharacters', () => {
     expect(binaryAssembleHangulCharacters('깎', 'ㅏ')).toEqual('까까');
   });
 
-  it('문법에 맞지 않는 문자를 조합하면 단순 Join 한다 (문법 순서 틀림)', () => {
+  it('문법에 맞지 않는 문자를 조합하면 단순 Join 한다. (문법 순서 틀림)', () => {
     expect(binaryAssembleHangulCharacters('ㅏ', 'ㄱ')).toEqual('ㅏㄱ');
     expect(binaryAssembleHangulCharacters('까', 'ㅃ')).toEqual('까ㅃ');
     expect(binaryAssembleHangulCharacters('ㅘ', 'ㅏ')).toEqual('ㅘㅏ');
   });
 
-  it('순서대로 입력했을 때 조합이 불가능한 문자라면 단순 Join 한다', () => {
+  it('순서대로 입력했을 때 조합이 불가능한 문자라면 단순 Join 한다.', () => {
     expect(binaryAssembleHangulCharacters('뼈', 'ㅣ')).toEqual('뼈ㅣ');
   });
 
@@ -85,24 +86,24 @@ describe('binaryAssembleHangulCharacters', () => {
 });
 
 describe('binaryAssembleHangul', () => {
-  it('문장과 모음을 조합하여 다음 글자를 생성한다', () => {
+  it('문장과 모음을 조합하여 다음 글자를 생성한다.', () => {
     expect(binaryAssembleHangul('저는 고양이를 좋아합닏', 'ㅏ')).toEqual('저는 고양이를 좋아합니다');
   });
 
-  it('문장과 자음을 조합하여 홑받침을 생성한다', () => {
+  it('문장과 자음을 조합하여 홑받침을 생성한다.', () => {
     expect(binaryAssembleHangul('저는 고양이를 좋아하', 'ㅂ')).toEqual('저는 고양이를 좋아합');
   });
 
-  it('문장과 자음을 조합하여 겹받침을 생성한다', () => {
+  it('문장과 자음을 조합하여 겹받침을 생성한다.', () => {
     expect(binaryAssembleHangul('저는 고양이를 좋아합', 'ㅅ')).toEqual('저는 고양이를 좋아핪');
   });
 
-  it('조합이 불가능한 자음이 입력되면 단순 Join 한다', () => {
+  it('조합이 불가능한 자음이 입력되면 단순 Join 한다.', () => {
     expect(binaryAssembleHangul('저는 고양이를 좋아합', 'ㄲ')).toEqual('저는 고양이를 좋아합ㄲ');
     expect(binaryAssembleHangul('저는 고양이를 좋아합', 'ㅂ')).toEqual('저는 고양이를 좋아합ㅂ');
   });
 
-  it('조합이 불가능한 모음이 입력되면 단순 Join 한다', () => {
+  it('조합이 불가능한 모음이 입력되면 단순 Join 한다.', () => {
     expect(binaryAssembleHangul('저는 고양이를 좋아하', 'ㅏ')).toEqual('저는 고양이를 좋아하ㅏ');
     expect(binaryAssembleHangul('저는 고양이를 좋아합니다', 'ㅜ')).toEqual('저는 고양이를 좋아합니다ㅜ');
   });
