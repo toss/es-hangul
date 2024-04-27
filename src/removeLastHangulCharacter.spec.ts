@@ -11,4 +11,7 @@ describe('removeLastHangulCharacter', () => {
     expect(removeLastHangulCharacter('일요일')).toBe('일요이');
     expect(removeLastHangulCharacter('깎')).toBe('까');
   });
+  it('빈 문자열일 경우 빈 문자열을 반환한다.', () => {
+    expect(removeLastHangulCharacter('')).toBe('');
+  });
 });
