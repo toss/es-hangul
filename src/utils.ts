@@ -21,7 +21,12 @@ import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulC
  * hasBatchim('토') // false
  */
 export function hasBatchim(str: string) {
-  const lastChar = str[str.length - 1]!;
+  const lastChar = str[str.length - 1];
+
+  if(lastChar == null) {
+    return false;
+  }
+
   const disassembled = disassembleCompleteHangulCharacter(lastChar);
   return disassembled != null && disassembled.last !== '';
 }
@@ -42,8 +47,9 @@ export function hasBatchim(str: string) {
  * hasSingleBatchim('토') // false
  */
 export function hasSingleBatchim(str: string) {
-  const lastChar = str[str.length - 1]!;
-  if (hasBatchim(lastChar) === false) {
+  const lastChar = str[str.length - 1];
+
+  if (lastChar == null || hasBatchim(lastChar) === false) {
     return false;
   }
 
