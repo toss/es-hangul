@@ -154,12 +154,12 @@ export function canBeJungsung(character: string): character is (typeof HANGUL_CH
  * ): boolean
  * ```
  * @example
- * canBeChosung('ㄱ') // true
- * canBeChosung('ㄱㅅ') // true
- * canBeChosung('ㅎㄹ') // false
- * canBeChosung('가') // false
- * canBeChosung('ㅏ') // false
- * canBeChosung('ㅗㅏ') // false
+ * canBeJongsung('ㄱ') // true
+ * canBeJongsung('ㄱㅅ') // true
+ * canBeJongsung('ㅎㄹ') // false
+ * canBeJongsung('가') // false
+ * canBeJongsung('ㅏ') // false
+ * canBeJongsung('ㅗㅏ') // false
  */
 export function canBeJongsung(character: string): character is (typeof HANGUL_CHARACTERS_BY_LAST_INDEX)[number] {
   return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_LAST_INDEX, character);
