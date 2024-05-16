@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.3.3
+
+### Patch Changes
+
+- [#90](https://github.com/toss/es-hangul/pull/90) [`91a46a2`](https://github.com/toss/es-hangul/commit/91a46a280d7b054a1ac0fb58bfe5ff6aaa05ea33) Thanks [@youngjae99](https://github.com/youngjae99)! - feat: add convertQwertyToHangulAlphabet, disassembleCompleteHangulCha…
+
 ## 1.3.2
 
 ### Patch Changes
