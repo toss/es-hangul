@@ -23,7 +23,7 @@ import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulC
 export function hasBatchim(str: string) {
   const lastChar = str[str.length - 1];
 
-  if(lastChar == null) {
+  if (lastChar == null) {
     return false;
   }
 
@@ -132,12 +132,12 @@ export function canBeChosung(character: string): character is (typeof HANGUL_CHA
  * ): boolean
  * ```
  * @example
- * canBeChosung('ㅏ') // true
- * canBeChosung('ㅗㅏ') // true
- * canBeChosung('ㅏㅗ') // false
- * canBeChosung('ㄱ') // false
- * canBeChosung('ㄱㅅ') // false
- * canBeChosung('가') // false
+ * canBeJungsung('ㅏ') // true
+ * canBeJungsung('ㅗㅏ') // true
+ * canBeJungsung('ㅏㅗ') // false
+ * canBeJungsung('ㄱ') // false
+ * canBeJungsung('ㄱㅅ') // false
+ * canBeJungsung('가') // false
  */
 export function canBeJungsung(character: string): character is (typeof HANGUL_CHARACTERS_BY_MIDDLE_INDEX)[number] {
   return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_MIDDLE_INDEX, character);
@@ -154,12 +154,12 @@ export function canBeJungsung(character: string): character is (typeof HANGUL_CH
  * ): boolean
  * ```
  * @example
- * canBeChosung('ㄱ') // true
- * canBeChosung('ㄱㅅ') // true
- * canBeChosung('ㅎㄹ') // false
- * canBeChosung('가') // false
- * canBeChosung('ㅏ') // false
- * canBeChosung('ㅗㅏ') // false
+ * canBeJongsung('ㄱ') // true
+ * canBeJongsung('ㄱㅅ') // true
+ * canBeJongsung('ㅎㄹ') // false
+ * canBeJongsung('가') // false
+ * canBeJongsung('ㅏ') // false
+ * canBeJongsung('ㅗㅏ') // false
  */
 export function canBeJongsung(character: string): character is (typeof HANGUL_CHARACTERS_BY_LAST_INDEX)[number] {
   return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_LAST_INDEX, character);
