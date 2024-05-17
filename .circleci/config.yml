@@ -63,6 +63,18 @@ jobs:
       - run:
           name: Check Peer Dependency
           command: ./.scripts/check-peer.sh || (echo "Peer Dependency 오류가 발생했습니다."; exit -1)
+  publint:
+    docker:
+      - image: cimg/node:20.12
+    steps:
+      - checkout
+      - setup
+      - run:
+          name: Build
+          command: yarn build
+      - run:
+          name: Check Publint
+          command: yarn publint
 
   test:
     docker:
@@ -75,7 +87,7 @@ jobs:
           name: vitest
           command: yarn vitest --reporter=junit > ./.junit
           environment:
-            YARN_ENABLE_IMMUTABLE_INSTALLS: 'false'
+            YARN_ENABLE_IMMUTABLE_INSTALLS: "false"
       - store_test_results:
           path: ./.junit
       - store_artifacts:
@@ -98,6 +110,10 @@ workflows:
             branches:
               ignore: main
       - check-peer:
+          filters:
+            branches:
+              ignore: main
+      - publint:
           filters:
             branches:
               ignore: main
