@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.3.5
+
+### Patch Changes
+
+- [#95](https://github.com/toss/es-hangul/pull/95) [`f95daf9`](https://github.com/toss/es-hangul/commit/f95daf97d37268923e1c1a482c61d6ad19d31c5c) Thanks [@manudeli](https://github.com/manudeli)! - ci(TypeScript): lint by arethetypeswrong
+
 ## 1.3.4
 
 ### Patch Changes
