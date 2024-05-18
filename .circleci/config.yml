@@ -42,7 +42,18 @@ jobs:
       - run:
           name: Typecheck
           command: yarn tsc --noEmit
-
+  attw:
+    docker:
+      - image: cimg/node:20.12
+    steps:
+      - checkout
+      - setup
+      - run:
+          name: Build
+          command: yarn build
+      - run:
+          name: Arethetypeswrong
+          command: yarn attw
   pre-pack:
     parallelism: 2
     docker:
@@ -53,7 +64,6 @@ jobs:
       - run:
           name: Build
           command: yarn build
-
   check-peer:
     docker:
       - image: cimg/node:20.12
@@ -75,7 +85,6 @@ jobs:
       - run:
           name: Check Publint
           command: yarn publint
-
   test:
     docker:
       - image: cimg/node:20.12
@@ -102,6 +111,10 @@ workflows:
             branches:
               ignore: main
       - typecheck:
+          filters:
+            branches:
+              ignore: main
+      - attw:
           filters:
             branches:
               ignore: main
