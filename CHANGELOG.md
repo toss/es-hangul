@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.3.4
+
+### Patch Changes
+
+- [#93](https://github.com/toss/es-hangul/pull/93) [`4195df5`](https://github.com/toss/es-hangul/commit/4195df54d72f1decbcf6ea27faf525a4f4f66241) Thanks [@manudeli](https://github.com/manudeli)! - ci(package.json): lint by publint
+
 ## 1.3.3
 
 ### Patch Changes
