@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { chosungIncludes } from 'es-hangul';
 
 export function ChosungIncludesDemo() {
