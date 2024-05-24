@@ -4,8 +4,8 @@ import { chosungIncludes } from 'es-hangul';
 export function ChosungIncludesDemo() {
   const [searchWord, setSearchWord] = useState<string>('홍길동');
   const [userInput, setUserInput] = useState<string>('ㅎㄱㄷ');
-  
-  const result =  chosungIncludes(searchWord, userInput)
+
+  const result = chosungIncludes(searchWord, userInput);
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6 max-w-md mx-auto my-8">
