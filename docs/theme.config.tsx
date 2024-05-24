@@ -130,7 +130,7 @@ const config: DocsThemeConfig = {
   i18n: [
     { locale: 'en', text: 'English' },
     { locale: 'ko', text: '한국어' },
-  ]
+  ],
 };
 
 export default config;
