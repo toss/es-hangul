@@ -4,15 +4,8 @@ import { chosungIncludes } from 'es-hangul';
 export function ChosungIncludesDemo() {
   const [searchWord, setSearchWord] = useState<string>('홍길동');
   const [userInput, setUserInput] = useState<string>('ㅎㄱㄷ');
-  const [result, setResult] = useState<boolean | null>(null);
-
-  useEffect(
-    function generateResult() {
-      const searchResult = chosungIncludes(searchWord, userInput);
-      setResult(searchResult);
-    },
-    [searchWord, userInput]
-  );
+  
+  const result =  chosungIncludes(searchWord, userInput)
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6 max-w-md mx-auto my-8">
@@ -42,11 +35,9 @@ export function ChosungIncludesDemo() {
           className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
-      {result != null && (
-        <p className={`mt-4 text-lg ${result ? 'text-green-500' : 'text-red-500'}`}>
-          Result: {result ? 'Match found' : 'No match'}
-        </p>
-      )}
+      <p className={`mt-4 text-lg ${result ? 'text-green-500' : 'text-red-500'}`}>
+        Result: {result ? 'Match found' : 'No match'}
+      </p>
     </div>
   );
 }
