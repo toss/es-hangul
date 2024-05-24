@@ -3787,7 +3787,7 @@ __metadata:
     "@types/react": "npm:^18"
     "@types/react-dom": "npm:^18"
     autoprefixer: "npm:^10.0.1"
-    es-hangul: "workspace:^"
+    es-hangul: "workspace:*"
     eslint: "npm:^8"
     eslint-config-next: "npm:14.1.4"
     next: "npm:14.1.4"
@@ -4004,7 +4004,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"es-hangul@workspace:., es-hangul@workspace:^":
+"es-hangul@workspace:*, es-hangul@workspace:.":
   version: 0.0.0-use.local
   resolution: "es-hangul@workspace:."
   dependencies:
