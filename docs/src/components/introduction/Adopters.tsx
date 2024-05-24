@@ -6,7 +6,6 @@ import { ComponentProps } from 'react';
  */
 export const adopterLogoImagePropsList = [
   { src: '/adopters/비바리퍼블리카.png', alt: '비바리퍼블리카', height: 80, width: 200 },
-  { src: '/adopters/아임웹.png', alt: '아임웹', height: 80, width: 200 },
 ] as const satisfies Array<
   Pick<ComponentProps<typeof Image>, 'src' | 'alt'> & Required<Pick<ComponentProps<typeof Image>, 'width' | 'height'>>
 >;
