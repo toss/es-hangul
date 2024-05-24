@@ -1,4 +1,3 @@
-import { useIsDarkMode } from '@/hooks/use-is-dark-mode';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import type { DocsThemeConfig } from 'nextra-theme-docs';
@@ -18,9 +17,7 @@ const config: DocsThemeConfig = {
     }
   },
   logo: function useLogo() {
-    const isDarkMode = useIsDarkMode();
-
-    return <Image src={isDarkMode ? '/logo-white.png' : '/logo.png'} alt="logo" width={120} height={48} />;
+    return <Image src="/logo.png" alt="logo" width={120} height={48} />;
   },
   head: function useHead() {
     const { title } = useConfig();
@@ -98,8 +95,6 @@ const config: DocsThemeConfig = {
   },
   footer: {
     text: function useText() {
-      const isDarkMode = useIsDarkMode();
-
       return (
         <div className="flex w-full flex-col items-center sm:items-start">
           <div>
@@ -111,12 +106,7 @@ const config: DocsThemeConfig = {
               href="https://toss.im"
             >
               <span>Powered by</span>
-              <Image
-                src={isDarkMode ? '/toss-logo-white.png' : '/toss-logo-gray.png'}
-                alt="Toss"
-                width="64"
-                height="32"
-              />
+              <Image src="/toss-logo-gray.png" alt="Toss" width="64" height="32" />
             </a>
           </div>
           <p className="mt-6 text-xs">© {new Date().getFullYear()} Viva Republica, Inc.</p>
@@ -130,7 +120,10 @@ const config: DocsThemeConfig = {
   i18n: [
     { locale: 'en', text: 'English' },
     { locale: 'ko', text: '한국어' },
-  ]
+  ],
+  nextThemes: {
+    forcedTheme: 'light',
+  },
 };
 
 export default config;

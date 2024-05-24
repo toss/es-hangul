@@ -1,6 +1,5 @@
 import { Steps, Callout } from 'nextra/components';
-import { adopters } from './introduction.constatns.ts'
-import { AdoptorImage } from '@/components/introduction/AdoptorImage'
+import { Adopters } from '@/components/introduction/Adopters';
 
 # es-hangul 소개
 
@@ -76,23 +75,6 @@ const sentence2 = josa(word2, '이/가') + ' 맛있습니다.';
 console.log(sentence2); // '바나나가 맛있습니다.'
 ```
 
-#### es-hangul을 사용중인 곳
-<br/>
-
-<div style={{
-  display: 'flex',
-  flexWrap: 'wrap',
-  gap: '1rem',
-  justifyContent: 'center'
-}}>
-{
-
-  adopters.map((adopter) => {
-    return <AdoptorImage lightSrc={adopter.image.light} darkSrc={adopter.image.dark} alt={adopter.name}/>    
-  })
-}
-</div>
-
 <Callout type="info">
 
 한글을 잘 다루기 위한 좋은 아이디어가 있다면 알려주세요 [GitHub Issue로 기능 제안하기](https://github.com/toss/es-hangul/issues/new?assignees=&labels=feature&projects=&template=feature_request.yml&title=%5BFeature%5D%3A)
@@ -100,3 +82,15 @@ console.log(sentence2); // '바나나가 맛있습니다.'
 </Callout>
 
 </Steps>
+
+## 어떤 곳에서 사용하나요?
+
+<br />
+
+<Adopters />
+
+<Callout type="info">
+
+es-hangul을 사용하는 조직의 로고를 추가해주세요. 우리는 이 라이브러리를 여러분과 함께 만들어 갑니다. [GitHub PR로 사용자 추가하기](https://github.com/toss/es-hangul/blob/main/docs/src/components/introduction/Adopters.tsx)
+
+</Callout>
