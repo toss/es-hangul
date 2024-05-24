@@ -1,4 +1,6 @@
 import { Steps, Callout } from 'nextra/components';
+import { AdoptorImage } from '@/components/introduction/AdoptorImage';
+import { adopters } from './introduction.constatns.ts'
 
 # Introduction to es-hangul
 
@@ -71,6 +73,24 @@ const word2 = '바나나';
 const sentence2 = josa(word2, '이/가') + ' 맛있습니다.';
 console.log(sentence2); // '바나나가 맛있습니다.'
 ```
+
+
+#### Who's using es-hangul? 
+<br/>
+
+<div style={{
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '1rem',
+  justifyContent: 'center'
+}}>
+{
+
+  adopters.map((adopter) => {
+    return <AdoptorImage lightSrc={adopter.image.light} darkSrc={adopter.image.dark} alt={adopter.name}/>    
+  })
+}
+</div>
 
 <Callout type="info">
 

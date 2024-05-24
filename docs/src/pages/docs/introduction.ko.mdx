@@ -1,5 +1,11 @@
 import { Steps, Callout } from 'nextra/components';
+import { adopters } from './introduction.constatns.ts'
+import { AdoptorImage } from '@/components/introduction/AdoptorImage'
 
+const theme = useTheme();
+console.log(theme);
+    const isDarkMode = useIsDarkMode();
+    console.log(isDarkMode);
 # es-hangul 소개
 
 [![npm version](https://img.shields.io/npm/v/es-hangul?color=000&labelColor=000&logo=npm&label=)](https://www.npmjs.com/package/es-hangul)
@@ -73,6 +79,23 @@ const word2 = '바나나';
 const sentence2 = josa(word2, '이/가') + ' 맛있습니다.';
 console.log(sentence2); // '바나나가 맛있습니다.'
 ```
+
+#### es-hangul을 사용중인 곳
+<br/>
+
+<div style={{
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '1rem',
+  justifyContent: 'center'
+}}>
+{
+
+  adopters.map((adopter) => {
+    return <AdoptorImage lightSrc={adopter.image.light} darkSrc={adopter.image.dark} alt={adopter.name}/>    
+  })
+}
+</div>
 
 <Callout type="info">
 
