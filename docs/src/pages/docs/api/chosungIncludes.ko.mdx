@@ -1,16 +1,14 @@
----
-title: chosungIncludes
----
+import { ChosungIncludesDemo } from '@/components/demo/chosung-includes-demo';
 
 # chosungIncludes
 
-Performs a search for matches in the initial consonants of a string.
+문자열의 초성 일치 검색을 수행합니다.
 
 ```typescript
 function chosungIncludes(
-  // The string to be checked for matching initial consonants (e.g., '프론트엔드')
+  // 초성 일치하는지 검사할 문자열 (e.g. '프론트엔드')
   x: string,
-  // Initial consonant string (e.g., 'ㅍㄹㅌㅇㄷ')
+  // 초성 문자열 (e.g. 'ㅍㄹㅌㅇㄷ')
   y: string
 ): boolean;
 ```
@@ -21,3 +19,9 @@ chosungIncludes('00프론트엔드', 'ㅍㄹㅌ'); // true
 chosungIncludes('프론트엔드', 'ㅍㅌ'); // false
 chosungIncludes('프론트엔드', '푸롴트'); // false
 ```
+
+## 사용해보기
+
+<br />
+
+<ChosungIncludesDemo />
