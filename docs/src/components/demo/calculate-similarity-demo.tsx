@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { calculateSimilarity } from 'es-hangul';
 
 export function CalculateSimilarityDemo() {
-  const [searchWord, setSearchWord] = useState<string>('홍길동');
-  const [userInput, setUserInput] = useState<string>('ㅎㄱㄷ');
+  const [searchWord, setSearchWord] = useState<string>('안녕하세요 저는 한글 라이브러리 입니다');
+  const [userInput, setUserInput] = useState<string>('안연ㄹ허사ㅔ요 저는 허ㅏㄴㄴ글 라이바ㅡ러리 입ㄴ다');
 
   const result = calculateSimilarity(searchWord, userInput);
 
