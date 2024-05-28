@@ -1,6 +1,6 @@
 {
   "name": "es-hangul",
-  "version": "1.3.1",
+  "version": "1.3.5",
   "keywords": [
     "한글",
     "한국어",
@@ -17,15 +17,23 @@
   "repository": "github:toss/es-hangul",
   "license": "MIT",
   "packageManager": "yarn@4.1.1",
+  "type": "commonjs",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
     },
     "./package.json": "./package.json"
   },
   "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist/*"
   ],
@@ -34,15 +42,18 @@
     "docs"
   ],
   "scripts": {
+    "attw": "attw --pack",
     "build": "tsup",
     "changeset:publish": "changeset publish",
     "changeset:version": "changeset version",
     "packlint": "packlint sort -R",
+    "publint": "publint --strict",
     "test": "vitest run --coverage --typecheck",
     "test:watch": "vitest --ui --coverage --typecheck",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.15.3",
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.1",
     "@netlify/plugin-nextjs": "^5.0.0",
@@ -55,23 +66,13 @@
     "eslint-config-prettier": "^8.5.0",
     "packlint": "^0.2.4",
     "prettier": "^3.2.5",
+    "publint": "^0.2.7",
     "tsup": "^8.0.2",
     "typescript": "^5.4.3",
     "vitest": "^1.5.0"
   },
   "publishConfig": {
-    "access": "public",
-    "main": "./dist/index.js",
-    "module": "./dist/index.mjs",
-    "exports": {
-      ".": {
-        "require": "./dist/index.js",
-        "import": "./dist/index.mjs",
-        "types": "./dist/index.d.ts"
-      },
-      "./package.json": "./package.json"
-    },
-    "types": "./dist/index.d.ts",
-    "import": "./dist/index.mjs"
-  }
+    "access": "public"
+  },
+  "import": "./dist/index.mjs"
 }

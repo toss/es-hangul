@@ -10,6 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "es-hangul": "workspace:*",
     "next": "14.1.4",
     "nextra": "^2.13.4",
     "nextra-theme-docs": "^2.13.4",

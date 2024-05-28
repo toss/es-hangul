@@ -16,7 +16,7 @@ import { chosungIncludes } from 'es-hangul';
 const searchWord = '라면';
 const userInput = 'ㄹㅁ';
 
-const result = chosungIncludes(searchWord, userInput);
+const result = chosungIncludes(searchWord, userInput); // true
 ```
 
 ```tsx

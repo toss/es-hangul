@@ -1,5 +1,35 @@
 # es-hangul
 
+## 1.3.5
+
+### Patch Changes
+
+- [#95](https://github.com/toss/es-hangul/pull/95) [`f95daf9`](https://github.com/toss/es-hangul/commit/f95daf97d37268923e1c1a482c61d6ad19d31c5c) Thanks [@manudeli](https://github.com/manudeli)! - ci(TypeScript): lint by arethetypeswrong
+
+## 1.3.4
+
+### Patch Changes
+
+- [#93](https://github.com/toss/es-hangul/pull/93) [`4195df5`](https://github.com/toss/es-hangul/commit/4195df54d72f1decbcf6ea27faf525a4f4f66241) Thanks [@manudeli](https://github.com/manudeli)! - ci(package.json): lint by publint
+
+## 1.3.3
+
+### Patch Changes
+
+- [#90](https://github.com/toss/es-hangul/pull/90) [`91a46a2`](https://github.com/toss/es-hangul/commit/91a46a280d7b054a1ac0fb58bfe5ff6aaa05ea33) Thanks [@youngjae99](https://github.com/youngjae99)! - feat: add convertQwertyToHangulAlphabet, disassembleCompleteHangulCha…
+
+## 1.3.2
+
+### Patch Changes
+
+- [#86](https://github.com/toss/es-hangul/pull/86) [`28fb57a`](https://github.com/toss/es-hangul/commit/28fb57aa73466767dd33ec801799180f71c94aae) Thanks [@kangju2000](https://github.com/kangju2000)! - fix: 인자로 빈 문자열이 들어올 경우 얼리리턴하도록 수정
+
+- [#67](https://github.com/toss/es-hangul/pull/67) [`7c030df`](https://github.com/toss/es-hangul/commit/7c030dfb7f8c050b082b3ab3b4f760c39fbe4413) Thanks [@BO-LIKE-CHICKEN](https://github.com/BO-LIKE-CHICKEN)! - fix: 초성을 뜻하는 단어를 통일
+
+- [#83](https://github.com/toss/es-hangul/pull/83) [`1292575`](https://github.com/toss/es-hangul/commit/12925756c20ef26da86dc3c38f3c6608eb0c2176) Thanks [@jungwoo3490](https://github.com/jungwoo3490)! - fix: 호환성 개선을 위해 배열의 마지막 요소 가져오는 부분 수정
+
+- [#75](https://github.com/toss/es-hangul/pull/75) [`f2b7cd9`](https://github.com/toss/es-hangul/commit/f2b7cd9d15f1deebd36c17bf2924f4abfe20467b) Thanks [@ssi02014](https://github.com/ssi02014)! - refac: convertQwertyToHangul split 및 Non-null assertion operator 제거, 네이밍 오타 수정
+
 ## 1.3.1
 
 ### Patch Changes
