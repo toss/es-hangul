@@ -12,7 +12,7 @@ export function calculateSimilarity(a: string, b: string): number {
   }
 
   const distance = levenshtein(disassembledA, disassembledB);
-  const similarity = ((maxLength - distance) / maxLength) * 100;
+  const similarity = (maxLength - distance) / maxLength;
 
   return similarity;
 }

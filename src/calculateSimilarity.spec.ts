@@ -5,7 +5,7 @@ describe('calculateSimilarity', () => {
     const target = '안녕하세요';
     const input = '안녕하세요';
     const result = calculateSimilarity(target, input);
-    expect(result).toBe(100);
+    expect(result).toBe(1);
   });
 
   it('완전히 다른 문자열의 유사도는 10이하여야한다', () => {
@@ -13,14 +13,14 @@ describe('calculateSimilarity', () => {
     const input = 'ㅂㅈㄷㄱㅅㅁ';
     const result = calculateSimilarity(target, input);
 
-    expect(result).toBeLessThanOrEqual(10);
+    expect(result).toBeLessThanOrEqual(0.1);
   });
 
   it('부분적으로 일치하는 문자열의 유사도는 정확하게 계산되어야 한다', () => {
     const target = '안녕하세요';
     const input = '안녕하새요';
     const result = calculateSimilarity(target, input);
-    expect(result).toBeCloseTo(91.67, 2);
+    expect(result).toBeCloseTo(0.916, 2);
   });
 
   it('입력 문자열이 빈 문자열일 때 유사도는 0이어야 한다', () => {
@@ -48,20 +48,20 @@ describe('calculateSimilarity', () => {
     const target = '동해물과';
     const input = '동해붇ㄹㅁ과';
     const result = calculateSimilarity(target, input);
-    expect(result).toBeCloseTo(76.92, 2);
+    expect(result).toBeCloseTo(0.769, 2);
   });
 
   it('복잡한 문자열 비교 시 유사도는 정확하게 계산되어야 한다', () => {
     const target = '대한민국';
     const input = '대한밍굮';
     const result = calculateSimilarity(target, input);
-    expect(result).toBeCloseTo(81.82, 2);
+    expect(result).toBeCloseTo(0.818, 2);
   });
 
   it('길이가 다른 문자열 비교 시 유사도는 정확하게 계산되어야 한다', () => {
     const target = '가나다라마바사';
     const input = '나다라마바사가';
     const result = calculateSimilarity(target, input);
-    expect(result).toBeCloseTo(71.43, 2);
+    expect(result).toBeCloseTo(0.714, 2);
   });
 });
