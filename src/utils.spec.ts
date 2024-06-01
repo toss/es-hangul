@@ -159,13 +159,13 @@ describe('canBeChosung', () => {
       expect(canBeChosung('ㅏ')).toBe(false);
     });
     it('ㅘ', () => {
-      expect(canBeChosung('ㅏ')).toBe(false);
+      expect(canBeChosung('ㅘ')).toBe(false);
     });
     it('ㄱㅅ', () => {
-      expect(canBeChosung('ㅏ')).toBe(false);
+      expect(canBeChosung('ㄱㅅ')).toBe(false);
     });
     it('가', () => {
-      expect(canBeChosung('ㅏ')).toBe(false);
+      expect(canBeChosung('가')).toBe(false);
     });
   });
 });
