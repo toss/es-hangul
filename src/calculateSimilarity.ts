@@ -1,10 +1,8 @@
 import { disassembleHangul } from './disassemble';
 
 export function calculateSimilarity(a: string, b: string): number {
-  const disassembleAndClean = (text: string) => disassembleHangul(text).replace(/\s/g, '');
-
-  const disassembledA = disassembleAndClean(a);
-  const disassembledB = disassembleAndClean(b);
+  const disassembledA = disassembleHangul(a).replace(/\s/g, '');
+  const disassembledB = disassembleHangul(b).replace(/\s/g, '');
 
   const maxLength = Math.max(disassembledA.length, disassembledB.length);
   if (maxLength === 0) {
