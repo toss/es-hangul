@@ -8,6 +8,7 @@ import {
   hasProperty,
   hasSingleBatchim,
   hasValueInReadOnlyStringList,
+  isNotUndefined,
 } from './utils';
 
 describe('hasBatchim', () => {
@@ -29,6 +30,7 @@ describe('hasBatchim', () => {
     });
     it('"서" 문자에서 받침이 없으므로 false를 반환한다.', () => {
       expect(hasBatchim('서')).toBe(false);
+      expect(hasBatchim('')).toBe(false);
     });
   });
 });
@@ -218,6 +220,20 @@ describe('canBeJongsung', () => {
     });
     it('가', () => {
       expect(canBeJongsung('ㅏ')).toBe(false);
+    });
+  });
+
+  describe('isNotUndefined', () => {
+    it('정의된 값에 대해 true를 반환해야 한다', () => {
+      expect(isNotUndefined(5)).toBe(true);
+      expect(isNotUndefined('test')).toBe(true);
+      expect(isNotUndefined({})).toBe(true);
+      expect(isNotUndefined([])).toBe(true);
+      expect(isNotUndefined(null)).toBe(true);
+    });
+
+    it('undefined에 대해 false를 반환해야 한다', () => {
+      expect(isNotUndefined(undefined)).toBe(false);
     });
   });
 });

@@ -172,3 +172,7 @@ export function hasValueInReadOnlyStringList<T extends string>(list: readonly T[
 export function hasProperty<T extends object, K extends PropertyKey>(obj: T, key: K): key is K & keyof T {
   return Object.prototype.hasOwnProperty.call(obj, key);
 }
+
+export function isNotUndefined<T>(value: T | undefined): value is T {
+  return value !== undefined;
+}
