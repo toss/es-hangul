@@ -33,7 +33,8 @@ function 음절분해(hangulPhrase: string) {
 
       return true;
     })
-    .map(syllable => disassembleCompleteHangulCharacter(syllable));
+    .map(syllable => disassembleCompleteHangulCharacter(syllable))
+    .filter(isNotUndefined);
 
   return { notHangulPhrase, disassembleHangul };
 }
