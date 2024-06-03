@@ -8,7 +8,7 @@ import {
   NUMBER_OF_JUNGSUNG,
 } from './constants';
 
-interface ReturnTypeDisassembleCompleteHangulCharacter {
+export interface ReturnTypeDisassembleCompleteHangulCharacter {
   first: (typeof HANGUL_CHARACTERS_BY_FIRST_INDEX)[number];
   middle: (typeof HANGUL_CHARACTERS_BY_MIDDLE_INDEX)[number];
   last: (typeof HANGUL_CHARACTERS_BY_LAST_INDEX)[number];

@@ -1,5 +1,8 @@
 import { combineHangulCharacter } from './combineHangulCharacter';
-import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
+import {
+  ReturnTypeDisassembleCompleteHangulCharacter,
+  disassembleCompleteHangulCharacter,
+} from './disassembleCompleteHangulCharacter';
 import { isNotUndefined } from './utils';
 
 type NotHangul = {
@@ -43,6 +46,25 @@ const 비음화_받침_ㅇ_변환 = ['ㄱ', 'ㄲ', 'ㅋ', 'ㄱㅅ', 'ㄹㄱ'];
 const 비음화_받침_ㄴ_변환 = ['ㄷ', 'ㅅ', 'ㅆ', 'ㅈ', 'ㅊ', 'ㅌ', 'ㅎ'];
 const 비음화_받침_ㅁ_변환 = ['ㅂ', 'ㅍ', 'ㄹㅂ', 'ㄹㅍ', 'ㅂㅅ'];
 
+// 12항
+const 발음변환_받침_ㅎ = ['ㅎ', 'ㄴㅎ', 'ㄹㅎ'];
+const 발음변환_받침_ㅎ_발음 = {
+  ㄱ: 'ㅋ',
+  ㄷ: 'ㅌ',
+  ㅈ: 'ㅊ',
+  ㅅ: 'ㅆ',
+} as const;
+const 발음변환_첫소리_ㅎ = ['ㄱ', 'ㄹㄱ', 'ㄷ', 'ㅂ', 'ㄹㅂ', 'ㅈ', 'ㄴㅈ'];
+const 발음변환_첫소리_ㅎ_발음 = {
+  ㄱ: 'ㅋ',
+  ㄹㄱ: 'ㅋ',
+  ㄷ: 'ㅌ',
+  ㅂ: 'ㅍ',
+  ㄹㅂ: 'ㅍ',
+  ㅈ: 'ㅊ',
+  ㄴㅈ: 'ㅊ',
+} as const;
+
 function is단일자모(자모: string) {
   return 자음_REGEX.test(자모) || 모음_REGEX.test(자모);
 }
@@ -66,6 +88,10 @@ function 음절분해(hangulPhrase: string) {
     .filter(isNotUndefined);
 
   return { notHangulPhrase, disassembleHangul };
+}
+
+function replace받침ㅎ(currentSyllable: ReturnTypeDisassembleCompleteHangulCharacter): void {
+  currentSyllable.last = currentSyllable.last.replace('ㅎ', '') as ReturnTypeDisassembleCompleteHangulCharacter['last'];
 }
 
 export function phoneticNotation(hangul: string): string {
@@ -191,55 +217,36 @@ export function phoneticNotation(hangul: string): string {
       4. ‘ㅎ(ㄶ, ㅀ)’ 뒤에 모음으로 시작된 어미나 접미사가 결합되는 경우에는, ‘ㅎ’을 발음하지 않는다.
     */
 
-      if (currentSyllable?.last) {
-        if (['ㅎ', 'ㄴㅎ', 'ㄹㅎ'].includes(currentSyllable.last)) {
+      if (currentSyllable.last) {
+        if (발음변환_받침_ㅎ.includes(currentSyllable.last)) {
           if (nextSyllable) {
-            const pronunciation = {
-              ㄱ: 'ㅋ',
-              ㄷ: 'ㅌ',
-              ㅈ: 'ㅊ',
-              ㅅ: 'ㅆ',
-            } as const;
-
             if (['ㄱ', 'ㄷ', 'ㅈ', 'ㅅ'].includes(nextSyllable.first)) {
-              nextSyllable.first = pronunciation[nextSyllable.first as keyof typeof pronunciation];
-              currentSyllable.last = currentSyllable.last.replace('ㅎ', '') as typeof currentSyllable.last;
+              nextSyllable.first = 발음변환_받침_ㅎ_발음[nextSyllable.first as keyof typeof 발음변환_받침_ㅎ_발음];
+              replace받침ㅎ(currentSyllable);
             } else if (nextSyllable.first === 'ㄴ' && ['ㄴㅎ', 'ㄹㅎ'].includes(currentSyllable.last)) {
-              currentSyllable.last = currentSyllable.last.replace('ㅎ', '') as typeof currentSyllable.last;
+              replace받침ㅎ(currentSyllable);
             } else if (nextSyllable.first === 음가가_없는_자음) {
               if (['ㄴㅎ', 'ㄹㅎ'].includes(currentSyllable.last)) {
-                currentSyllable.last = currentSyllable.last.replace('ㅎ', '') as typeof currentSyllable.last;
+                replace받침ㅎ(currentSyllable);
               } else {
                 currentSyllable.last = '';
               }
             } else {
-              currentSyllable.last = currentSyllable.last.replace('ㅎ', '') as typeof currentSyllable.last;
+              replace받침ㅎ(currentSyllable);
             }
           } else {
-            currentSyllable.last = currentSyllable.last.replace('ㅎ', '') as typeof currentSyllable.last;
+            replace받침ㅎ(currentSyllable);
           }
         } else if (
-          ['ㄱ', 'ㄹㄱ', 'ㄷ', 'ㅂ', 'ㄹㅂ', 'ㅈ', 'ㄴㅈ'].includes(currentSyllable.last) &&
+          발음변환_첫소리_ㅎ.includes(currentSyllable.last) &&
           nextSyllable &&
           ['ㅎ'].includes(nextSyllable.first)
         ) {
-          const pronunciation = {
-            ㄱ: 'ㅋ',
-            ㄹㄱ: 'ㅋ',
-            ㄷ: 'ㅌ',
-            ㅂ: 'ㅍ',
-            ㄹㅂ: 'ㅍ',
-            ㅈ: 'ㅊ',
-            ㄴㅈ: 'ㅊ',
-          } as const;
-
-          nextSyllable.first = pronunciation[currentSyllable.last as keyof typeof pronunciation];
-
-          if (currentSyllable.last.length === 1) {
-            currentSyllable.last = '';
-          } else {
-            currentSyllable.last = currentSyllable.last[0] as typeof currentSyllable.last;
-          }
+          nextSyllable.first = 발음변환_첫소리_ㅎ_발음[currentSyllable.last as keyof typeof 발음변환_첫소리_ㅎ_발음];
+          currentSyllable.last =
+            currentSyllable.last.length === 1
+              ? ''
+              : (currentSyllable.last = currentSyllable.last[0] as typeof currentSyllable.last);
         }
       }
 
