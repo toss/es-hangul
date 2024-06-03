@@ -52,9 +52,8 @@ export function phoneticNotation(hangul: string): string {
 
     for (let i = 0; i < disassembleHangul.length; i += 1) {
       const currentSyllable = disassembleHangul[i];
-      const nextSyllable = disassembleHangul[i + 1] ?? null;
-
-      // TODO: currentSyllable이 값이 없으면 사실상 아래 로직들은 무용지물임. Early return을 통해 object chaining 사용을 최대한 지양하는게 좋을듯
+      const nextSyllable =
+        disassembleHangul.length > 1 && i < disassembleHangul.length - 1 ? disassembleHangul[i + 1] : null;
 
       /* 
       제16항 - 한글 자모의 이름은 그 받침소리를 연음하되, ‘ㄷ, ㅈ, ㅊ, ㅋ, ㅌ, ㅍ, ㅎ’의 경우에는 특별히 다음과 같이 발음한다.
@@ -62,11 +61,10 @@ export function phoneticNotation(hangul: string): string {
       ㅋ > ㄱ (키읔이:키으기)
       ㅍ > ㅂ (피읖이:피으비)
     */
+      if (currentSyllable.last && nextSyllable?.first === 음가가_없는_자음) {
+        const combinedSyllables = hangulPhrase[i - 1] + hangulPhrase[i];
 
-      if (currentSyllable?.last && nextSyllable && nextSyllable.first === 음가가_없는_자음) {
-        const addHangulPhrase = hangulPhrase[i - 1] + hangulPhrase[i];
-
-        if (특별한_한글_자모.includes(addHangulPhrase)) {
+        if (특별한_한글_자모.includes(combinedSyllables)) {
           if (['ㄷ', 'ㅈ', 'ㅊ', 'ㅌ', 'ㅎ'].includes(currentSyllable.last)) {
             currentSyllable.last = '';
             nextSyllable.first = 'ㅅ';
@@ -78,7 +76,7 @@ export function phoneticNotation(hangul: string): string {
             nextSyllable.first = 'ㅂ';
           }
           continue;
-        } else if (한글_자모.includes(addHangulPhrase)) {
+        } else if (한글_자모.includes(combinedSyllables)) {
           nextSyllable.first = currentSyllable.last as typeof nextSyllable.first;
 
           if (currentSyllable.last !== 'ㅇ') {
