@@ -22,6 +22,11 @@ const 특별한_한글_자모의_발음 = {
   ㅋ: 'ㄱ',
   ㅍ: 'ㅂ',
 } as const;
+const 음의_동화_받침 = {
+  ㄷ: 'ㅈ',
+  ㅌ: 'ㅊ',
+  ㄹㅌ: 'ㅊ',
+} as const;
 
 function is단일자모(자모: string) {
   return 자음_REGEX.test(자모) || 모음_REGEX.test(자모);
@@ -97,19 +102,11 @@ export function phoneticNotation(hangul: string): string {
         17항 - 받침 ‘ㄷ', 'ㅌ(ㄾ)’이 조사나 접미사의 모음 ‘ㅣ’와 결합되는 경우에는, [ㅈ, ㅊ]으로 바꾸어서 뒤 음절 첫소리로 옮겨 발음한다.
         [붙임] ‘ㄷ’ 뒤에 접미사 ‘히’가 결합되어 ‘티’를 이루는 것은 [치]로 발음한다.
       */
-      if (currentSyllable && nextSyllable && nextSyllable.middle === 'ㅣ') {
-        if (nextSyllable.first === 'ㅇ') {
-          if (['ㄷ'].includes(currentSyllable.last)) {
-            nextSyllable.first = 'ㅈ';
-            currentSyllable.last = '';
-          } else if (['ㅌ'].includes(currentSyllable.last)) {
-            nextSyllable.first = 'ㅊ';
-            currentSyllable.last = '';
-          } else if (['ㄹㅌ'].includes(currentSyllable.last)) {
-            nextSyllable.first = 'ㅊ';
-            currentSyllable.last = currentSyllable.last[0] as typeof currentSyllable.last;
-          }
-        } else if (nextSyllable.first === 'ㅎ' && ['ㄷ'].includes(currentSyllable.last)) {
+      if (nextSyllable?.middle === 'ㅣ') {
+        if (nextSyllable.first === 'ㅇ' && currentSyllable.last in 음의_동화_받침) {
+          nextSyllable.first = 음의_동화_받침[currentSyllable.last as keyof typeof 음의_동화_받침];
+          currentSyllable.last = currentSyllable.last === 'ㄹㅌ' ? 'ㄹ' : '';
+        } else if (nextSyllable.first === 'ㅎ' && currentSyllable.last === 'ㄷ') {
           nextSyllable.first = 'ㅊ';
           currentSyllable.last = '';
         }
