@@ -3,7 +3,7 @@ import { phoneticNotation } from './phoneticNotation';
 describe('phoneticNotation', () => {
   describe('음절이 완성된 한글을 제외한 문자는 변경하지 않는다', () => {
     it('단일 자모는 그대로 반환한다', () => {
-      expect(phoneticNotation('ㄱㄴㄷㄹ')).toBe('ㄱㄴㄷㄹ');
+      expect(phoneticNotation('ㄱㄴㄷㄹㅏㅓㅑㅙ')).toBe('ㄱㄴㄷㄹㅏㅓㅑㅙ');
     });
 
     it('특수문자는 그대로 반환한다', () => {
