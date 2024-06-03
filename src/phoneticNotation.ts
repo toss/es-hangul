@@ -61,7 +61,8 @@ export function phoneticNotation(hangul: string): string {
       ㅋ > ㄱ (키읔이:키으기)
       ㅍ > ㅂ (피읖이:피으비)
     */
-      if (currentSyllable.last && nextSyllable?.first === 음가가_없는_자음) {
+      if (i > 0 && currentSyllable.last && nextSyllable?.first === 음가가_없는_자음) {
+        console.log('i-1 🟢: ', i - 1);
         const combinedSyllables = hangulPhrase[i - 1] + hangulPhrase[i];
 
         if (특별한_한글_자모.includes(combinedSyllables)) {
