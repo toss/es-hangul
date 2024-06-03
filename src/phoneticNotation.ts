@@ -35,7 +35,13 @@ const ㄴㄹ이_덧나는_모음 = ['ㅑ', 'ㅕ', 'ㅛ', 'ㅠ', 'ㅣ', 'ㅒ', '�
 const ㄴㄹ이_덧나서_받침_ㄴ_변환 = ['ㄱ', 'ㄴ', 'ㄷ', 'ㅁ', 'ㅂ', 'ㅇ'];
 const ㄴㄹ이_덧나서_받침_ㄹ_변환 = ['ㄹ'];
 
+// 19항
 const 자음동화_받침_ㄴ_변환 = ['ㅁ', 'ㅇ', 'ㄱ', 'ㅂ'];
+
+// 18항
+const 비음화_받침_ㅇ_변환 = ['ㄱ', 'ㄲ', 'ㅋ', 'ㄱㅅ', 'ㄹㄱ'];
+const 비음화_받침_ㄴ_변환 = ['ㄷ', 'ㅅ', 'ㅆ', 'ㅈ', 'ㅊ', 'ㅌ', 'ㅎ'];
+const 비음화_받침_ㅁ_변환 = ['ㅂ', 'ㅍ', 'ㄹㅂ', 'ㄹㅍ', 'ㅂㅅ'];
 
 function is단일자모(자모: string) {
   return 자음_REGEX.test(자모) || 모음_REGEX.test(자모);
@@ -150,11 +156,11 @@ export function phoneticNotation(hangul: string): string {
         18항 - 받침 ‘ㄱ(ㄲ, ㅋ, ㄳ, ㄺ), ㄷ(ㅅ, ㅆ, ㅈ, ㅊ, ㅌ, ㅎ), ㅂ(ㅍ, ㄼ, ㄿ, ㅄ)’은 ‘ㄴ, ㅁ’ 앞에서 [ㅇ, ㄴ, ㅁ]으로 발음한다.
       */
       if (currentSyllable.last && nextSyllable && ['ㄴ', 'ㅁ'].includes(nextSyllable.first)) {
-        if (['ㄱ', 'ㄲ', 'ㅋ', 'ㄱㅅ', 'ㄹㄱ'].includes(currentSyllable.last)) {
+        if (비음화_받침_ㅇ_변환.includes(currentSyllable.last)) {
           currentSyllable.last = 'ㅇ';
-        } else if (['ㄷ', 'ㅅ', 'ㅆ', 'ㅈ', 'ㅊ', 'ㅌ', 'ㅎ'].includes(currentSyllable.last)) {
+        } else if (비음화_받침_ㄴ_변환.includes(currentSyllable.last)) {
           currentSyllable.last = 'ㄴ';
-        } else if (['ㅂ', 'ㅍ', 'ㄹㅂ', 'ㄹㅍ', 'ㅂㅅ'].includes(currentSyllable.last)) {
+        } else if (비음화_받침_ㅁ_변환.includes(currentSyllable.last)) {
           currentSyllable.last = 'ㅁ';
         }
       }
