@@ -8,9 +8,11 @@ type NotHangul = {
 };
 
 const 음가가_없는_자음 = 'ㅇ';
+
 const 자음_REGEX = /^[ㄱ-ㅎ]$/;
 const 모음_REGEX = /^[ㅏ-ㅣ]$/;
 const 한글_REGEX = /^[가-힣]$/;
+
 const 한글_자모 = ['기역', '니은', '리을', '미음', '비읍', '시옷', '이응'];
 const 특별한_한글_자모 = ['디귿', '지읒', '치읓', '키읔', '티읕', '피읖', '히읗'];
 const 특별한_한글_자모의_발음 = {
@@ -22,11 +24,16 @@ const 특별한_한글_자모의_발음 = {
   ㅋ: 'ㄱ',
   ㅍ: 'ㅂ',
 } as const;
+
 const 음의_동화_받침 = {
   ㄷ: 'ㅈ',
   ㅌ: 'ㅊ',
   ㄹㅌ: 'ㅊ',
 } as const;
+
+const ㄴㄹ이_덧나는_모음 = ['ㅑ', 'ㅕ', 'ㅛ', 'ㅠ', 'ㅣ', 'ㅒ', 'ㅖ'];
+const ㄴㄹ이_덧나서_받침_ㄴ_변환 = ['ㄱ', 'ㄴ', 'ㄷ', 'ㅁ', 'ㅂ', 'ㅇ'];
+const ㄴㄹ이_덧나서_받침_ㄹ_변환 = ['ㄹ'];
 
 function is단일자모(자모: string) {
   return 자음_REGEX.test(자모) || 모음_REGEX.test(자모);
@@ -117,19 +124,14 @@ export function phoneticNotation(hangul: string): string {
         https://www.youtube.com/watch?v=Mm2JX2naqWk
         http://contents2.kocw.or.kr/KOCW/data/document/2020/seowon/choiyungon0805/12.pdf
       */
-      if (
-        currentSyllable &&
-        currentSyllable.last &&
-        nextSyllable &&
-        nextSyllable.first === 'ㅇ' &&
-        ['ㅑ', 'ㅕ', 'ㅛ', 'ㅠ', 'ㅣ', 'ㅒ', 'ㅖ'].includes(nextSyllable.middle)
-      ) {
-        if (['ㄱ', 'ㄴ', 'ㄷ', 'ㅁ', 'ㅂ', 'ㅇ'].includes(currentSyllable.last)) {
+      if (currentSyllable.last && nextSyllable?.first === 'ㅇ' && ㄴㄹ이_덧나는_모음.includes(nextSyllable.middle)) {
+        if (ㄴㄹ이_덧나서_받침_ㄴ_변환.includes(currentSyllable.last)) {
           if (currentSyllable.last === 'ㄱ') {
             currentSyllable.last = 'ㅇ';
           }
+
           nextSyllable.first = 'ㄴ';
-        } else if (['ㄹ'].includes(currentSyllable.last)) {
+        } else if (ㄴㄹ이_덧나서_받침_ㄹ_변환.includes(currentSyllable.last)) {
           nextSyllable.first = 'ㄹ';
         }
       }
