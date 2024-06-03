@@ -6,5 +6,6 @@ export * from './disassemble';
 export * from './disassembleCompleteHangulCharacter';
 export * from './hangulIncludes';
 export * from './josa';
+export * from './phoneticNotation';
 export * from './removeLastHangulCharacter';
 export * from './utils';

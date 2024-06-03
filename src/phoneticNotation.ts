@@ -1,3 +1,5 @@
+import { joinString } from './_internal';
+import { isHangulAlphabet, isHangulCharacter } from './_internal/hangul';
 import { combineHangulCharacter } from './combineHangulCharacter';
 import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
 import { isNotUndefined } from './utils';
@@ -11,10 +13,6 @@ type NonUndefined<T> = T extends undefined ? never : T;
 type Syllable = NonUndefined<ReturnType<typeof disassembleCompleteHangulCharacter>>;
 
 const 음가가_없는_자음 = 'ㅇ';
-
-const 자음_REGEX = /^[ㄱ-ㅎ]$/;
-const 모음_REGEX = /^[ㅏ-ㅣ]$/;
-const 한글_REGEX = /^[가-힣]$/;
 
 const 한글_자모 = ['기역', '니은', '리을', '미음', '비읍', '시옷', '이응'];
 const 특별한_한글_자모 = ['디귿', '지읒', '치읓', '키읔', '티읕', '피읖', '히읗'];
@@ -86,15 +84,11 @@ const 받침_대표음_발음 = {
   ㄹㅁ: 'ㅁ',
 } as const;
 
-function is단일자모(자모: string) {
-  return 자음_REGEX.test(자모) || 모음_REGEX.test(자모);
-}
-
 function 음절분해(hangulPhrase: string) {
   const notHangulPhrase: NotHangul[] = [];
   const disassembleHangul = Array.from(hangulPhrase)
     .filter((syllable, index) => {
-      if (!한글_REGEX.test(syllable) || is단일자모(syllable)) {
+      if (!isHangulCharacter(syllable) || isHangulAlphabet(syllable)) {
         notHangulPhrase.push({
           index,
           syllable,
@@ -324,7 +318,7 @@ export function phoneticNotation(hangul: string): string {
       changedSyllables.splice(index, 0, syllable);
     }
 
-    changedHangul.push(changedSyllables.join(''));
+    changedHangul.push(joinString(...changedSyllables));
   }
 
   return changedHangul.join(' ');
