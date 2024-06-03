@@ -1,14 +1,14 @@
 import { combineHangulCharacter } from './combineHangulCharacter';
-import {
-  ReturnTypeDisassembleCompleteHangulCharacter,
-  disassembleCompleteHangulCharacter,
-} from './disassembleCompleteHangulCharacter';
+import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
 import { isNotUndefined } from './utils';
 
 type NotHangul = {
   index: number;
   syllable: string;
 };
+
+type NonUndefined<T> = T extends undefined ? never : T;
+type Syllable = NonUndefined<ReturnType<typeof disassembleCompleteHangulCharacter>>;
 
 const 음가가_없는_자음 = 'ㅇ';
 
@@ -90,8 +90,8 @@ function 음절분해(hangulPhrase: string) {
   return { notHangulPhrase, disassembleHangul };
 }
 
-function replace받침ㅎ(currentSyllable: ReturnTypeDisassembleCompleteHangulCharacter): void {
-  currentSyllable.last = currentSyllable.last.replace('ㅎ', '') as ReturnTypeDisassembleCompleteHangulCharacter['last'];
+function replace받침ㅎ(currentSyllable: Syllable): void {
+  currentSyllable.last = currentSyllable.last.replace('ㅎ', '') as Syllable['last'];
 }
 
 export function phoneticNotation(hangul: string): string {
@@ -252,31 +252,30 @@ export function phoneticNotation(hangul: string): string {
 
       /*
       제13항 - 홑받침이나 쌍받침이 모음으로 시작된 조사나 어미, 접미사와 결합되는 경우에는, 제 음가대로 뒤 음절 첫소리로 옮겨 발음한다.
-      제14항 -  겹받침이 모음으로 시작된 조사나 어미, 접미사와 결합되는 경우에는, 뒤엣것만을 뒤 음절 첫소리로 옮겨 발음한다.
+      제14항 - 겹받침이 모음으로 시작된 조사나 어미, 접미사와 결합되는 경우에는, 뒤엣것만을 뒤 음절 첫소리로 옮겨 발음한다.
     */
-      const is음가없는자음앞 = currentSyllable?.last && nextSyllable && nextSyllable.first === 음가가_없는_자음;
+      const is음가없는자음앞 = currentSyllable.last && nextSyllable?.first === 음가가_없는_자음;
 
       if (is음가없는자음앞) {
+        const is홑받침 = currentSyllable.last.length === 1;
+        const is쌍받침 = currentSyllable.last.length === 2 && currentSyllable.last[0] === currentSyllable.last[1];
+        const is겹받침 = currentSyllable.last.length === 2 && currentSyllable.last[0] !== currentSyllable.last[1];
+
         if (
-          (nextSyllable.first === 음가가_없는_자음 &&
-            !['ㅇ', ''].includes(currentSyllable.last) &&
-            currentSyllable.last.length === 1) ||
-          (currentSyllable.last.length === 2 && currentSyllable.last[0] === currentSyllable.last[1])
+          nextSyllable.first === 음가가_없는_자음 &&
+          !['ㅇ', ''].includes(currentSyllable.last) &&
+          (is홑받침 || is쌍받침)
         ) {
-          // 15항이 여길 통과하고 있음. 형식 형태소, 실질 형태소 구분 못함
-          nextSyllable.first = currentSyllable.last as typeof nextSyllable.first;
+          nextSyllable.first = currentSyllable.last as Syllable['first'];
           currentSyllable.last = '';
-        } else if (currentSyllable.last.length > 1 && currentSyllable.last[0] !== currentSyllable.last[1]) {
+        } else if (is겹받침) {
           if (currentSyllable.last[1] === 'ㅅ') {
             nextSyllable.first = 'ㅆ';
           } else {
-            nextSyllable.first = currentSyllable.last[1] as typeof nextSyllable.first;
+            nextSyllable.first = currentSyllable.last[1] as Syllable['first'];
           }
 
-          currentSyllable.last = currentSyllable.last.replace(
-            currentSyllable.last[1],
-            ''
-          ) as typeof currentSyllable.last;
+          currentSyllable.last = currentSyllable.last.replace(currentSyllable.last[1], '') as Syllable['last'];
         }
       }
 
