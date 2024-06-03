@@ -169,13 +169,15 @@ export function phoneticNotation(hangul: string): string {
         20항 - ‘ㄴ’은 ‘ㄹ’의 앞이나 뒤에서 [ㄹ]로 발음한다.
         [붙임] 첫소리 ‘ㄴ’이 ‘ㅀ’, ‘ㄾ’ 뒤에 연결되는 경우에도 이에 준한다.
       */
-      if (currentSyllable && nextSyllable) {
+      if (nextSyllable) {
         if (currentSyllable.last === 'ㄴ' && nextSyllable.first === 'ㄹ') {
           currentSyllable.last = 'ㄹ';
-        } else if (currentSyllable.last === 'ㄹ' && nextSyllable.first === 'ㄴ') {
-          nextSyllable.first = 'ㄹ';
-        } else if (['ㄹㅎ', 'ㄹㅌ'].includes(currentSyllable.last) && nextSyllable.first === 'ㄴ') {
-          nextSyllable.first = 'ㄹ';
+        } else if (nextSyllable.first === 'ㄴ') {
+          if (currentSyllable.last === 'ㄹ') {
+            nextSyllable.first = 'ㄹ';
+          } else if (['ㄹㅎ', 'ㄹㅌ'].includes(currentSyllable.last)) {
+            nextSyllable.first = 'ㄹ';
+          }
         }
       }
 
