@@ -65,6 +65,27 @@ const 발음변환_첫소리_ㅎ_발음 = {
   ㄴㅈ: 'ㅊ',
 } as const;
 
+// 9항, 10항, 11항
+const 받침_대표음_발음 = {
+  ㄲ: 'ㄱ',
+  ㅋ: 'ㄱ',
+  ㄱㅅ: 'ㄱ',
+  ㄹㄱ: 'ㄱ',
+  ㅅ: 'ㄷ',
+  ㅆ: 'ㄷ',
+  ㅈ: 'ㄷ',
+  ㅊ: 'ㄷ',
+  ㅌ: 'ㄷ',
+  ㅍ: 'ㅂ',
+  ㅂㅅ: 'ㅂ',
+  ㄹㅍ: 'ㅂ',
+  ㄴㅈ: 'ㄴ',
+  ㄹㅂ: 'ㄹ',
+  ㄹㅅ: 'ㄹ',
+  ㄹㅌ: 'ㄹ',
+  ㄹㅁ: 'ㅁ',
+} as const;
+
 function is단일자모(자모: string) {
   return 자음_REGEX.test(자모) || 모음_REGEX.test(자모);
 }
@@ -285,35 +306,25 @@ export function phoneticNotation(hangul: string): string {
         제10항 - 겹받침 ‘ㄳ’, ‘ㄵ’, ‘ㄼ, ㄽ, ㄾ’, ‘ㅄ’은 어말 또는 자음 앞에서 각각 [ㄱ, ㄴ, ㄹ, ㅂ]으로 발음한다.
         제11항 - 겹받침 ‘ㄺ, ㄻ, ㄿ’은 어말 또는 자음 앞에서 각각 [ㄱ, ㅁ, ㅂ]으로 발음한다.
       */
-      const is어말 = currentSyllable?.last && !nextSyllable;
-      const is음가있는자음앞 = currentSyllable?.last && nextSyllable && nextSyllable.first !== 음가가_없는_자음;
+      const is어말 = currentSyllable.last && !nextSyllable;
+      const is음가있는자음앞 = currentSyllable.last && nextSyllable?.first !== 음가가_없는_자음;
 
       if (is어말 || is음가있는자음앞) {
-        if (['ㄲ', 'ㅋ', 'ㄱㅅ', 'ㄹㄱ'].includes(currentSyllable.last)) {
-          currentSyllable.last = 'ㄱ';
-        } else if (['ㅅ', 'ㅆ', 'ㅈ', 'ㅊ', 'ㅌ'].includes(currentSyllable.last)) {
-          currentSyllable.last = 'ㄷ';
-        } else if (['ㅍ', 'ㅂㅅ', 'ㄹㅍ'].includes(currentSyllable.last)) {
-          currentSyllable.last = 'ㅂ';
-        } else if (['ㄴㅈ'].includes(currentSyllable.last)) {
-          currentSyllable.last = 'ㄴ';
-        } else if (['ㄹㅂ', 'ㄹㅅ', 'ㄹㅌ'].includes(currentSyllable.last)) {
-          currentSyllable.last = 'ㄹ';
-        } else if (['ㄹㅁ'].includes(currentSyllable.last)) {
-          currentSyllable.last = 'ㅁ';
+        if (currentSyllable.last in 받침_대표음_발음) {
+          currentSyllable.last = 받침_대표음_발음[currentSyllable.last as keyof typeof 받침_대표음_발음];
         }
       }
     }
 
-    const combineAllPhrase = disassembleHangul.filter(isNotUndefined).map(syllable => {
-      return combineHangulCharacter(syllable.first, syllable.middle, syllable.last);
-    });
+    const changedSyllables = disassembleHangul
+      .filter(isNotUndefined)
+      .map(syllable => combineHangulCharacter(syllable.first, syllable.middle, syllable.last));
 
     for (const { index, syllable } of notHangulPhrase) {
-      combineAllPhrase.splice(index, 0, syllable);
+      changedSyllables.splice(index, 0, syllable);
     }
 
-    changedHangul.push(combineAllPhrase.join(''));
+    changedHangul.push(changedSyllables.join(''));
   }
 
   return changedHangul.join(' ');
