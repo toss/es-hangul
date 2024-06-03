@@ -13,6 +13,15 @@ const 모음_REGEX = /^[ㅏ-ㅣ]$/;
 const 한글_REGEX = /^[가-힣]$/;
 const 한글_자모 = ['기역', '니은', '리을', '미음', '비읍', '시옷', '이응'];
 const 특별한_한글_자모 = ['디귿', '지읒', '치읓', '키읔', '티읕', '피읖', '히읗'];
+const 특별한_한글_자모의_발음 = {
+  ㄷ: 'ㅅ',
+  ㅈ: 'ㅅ',
+  ㅊ: 'ㅅ',
+  ㅌ: 'ㅅ',
+  ㅎ: 'ㅅ',
+  ㅋ: 'ㄱ',
+  ㅍ: 'ㅂ',
+} as const;
 
 function is단일자모(자모: string) {
   return 자음_REGEX.test(자모) || 모음_REGEX.test(자모);
@@ -62,20 +71,15 @@ export function phoneticNotation(hangul: string): string {
       ㅍ > ㅂ (피읖이:피으비)
     */
       if (i > 0 && currentSyllable.last && nextSyllable?.first === 음가가_없는_자음) {
-        console.log('i-1 🟢: ', i - 1);
         const combinedSyllables = hangulPhrase[i - 1] + hangulPhrase[i];
 
         if (특별한_한글_자모.includes(combinedSyllables)) {
-          if (['ㄷ', 'ㅈ', 'ㅊ', 'ㅌ', 'ㅎ'].includes(currentSyllable.last)) {
-            currentSyllable.last = '';
-            nextSyllable.first = 'ㅅ';
-          } else if (['ㅋ'].includes(currentSyllable.last)) {
-            currentSyllable.last = '';
-            nextSyllable.first = 'ㄱ';
-          } else {
-            currentSyllable.last = '';
-            nextSyllable.first = 'ㅂ';
-          }
+          const 다음_음절의_초성 =
+            특별한_한글_자모의_발음[currentSyllable.last as keyof typeof 특별한_한글_자모의_발음];
+
+          currentSyllable.last = '';
+          nextSyllable.first = 다음_음절의_초성;
+
           continue;
         } else if (한글_자모.includes(combinedSyllables)) {
           nextSyllable.first = currentSyllable.last as typeof nextSyllable.first;
@@ -83,6 +87,7 @@ export function phoneticNotation(hangul: string): string {
           if (currentSyllable.last !== 'ㅇ') {
             currentSyllable.last = '';
           }
+
           continue;
         }
       }
