@@ -19,7 +19,7 @@ import { excludeLastElement } from './_internal';
  */
 export function removeLastHangulCharacter(words: string) {
   const disassembledGroups = disassembleHangulToGroups(words);
-  const lastCharacter = disassembledGroups.at(-1);
+  const lastCharacter = disassembledGroups[disassembledGroups.length - 1];
 
   if (lastCharacter == null) {
     return '';
