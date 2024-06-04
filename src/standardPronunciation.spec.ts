@@ -47,7 +47,7 @@ describe('standardPronunciation', () => {
 
     describe('17항', () => {
       it('받침 "ㄷ", "ㅌ(ㄾ)"이 조사나 접미사의 모음 "ㅣ"와 결합되는 경우에는, "ㅈ", "ㅊ"으로 바꾸어서 뒤 음절 첫소리로 옮겨 발음한다', () => {
-        expect(standardPronunciation('곧이듣다')).toBe('고지듣다');
+        expect(standardPronunciation('곧이듣다')).toBe('고지듣따');
         expect(standardPronunciation('굳이')).toBe('구지');
         expect(standardPronunciation('미닫이')).toBe('미다지');
         expect(standardPronunciation('땀받이')).toBe('땀바지');
@@ -215,18 +215,18 @@ describe('standardPronunciation', () => {
 
     describe('9항', () => {
       it('받침 "ㄲ, ㅋ" / "ㅅ, ㅆ, ㅈ, ㅊ, ㅌ" / "ㅍ"은 어말 또는 자음 앞에서 각각 대표음 "ㄱ, ㄷ, ㅂ"으로 발음한다', () => {
-        expect(standardPronunciation('닦다')).toBe('닥다');
+        expect(standardPronunciation('닦다')).toBe('닥따');
         expect(standardPronunciation('키읔')).toBe('키윽');
 
         expect(standardPronunciation('옷')).toBe('옫');
-        expect(standardPronunciation('있다')).toBe('읻다');
+        expect(standardPronunciation('있다')).toBe('읻따');
         expect(standardPronunciation('젖')).toBe('젇');
-        expect(standardPronunciation('빚다')).toBe('빋다');
+        expect(standardPronunciation('빚다')).toBe('빋따');
         expect(standardPronunciation('꽃')).toBe('꼳');
         expect(standardPronunciation('솥')).toBe('솓');
 
         expect(standardPronunciation('앞')).toBe('압');
-        expect(standardPronunciation('덮다')).toBe('덥다');
+        expect(standardPronunciation('덮다')).toBe('덥따');
       });
     });
 
@@ -234,11 +234,11 @@ describe('standardPronunciation', () => {
       it('겹받침 "ㄳ" / "ㄵ" / "ㄼ, ㄽ, ㄾ" / "ㅄ"은 어말 또는 자음 앞에서 각각 "ㄱ, ㄴ, ㄹ, ㅂ"으로 발음한다', () => {
         expect(standardPronunciation('넋')).toBe('넉');
 
-        expect(standardPronunciation('앉다')).toBe('안다');
+        expect(standardPronunciation('앉다')).toBe('안따');
 
         expect(standardPronunciation('여덟')).toBe('여덜');
         expect(standardPronunciation('외곬')).toBe('외골');
-        expect(standardPronunciation('핥다')).toBe('할다');
+        expect(standardPronunciation('핥다')).toBe('할따');
 
         expect(standardPronunciation('값')).toBe('갑');
       });
@@ -247,13 +247,44 @@ describe('standardPronunciation', () => {
     describe('11항', () => {
       it('겹받침 "ㄺ" / "ㄻ" / "ㄿ"은 어말 또는 자음 앞에서 각각 "ㄱ, ㅁ, ㅂ"으로 발음한다', () => {
         expect(standardPronunciation('닭')).toBe('닥');
-        expect(standardPronunciation('맑다')).toBe('막다');
+        expect(standardPronunciation('맑다')).toBe('막따');
 
         expect(standardPronunciation('삶')).toBe('삼');
-        expect(standardPronunciation('젊다')).toBe('점다');
+        expect(standardPronunciation('젊다')).toBe('점따');
 
-        expect(standardPronunciation('읊고')).toBe('읍고');
-        expect(standardPronunciation('읊다')).toBe('읍다');
+        expect(standardPronunciation('읊고')).toBe('읍꼬');
+        expect(standardPronunciation('읊다')).toBe('읍따');
+      });
+    });
+
+    describe('23항', () => {
+      it('받침 "ㄱ(ㄲ, ㅋ, ㄳ, ㄺ), ㄷ(ㅅ, ㅆ, ㅈ, ㅊ, ㅌ), ㅂ(ㅍ, ㄼ, ㄿ, ㅄ)" 뒤에 연결되는 "ㄱ, ㄷ, ㅂ, ㅅ, ㅈ"은 된소리로 발음한다', () => {
+        expect(standardPronunciation('국밥')).toBe('국빱');
+        expect(standardPronunciation('깎다')).toBe('깍따');
+        expect(standardPronunciation('넋받이')).toBe('넉빠지');
+        expect(standardPronunciation('삯돈')).toBe('삭똔');
+      });
+    });
+
+    describe('24항', () => {
+      it('어간 받침 "ㄴ(ㄵ), ㅁ(ㄻ)" 뒤에 결합되는 어미의 첫소리 "ㄱ, ㄷ, ㅅ, ㅈ"은 된소리로 발음한다', () => {
+        expect(standardPronunciation('신고')).toBe('신꼬');
+        expect(standardPronunciation('껴안다')).toBe('껴안따');
+        expect(standardPronunciation('앉고')).toBe('안꼬');
+        expect(standardPronunciation('얹다')).toBe('언따');
+        expect(standardPronunciation('삼고')).toBe('삼꼬');
+        expect(standardPronunciation('더듬지')).toBe('더듬찌');
+        expect(standardPronunciation('닮고')).toBe('담꼬');
+        expect(standardPronunciation('젊지')).toBe('점찌');
+      });
+    });
+
+    describe('25항', () => {
+      it('어간 받침 "ㄼ, ㄾ" 뒤에 결합되는 어미의 첫소리 "ㄱ, ㄷ, ㅅ, ㅈ"은 된소리로 발음한다.', () => {
+        expect(standardPronunciation('넓게')).toBe('널께');
+        expect(standardPronunciation('핥다')).toBe('할따');
+        expect(standardPronunciation('훑소')).toBe('훌쏘');
+        expect(standardPronunciation('떫지')).toBe('떨찌');
       });
     });
   });
