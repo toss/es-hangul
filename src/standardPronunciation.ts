@@ -112,7 +112,7 @@ function replace받침ㅎ(currentSyllable: Syllable): void {
   currentSyllable.last = currentSyllable.last.replace('ㅎ', '') as Syllable['last'];
 }
 
-export function phoneticNotation(hangul: string): string {
+export function standardPronunciation(hangul: string): string {
   if (!hangul) {
     return '';
   }
