@@ -2,6 +2,7 @@ export * from './assemble';
 export * from './chosungIncludes';
 export * from './combineHangulCharacter';
 export * from './convertQwertyToHangulAlphabet';
+export * from './convertToRoman';
 export * from './disassemble';
 export * from './disassembleCompleteHangulCharacter';
 export * from './hangulIncludes';
