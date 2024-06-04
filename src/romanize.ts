@@ -3,8 +3,13 @@ import { isHangulCharacter } from './_internal/hangul';
 import { 종성_알파벳_발음, 중성_알파벳_발음, 초성_알파벳_발음 } from './constants';
 import { standardPronunciation } from './standardPronunciation';
 
+/**
+ * 주어진 한글 문자열을 로마자로 변환합니다.
+ * @param hangul 한글 문자열을 입력합니다.
+ * @returns 변환된 로마자를 반환합니다.
+ */
 export function romanize(hangul: string): string {
-  const changedHangul = standardPronunciation(hangul);
+  const changedHangul = standardPronunciation(hangul, { hardConversion: false });
   let roman = '';
 
   for (let i = 0; i < changedHangul.length; i += 1) {

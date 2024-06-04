@@ -2,7 +2,7 @@ import { joinString } from './_internal';
 import { isHangulAlphabet, isHangulCharacter } from './_internal/hangul';
 import { combineHangulCharacter } from './combineHangulCharacter';
 import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
-import { isNotUndefined } from './utils';
+import { hasProperty, isIncludedInArray, isNotUndefined } from './utils';
 
 type NotHangul = {
   index: number;
@@ -14,8 +14,8 @@ type Syllable = NonUndefined<ReturnType<typeof disassembleCompleteHangulCharacte
 
 const 음가가_없는_자음 = 'ㅇ';
 
-const 한글_자모 = ['기역', '니은', '리을', '미음', '비읍', '시옷', '이응'];
-const 특별한_한글_자모 = ['디귿', '지읒', '치읓', '키읔', '티읕', '피읖', '히읗'];
+const 한글_자모 = ['기역', '니은', '리을', '미음', '비읍', '시옷', '이응'] as const;
+const 특별한_한글_자모 = ['디귿', '지읒', '치읓', '키읔', '티읕', '피읖', '히읗'] as const;
 const 특별한_한글_자모의_발음 = {
   ㄷ: 'ㅅ',
   ㅈ: 'ㅅ',
@@ -32,27 +32,27 @@ const 음의_동화_받침 = {
   ㄹㅌ: 'ㅊ',
 } as const;
 
-const ㄴㄹ이_덧나는_모음 = ['ㅑ', 'ㅕ', 'ㅛ', 'ㅠ', 'ㅣ', 'ㅒ', 'ㅖ'];
-const ㄴㄹ이_덧나서_받침_ㄴ_변환 = ['ㄱ', 'ㄴ', 'ㄷ', 'ㅁ', 'ㅂ', 'ㅇ'];
-const ㄴㄹ이_덧나서_받침_ㄹ_변환 = ['ㄹ'];
+const ㄴㄹ이_덧나는_모음 = ['ㅑ', 'ㅕ', 'ㅛ', 'ㅠ', 'ㅣ', 'ㅒ', 'ㅖ'] as const;
+const ㄴㄹ이_덧나서_받침_ㄴ_변환 = ['ㄱ', 'ㄴ', 'ㄷ', 'ㅁ', 'ㅂ', 'ㅇ'] as const;
+const ㄴㄹ이_덧나서_받침_ㄹ_변환 = ['ㄹ'] as const;
 
 // 19항
-const 자음동화_받침_ㄴ_변환 = ['ㅁ', 'ㅇ', 'ㄱ', 'ㅂ'];
+const 자음동화_받침_ㄴ_변환 = ['ㅁ', 'ㅇ', 'ㄱ', 'ㅂ'] as const;
 
 // 18항
-const 비음화_받침_ㅇ_변환 = ['ㄱ', 'ㄲ', 'ㅋ', 'ㄱㅅ', 'ㄹㄱ'];
-const 비음화_받침_ㄴ_변환 = ['ㄷ', 'ㅅ', 'ㅆ', 'ㅈ', 'ㅊ', 'ㅌ', 'ㅎ'];
-const 비음화_받침_ㅁ_변환 = ['ㅂ', 'ㅍ', 'ㄹㅂ', 'ㄹㅍ', 'ㅂㅅ'];
+const 비음화_받침_ㅇ_변환 = ['ㄱ', 'ㄲ', 'ㅋ', 'ㄱㅅ', 'ㄹㄱ'] as const;
+const 비음화_받침_ㄴ_변환 = ['ㄷ', 'ㅅ', 'ㅆ', 'ㅈ', 'ㅊ', 'ㅌ', 'ㅎ'] as const;
+const 비음화_받침_ㅁ_변환 = ['ㅂ', 'ㅍ', 'ㄹㅂ', 'ㄹㅍ', 'ㅂㅅ'] as const;
 
 // 12항
-const 발음변환_받침_ㅎ = ['ㅎ', 'ㄴㅎ', 'ㄹㅎ'];
+const 발음변환_받침_ㅎ = ['ㅎ', 'ㄴㅎ', 'ㄹㅎ'] as const;
 const 발음변환_받침_ㅎ_발음 = {
   ㄱ: 'ㅋ',
   ㄷ: 'ㅌ',
   ㅈ: 'ㅊ',
   ㅅ: 'ㅆ',
 } as const;
-const 발음변환_첫소리_ㅎ = ['ㄱ', 'ㄹㄱ', 'ㄷ', 'ㅂ', 'ㄹㅂ', 'ㅈ', 'ㄴㅈ'];
+const 발음변환_첫소리_ㅎ = ['ㄱ', 'ㄹㄱ', 'ㄷ', 'ㅂ', 'ㄹㅂ', 'ㅈ', 'ㄴㅈ'] as const;
 const 발음변환_첫소리_ㅎ_발음 = {
   ㄱ: 'ㅋ',
   ㄹㄱ: 'ㅋ',
@@ -84,6 +84,43 @@ const 받침_대표음_발음 = {
   ㄹㅁ: 'ㅁ',
 } as const;
 
+const 된소리_ㄱㄷㅂㅅㅈ = {
+  ㄱ: 'ㄲ',
+  ㄷ: 'ㄸ',
+  ㅂ: 'ㅃ',
+  ㅅ: 'ㅆ',
+  ㅈ: 'ㅉ',
+} as const;
+
+// 경음화 23항
+const 된소리_받침_23항 = [
+  'ㄱ',
+  'ㄲ',
+  'ㅋ',
+  'ㄱㅅ',
+  'ㄹㄱ',
+  'ㄷ',
+  'ㅅ',
+  'ㅆ',
+  'ㅈ',
+  'ㅊ',
+  'ㅌ',
+  'ㅂ',
+  'ㅍ',
+  'ㄹㅂ',
+  'ㄹㅍ',
+  'ㅂㅅ',
+] as const;
+
+const 된소리_ㄱㄷㅅㅈ = {
+  ㄱ: 'ㄲ',
+  ㄷ: 'ㄸ',
+  ㅅ: 'ㅆ',
+  ㅈ: 'ㅉ',
+} as const;
+
+const 어간_받침 = ['ㄴ', 'ㄴㅈ', 'ㅁ', 'ㄹㅁ', 'ㄹㅂ', 'ㄹㅌ'] as const;
+
 function 음절분해(hangulPhrase: string): {
   notHangulPhrase: NotHangul[];
   disassembleHangul: Syllable[];
@@ -112,7 +149,19 @@ function replace받침ㅎ(currentSyllable: Syllable): void {
   currentSyllable.last = currentSyllable.last.replace('ㅎ', '') as Syllable['last'];
 }
 
-export function standardPronunciation(hangul: string): string {
+/**
+ * 주어진 한글 문자열을 표준 발음으로 변환합니다.
+ * @param hangul 한글 문자열을 입력합니다.
+ * @param options 변환 옵션을 설정합니다.
+ * @param options.hardConversion 경음화 등의 된소리를 적용할지 여부를 설정합니다. 기본값은 true입니다.
+ * @returns 변환된 표준 발음 문자열을 반환합니다.
+ */
+export function standardPronunciation(
+  hangul: string,
+  options: {
+    hardConversion: boolean;
+  } = { hardConversion: true }
+): string {
   if (!hangul) {
     return '';
   }
@@ -128,16 +177,37 @@ export function standardPronunciation(hangul: string): string {
       const nextSyllable =
         disassembleHangul.length > 1 && i < disassembleHangul.length - 1 ? disassembleHangul[i + 1] : null;
 
+      if (options.hardConversion && nextSyllable) {
+        /* 
+          제 6장 - 경음화
+          제23항 - 받침 ‘ㄱ(ㄲ, ㅋ, ㄳ, ㄺ), ㄷ(ㅅ, ㅆ, ㅈ, ㅊ, ㅌ), ㅂ(ㅍ, ㄼ, ㄿ, ㅄ)’ 뒤에 연결되는 ‘ㄱ, ㄷ, ㅂ, ㅅ, ㅈ’은 된소리로 발음한다.
+        */
+        if (
+          isIncludedInArray(된소리_받침_23항, currentSyllable.last) &&
+          hasProperty(된소리_ㄱㄷㅂㅅㅈ, nextSyllable.first)
+        ) {
+          nextSyllable.first = 된소리_ㄱㄷㅂㅅㅈ[nextSyllable.first];
+        }
+
+        /*  
+          제24항 - 어간 받침 ‘ㄴ(ㄵ), ㅁ(ㄻ)’ 뒤에 결합되는 어미의 첫소리 ‘ㄱ, ㄷ, ㅅ, ㅈ’은 된소리로 발음한다.
+          제25항 - 어간 받침 ‘ㄼ, ㄾ’ 뒤에 결합되는 어미의 첫소리 ‘ㄱ, ㄷ, ㅅ, ㅈ’은 된소리로 발음한다.
+        */
+        if (isIncludedInArray(어간_받침, currentSyllable.last) && hasProperty(된소리_ㄱㄷㅅㅈ, nextSyllable.first)) {
+          nextSyllable.first = 된소리_ㄱㄷㅅㅈ[nextSyllable.first];
+        }
+      }
+
       /* 
-      제16항 - 한글 자모의 이름은 그 받침소리를 연음하되, ‘ㄷ, ㅈ, ㅊ, ㅋ, ㅌ, ㅍ, ㅎ’의 경우에는 특별히 다음과 같이 발음한다.
-      ㄷ, ㅈ, ㅊ, ㅌ, ㅎ > ㅅ (디귿이:디그시, 지읒이:지으시, 치읓이:치으시, 티읕이:티으시, 히읗이:히으시)
-      ㅋ > ㄱ (키읔이:키으기)
-      ㅍ > ㅂ (피읖이:피으비)
-    */
+        제16항 - 한글 자모의 이름은 그 받침소리를 연음하되, ‘ㄷ, ㅈ, ㅊ, ㅋ, ㅌ, ㅍ, ㅎ’의 경우에는 특별히 다음과 같이 발음한다.
+        ㄷ, ㅈ, ㅊ, ㅌ, ㅎ > ㅅ (디귿이:디그시, 지읒이:지으시, 치읓이:치으시, 티읕이:티으시, 히읗이:히으시)
+        ㅋ > ㄱ (키읔이:키으기)
+        ㅍ > ㅂ (피읖이:피으비)
+      */
       if (i > 0 && currentSyllable.last && nextSyllable?.first === 음가가_없는_자음) {
         const combinedSyllables = hangulPhrase[i - 1] + hangulPhrase[i];
 
-        if (특별한_한글_자모.includes(combinedSyllables)) {
+        if (isIncludedInArray(특별한_한글_자모, combinedSyllables)) {
           const 다음_음절의_초성 =
             특별한_한글_자모의_발음[currentSyllable.last as keyof typeof 특별한_한글_자모의_발음];
 
@@ -145,7 +215,7 @@ export function standardPronunciation(hangul: string): string {
           nextSyllable.first = 다음_음절의_초성;
 
           continue;
-        } else if (한글_자모.includes(combinedSyllables)) {
+        } else if (isIncludedInArray(한글_자모, combinedSyllables)) {
           nextSyllable.first = currentSyllable.last as typeof nextSyllable.first;
 
           if (currentSyllable.last !== 'ㅇ') {
@@ -176,14 +246,18 @@ export function standardPronunciation(hangul: string): string {
         https://www.youtube.com/watch?v=Mm2JX2naqWk
         http://contents2.kocw.or.kr/KOCW/data/document/2020/seowon/choiyungon0805/12.pdf
       */
-      if (currentSyllable.last && nextSyllable?.first === 'ㅇ' && ㄴㄹ이_덧나는_모음.includes(nextSyllable.middle)) {
-        if (ㄴㄹ이_덧나서_받침_ㄴ_변환.includes(currentSyllable.last)) {
+      if (
+        currentSyllable.last &&
+        nextSyllable?.first === 'ㅇ' &&
+        isIncludedInArray(ㄴㄹ이_덧나는_모음, nextSyllable.middle)
+      ) {
+        if (isIncludedInArray(ㄴㄹ이_덧나서_받침_ㄴ_변환, currentSyllable.last)) {
           if (currentSyllable.last === 'ㄱ') {
             currentSyllable.last = 'ㅇ';
           }
 
           nextSyllable.first = 'ㄴ';
-        } else if (ㄴㄹ이_덧나서_받침_ㄹ_변환.includes(currentSyllable.last)) {
+        } else if (isIncludedInArray(ㄴㄹ이_덧나서_받침_ㄹ_변환, currentSyllable.last)) {
           nextSyllable.first = 'ㄹ';
         }
       }
@@ -192,7 +266,7 @@ export function standardPronunciation(hangul: string): string {
         19항 - 받침 ‘ㅁ, ㅇ’ 뒤에 연결되는 ‘ㄹ’은 [ㄴ]으로 발음한다.
         [붙임] 받침 ‘ㄱ, ㅂ’ 뒤에 연결되는 ‘ㄹ’도 [ㄴ]으로 발음한다.
       */
-      if (자음동화_받침_ㄴ_변환.includes(currentSyllable.last) && nextSyllable?.first === 'ㄹ') {
+      if (isIncludedInArray(자음동화_받침_ㄴ_변환, currentSyllable.last) && nextSyllable?.first === 'ㄹ') {
         nextSyllable.first = 'ㄴ';
       }
 
@@ -200,11 +274,11 @@ export function standardPronunciation(hangul: string): string {
         18항 - 받침 ‘ㄱ(ㄲ, ㅋ, ㄳ, ㄺ), ㄷ(ㅅ, ㅆ, ㅈ, ㅊ, ㅌ, ㅎ), ㅂ(ㅍ, ㄼ, ㄿ, ㅄ)’은 ‘ㄴ, ㅁ’ 앞에서 [ㅇ, ㄴ, ㅁ]으로 발음한다.
       */
       if (currentSyllable.last && nextSyllable && ['ㄴ', 'ㅁ'].includes(nextSyllable.first)) {
-        if (비음화_받침_ㅇ_변환.includes(currentSyllable.last)) {
+        if (isIncludedInArray(비음화_받침_ㅇ_변환, currentSyllable.last)) {
           currentSyllable.last = 'ㅇ';
-        } else if (비음화_받침_ㄴ_변환.includes(currentSyllable.last)) {
+        } else if (isIncludedInArray(비음화_받침_ㄴ_변환, currentSyllable.last)) {
           currentSyllable.last = 'ㄴ';
-        } else if (비음화_받침_ㅁ_변환.includes(currentSyllable.last)) {
+        } else if (isIncludedInArray(비음화_받침_ㅁ_변환, currentSyllable.last)) {
           currentSyllable.last = 'ㅁ';
         }
       }
@@ -236,7 +310,7 @@ export function standardPronunciation(hangul: string): string {
     */
 
       if (currentSyllable.last) {
-        if (발음변환_받침_ㅎ.includes(currentSyllable.last)) {
+        if (isIncludedInArray(발음변환_받침_ㅎ, currentSyllable.last)) {
           if (nextSyllable) {
             if (['ㄱ', 'ㄷ', 'ㅈ', 'ㅅ'].includes(nextSyllable.first)) {
               nextSyllable.first = 발음변환_받침_ㅎ_발음[nextSyllable.first as keyof typeof 발음변환_받침_ㅎ_발음];
@@ -256,7 +330,7 @@ export function standardPronunciation(hangul: string): string {
             replace받침ㅎ(currentSyllable);
           }
         } else if (
-          발음변환_첫소리_ㅎ.includes(currentSyllable.last) &&
+          isIncludedInArray(발음변환_첫소리_ㅎ, currentSyllable.last) &&
           nextSyllable &&
           ['ㅎ'].includes(nextSyllable.first)
         ) {
