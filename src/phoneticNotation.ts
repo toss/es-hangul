@@ -84,7 +84,10 @@ const 받침_대표음_발음 = {
   ㄹㅁ: 'ㅁ',
 } as const;
 
-function 음절분해(hangulPhrase: string) {
+function 음절분해(hangulPhrase: string): {
+  notHangulPhrase: NotHangul[];
+  disassembleHangul: Syllable[];
+} {
   const notHangulPhrase: NotHangul[] = [];
   const disassembleHangul = Array.from(hangulPhrase)
     .filter((syllable, index) => {
