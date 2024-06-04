@@ -34,34 +34,6 @@ type NotHangul = {
 type NonUndefined<T> = T extends undefined ? never : T;
 type Syllable = NonUndefined<ReturnType<typeof disassembleCompleteHangulCharacter>>;
 
-function 음절분해(hangulPhrase: string): {
-  notHangulPhrase: NotHangul[];
-  disassembleHangul: Syllable[];
-} {
-  const notHangulPhrase: NotHangul[] = [];
-  const disassembleHangul = Array.from(hangulPhrase)
-    .filter((syllable, index) => {
-      if (!isHangulCharacter(syllable) || isHangulAlphabet(syllable)) {
-        notHangulPhrase.push({
-          index,
-          syllable,
-        });
-
-        return false;
-      }
-
-      return true;
-    })
-    .map(syllable => disassembleCompleteHangulCharacter(syllable))
-    .filter(isNotUndefined);
-
-  return { notHangulPhrase, disassembleHangul };
-}
-
-function replace받침ㅎ(currentSyllable: Syllable): void {
-  currentSyllable.last = currentSyllable.last.replace('ㅎ', '') as Syllable['last'];
-}
-
 /**
  * 주어진 한글 문자열을 표준 발음으로 변환합니다.
  * @param hangul 한글 문자열을 입력합니다.
@@ -313,4 +285,32 @@ export function standardPronunciation(
   }
 
   return changedHangul.join(' ');
+}
+
+function 음절분해(hangulPhrase: string): {
+  notHangulPhrase: NotHangul[];
+  disassembleHangul: Syllable[];
+} {
+  const notHangulPhrase: NotHangul[] = [];
+  const disassembleHangul = Array.from(hangulPhrase)
+    .filter((syllable, index) => {
+      if (!isHangulCharacter(syllable) || isHangulAlphabet(syllable)) {
+        notHangulPhrase.push({
+          index,
+          syllable,
+        });
+
+        return false;
+      }
+
+      return true;
+    })
+    .map(syllable => disassembleCompleteHangulCharacter(syllable))
+    .filter(isNotUndefined);
+
+  return { notHangulPhrase, disassembleHangul };
+}
+
+function replace받침ㅎ(currentSyllable: Syllable): void {
+  currentSyllable.last = currentSyllable.last.replace('ㅎ', '') as Syllable['last'];
 }
