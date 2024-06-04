@@ -1,10 +1,13 @@
 import {
+  COMPLETE_HANGUL_START_CHARCODE,
+  COMPLETE_HANGUL_END_CHARCODE,
   HANGUL_CHARACTERS_BY_FIRST_INDEX,
   HANGUL_CHARACTERS_BY_LAST_INDEX,
   HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
+  NUMBER_OF_JONGSUNG
 } from './constants';
 import { disassembleHangul, disassembleHangulToGroups } from './disassemble';
-import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
+// import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
 
 /**
  * @name hasBatchim
@@ -26,9 +29,14 @@ export function hasBatchim(str: string) {
   if (lastChar == null) {
     return false;
   }
+  const charCode = lastChar.charCodeAt(0);
+  const isCompleteHangul = COMPLETE_HANGUL_START_CHARCODE <= charCode && charCode <= COMPLETE_HANGUL_END_CHARCODE;
 
-  const disassembled = disassembleCompleteHangulCharacter(lastChar);
-  return disassembled != null && disassembled.last !== '';
+  if (!isCompleteHangul) {
+    return undefined;
+  }
+
+  return (charCode - COMPLETE_HANGUL_START_CHARCODE) % NUMBER_OF_JONGSUNG > 0;
 }
 
 /**
