@@ -67,7 +67,7 @@ describe('convertToRoman', () => {
   });
 
   it('특수문자는 로마자 표기로 변경하지 않는다', () => {
-    expect(convertToRoman('안녕하세요. 토스입니다')).toBe('annyeonghaseyo. toseuimnida');
+    expect(convertToRoman('안녕하세요, 토스입니다.')).toBe('annyeonghaseyo, toseuimnida.');
     expect(convertToRoman('한국어!')).toBe('hangugeo!');
     expect(convertToRoman('')).toBe('');
     expect(convertToRoman('!?/')).toBe('!?/');
