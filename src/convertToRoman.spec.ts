@@ -1,4 +1,4 @@
-import convertToRoman from './convertToRoman';
+import { convertToRoman } from './convertToRoman';
 
 describe('convertToRoman', () => {
   it('자음 사이에서 동화 작용이 일어나는 경우', () => {
@@ -36,6 +36,27 @@ describe('convertToRoman', () => {
     expect(convertToRoman('팔당')).toBe('paldang');
     expect(convertToRoman('샛별')).toBe('saetbyeol');
     expect(convertToRoman('울산')).toBe('ulsan');
+  });
+
+  it('"ㄱ, ㄷ, ㅂ"은 모음 앞에서는 "g, d, b"로, 자음 앞이나 어말에서는 "k, t, p"로 적는다', () => {
+    expect(convertToRoman('구미')).toBe('gumi');
+    expect(convertToRoman('영동')).toBe('yeongdong');
+    expect(convertToRoman('백암')).toBe('baegam');
+    expect(convertToRoman('옥천')).toBe('okcheon');
+    expect(convertToRoman('합덕')).toBe('hapdeok');
+    expect(convertToRoman('호법')).toBe('hobeop');
+    expect(convertToRoman('월곶')).toBe('wolgot');
+    expect(convertToRoman('벚꽃')).toBe('beotkkot');
+    expect(convertToRoman('한밭')).toBe('hanbat');
+  });
+
+  it('"ㄹ"은 모음 앞에서는 "r"로, 자음 앞이나 어말에서는 "l"로 적는다. 단, "ㄹㄹ"은 "ll"로 적는다', () => {
+    expect(convertToRoman('구리')).toBe('guri');
+    expect(convertToRoman('설악')).toBe('seorak');
+    expect(convertToRoman('칠곡')).toBe('chilgok');
+    expect(convertToRoman('임실')).toBe('imsil');
+    expect(convertToRoman('울릉')).toBe('ulleung');
+    expect(convertToRoman('대관령')).toBe('daegwallyeong');
   });
 
   it('완성된 음절이 아닌 경우에는 그대로 반환한다', () => {
