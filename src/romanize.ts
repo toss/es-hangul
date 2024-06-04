@@ -3,7 +3,7 @@ import { isHangulCharacter } from './_internal/hangul';
 import { 종성_알파벳_발음, 중성_알파벳_발음, 초성_알파벳_발음 } from './constants';
 import { phoneticNotation } from './phoneticNotation';
 
-export function convertToRoman(hangul: string): string {
+export function romanize(hangul: string): string {
   const changedHangul = phoneticNotation(hangul);
   let roman = '';
 
