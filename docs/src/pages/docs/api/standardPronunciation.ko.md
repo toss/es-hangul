@@ -4,7 +4,7 @@ title: standardPronunciation
 
 # standardPronunciation
 
-한글 문자열을 음성 표기법으로 변경합니다.
+한글 문자열을 표준 발음법으로 변경합니다.
 
 자세한 예시는 아래 Example을 참고하세요.
 
