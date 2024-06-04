@@ -1,6 +1,28 @@
 import { joinString } from './_internal';
 import { isHangulAlphabet, isHangulCharacter } from './_internal/hangul';
 import { combineHangulCharacter } from './combineHangulCharacter';
+import {
+  ㄴㄹ이_덧나는_모음,
+  ㄴㄹ이_덧나서_받침_ㄴ_변환,
+  ㄴㄹ이_덧나서_받침_ㄹ_변환,
+  된소리,
+  된소리_받침_23항,
+  받침_대표음_발음,
+  발음변환_받침_ㅎ,
+  발음변환_받침_ㅎ_발음,
+  발음변환_첫소리_ㅎ,
+  발음변환_첫소리_ㅎ_발음,
+  비음화_받침_ㄴ_변환,
+  비음화_받침_ㅁ_변환,
+  비음화_받침_ㅇ_변환,
+  어간_받침,
+  음가가_없는_자음,
+  음의_동화_받침,
+  자음동화_받침_ㄴ_변환,
+  특별한_한글_자모,
+  특별한_한글_자모의_발음,
+  한글_자모,
+} from './constants';
 import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
 import { hasProperty, isIncludedInArray, isNotUndefined } from './utils';
 
@@ -11,115 +33,6 @@ type NotHangul = {
 
 type NonUndefined<T> = T extends undefined ? never : T;
 type Syllable = NonUndefined<ReturnType<typeof disassembleCompleteHangulCharacter>>;
-
-const 음가가_없는_자음 = 'ㅇ';
-
-const 한글_자모 = ['기역', '니은', '리을', '미음', '비읍', '시옷', '이응'] as const;
-const 특별한_한글_자모 = ['디귿', '지읒', '치읓', '키읔', '티읕', '피읖', '히읗'] as const;
-const 특별한_한글_자모의_발음 = {
-  ㄷ: 'ㅅ',
-  ㅈ: 'ㅅ',
-  ㅊ: 'ㅅ',
-  ㅌ: 'ㅅ',
-  ㅎ: 'ㅅ',
-  ㅋ: 'ㄱ',
-  ㅍ: 'ㅂ',
-} as const;
-
-const 음의_동화_받침 = {
-  ㄷ: 'ㅈ',
-  ㅌ: 'ㅊ',
-  ㄹㅌ: 'ㅊ',
-} as const;
-
-const ㄴㄹ이_덧나는_모음 = ['ㅑ', 'ㅕ', 'ㅛ', 'ㅠ', 'ㅣ', 'ㅒ', 'ㅖ'] as const;
-const ㄴㄹ이_덧나서_받침_ㄴ_변환 = ['ㄱ', 'ㄴ', 'ㄷ', 'ㅁ', 'ㅂ', 'ㅇ'] as const;
-const ㄴㄹ이_덧나서_받침_ㄹ_변환 = ['ㄹ'] as const;
-
-// 19항
-const 자음동화_받침_ㄴ_변환 = ['ㅁ', 'ㅇ', 'ㄱ', 'ㅂ'] as const;
-
-// 18항
-const 비음화_받침_ㅇ_변환 = ['ㄱ', 'ㄲ', 'ㅋ', 'ㄱㅅ', 'ㄹㄱ'] as const;
-const 비음화_받침_ㄴ_변환 = ['ㄷ', 'ㅅ', 'ㅆ', 'ㅈ', 'ㅊ', 'ㅌ', 'ㅎ'] as const;
-const 비음화_받침_ㅁ_변환 = ['ㅂ', 'ㅍ', 'ㄹㅂ', 'ㄹㅍ', 'ㅂㅅ'] as const;
-
-// 12항
-const 발음변환_받침_ㅎ = ['ㅎ', 'ㄴㅎ', 'ㄹㅎ'] as const;
-const 발음변환_받침_ㅎ_발음 = {
-  ㄱ: 'ㅋ',
-  ㄷ: 'ㅌ',
-  ㅈ: 'ㅊ',
-  ㅅ: 'ㅆ',
-} as const;
-const 발음변환_첫소리_ㅎ = ['ㄱ', 'ㄹㄱ', 'ㄷ', 'ㅂ', 'ㄹㅂ', 'ㅈ', 'ㄴㅈ'] as const;
-const 발음변환_첫소리_ㅎ_발음 = {
-  ㄱ: 'ㅋ',
-  ㄹㄱ: 'ㅋ',
-  ㄷ: 'ㅌ',
-  ㅂ: 'ㅍ',
-  ㄹㅂ: 'ㅍ',
-  ㅈ: 'ㅊ',
-  ㄴㅈ: 'ㅊ',
-} as const;
-
-// 9항, 10항, 11항
-const 받침_대표음_발음 = {
-  ㄲ: 'ㄱ',
-  ㅋ: 'ㄱ',
-  ㄱㅅ: 'ㄱ',
-  ㄹㄱ: 'ㄱ',
-  ㅅ: 'ㄷ',
-  ㅆ: 'ㄷ',
-  ㅈ: 'ㄷ',
-  ㅊ: 'ㄷ',
-  ㅌ: 'ㄷ',
-  ㅍ: 'ㅂ',
-  ㅂㅅ: 'ㅂ',
-  ㄹㅍ: 'ㅂ',
-  ㄴㅈ: 'ㄴ',
-  ㄹㅂ: 'ㄹ',
-  ㄹㅅ: 'ㄹ',
-  ㄹㅌ: 'ㄹ',
-  ㄹㅁ: 'ㅁ',
-} as const;
-
-const 된소리_ㄱㄷㅂㅅㅈ = {
-  ㄱ: 'ㄲ',
-  ㄷ: 'ㄸ',
-  ㅂ: 'ㅃ',
-  ㅅ: 'ㅆ',
-  ㅈ: 'ㅉ',
-} as const;
-
-// 경음화 23항
-const 된소리_받침_23항 = [
-  'ㄱ',
-  'ㄲ',
-  'ㅋ',
-  'ㄱㅅ',
-  'ㄹㄱ',
-  'ㄷ',
-  'ㅅ',
-  'ㅆ',
-  'ㅈ',
-  'ㅊ',
-  'ㅌ',
-  'ㅂ',
-  'ㅍ',
-  'ㄹㅂ',
-  'ㄹㅍ',
-  'ㅂㅅ',
-] as const;
-
-const 된소리_ㄱㄷㅅㅈ = {
-  ㄱ: 'ㄲ',
-  ㄷ: 'ㄸ',
-  ㅅ: 'ㅆ',
-  ㅈ: 'ㅉ',
-} as const;
-
-const 어간_받침 = ['ㄴ', 'ㄴㅈ', 'ㅁ', 'ㄹㅁ', 'ㄹㅂ', 'ㄹㅌ'] as const;
 
 function 음절분해(hangulPhrase: string): {
   notHangulPhrase: NotHangul[];
@@ -182,19 +95,20 @@ export function standardPronunciation(
           제 6장 - 경음화
           제23항 - 받침 ‘ㄱ(ㄲ, ㅋ, ㄳ, ㄺ), ㄷ(ㅅ, ㅆ, ㅈ, ㅊ, ㅌ), ㅂ(ㅍ, ㄼ, ㄿ, ㅄ)’ 뒤에 연결되는 ‘ㄱ, ㄷ, ㅂ, ㅅ, ㅈ’은 된소리로 발음한다.
         */
-        if (
-          isIncludedInArray(된소리_받침_23항, currentSyllable.last) &&
-          hasProperty(된소리_ㄱㄷㅂㅅㅈ, nextSyllable.first)
-        ) {
-          nextSyllable.first = 된소리_ㄱㄷㅂㅅㅈ[nextSyllable.first];
+        if (isIncludedInArray(된소리_받침_23항, currentSyllable.last) && hasProperty(된소리, nextSyllable.first)) {
+          nextSyllable.first = 된소리[nextSyllable.first];
         }
 
         /*  
           제24항 - 어간 받침 ‘ㄴ(ㄵ), ㅁ(ㄻ)’ 뒤에 결합되는 어미의 첫소리 ‘ㄱ, ㄷ, ㅅ, ㅈ’은 된소리로 발음한다.
           제25항 - 어간 받침 ‘ㄼ, ㄾ’ 뒤에 결합되는 어미의 첫소리 ‘ㄱ, ㄷ, ㅅ, ㅈ’은 된소리로 발음한다.
         */
-        if (isIncludedInArray(어간_받침, currentSyllable.last) && hasProperty(된소리_ㄱㄷㅅㅈ, nextSyllable.first)) {
-          nextSyllable.first = 된소리_ㄱㄷㅅㅈ[nextSyllable.first];
+        if (
+          isIncludedInArray(어간_받침, currentSyllable.last) &&
+          nextSyllable.first !== 'ㅂ' &&
+          hasProperty(된소리, nextSyllable.first)
+        ) {
+          nextSyllable.first = 된소리[nextSyllable.first];
         }
       }
 
