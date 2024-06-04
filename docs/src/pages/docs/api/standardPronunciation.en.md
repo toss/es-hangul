@@ -10,8 +10,10 @@ For detailed examples, see below.
 
 ```typescript
 function standardPronunciation(
+  // Input a Hangul string
   hangul: string,
   options: {
+    // Set whether to apply hard sounds. Default is true."
     hardConversion: boolean;
   } = { hardConversion: true }
 ): string;
