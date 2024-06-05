@@ -81,9 +81,11 @@ export function hasSingleBatchim(str: string) {
  * getChosung('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
  */
 export function getChosung(word: string) {
-  return disassembleHangulToGroups(word).reduce((chosung, [consonant]) => {
-    return `${chosung}${consonant}`;
-  }, '');
+  // https://www.unicode.org/charts/PDF/U1100.pdf NFD 로 변환하여 초성 ㄱ-ㅎ 만 남기게 수정
+  return word.normalize('NFD').replace(/[^\u1100-\u1112\s]+/ug, '').replace(/[\u1100-\u1112]/g, $0 => HANGUL_CHARACTERS_BY_FIRST_INDEX[$0.charCodeAt(0) - 0x1100]);
+  // return disassembleHangulToGroups(word).reduce((chosung, [consonant]) => {
+  //   return `${chosung}${consonant}`;
+  // }, '');
 }
 
 /**
