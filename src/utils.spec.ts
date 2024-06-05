@@ -30,6 +30,9 @@ describe('hasBatchim', () => {
     it('"서" 문자에서 받침이 없으므로 false를 반환한다.', () => {
       expect(hasBatchim('서')).toBe(false);
     });
+    it('빈 문자열은 받침이 없으므로 false를 반환한다.', () => {
+      expect(hasBatchim('')).toBe(false);
+    });
   });
 });
 
