@@ -31,9 +31,9 @@ export const Adopters = () => {
   const isDarkMode = useIsDarkMode();
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyContent: 'center' }}>
-      {adopterLogoImagePropsList.map(props => (
-        <Image key={props.src} {...props} src={isDarkMode ? props.darkSrc : props.src} />
+    <div className="flex flex-wrap gap-8 justify-center">
+      {adopterLogoImagePropsList.map(({ darkSrc, src, alt, ...props }) => (
+        <Image key={src} src={isDarkMode ? darkSrc : src} alt={alt} {...props} />
       ))}
     </div>
   );
