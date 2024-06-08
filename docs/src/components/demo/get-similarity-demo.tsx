@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { calculateSimilarity } from 'es-hangul';
+import { getSimilarity } from 'es-hangul';
 
-export function CalculateSimilarityDemo() {
+export function GetSimilarityDemo() {
   const [searchWord, setSearchWord] = useState<string>('안녕하세요 저는 한글 라이브러리 입니다');
   const [userInput, setUserInput] = useState<string>('안연ㄹ허사ㅔ요 저는 허ㅏㄴㄴ글 라이바ㅡ러리 입ㄴ다');
 
-  const result = calculateSimilarity(searchWord, userInput);
+  const result = getSimilarity(searchWord, userInput);
 
   return (
     <div className="bg-gray-200 dark:bg-gray-800 rounded-lg shadow-md p-6 max-w-md mx-auto my-8">

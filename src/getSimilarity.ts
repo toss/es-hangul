@@ -1,15 +1,15 @@
 import { disassembleHangul } from './disassemble';
 
-export function calculateSimilarity(a: string, b: string): number {
-  const disassembledA = disassembleHangul(a).replace(/\s/g, '');
-  const disassembledB = disassembleHangul(b).replace(/\s/g, '');
+export function getSimilarity(left: string, right: string): number {
+  const disassembledLeft = disassembleHangul(left).replace(/\s/g, '');
+  const disassembledRight = disassembleHangul(right).replace(/\s/g, '');
 
-  const maxLength = Math.max(disassembledA.length, disassembledB.length);
+  const maxLength = Math.max(disassembledLeft.length, disassembledRight.length);
   if (maxLength === 0) {
     return 100;
   }
 
-  const distance = levenshtein(disassembledA, disassembledB);
+  const distance = levenshtein(disassembledLeft, disassembledRight);
   const similarity = (maxLength - distance) / maxLength;
 
   return similarity;
