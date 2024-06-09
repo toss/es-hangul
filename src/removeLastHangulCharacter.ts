@@ -16,6 +16,8 @@ import { excludeLastElement } from './_internal';
  * removeLastHangulCharacter('안녕하세요 값') // 안녕하세요 갑
  * removeLastHangulCharacter('프론트엔드') // 프론트엔ㄷ
  * removeLastHangulCharacter('일요일') // 일요이
+ * removeLastHangulCharacter('전화') // 전호
+ * removeLastHangulCharacter('신세계') // 신세ㄱ
  */
 export function removeLastHangulCharacter(words: string) {
   const disassembledGroups = disassembleHangulToGroups(words);
