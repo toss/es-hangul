@@ -11,6 +11,11 @@ describe('removeLastHangulCharacter', () => {
     expect(removeLastHangulCharacter('일요일')).toBe('일요이');
     expect(removeLastHangulCharacter('깎')).toBe('까');
   });
+  it('마지막 문자가 초성과 중성의 조합으로 끝나며, 중성 입력 시 국제 표준 한글 레이아웃 기준 단일키로 처리되지 않는 이중모음 (ㅗ/ㅜ/ㅡ 계 이중모음) 인 경우 초성과 중성의 시작 모음만 남긴다.', () => {
+    expect(removeLastHangulCharacter('데자와')).toBe('데자오');
+    expect(removeLastHangulCharacter('예의')).toBe('예으');
+    expect(removeLastHangulCharacter("예예")).toBe('예ㅇ');
+  });
   it('빈 문자열일 경우 빈 문자열을 반환한다.', () => {
     expect(removeLastHangulCharacter('')).toBe('');
   });
