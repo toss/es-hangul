@@ -73,9 +73,9 @@ export function hasSingleBatchim(str: string) {
  * getChosung('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
  */
 export function getChosung(word: string) {
-  return disassembleHangulToGroups(word).reduce((chosung, [consonant]) => {
-    return `${chosung}${consonant}`;
-  }, '');
+  return word.normalize('NFD')
+    .replace(/[^\u1100-\u1112\u3130-\u314e\s]+/ug, '') // NFD ㄱ-ㅎ, NFC ㄱ-ㅎ 외 문자 삭제
+    .replace(/[\u1100-\u1112]/g, $0 => HANGUL_CHARACTERS_BY_FIRST_INDEX[$0.charCodeAt(0) - 0x1100]); // NFD to NFC
 }
 
 /**
