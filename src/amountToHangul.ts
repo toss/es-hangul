@@ -4,7 +4,7 @@ export const HANGUL_CARDINAL = ['', '십', '백', '천'];
 
 // https://ko.dict.naver.com/#/correct/korean/info?seq=602
 // https://github.com/crucifyer/koreanCardinalOrdinal
-export function amountsToHangul(str: string) {
+export function amountToHangul(str: string) {
   str = str.replace(/\..*$/, '') // 소수점 지원 안함
     .replace(/[^\d]+/g, ''); // , 표기 등 오류내지 않음
   if(str.length > 80) {
