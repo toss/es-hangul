@@ -12,13 +12,19 @@ export function amountToHangul(str: string) {
     throw new Error('convert range exceeded : ' + str);
   }
   const result = [];
+  let pronunDigits = true;
   for(let i = 0; i < str.length - 1; i ++) {
     const d = str.length - i - 1;
     if(str[i] > '1' || d % 4 === 0 || i === 0) {
-      result.push(HANGUL_NUMBERS[parseInt(str[i])]);
+      const tnum = HANGUL_NUMBERS[parseInt(str[i])];
+      if(tnum) {
+        result.push(tnum);
+        pronunDigits = true;
+      }
     }
-    if(d % 4 === 0) {
+    if(pronunDigits && d % 4 === 0) {
       result.push(HANGUL_DIGITS[d / 4]);
+      pronunDigits = false;
     }
     if(str[i] !== '0') {
       result.push(HANGUL_CARDINAL[d % 4]);
