@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.3.6
+
+### Patch Changes
+
+- [#125](https://github.com/toss/es-hangul/pull/125) [`a56e591`](https://github.com/toss/es-hangul/commit/a56e5913bec1e0bb6d1462192ee01d14a00449d5) Thanks [@crucifyer](https://github.com/crucifyer)! - feat: 숫자로 된 금액을 국립국어원 규칙의 한글 읽기로 변환합니다.
+
 ## 1.3.5
 
 ### Patch Changes
