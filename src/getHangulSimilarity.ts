@@ -1,6 +1,6 @@
 import { disassembleHangul } from './disassemble';
 
-export function getSimilarity(left: string, right: string): number {
+export function getHangulSimilarity(left: string, right: string): number {
   const disassembledLeft = disassembleHangul(left).replace(/\s/g, '');
   const disassembledRight = disassembleHangul(right).replace(/\s/g, '');
 
