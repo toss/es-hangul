@@ -48,3 +48,22 @@
 ### 2.2 Description
 
 A clear and concise description of what the pr is about.
+
+## 3. Convention
+
+es-hangul에서 제공하는 메서드들은 특별한 이유가 없다면, hangul이라는 맥락을 드러내는 것을 지향합니다.
+
+```ts
+// Don't
+function getSimilarity()
+// Do
+function getHangulSimilarity()
+
+
+// Don't
+function disassemble()
+// Do
+function disassembleHangul()
+```
+
+- [래퍼런스](https://github.com/toss/es-hangul/issues/121)
