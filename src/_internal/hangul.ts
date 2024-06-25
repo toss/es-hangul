@@ -12,6 +12,10 @@ export function isHangulAlphabet(character: string) {
   return /^[ㄱ-ㅣ]$/.test(character);
 }
 
+export function isHangulString(actual: unknown): actual is string {
+  return typeof actual === 'string' && /^[가-힣ㄱ-ㅣ\s]+$/.test(actual);
+}
+
 /**
  * @name binaryAssembleHangulAlphabets
  * @description
