@@ -17,7 +17,7 @@ export function isHangulString(actual: unknown): actual is string {
 }
 
 export function assertHangulString(actual: unknown, message?: string): asserts actual is string {
-  assert(isHangulString(actual), message || `${actual} is not a valid hangul string`);
+  assert(isHangulString(actual), message || `${JSON.stringify(actual)} is not a valid hangul string`);
 }
 
 /**
