@@ -12,16 +12,16 @@ export function isHangulAlphabet(character: string) {
   return /^[ㄱ-ㅣ]$/.test(character);
 }
 
-export function isHangulString(actual: unknown): actual is string {
+export function isHangul(actual: unknown): actual is string {
   return typeof actual === 'string' && /^[가-힣ㄱ-ㅣ\s]+$/.test(actual);
 }
 
-export function assertHangulString(actual: unknown, message?: string): asserts actual is string {
-  assert(isHangulString(actual), message || `${JSON.stringify(actual)} is not a valid hangul string`);
+export function assertHangul(actual: unknown, message?: string): asserts actual is string {
+  assert(isHangul(actual), message || `${JSON.stringify(actual)} is not a valid hangul string`);
 }
 
 export function parseHangul(actual: unknown): string {
-  assertHangulString(actual);
+  assertHangul(actual);
   return actual;
 }
 

@@ -3,8 +3,8 @@ import {
   binaryAssembleHangul,
   isHangulAlphabet,
   isHangulCharacter,
-  isHangulString,
-  assertHangulString,
+  isHangul,
+  assertHangul,
   parseHangul,
   safeParseHangul,
 } from './hangul';
@@ -26,15 +26,15 @@ describe('isHangul*', () => {
     expect(isHangulAlphabet('a')).toBe(false);
   });
 
-  it('isHangulString은 한글 문자열을 받으면 true를 반환한다.', () => {
-    expect(isHangulString('값')).toBe(true);
-    expect(isHangulString('ㄱ')).toBe(true);
-    expect(isHangulString('ㅏ')).toBe(true);
-    expect(isHangulString('저는 고양이를 좋아합니다')).toBe(true);
-    expect(isHangulString('a')).toBe(false);
-    expect(isHangulString(111)).toBe(false);
-    expect(isHangulString([111, 111])).toBe(false);
-    expect(isHangulString({ a: 111 })).toBe(false);
+  it('isHangul은 한글 문자열을 받으면 true를 반환한다.', () => {
+    expect(isHangul('값')).toBe(true);
+    expect(isHangul('ㄱ')).toBe(true);
+    expect(isHangul('ㅏ')).toBe(true);
+    expect(isHangul('저는 고양이를 좋아합니다')).toBe(true);
+    expect(isHangul('a')).toBe(false);
+    expect(isHangul(111)).toBe(false);
+    expect(isHangul([111, 111])).toBe(false);
+    expect(isHangul({ a: 111 })).toBe(false);
   });
 });
 
@@ -162,19 +162,19 @@ describe('binaryAssembleHangul', () => {
     expect(binaryAssembleHangul('저는 고양이를 좋아합니다', 'ㅜ')).toEqual('저는 고양이를 좋아합니다ㅜ');
   });
 
-  describe('assertHangulString', () => {
+  describe('assertHangul', () => {
     it('한글 문자열을 받으면 에러를 발생시키지 않는다.', () => {
-      expect(() => assertHangulString('ㄱ')).not.toThrow();
-      expect(() => assertHangulString('고양이')).not.toThrow();
-      expect(() => assertHangulString('저는 고양이를 좋아합니다')).not.toThrow();
-      expect(() => assertHangulString('저는 고양이를 좋아합니ㄷ')).not.toThrow();
+      expect(() => assertHangul('ㄱ')).not.toThrow();
+      expect(() => assertHangul('고양이')).not.toThrow();
+      expect(() => assertHangul('저는 고양이를 좋아합니다')).not.toThrow();
+      expect(() => assertHangul('저는 고양이를 좋아합니ㄷ')).not.toThrow();
     });
 
     it("한글 문자열이 아닌 값을 받으면 '___ is not a valid hangul string' 에러를 발생시킨다.", () => {
-      expect(() => assertHangulString('aaaaaa')).toThrowError('"aaaaaa" is not a valid hangul string');
-      expect(() => assertHangulString(111)).toThrowError('111 is not a valid hangul string');
-      expect(() => assertHangulString([111, 111])).toThrowError('[111,111] is not a valid hangul string');
-      expect(() => assertHangulString({ a: 111 })).toThrowError('{"a":111} is not a valid hangul string');
+      expect(() => assertHangul('aaaaaa')).toThrowError('"aaaaaa" is not a valid hangul string');
+      expect(() => assertHangul(111)).toThrowError('111 is not a valid hangul string');
+      expect(() => assertHangul([111, 111])).toThrowError('[111,111] is not a valid hangul string');
+      expect(() => assertHangul({ a: 111 })).toThrowError('{"a":111} is not a valid hangul string');
     });
   });
 });
