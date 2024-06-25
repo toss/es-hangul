@@ -5,6 +5,8 @@ import {
   isHangulCharacter,
   isHangulString,
   assertHangulString,
+  parseHangul,
+  safeParseHangul,
 } from './hangul';
 
 describe('isHangul*', () => {
@@ -33,6 +35,40 @@ describe('isHangul*', () => {
     expect(isHangulString(111)).toBe(false);
     expect(isHangulString([111, 111])).toBe(false);
     expect(isHangulString({ a: 111 })).toBe(false);
+  });
+});
+
+describe('parse', () => {
+  it('parseHangul은 한글 문자열을 받으면 그대로 반환한다.', () => {
+    expect(parseHangul('값')).toBe('값');
+    expect(parseHangul('ㄱ')).toBe('ㄱ');
+    expect(parseHangul('ㅏ')).toBe('ㅏ');
+    expect(parseHangul('저는 고양이를 좋아합니다')).toBe('저는 고양이를 좋아합니다');
+  });
+
+  it('parseHangul은 한글 문자열이 아닌 값을 받으면 에러를 발생시킨다.', () => {
+    expect(() => parseHangul(111)).toThrowError('111 is not a valid hangul string');
+    expect(() => parseHangul([111, 111])).toThrowError('[111,111] is not a valid hangul string');
+    expect(() => parseHangul({ a: 111 })).toThrowError('{"a":111} is not a valid hangul string');
+  });
+
+  it('safeParseHangul은 한글 문자열을 받으면 성공 객체를 반환한다.', () => {
+    expect(safeParseHangul('값')).toEqual({ success: true, data: '값' });
+    expect(safeParseHangul('ㄱ')).toEqual({ success: true, data: 'ㄱ' });
+    expect(safeParseHangul('ㅏ')).toEqual({ success: true, data: 'ㅏ' });
+    expect(safeParseHangul('저는 고양이를 좋아합니다')).toEqual({ success: true, data: '저는 고양이를 좋아합니다' });
+  });
+
+  it('safeParseHangul은 한글 문자열이 아닌 값을 받으면 실패 객체를 반환한다.', () => {
+    expect(safeParseHangul(111)).toEqual({ success: false, error: Error('111 is not a valid hangul string') });
+    expect(safeParseHangul([111, 111])).toEqual({
+      success: false,
+      error: Error('[111,111] is not a valid hangul string'),
+    });
+    expect(safeParseHangul({ a: 111 })).toEqual({
+      success: false,
+      error: Error('{"a":111} is not a valid hangul string'),
+    });
   });
 });
 
