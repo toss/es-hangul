@@ -20,6 +20,32 @@ export function assertHangulString(actual: unknown, message?: string): asserts a
   assert(isHangulString(actual), message || `${JSON.stringify(actual)} is not a valid hangul string`);
 }
 
+export function parseHangul(actual: unknown): string {
+  assertHangulString(actual);
+  return actual;
+}
+
+type SafeParseSuccess = {
+  success: true;
+  data: string;
+  error?: never;
+};
+
+type SafeParseError = {
+  success: false;
+  error: unknown;
+  data?: never;
+};
+
+export function safeParseHangul(actual: unknown): SafeParseSuccess | SafeParseError {
+  try {
+    const parsedHangul = parseHangul(actual);
+    return { success: true, data: parsedHangul };
+  } catch (error) {
+    return { success: false, error };
+  }
+}
+
 /**
  * @name binaryAssembleHangulAlphabets
  * @description
