@@ -5,8 +5,18 @@ import {
   HANGUL_CHARACTERS_BY_LAST_INDEX,
   HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
   NUMBER_OF_JONGSUNG,
+  JASO_HANGUL_NFD,
 } from './constants';
 import { disassembleHangulToGroups } from './disassemble';
+
+const EXTRACT_CHOSEONG_REGEX = new RegExp(
+  `[^\\u${JASO_HANGUL_NFD.START_CHOSEONG.toString(16)}-\\u${JASO_HANGUL_NFD.END_CHOSEONG.toString(16)}ㄱ-ㅎ\\s]+`,
+  'ug'
+);
+const CHOOSE_NFD_CHOSEONG_REGEX = new RegExp(
+  `[\\u${JASO_HANGUL_NFD.START_CHOSEONG.toString(16)}-\\u${JASO_HANGUL_NFD.END_CHOSEONG.toString(16)}]`,
+  'g'
+);
 
 /**
  * @name hasBatchim
@@ -87,8 +97,8 @@ export function hasSingleBatchim(str: string) {
  */
 export function getChosung(word: string) {
   return word.normalize('NFD')
-    .replace(/[^\u1100-\u1112\u3130-\u314e\s]+/ug, '') // NFD ㄱ-ㅎ, NFC ㄱ-ㅎ 외 문자 삭제
-    .replace(/[\u1100-\u1112]/g, $0 => HANGUL_CHARACTERS_BY_FIRST_INDEX[$0.charCodeAt(0) - 0x1100]); // NFD to NFC
+    .replace(EXTRACT_CHOSEONG_REGEX, '') // NFD ㄱ-ㅎ, NFC ㄱ-ㅎ 외 문자 삭제
+    .replace(CHOOSE_NFD_CHOSEONG_REGEX, $0 => HANGUL_CHARACTERS_BY_FIRST_INDEX[$0.charCodeAt(0) - 0x1100]); // NFD to NFC
 }
 
 /**
