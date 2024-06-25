@@ -8,4 +8,10 @@ describe('amountToHangul', () => {
     expect(amountToHangul('100000000')).toEqual('일억');
     expect(amountToHangul('100000100')).toEqual('일억백');
   });
+
+  it('80자를 넘을 수 없다.', () => {
+    const testFn = () =>
+      amountToHangul('123456789012345678901234567890123456789012345678901234567890123456789012345678901');
+    expect(testFn).toThrowError();
+  });
 });
