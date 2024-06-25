@@ -22,9 +22,8 @@ describe('amountToHangul', () => {
     expect(amountToHangul(392.24)).toEqual('삼백구십이점이사');
   });
 
-  it('80자를 넘을 수 없다.', () => {
-    expect(
-      amountToHangul('123456789012345678901234567890123456789012345678901234567890123456789012345678901')
-    ).toThrowError();
+  it('숫자로 된 금액이 80글자를 넘을 시 에러 발생', () => {
+    const longNumberString = '123456789012345678901234567890123456789012345678901234567890123456789012345678901';
+    expect(() => amountToHangul(longNumberString)).toThrowError(`convert range exceeded : ${longNumberString}`);
   });
 });
