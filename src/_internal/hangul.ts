@@ -16,6 +16,10 @@ export function isHangulString(actual: unknown): actual is string {
   return typeof actual === 'string' && /^[가-힣ㄱ-ㅣ\s]+$/.test(actual);
 }
 
+export function assertHangulString(actual: unknown, message?: string): asserts actual is string {
+  assert(isHangulString(actual), message || `${actual} is not a valid hangul string`);
+}
+
 /**
  * @name binaryAssembleHangulAlphabets
  * @description
