@@ -317,8 +317,6 @@ function apply제16항(
     currentSyllable.last = '';
     nextSyllable.first = 다음_음절의_초성;
     changedSyllable.isChanged = true;
-
-    return changedSyllable;
   }
 
   if (arrayIncludes(한글_자모, combinedSyllables)) {
@@ -329,7 +327,6 @@ function apply제16항(
     }
 
     changedSyllable.isChanged = true;
-    return changedSyllable;
   }
 
   return changedSyllable;
@@ -358,16 +355,12 @@ function apply제17항(currentSyllable: Syllable, nextSyllable: Syllable): Chang
     nextSyllable.first = 음의_동화_받침[currentSyllable.last];
     currentSyllable.last = currentSyllable.last === 'ㄹㅌ' ? 'ㄹ' : '';
     changedSyllable.isChanged = true;
-
-    return changedSyllable;
   }
 
   if (nextSyllable.first === 'ㅎ' && currentSyllable.last === 'ㄷ') {
     nextSyllable.first = 'ㅊ';
     currentSyllable.last = '';
     changedSyllable.isChanged = true;
-
-    return changedSyllable;
   }
 
   return changedSyllable;
