@@ -120,32 +120,11 @@ export function standardPronunciation(
 
       apply제12항(currentSyllable, nextSyllable);
 
-      /*
-      제13항 - 홑받침이나 쌍받침이 모음으로 시작된 조사나 어미, 접미사와 결합되는 경우에는, 제 음가대로 뒤 음절 첫소리로 옮겨 발음한다.
-      제14항 - 겹받침이 모음으로 시작된 조사나 어미, 접미사와 결합되는 경우에는, 뒤엣것만을 뒤 음절 첫소리로 옮겨 발음한다.
-    */
-      const is음가없는자음앞 = currentSyllable.last && nextSyllable?.first === 음가가_없는_자음;
+      if (nextSyllable) {
+        const { isChanged } = apply제13과14항(currentSyllable, nextSyllable);
 
-      if (is음가없는자음앞) {
-        const is홑받침 = currentSyllable.last.length === 1;
-        const is쌍받침 = currentSyllable.last.length === 2 && currentSyllable.last[0] === currentSyllable.last[1];
-        const is겹받침 = currentSyllable.last.length === 2 && currentSyllable.last[0] !== currentSyllable.last[1];
-
-        if (
-          nextSyllable.first === 음가가_없는_자음 &&
-          !['ㅇ', ''].includes(currentSyllable.last) &&
-          (is홑받침 || is쌍받침)
-        ) {
-          nextSyllable.first = currentSyllable.last as Syllable['first'];
-          currentSyllable.last = '';
-        } else if (is겹받침) {
-          if (currentSyllable.last[1] === 'ㅅ') {
-            nextSyllable.first = 'ㅆ';
-          } else {
-            nextSyllable.first = currentSyllable.last[1] as Syllable['first'];
-          }
-
-          currentSyllable.last = currentSyllable.last.replace(currentSyllable.last[1], '') as Syllable['last'];
+        if (isChanged) {
+          continue;
         }
       }
 
@@ -447,4 +426,58 @@ function apply제12항(currentSyllable: Syllable, nextSyllable: Nullable<Syllabl
       currentSyllable.last = currentSyllable.last[0] as Syllable['last'];
     }
   }
+}
+
+/**
+ * 제13, 14항을 적용합니다.
+ * @description 제13항 - 홑받침이나 쌍받침이 모음으로 시작된 조사나 어미, 접미사와 결합되는 경우에는, 제 음가대로 뒤 음절 첫소리로 옮겨 발음한다.
+ * @description 제14항 - 겹받침이 모음으로 시작된 조사나 어미, 접미사와 결합되는 경우에는, 뒤엣것만을 뒤 음절 첫소리로 옮겨 발음한다.
+ * @param currentSyllable 현재 음절을 입력합니다.
+ * @param nextSyllable 다음 음절을 입력합니다.
+ * @returns 13, 14항이 적용되었는지의 여부를 반환합니다.
+ */
+function apply제13과14항(currentSyllable: Syllable, nextSyllable: Syllable): ChangedPronunciation {
+  const changedSyllable = {
+    isChanged: false,
+  };
+
+  const 받침의길이 = {
+    홀받침: 1,
+    쌍_겹받침: 2,
+  } as const;
+
+  const 제13_14항주요조건 = currentSyllable.last && nextSyllable.first === 음가가_없는_자음;
+
+  if (!제13_14항주요조건) {
+    return changedSyllable;
+  }
+
+  const is홑받침 = currentSyllable.last.length === 받침의길이['홀받침'];
+  const is쌍받침 =
+    currentSyllable.last.length === 받침의길이['쌍_겹받침'] && currentSyllable.last[0] === currentSyllable.last[1];
+  const is겹받침 =
+    currentSyllable.last.length === 받침의길이['쌍_겹받침'] && currentSyllable.last[0] !== currentSyllable.last[1];
+
+  if (!arrayIncludes(['ㅇ', ''], currentSyllable.last) && (is홑받침 || is쌍받침)) {
+    nextSyllable.first = currentSyllable.last;
+    currentSyllable.last = '';
+    changedSyllable.isChanged = true;
+
+    return changedSyllable;
+  }
+
+  if (is겹받침) {
+    if (currentSyllable.last[1] === 'ㅅ') {
+      nextSyllable.first = 'ㅆ';
+    } else {
+      nextSyllable.first = currentSyllable.last[1] as Syllable['first'];
+    }
+
+    currentSyllable.last = currentSyllable.last.replace(currentSyllable.last[1], '') as Syllable['last'];
+
+    changedSyllable.isChanged = true;
+    return changedSyllable;
+  }
+
+  return changedSyllable;
 }
