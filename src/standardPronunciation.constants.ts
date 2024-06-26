@@ -12,6 +12,7 @@ export const 특별한_한글_자모의_발음 = {
   ㅍ: 'ㅂ',
 } as const;
 
+// 17항
 export const 음의_동화_받침 = {
   ㄷ: 'ㅈ',
   ㅌ: 'ㅊ',
