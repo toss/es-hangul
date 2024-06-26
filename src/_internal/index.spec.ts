@@ -46,16 +46,16 @@ describe('isBlank', () => {
 
 describe('assert', () => {
   it('조건이 참이면 에러를 던지지 않는다', () => {
-    expect(() => assert(true)).not.toThrow();
+    expect(() => assert(true)).not.toThrowError();
   });
 
   it('조건이 거짓이면 에러를 던진다', () => {
-    expect(() => assert(false)).toThrow('Invalid condition');
+    expect(() => assert(false)).toThrowError('Invalid condition');
   });
 
   it('조건이 거짓이고 에러 메시지가 제공된 경우 사용자 정의 에러 메시지를 던져야 한다', () => {
     const customMessage = 'Custom error message';
 
-    expect(() => assert(false, customMessage)).toThrow(customMessage);
+    expect(() => assert(false, customMessage)).toThrowError(customMessage);
   });
 });
