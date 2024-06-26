@@ -24,5 +24,5 @@ romanize('구미'); // 'gumi'
 romanize('대관령'); // 'daegwallyeong'
 romanize('ㄱ'); // 'g'
 romanize('한국어!'); // 'hangugeo!'
-romanize('안녕하세요, 토스입니다.'); // 'annyeonghaseyo, toseuimnida.'
+romanize('안녕하세요'); // 'annyeonghaseyo'
 ```
