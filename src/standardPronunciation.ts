@@ -128,20 +128,7 @@ export function standardPronunciation(
         }
       }
 
-      /*
-        제4장 받침의 발음
-        제9항 - 받침 ‘ㄲ, ㅋ’, ‘ㅅ, ㅆ, ㅈ, ㅊ, ㅌ’, ‘ㅍ’은 어말 또는 자음 앞에서 각각 대표음 [ㄱ, ㄷ, ㅂ]으로 발음한다.
-        제10항 - 겹받침 ‘ㄳ’, ‘ㄵ’, ‘ㄼ, ㄽ, ㄾ’, ‘ㅄ’은 어말 또는 자음 앞에서 각각 [ㄱ, ㄴ, ㄹ, ㅂ]으로 발음한다.
-        제11항 - 겹받침 ‘ㄺ, ㄻ, ㄿ’은 어말 또는 자음 앞에서 각각 [ㄱ, ㅁ, ㅂ]으로 발음한다.
-      */
-      const is어말 = currentSyllable.last && !nextSyllable;
-      const is음가있는자음앞 = currentSyllable.last && nextSyllable?.first !== 음가가_없는_자음;
-
-      if (is어말 || is음가있는자음앞) {
-        if (hasProperty(받침_대표음_발음, currentSyllable.last)) {
-          currentSyllable.last = 받침_대표음_발음[currentSyllable.last as keyof typeof 받침_대표음_발음];
-        }
-      }
+      apply제9와10과11항(currentSyllable, nextSyllable);
     }
 
     const changedSyllables = disassembleHangul
@@ -480,4 +467,23 @@ function apply제13과14항(currentSyllable: Syllable, nextSyllable: Syllable): 
   }
 
   return changedSyllable;
+}
+
+/**
+ * 제9, 10항, 11항을 적용합니다.
+ * @description 제9항 - 받침 ‘ㄲ, ㅋ’, ‘ㅅ, ㅆ, ㅈ, ㅊ, ㅌ’, ‘ㅍ’은 어말 또는 자음 앞에서 각각 대표음 [ㄱ, ㄷ, ㅂ]으로 발음한다.
+ * @description 제10항 - 겹받침 ‘ㄳ’, ‘ㄵ’, ‘ㄼ, ㄽ, ㄾ’, ‘ㅄ’은 어말 또는 자음 앞에서 각각 [ㄱ, ㄴ, ㄹ, ㅂ]으로 발음한다.
+ * @description 제11항 - 겹받침 ‘ㄺ, ㄻ, ㄿ’은 어말 또는 자음 앞에서 각각 [ㄱ, ㅁ, ㅂ]으로 발음한다.
+ * @param currentSyllable 현재 음절을 입력합니다.
+ * @param nextSyllable 다음 음절을 입력합니다.
+ */
+function apply제9와10과11항(currentSyllable: Syllable, nextSyllable: Nullable<Syllable>): void {
+  const is어말 = currentSyllable.last && !nextSyllable;
+  const is음가있는자음앞 = currentSyllable.last && nextSyllable?.first !== 음가가_없는_자음;
+
+  const 제9_10_11항주요조건 = (is어말 || is음가있는자음앞) && hasProperty(받침_대표음_발음, currentSyllable.last);
+
+  if (제9_10_11항주요조건) {
+    currentSyllable.last = 받침_대표음_발음[currentSyllable.last as keyof typeof 받침_대표음_발음];
+  }
 }
