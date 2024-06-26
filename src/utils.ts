@@ -86,15 +86,15 @@ export function hasSingleBatchim(str: string) {
  * @description
  * 단어에서 초성을 추출합니다. (예: `사과` -> `'ㅅㄱ'`)
  * ```typescript
- * getChosung(
+ * getChoseong(
  *   // 초성을 추출할 단어
  *   word: string
  * ): string
  * ```
  * @example
- * getChosung('사과') // 'ㅅㄱ'
- * getChosung('리액트') // 'ㄹㅇㅌ'
- * getChosung('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
+ * getChoseong('사과') // 'ㅅㄱ'
+ * getChoseong('리액트') // 'ㄹㅇㅌ'
+ * getChoseong('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
  */
 export function getChosung(word: string) {
   return word
@@ -153,17 +153,17 @@ export function getFirstConsonants(word: string) {
  * @description
  * 인자로 받은 문자가 초성으로 위치할 수 있는 문자인지 검사합니다.
  * ```typescript
- * canBeChosung(
+ * canBeChoseong(
  *   // 대상 문자
  *   character: string
  * ): boolean
  * ```
  * @example
- * canBeChosung('ㄱ') // true
- * canBeChosung('ㅃ') // true
- * canBeChosung('ㄱㅅ') // false
- * canBeChosung('ㅏ') // false
- * canBeChosung('가') // false
+ * canBeChoseong('ㄱ') // true
+ * canBeChoseong('ㅃ') // true
+ * canBeChoseong('ㄱㅅ') // false
+ * canBeChoseong('ㅏ') // false
+ * canBeChoseong('가') // false
  */
 export function canBeChosung(character: string): character is (typeof HANGUL_CHARACTERS_BY_FIRST_INDEX)[number] {
   return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_FIRST_INDEX, character);
@@ -196,18 +196,18 @@ export function canBeChoseong(character: string): character is (typeof HANGUL_CH
  * @description
  * 인자로 받은 문자가 중성으로 위치할 수 있는 문자인지 검사합니다.
  * ```typescript
- * canBeJungsung(
+ * canBeJungseong(
  *   // 대상 문자
  *   character: string
  * ): boolean
  * ```
  * @example
- * canBeJungsung('ㅏ') // true
- * canBeJungsung('ㅗㅏ') // true
- * canBeJungsung('ㅏㅗ') // false
- * canBeJungsung('ㄱ') // false
- * canBeJungsung('ㄱㅅ') // false
- * canBeJungsung('가') // false
+ * canBeJungseong('ㅏ') // true
+ * canBeJungseong('ㅗㅏ') // true
+ * canBeJungseong('ㅏㅗ') // false
+ * canBeJungseong('ㄱ') // false
+ * canBeJungseong('ㄱㅅ') // false
+ * canBeJungseong('가') // false
  */
 export function canBeJungsung(character: string): character is (typeof HANGUL_CHARACTERS_BY_MIDDLE_INDEX)[number] {
   return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_MIDDLE_INDEX, character);
@@ -241,18 +241,18 @@ export function canBeJungseong(character: string): character is (typeof HANGUL_C
  * @description
  * 인자로 받은 문자가 종성으로 위치할 수 있는 문자인지 검사합니다.
  * ```typescript
- * canBeJongsung(
+ * canBeJongseong(
  *   // 대상 문자
  *   character: string
  * ): boolean
  * ```
  * @example
- * canBeJongsung('ㄱ') // true
- * canBeJongsung('ㄱㅅ') // true
- * canBeJongsung('ㅎㄹ') // false
- * canBeJongsung('가') // false
- * canBeJongsung('ㅏ') // false
- * canBeJongsung('ㅗㅏ') // false
+ * canBeJongseong('ㄱ') // true
+ * canBeJongseong('ㄱㅅ') // true
+ * canBeJongseong('ㅎㄹ') // false
+ * canBeJongseong('가') // false
+ * canBeJongseong('ㅏ') // false
+ * canBeJongseong('ㅗㅏ') // false
  */
 export function canBeJongsung(character: string): character is (typeof HANGUL_CHARACTERS_BY_LAST_INDEX)[number] {
   return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_LAST_INDEX, character);

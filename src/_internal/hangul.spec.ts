@@ -122,11 +122,15 @@ describe('binaryAssembleHangulCharacters', () => {
   });
 
   it('다음 문자가 한글 문자 한 글자가 아니라면 Invalid next character 에러를 발생시킨다.', () => {
-    expect(() => binaryAssembleHangulCharacters('ㄱ', 'a')).toThrowError(
-      'Invalid next character: a. Next character must be one of the chosung, jungsung, or jongsung.'
+    assert.throws(
+      () => binaryAssembleHangulCharacters('ㄱ', 'a'),
+      Error,
+      'Invalid next character: a. Next character must be one of the choseong, jungseong, or jongseong.'
     );
-    expect(() => binaryAssembleHangulCharacters('ㄱ', 'ㅡㅏ')).toThrowError(
-      'Invalid next character: ㅡㅏ. Next character must be one of the chosung, jungsung, or jongsung.'
+    assert.throws(
+      () => binaryAssembleHangulCharacters('ㄱ', 'ㅡㅏ'),
+      Error,
+      'Invalid next character: ㅡㅏ. Next character must be one of the choseong, jungseong, or jongseong.'
     );
   });
 });
