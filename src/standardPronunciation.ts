@@ -7,7 +7,7 @@ import {
   ㄴㄹ이_덧나서_받침_ㄴ_변환,
   ㄴㄹ이_덧나서_받침_ㄹ_변환,
   된소리,
-  된소리_받침_23항,
+  된소리_받침,
   받침_대표음_발음,
   발음변환_받침_ㅎ,
   발음변환_받침_ㅎ_발음,
@@ -30,7 +30,6 @@ type NotHangul = {
   index: number;
   syllable: string;
 };
-
 type NonUndefined<T> = T extends undefined ? never : T;
 type Syllable = NonUndefined<ReturnType<typeof disassembleCompleteHangulCharacter>>;
 
@@ -63,25 +62,7 @@ export function standardPronunciation(
         disassembleHangul.length > 1 && i < disassembleHangul.length - 1 ? disassembleHangul[i + 1] : null;
 
       if (options.hardConversion && nextSyllable) {
-        /* 
-          제 6장 - 경음화
-          제23항 - 받침 ‘ㄱ(ㄲ, ㅋ, ㄳ, ㄺ), ㄷ(ㅅ, ㅆ, ㅈ, ㅊ, ㅌ), ㅂ(ㅍ, ㄼ, ㄿ, ㅄ)’ 뒤에 연결되는 ‘ㄱ, ㄷ, ㅂ, ㅅ, ㅈ’은 된소리로 발음한다.
-        */
-        if (arrayIncludes(된소리_받침_23항, currentSyllable.last) && hasProperty(된소리, nextSyllable.first)) {
-          nextSyllable.first = 된소리[nextSyllable.first];
-        }
-
-        /*  
-          제24항 - 어간 받침 ‘ㄴ(ㄵ), ㅁ(ㄻ)’ 뒤에 결합되는 어미의 첫소리 ‘ㄱ, ㄷ, ㅅ, ㅈ’은 된소리로 발음한다.
-          제25항 - 어간 받침 ‘ㄼ, ㄾ’ 뒤에 결합되는 어미의 첫소리 ‘ㄱ, ㄷ, ㅅ, ㅈ’은 된소리로 발음한다.
-        */
-        if (
-          arrayIncludes(어간_받침, currentSyllable.last) &&
-          nextSyllable.first !== 'ㅂ' &&
-          hasProperty(된소리, nextSyllable.first)
-        ) {
-          nextSyllable.first = 된소리[nextSyllable.first];
-        }
+        nextSyllable.first = apply경음화(currentSyllable, nextSyllable);
       }
 
       /* 
@@ -313,4 +294,30 @@ function 음절분해(hangulPhrase: string): {
 
 function replace받침ㅎ(currentSyllable: Syllable): void {
   currentSyllable.last = currentSyllable.last.replace('ㅎ', '') as Syllable['last'];
+}
+
+/**
+ * 제6장 경음화를 적용합니다.
+ * @param currentSyllable 현재 음절을 입력합니다.
+ * @param nextSyllable 다음 음절을 입력합니다.
+ * @returns 변환된 다음 음절의 초성을 반환합니다.
+ */
+function apply경음화(currentSyllable: Syllable, nextSyllable: Syllable): Syllable['first'] {
+  if (hasProperty(된소리, nextSyllable.first)) {
+    /* 
+      제23항 - 받침 ‘ㄱ(ㄲ, ㅋ, ㄳ, ㄺ), ㄷ(ㅅ, ㅆ, ㅈ, ㅊ, ㅌ), ㅂ(ㅍ, ㄼ, ㄿ, ㅄ)’ 뒤에 연결되는 ‘ㄱ, ㄷ, ㅂ, ㅅ, ㅈ’은 된소리로 발음한다.
+    */
+    const 제23항조건 = arrayIncludes(된소리_받침, currentSyllable.last);
+    /*  
+      제24항 - 어간 받침 ‘ㄴ(ㄵ), ㅁ(ㄻ)’ 뒤에 결합되는 어미의 첫소리 ‘ㄱ, ㄷ, ㅅ, ㅈ’은 된소리로 발음한다.
+      제25항 - 어간 받침 ‘ㄼ, ㄾ’ 뒤에 결합되는 어미의 첫소리 ‘ㄱ, ㄷ, ㅅ, ㅈ’은 된소리로 발음한다.
+    */
+    const 제24_25항조건 = arrayIncludes(어간_받침, currentSyllable.last) && nextSyllable.first !== 'ㅂ';
+
+    if (제23항조건 || 제24_25항조건) {
+      return 된소리[nextSyllable.first];
+    }
+  }
+
+  return nextSyllable.first;
 }

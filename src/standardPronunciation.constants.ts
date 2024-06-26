@@ -70,8 +70,16 @@ export const 받침_대표음_발음 = {
   ㄹㅁ: 'ㅁ',
 } as const;
 
-// 경음화 23항
-export const 된소리_받침_23항 = [
+export const 된소리 = {
+  ㄱ: 'ㄲ',
+  ㄷ: 'ㄸ',
+  ㅂ: 'ㅃ',
+  ㅅ: 'ㅆ',
+  ㅈ: 'ㅉ',
+} as const;
+
+// 23항
+export const 된소리_받침 = [
   'ㄱ',
   'ㄲ',
   'ㅋ',
@@ -90,12 +98,5 @@ export const 된소리_받침_23항 = [
   'ㅂㅅ',
 ] as const;
 
-export const 된소리 = {
-  ㄱ: 'ㄲ',
-  ㄷ: 'ㄸ',
-  ㅂ: 'ㅃ',
-  ㅅ: 'ㅆ',
-  ㅈ: 'ㅉ',
-} as const;
-
+// 24항, 25항
 export const 어간_받침 = ['ㄴ', 'ㄴㅈ', 'ㅁ', 'ㄹㅁ', 'ㄹㅂ', 'ㄹㅌ'] as const;
