@@ -7,6 +7,6 @@ export * from './disassembleCompleteHangulCharacter';
 export * from './hangulIncludes';
 export * from './josa';
 export * from './removeLastHangulCharacter';
-export * from './romanize';
+export * from './romanizeHangul';
 export * from './standardPronunciation';
 export * from './utils';

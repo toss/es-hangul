@@ -8,7 +8,7 @@ import { standardPronunciation } from './standardPronunciation';
  * @param hangul 한글 문자열을 입력합니다.
  * @returns 변환된 로마자를 반환합니다.
  */
-export function romanize(hangul: string): string {
+export function romanizeHangul(hangul: string): string {
   const changedHangul = standardPronunciation(hangul, { hardConversion: false });
 
   return changedHangul
