@@ -49,43 +49,34 @@ export function standardPronunciation(
       const currentSyllable = disassembleHangul[i];
       const nextSyllable = i < disassembleHangul.length - 1 ? disassembleHangul[i + 1] : null;
 
-      if (options.hardConversion && nextSyllable) {
-        apply경음화(currentSyllable, nextSyllable);
-      }
+      if (nextSyllable) {
+        if (options.hardConversion) {
+          apply경음화(currentSyllable, nextSyllable);
+        }
 
-      if (i > 0 && nextSyllable) {
-        const { isChanged } = apply제16항(currentSyllable, nextSyllable, hangulPhrase, i);
+        if (i > 0) {
+          const { isChanged: is제16항Changed } = apply제16항(currentSyllable, nextSyllable, hangulPhrase, i);
 
-        if (isChanged) {
+          if (is제16항Changed) {
+            continue;
+          }
+        }
+
+        const { isChanged: is제17항Changed } = apply제17항(currentSyllable, nextSyllable);
+
+        if (is제17항Changed) {
           continue;
         }
-      }
 
-      if (nextSyllable) {
-        const { isChanged } = apply제17항(currentSyllable, nextSyllable);
-
-        if (isChanged) {
-          continue;
-        }
-      }
-
-      if (nextSyllable) {
         apply제19항(currentSyllable, nextSyllable);
-      }
-
-      if (nextSyllable) {
         applyㄴㄹ덧남(currentSyllable, nextSyllable);
-      }
 
-      if (nextSyllable) {
-        const { isChanged } = apply제18항(currentSyllable, nextSyllable);
+        const { isChanged: is제18항Changed } = apply제18항(currentSyllable, nextSyllable);
 
-        if (isChanged) {
+        if (is제18항Changed) {
           continue;
         }
-      }
 
-      if (nextSyllable) {
         apply제20항(currentSyllable, nextSyllable);
       }
 
