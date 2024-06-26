@@ -177,6 +177,6 @@ export function isNotUndefined<T>(value: T | undefined): value is T {
   return value !== undefined;
 }
 
-export function isArrayIncludes<T>(array: readonly T[], value: unknown): value is T {
-  return array.includes(value as T);
+export function arrayIncludes<Type>(array: Type[] | readonly Type[], item: unknown, fromIndex?: number): item is Type {
+  return array.includes(item as Type, fromIndex);
 }
