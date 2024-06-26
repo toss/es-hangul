@@ -4,6 +4,7 @@ import { combineHangulCharacter } from '../combineHangulCharacter';
 import { disassembleCompleteHangulCharacter } from '../disassembleCompleteHangulCharacter';
 import { isNotUndefined } from '../utils';
 import {
+  Nullable,
   applyㄴㄹ덧남,
   apply경음화,
   apply제12항,
@@ -49,59 +50,10 @@ export function standardPronunciation(
       const currentSyllable = disassembleHangul[i];
       const nextSyllable = i < disassembleHangul.length - 1 ? disassembleHangul[i + 1] : null;
 
-      if (nextSyllable) {
-        if (options.hardConversion) {
-          apply경음화(currentSyllable, nextSyllable);
-        }
-
-        if (i > 0) {
-          const { isChanged: is제16항Changed } = apply제16항(currentSyllable, nextSyllable, hangulPhrase, i);
-
-          if (is제16항Changed) {
-            continue;
-          }
-        }
-
-        const { isChanged: is제17항Changed } = apply제17항(currentSyllable, nextSyllable);
-
-        if (is제17항Changed) {
-          continue;
-        }
-
-        apply제19항(currentSyllable, nextSyllable);
-        applyㄴㄹ덧남(currentSyllable, nextSyllable);
-
-        const { isChanged: is제18항Changed } = apply제18항(currentSyllable, nextSyllable);
-
-        if (is제18항Changed) {
-          continue;
-        }
-
-        apply제20항(currentSyllable, nextSyllable);
-      }
-
-      apply제12항(currentSyllable, nextSyllable);
-
-      if (nextSyllable) {
-        const { isChanged } = apply제13과14항(currentSyllable, nextSyllable);
-
-        if (isChanged) {
-          continue;
-        }
-      }
-
-      apply제9와10과11항(currentSyllable, nextSyllable);
+      applyRules(currentSyllable, nextSyllable, i, hangulPhrase, options);
     }
 
-    const changedSyllables = disassembleHangul
-      .filter(isNotUndefined)
-      .map(syllable => combineHangulCharacter(syllable.first, syllable.middle, syllable.last));
-
-    for (const { index, syllable } of notHangulPhrase) {
-      changedSyllables.splice(index, 0, syllable);
-    }
-
-    changedHangul.push(joinString(...changedSyllables));
+    changedHangul.push(assembleChangedHangul(disassembleHangul, notHangulPhrase));
   }
 
   return changedHangul.join(' ');
@@ -129,4 +81,67 @@ function 음절분해(hangulPhrase: string): {
     .filter(isNotUndefined);
 
   return { notHangulPhrase, disassembleHangul };
+}
+
+function applyRules(
+  currentSyllable: Syllable,
+  nextSyllable: Nullable<Syllable>,
+  index: number,
+  hangulPhrase: string,
+  options: NonNullable<Parameters<typeof standardPronunciation>[1]>
+): void {
+  if (nextSyllable) {
+    if (options.hardConversion) {
+      apply경음화(currentSyllable, nextSyllable);
+    }
+
+    if (index > 0) {
+      const { isChanged: is제16항Changed } = apply제16항(currentSyllable, nextSyllable, hangulPhrase, index);
+
+      if (is제16항Changed) {
+        return;
+      }
+    }
+
+    const { isChanged: is제17항Changed } = apply제17항(currentSyllable, nextSyllable);
+
+    if (is제17항Changed) {
+      return;
+    }
+
+    apply제19항(currentSyllable, nextSyllable);
+    applyㄴㄹ덧남(currentSyllable, nextSyllable);
+
+    const { isChanged: is제18항Changed } = apply제18항(currentSyllable, nextSyllable);
+
+    if (is제18항Changed) {
+      return;
+    }
+
+    apply제20항(currentSyllable, nextSyllable);
+  }
+
+  apply제12항(currentSyllable, nextSyllable);
+
+  if (nextSyllable) {
+    const { isChanged } = apply제13과14항(currentSyllable, nextSyllable);
+
+    if (isChanged) {
+      return;
+    }
+  }
+
+  apply제9와10과11항(currentSyllable, nextSyllable);
+}
+
+function assembleChangedHangul(disassembleHangul: Syllable[], notHangulPhrase: NotHangul[]): string {
+  const changedSyllables = disassembleHangul
+    .filter(isNotUndefined)
+    .map(syllable => combineHangulCharacter(syllable.first, syllable.middle, syllable.last));
+
+  for (const { index, syllable } of notHangulPhrase) {
+    changedSyllables.splice(index, 0, syllable);
+  }
+
+  return joinString(...changedSyllables);
 }
