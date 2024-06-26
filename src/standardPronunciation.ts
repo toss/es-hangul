@@ -58,8 +58,7 @@ export function standardPronunciation(
 
     for (let i = 0; i < disassembleHangul.length; i += 1) {
       const currentSyllable = disassembleHangul[i];
-      const nextSyllable =
-        disassembleHangul.length > 1 && i < disassembleHangul.length - 1 ? disassembleHangul[i + 1] : null;
+      const nextSyllable = i < disassembleHangul.length - 1 ? disassembleHangul[i + 1] : null;
 
       if (options.hardConversion && nextSyllable) {
         nextSyllable.first = apply경음화(currentSyllable, nextSyllable);
