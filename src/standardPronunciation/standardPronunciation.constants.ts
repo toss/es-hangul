@@ -19,6 +19,7 @@ export const 음의_동화_받침 = {
   ㄹㅌ: 'ㅊ',
 } as const;
 
+// 'ㄴ,ㄹ'이 덧나는 동화작용
 export const ㄴㄹ이_덧나는_모음 = ['ㅑ', 'ㅕ', 'ㅛ', 'ㅠ', 'ㅣ', 'ㅒ', 'ㅖ'] as const;
 export const ㄴㄹ이_덧나서_받침_ㄴ_변환 = ['ㄱ', 'ㄴ', 'ㄷ', 'ㅁ', 'ㅂ', 'ㅇ'] as const;
 export const ㄴㄹ이_덧나서_받침_ㄹ_변환 = ['ㄹ'] as const;

@@ -1,4 +1,4 @@
-import { standardPronunciation } from './standardPronunciation';
+import { standardPronunciation } from '.';
 
 describe('standardPronunciation', () => {
   describe('음절이 완성된 한글을 제외한 문자는 변경하지 않는다', () => {
