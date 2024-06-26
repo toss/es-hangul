@@ -288,4 +288,62 @@ describe('standardPronunciation', () => {
       });
     });
   });
+
+  describe('경음화 등의 된소리를 적용하지 않는다', () => {
+    it('9항', () => {
+      expect(
+        standardPronunciation('닦다', {
+          hardConversion: false,
+        })
+      ).toBe('닥다');
+    });
+
+    it('10항', () => {
+      expect(
+        standardPronunciation('앉다', {
+          hardConversion: false,
+        })
+      ).toBe('안다');
+    });
+
+    it('11항', () => {
+      expect(
+        standardPronunciation('맑다', {
+          hardConversion: false,
+        })
+      ).toBe('막다');
+    });
+
+    it('17항', () => {
+      expect(
+        standardPronunciation('곧이듣다', {
+          hardConversion: false,
+        })
+      ).toBe('고지듣다');
+    });
+
+    it('23항', () => {
+      expect(
+        standardPronunciation('국밥', {
+          hardConversion: false,
+        })
+      ).toBe('국밥');
+    });
+
+    it('24항', () => {
+      expect(
+        standardPronunciation('신고', {
+          hardConversion: false,
+        })
+      ).toBe('신고');
+    });
+
+    it('25항', () => {
+      expect(
+        standardPronunciation('넓게', {
+          hardConversion: false,
+        })
+      ).toBe('널게');
+    });
+  });
 });
