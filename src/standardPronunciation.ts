@@ -31,6 +31,7 @@ type NotHangul = {
   syllable: string;
 };
 type NonUndefined<T> = T extends undefined ? never : T;
+type Nullable<T> = T | null | undefined;
 type Syllable = NonUndefined<ReturnType<typeof disassembleCompleteHangulCharacter>>;
 
 /**
@@ -113,64 +114,11 @@ export function standardPronunciation(
         }
       }
 
-      /* 
-        20항 - ‘ㄴ’은 ‘ㄹ’의 앞이나 뒤에서 [ㄹ]로 발음한다.
-        [붙임] 첫소리 ‘ㄴ’이 ‘ㅀ’, ‘ㄾ’ 뒤에 연결되는 경우에도 이에 준한다.
-      */
       if (nextSyllable) {
-        if (currentSyllable.last === 'ㄴ' && nextSyllable.first === 'ㄹ') {
-          currentSyllable.last = 'ㄹ';
-        } else if (nextSyllable.first === 'ㄴ') {
-          if (currentSyllable.last === 'ㄹ') {
-            nextSyllable.first = 'ㄹ';
-          } else if (['ㄹㅎ', 'ㄹㅌ'].includes(currentSyllable.last)) {
-            nextSyllable.first = 'ㄹ';
-          }
-        }
+        apply제20항(currentSyllable, nextSyllable);
       }
 
-      /*
-      제12항 받침 ‘ㅎ’의 발음은 다음과 같다.
-      1. ‘ㅎ(ㄶ, ㅀ)’ 뒤에 ‘ㄱ, ㄷ, ㅈ’이 결합되는 경우에는, 뒤 음절 첫소리와 합쳐서 [ㅋ, ㅌ, ㅊ]으로 발음한다.
-        [붙임 1] 받침 ‘ㄱ(ㄺ), ㄷ, ㅂ(ㄼ), ㅈ(ㄵ)’이 뒤 음절 첫소리 ‘ㅎ’과 결합되는 경우에도, 역시 두 음을 합쳐서 [ㅋ, ㅌ, ㅍ, ㅊ]으로 발음한다.
-      2. ‘ㅎ(ㄶ, ㅀ)’ 뒤에 ‘ㅅ’이 결합되는 경우에는, ‘ㅅ’을 [ㅆ]으로 발음한다.
-      3. ‘ㅎ’ 뒤에 ‘ㄴ’이 결합되는 경우에는, [ㄴ]으로 발음한다.
-        [붙임] ‘ㄶ, ㅀ’ 뒤에 ‘ㄴ’이 결합되는 경우에는, ‘ㅎ’을 발음하지 않는다.
-      4. ‘ㅎ(ㄶ, ㅀ)’ 뒤에 모음으로 시작된 어미나 접미사가 결합되는 경우에는, ‘ㅎ’을 발음하지 않는다.
-    */
-
-      if (currentSyllable.last) {
-        if (arrayIncludes(발음변환_받침_ㅎ, currentSyllable.last)) {
-          if (nextSyllable) {
-            if (['ㄱ', 'ㄷ', 'ㅈ', 'ㅅ'].includes(nextSyllable.first)) {
-              nextSyllable.first = 발음변환_받침_ㅎ_발음[nextSyllable.first as keyof typeof 발음변환_받침_ㅎ_발음];
-              replace받침ㅎ(currentSyllable);
-            } else if (nextSyllable.first === 'ㄴ' && ['ㄴㅎ', 'ㄹㅎ'].includes(currentSyllable.last)) {
-              replace받침ㅎ(currentSyllable);
-            } else if (nextSyllable.first === 음가가_없는_자음) {
-              if (['ㄴㅎ', 'ㄹㅎ'].includes(currentSyllable.last)) {
-                replace받침ㅎ(currentSyllable);
-              } else {
-                currentSyllable.last = '';
-              }
-            } else {
-              replace받침ㅎ(currentSyllable);
-            }
-          } else {
-            replace받침ㅎ(currentSyllable);
-          }
-        } else if (
-          arrayIncludes(발음변환_첫소리_ㅎ, currentSyllable.last) &&
-          nextSyllable &&
-          ['ㅎ'].includes(nextSyllable.first)
-        ) {
-          nextSyllable.first = 발음변환_첫소리_ㅎ_발음[currentSyllable.last as keyof typeof 발음변환_첫소리_ㅎ_발음];
-          currentSyllable.last =
-            currentSyllable.last.length === 1
-              ? ''
-              : (currentSyllable.last = currentSyllable.last[0] as typeof currentSyllable.last);
-        }
-      }
+      apply제12항(currentSyllable, nextSyllable);
 
       /*
       제13항 - 홑받침이나 쌍받침이 모음으로 시작된 조사나 어미, 접미사와 결합되는 경우에는, 제 음가대로 뒤 음절 첫소리로 옮겨 발음한다.
@@ -303,9 +251,9 @@ function apply제16항(
     isChanged: false,
   };
 
-  const 제16항조건 = currentSyllable.last && nextSyllable.first === 음가가_없는_자음;
+  const 제16항주요조건 = currentSyllable.last && nextSyllable.first === 음가가_없는_자음;
 
-  if (!제16항조건) {
+  if (!제16항주요조건) {
     return changedSyllable;
   }
 
@@ -345,9 +293,9 @@ function apply제17항(currentSyllable: Syllable, nextSyllable: Syllable): Chang
     isChanged: false,
   };
 
-  const 제17항조건 = nextSyllable.middle === 'ㅣ';
+  const 제17항주요조건 = nextSyllable.middle === 'ㅣ';
 
-  if (!제17항조건) {
+  if (!제17항주요조건) {
     return changedSyllable;
   }
 
@@ -393,9 +341,9 @@ function apply제18항(currentSyllable: Syllable, nextSyllable: Syllable): Chang
     isChanged: false,
   };
 
-  const 제18항조건 = currentSyllable.last && ['ㄴ', 'ㅁ'].includes(nextSyllable.first);
+  const 제18항주요조건 = currentSyllable.last && arrayIncludes(['ㄴ', 'ㅁ'], nextSyllable.first);
 
-  if (!제18항조건) {
+  if (!제18항주요조건) {
     return changedSyllable;
   }
 
@@ -415,4 +363,88 @@ function apply제18항(currentSyllable: Syllable, nextSyllable: Syllable): Chang
   }
 
   return changedSyllable;
+}
+
+/**
+ * 제20항을 적용합니다.
+ * @description 20항 - ‘ㄴ’은 ‘ㄹ’의 앞이나 뒤에서 [ㄹ]로 발음한다.
+ * @description [붙임] 첫소리 ‘ㄴ’이 ‘ㅀ’, ‘ㄾ’ 뒤에 연결되는 경우에도 이에 준한다.
+ * @param currentSyllable 현재 음절을 입력합니다.
+ * @param nextSyllable 다음 음절을 입력합니다.
+ */
+function apply제20항(currentSyllable: Syllable, nextSyllable: Syllable): void {
+  const 제20항주요조건 = currentSyllable.last === 'ㄴ' && nextSyllable.first === 'ㄹ';
+  const 제20항붙임조건 = nextSyllable.first === 'ㄴ';
+
+  if (제20항주요조건) {
+    currentSyllable.last = 'ㄹ';
+  }
+
+  if (제20항붙임조건) {
+    if (currentSyllable.last === 'ㄹ') {
+      nextSyllable.first = 'ㄹ';
+    }
+
+    if (arrayIncludes(['ㄹㅎ', 'ㄹㅌ'], currentSyllable.last)) {
+      nextSyllable.first = 'ㄹ';
+    }
+  }
+}
+
+/**
+ * 제12항을 적용합니다.
+ * @description 제12항 받침 ‘ㅎ’의 발음은 다음과 같다.
+ * @description ‘ㅎ(ㄶ, ㅀ)’ 뒤에 ‘ㄱ, ㄷ, ㅈ’이 결합되는 경우에는, 뒤 음절 첫소리와 합쳐서 [ㅋ, ㅌ, ㅊ]으로 발음한다.
+ * @description [붙임] 받침 ‘ㄱ(ㄺ), ㄷ, ㅂ(ㄼ), ㅈ(ㄵ)’이 뒤 음절 첫소리 ‘ㅎ’과 결합되는 경우에도, 역시 두 음을 합쳐서 [ㅋ, ㅌ, ㅍ, ㅊ]으로 발음한다.
+ * @description ‘ㅎ(ㄶ, ㅀ)’ 뒤에 ‘ㅅ’이 결합되는 경우에는, ‘ㅅ’을 [ㅆ]으로 발음한다.
+ * @description ‘ㅎ’ 뒤에 ‘ㄴ’이 결합되는 경우에는, [ㄴ]으로 발음한다.
+ * @description [붙임] ‘ㄶ, ㅀ’ 뒤에 ‘ㄴ’이 결합되는 경우에는, ‘ㅎ’을 발음하지 않는다.
+ * @description ‘ㅎ(ㄶ, ㅀ)’ 뒤에 모음으로 시작된 어미나 접미사가 결합되는 경우에는, ‘ㅎ’을 발음하지 않는다.
+ * @param currentSyllable 현재 음절을 입력합니다.
+ * @param nextSyllable 다음 음절을 입력합니다.
+ */
+function apply제12항(currentSyllable: Syllable, nextSyllable: Nullable<Syllable>): void {
+  if (!currentSyllable.last) {
+    return;
+  }
+
+  if (arrayIncludes(발음변환_받침_ㅎ, currentSyllable.last)) {
+    if (nextSyllable) {
+      if (arrayIncludes(['ㄱ', 'ㄷ', 'ㅈ', 'ㅅ'], nextSyllable.first)) {
+        nextSyllable.first = 발음변환_받침_ㅎ_발음[nextSyllable.first as keyof typeof 발음변환_받침_ㅎ_발음];
+        replace받침ㅎ(currentSyllable);
+        return;
+      }
+
+      if (nextSyllable.first === 'ㄴ' && arrayIncludes(['ㄴㅎ', 'ㄹㅎ'], currentSyllable.last)) {
+        replace받침ㅎ(currentSyllable);
+      }
+
+      if (nextSyllable.first === 음가가_없는_자음) {
+        if (arrayIncludes(['ㄴㅎ', 'ㄹㅎ'], currentSyllable.last)) {
+          replace받침ㅎ(currentSyllable);
+        } else {
+          currentSyllable.last = '';
+        }
+      }
+
+      if (nextSyllable.first !== 음가가_없는_자음) {
+        replace받침ㅎ(currentSyllable);
+      }
+    }
+
+    if (!nextSyllable) {
+      replace받침ㅎ(currentSyllable);
+    }
+  }
+
+  if (arrayIncludes(발음변환_첫소리_ㅎ, currentSyllable.last) && arrayIncludes(['ㅎ'], nextSyllable?.first)) {
+    nextSyllable.first = 발음변환_첫소리_ㅎ_발음[currentSyllable.last];
+
+    if (currentSyllable.last.length === 1) {
+      currentSyllable.last = '';
+    } else {
+      currentSyllable.last = currentSyllable.last[0] as Syllable['last'];
+    }
+  }
 }
