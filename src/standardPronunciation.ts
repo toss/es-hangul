@@ -101,24 +101,15 @@ export function standardPronunciation(
         }
       }
 
-      /* 
-        19항 - 받침 ‘ㅁ, ㅇ’ 뒤에 연결되는 ‘ㄹ’은 [ㄴ]으로 발음한다.
-        [붙임] 받침 ‘ㄱ, ㅂ’ 뒤에 연결되는 ‘ㄹ’도 [ㄴ]으로 발음한다.
-      */
       if (nextSyllable) {
         apply제19항(currentSyllable, nextSyllable);
       }
 
-      /* 
-        18항 - 받침 ‘ㄱ(ㄲ, ㅋ, ㄳ, ㄺ), ㄷ(ㅅ, ㅆ, ㅈ, ㅊ, ㅌ, ㅎ), ㅂ(ㅍ, ㄼ, ㄿ, ㅄ)’은 ‘ㄴ, ㅁ’ 앞에서 [ㅇ, ㄴ, ㅁ]으로 발음한다.
-      */
-      if (currentSyllable.last && nextSyllable && ['ㄴ', 'ㅁ'].includes(nextSyllable.first)) {
-        if (arrayIncludes(비음화_받침_ㅇ_변환, currentSyllable.last)) {
-          currentSyllable.last = 'ㅇ';
-        } else if (arrayIncludes(비음화_받침_ㄴ_변환, currentSyllable.last)) {
-          currentSyllable.last = 'ㄴ';
-        } else if (arrayIncludes(비음화_받침_ㅁ_변환, currentSyllable.last)) {
-          currentSyllable.last = 'ㅁ';
+      if (nextSyllable) {
+        const { isChanged } = apply제18항(currentSyllable, nextSyllable);
+
+        if (isChanged) {
+          continue;
         }
       }
 
@@ -275,7 +266,6 @@ function replace받침ㅎ(currentSyllable: Syllable): void {
  * @description 제25항 - 어간 받침 ‘ㄼ, ㄾ’ 뒤에 결합되는 어미의 첫소리 ‘ㄱ, ㄷ, ㅅ, ㅈ’은 된소리로 발음한다.
  * @param currentSyllable 현재 음절을 입력합니다.
  * @param nextSyllable 다음 음절을 입력합니다.
- * @returns 변환된 다음 음절의 초성을 반환합니다.
  */
 function apply경음화(currentSyllable: Syllable, nextSyllable: Syllable): void {
   if (hasProperty(된소리, nextSyllable.first)) {
@@ -387,8 +377,8 @@ function apply제17항(currentSyllable: Syllable, nextSyllable: Syllable): Chang
  * 제19항을 적용합니다.
  * @description 19항 - 받침 ‘ㅁ, ㅇ’ 뒤에 연결되는 ‘ㄹ’은 [ㄴ]으로 발음한다.
  * @description [붙임] 받침 ‘ㄱ, ㅂ’ 뒤에 연결되는 ‘ㄹ’도 [ㄴ]으로 발음한다.
- * @param currentSyllable
- * @param nextSyllable
+ * @param currentSyllable 현재 음절을 입력합니다.
+ * @param nextSyllable 다음 음절을 입력합니다.
  */
 function apply제19항(currentSyllable: Syllable, nextSyllable: Syllable): void {
   const 제19항조건 = arrayIncludes(자음동화_받침_ㄴ_변환, currentSyllable.last) && nextSyllable.first === 'ㄹ';
@@ -396,4 +386,40 @@ function apply제19항(currentSyllable: Syllable, nextSyllable: Syllable): void 
   if (제19항조건) {
     nextSyllable.first = 'ㄴ';
   }
+}
+
+/**
+ * 제18항을 적용합니다.
+ * @description 18항 - 받침 ‘ㄱ(ㄲ, ㅋ, ㄳ, ㄺ), ㄷ(ㅅ, ㅆ, ㅈ, ㅊ, ㅌ, ㅎ), ㅂ(ㅍ, ㄼ, ㄿ, ㅄ)’은 ‘ㄴ, ㅁ’ 앞에서 [ㅇ, ㄴ, ㅁ]으로 발음한다.
+ * @param currentSyllable 현재 음절을 입력합니다.
+ * @param nextSyllable 다음 음절을 입력합니다.
+ * @returns 18항이 적용되었는지의 여부를 반환합니다.
+ */
+function apply제18항(currentSyllable: Syllable, nextSyllable: Syllable): ChangedPronunciation {
+  const changedSyllable = {
+    isChanged: false,
+  };
+
+  const 제18항조건 = currentSyllable.last && ['ㄴ', 'ㅁ'].includes(nextSyllable.first);
+
+  if (!제18항조건) {
+    return changedSyllable;
+  }
+
+  if (arrayIncludes(비음화_받침_ㅇ_변환, currentSyllable.last)) {
+    currentSyllable.last = 'ㅇ';
+    changedSyllable.isChanged = true;
+  }
+
+  if (arrayIncludes(비음화_받침_ㄴ_변환, currentSyllable.last)) {
+    currentSyllable.last = 'ㄴ';
+    changedSyllable.isChanged = true;
+  }
+
+  if (arrayIncludes(비음화_받침_ㅁ_변환, currentSyllable.last)) {
+    currentSyllable.last = 'ㅁ';
+    changedSyllable.isChanged = true;
+  }
+
+  return changedSyllable;
 }
