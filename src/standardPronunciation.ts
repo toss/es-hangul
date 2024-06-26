@@ -1,6 +1,7 @@
 import { joinString } from './_internal';
 import { isHangulAlphabet, isHangulCharacter } from './_internal/hangul';
 import { combineHangulCharacter } from './combineHangulCharacter';
+import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
 import {
   ㄴㄹ이_덧나는_모음,
   ㄴㄹ이_덧나서_받침_ㄴ_변환,
@@ -22,8 +23,7 @@ import {
   특별한_한글_자모,
   특별한_한글_자모의_발음,
   한글_자모,
-} from './constants';
-import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
+} from './standardPronunciation.constants';
 import { arrayIncludes, hasProperty, isNotUndefined } from './utils';
 
 type NotHangul = {
