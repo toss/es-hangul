@@ -64,30 +64,18 @@ export function standardPronunciation(
         nextSyllable.first = apply경음화(currentSyllable, nextSyllable);
       }
 
-      /* 
-        제16항 - 한글 자모의 이름은 그 받침소리를 연음하되, ‘ㄷ, ㅈ, ㅊ, ㅋ, ㅌ, ㅍ, ㅎ’의 경우에는 특별히 다음과 같이 발음한다.
-        ㄷ, ㅈ, ㅊ, ㅌ, ㅎ > ㅅ (디귿이:디그시, 지읒이:지으시, 치읓이:치으시, 티읕이:티으시, 히읗이:히으시)
-        ㅋ > ㄱ (키읔이:키으기)
-        ㅍ > ㅂ (피읖이:피으비)
-      */
-      if (i > 0 && currentSyllable.last && nextSyllable?.first === 음가가_없는_자음) {
-        const combinedSyllables = hangulPhrase[i - 1] + hangulPhrase[i];
+      if (i > 0 && nextSyllable) {
+        const { currentSyllableJongseong, nextSyllableChoseong, isChanged } = apply제16항(
+          currentSyllable,
+          nextSyllable,
+          hangulPhrase,
+          i
+        );
 
-        if (arrayIncludes(특별한_한글_자모, combinedSyllables)) {
-          const 다음_음절의_초성 =
-            특별한_한글_자모의_발음[currentSyllable.last as keyof typeof 특별한_한글_자모의_발음];
+        currentSyllable.last = currentSyllableJongseong;
+        nextSyllable.first = nextSyllableChoseong;
 
-          currentSyllable.last = '';
-          nextSyllable.first = 다음_음절의_초성;
-
-          continue;
-        } else if (arrayIncludes(한글_자모, combinedSyllables)) {
-          nextSyllable.first = currentSyllable.last as typeof nextSyllable.first;
-
-          if (currentSyllable.last !== 'ㅇ') {
-            currentSyllable.last = '';
-          }
-
+        if (isChanged) {
           continue;
         }
       }
@@ -319,4 +307,58 @@ function apply경음화(currentSyllable: Syllable, nextSyllable: Syllable): Syll
   }
 
   return nextSyllable.first;
+}
+
+function apply제16항(
+  currentSyllable: Syllable,
+  nextSyllable: Syllable,
+  hangulPhrase: string,
+  index: number
+): {
+  nextSyllableChoseong: Syllable['first'];
+  currentSyllableJongseong: Syllable['last'];
+  isChanged: boolean;
+} {
+  const changedSyllable = {
+    nextSyllableChoseong: nextSyllable.first,
+    currentSyllableJongseong: currentSyllable.last,
+    isChanged: false,
+  };
+
+  /* 
+    제16항 - 한글 자모의 이름은 그 받침소리를 연음하되, ‘ㄷ, ㅈ, ㅊ, ㅋ, ㅌ, ㅍ, ㅎ’의 경우에는 특별히 다음과 같이 발음한다.
+    ㄷ, ㅈ, ㅊ, ㅌ, ㅎ > ㅅ (디귿이:디그시, 지읒이:지으시, 치읓이:치으시, 티읕이:티으시, 히읗이:히으시)
+    ㅋ > ㄱ (키읔이:키으기)
+    ㅍ > ㅂ (피읖이:피으비)
+  */
+  const 제16항조건 = currentSyllable.last && nextSyllable.first === 음가가_없는_자음;
+
+  if (!제16항조건) {
+    return changedSyllable;
+  }
+
+  const combinedSyllables = hangulPhrase[index - 1] + hangulPhrase[index];
+
+  if (arrayIncludes(특별한_한글_자모, combinedSyllables)) {
+    const 다음_음절의_초성 = 특별한_한글_자모의_발음[currentSyllable.last as keyof typeof 특별한_한글_자모의_발음];
+
+    changedSyllable.currentSyllableJongseong = '';
+    changedSyllable.nextSyllableChoseong = 다음_음절의_초성;
+    changedSyllable.isChanged = true;
+
+    return changedSyllable;
+  }
+
+  if (arrayIncludes(한글_자모, combinedSyllables)) {
+    changedSyllable.nextSyllableChoseong = currentSyllable.last as typeof nextSyllable.first;
+
+    if (currentSyllable.last !== 'ㅇ') {
+      changedSyllable.currentSyllableJongseong = '';
+    }
+
+    changedSyllable.isChanged = true;
+    return changedSyllable;
+  }
+
+  return changedSyllable;
 }
