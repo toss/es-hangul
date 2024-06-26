@@ -347,6 +347,7 @@ export function apply경음화(currentSyllable: Syllable, nextSyllable: Syllable
 
 /**
  * 'ㄴ,ㄹ'이 덧나는 경우(동화작용)를 적용합니다.
+ * @description 합성어에서 둘째 요소가 ‘야, 여, 요, 유, 얘, 예’ 등으로 시작되는 말이면 ‘ㄴ, ㄹ’이 덧난다
  * @link https://www.youtube.com/watch?v=Mm2JX2naqWk
  * @link http://contents2.kocw.or.kr/KOCW/data/document/2020/seowon/choiyungon0805/12.pdf
  * @param currentSyllable 현재 음절을 입력합니다.
