@@ -32,4 +32,9 @@ describe('disassembleCompleteHangulCharacter', () => {
       last: 'ㄱ',
     });
   });
+
+  it('완전한 한글 문자열이 아니면 undefined를 반환해야 합니다.', () => {
+    expect(disassembleCompleteHangulCharacter('ㄱ')).toBeUndefined;
+    expect(disassembleCompleteHangulCharacter('ㅏ')).toBeUndefined;
+  });
 });

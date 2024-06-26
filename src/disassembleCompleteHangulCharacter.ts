@@ -14,6 +14,20 @@ interface ReturnTypeDisassembleCompleteHangulCharacter {
   last: (typeof HANGUL_CHARACTERS_BY_LAST_INDEX)[number];
 }
 
+/**
+ * @name disassembleCompleteHangulCharacter
+ * @description
+ * 완전한 한글 문자열을 초성, 중성, 종성으로 분리합니다.
+ *
+ * @param {string} letter 분리하고자 하는 완전한 한글 문자열
+ *
+ * @example
+ * disassembleCompleteHangulCharacter('값') // { first: 'ㄱ', middle: 'ㅏ', last: 'ㅂㅅ' }
+ * disassembleCompleteHangulCharacter('리') // { first: 'ㄹ', middle: 'ㅣ', last: '' }
+ * disassembleCompleteHangulCharacter('빚') // { first: 'ㅂ', middle: 'ㅣ', last: 'ㅈ' }
+ * disassembleCompleteHangulCharacter('박') // { first: 'ㅂ', middle: 'ㅏ', last: 'ㄱ' }
+ */
+
 export function disassembleCompleteHangulCharacter(
   letter: string
 ): ReturnTypeDisassembleCompleteHangulCharacter | undefined {
