@@ -75,12 +75,12 @@ describe('binaryAssembleHangulCharacters', () => {
     assert.throws(
       () => binaryAssembleHangulCharacters('ㄱ', 'a'),
       Error,
-      'Invalid next character: a. Next character must be one of the chosung, jungsung, or jongsung.'
+      'Invalid next character: a. Next character must be one of the choseong, jungseong, or jongseong.'
     );
     assert.throws(
       () => binaryAssembleHangulCharacters('ㄱ', 'ㅡㅏ'),
       Error,
-      'Invalid next character: ㅡㅏ. Next character must be one of the chosung, jungsung, or jongsung.'
+      'Invalid next character: ㅡㅏ. Next character must be one of the choseong, jungseong, or jongseong.'
     );
   });
 });

@@ -2,7 +2,7 @@ import assert, { excludeLastElement, isBlank, joinString } from '.';
 import { combineHangulCharacter, combineVowels, curriedCombineHangulCharacter } from '../combineHangulCharacter';
 import { disassembleHangulToGroups } from '../disassemble';
 import { removeLastHangulCharacter } from '../removeLastHangulCharacter';
-import { canBeChosung, canBeJongsung, canBeJungsung, hasSingleBatchim } from '../utils';
+import { canBeChoseong, canBeJongseong, canBeJungseong, hasSingleBatchim } from '../utils';
 
 export function isHangulCharacter(character: string) {
   return /^[가-힣]$/.test(character);
@@ -23,12 +23,12 @@ export function isHangulAlphabet(character: string) {
  * ```
  */
 export function binaryAssembleHangulAlphabets(source: string, nextCharacter: string) {
-  if (canBeJungsung(`${source}${nextCharacter}`)) {
+  if (canBeJungseong(`${source}${nextCharacter}`)) {
     return combineVowels(source, nextCharacter);
   }
 
-  const isConsonantSource = canBeJungsung(source) === false;
-  if (isConsonantSource && canBeJungsung(nextCharacter)) {
+  const isConsonantSource = canBeJungseong(source) === false;
+  if (isConsonantSource && canBeJungseong(nextCharacter)) {
     return combineHangulCharacter(source, nextCharacter);
   }
 
@@ -72,7 +72,7 @@ export function binaryAssembleHangulCharacters(source: string, nextCharacter: st
   );
   assert(
     isHangulAlphabet(nextCharacter),
-    `Invalid next character: ${nextCharacter}. Next character must be one of the chosung, jungsung, or jongsung.`
+    `Invalid next character: ${nextCharacter}. Next character must be one of the choseong, jungseong, or jongseong.`
   );
 
   const sourceJamos = disassembleHangulToGroups(source)[0];
@@ -85,29 +85,29 @@ export function binaryAssembleHangulCharacters(source: string, nextCharacter: st
 
   const [restJamos, lastJamo] = excludeLastElement(sourceJamos);
 
-  const needLinking = canBeChosung(lastJamo) && canBeJungsung(nextCharacter);
+  const needLinking = canBeChoseong(lastJamo) && canBeJungseong(nextCharacter);
   if (needLinking) {
     return linkHangulCharacters(source, nextCharacter);
   }
 
   const fixConsonant = curriedCombineHangulCharacter;
-  const combineJungsung = fixConsonant(restJamos[0]);
+  const combineJungseong = fixConsonant(restJamos[0]);
 
-  if (canBeJungsung(`${lastJamo}${nextCharacter}`)) {
-    return combineJungsung(`${lastJamo}${nextCharacter}`)();
+  if (canBeJungseong(`${lastJamo}${nextCharacter}`)) {
+    return combineJungseong(`${lastJamo}${nextCharacter}`)();
   }
 
-  if (canBeJungsung(lastJamo) && canBeJongsung(nextCharacter)) {
-    return combineJungsung(lastJamo)(nextCharacter);
+  if (canBeJungseong(lastJamo) && canBeJongseong(nextCharacter)) {
+    return combineJungseong(lastJamo)(nextCharacter);
   }
 
-  const fixVowel = combineJungsung;
-  const combineJongsung = fixVowel(restJamos[1]);
+  const fixVowel = combineJungseong;
+  const combineJongseong = fixVowel(restJamos[1]);
 
   const lastConsonant = lastJamo;
 
-  if (hasSingleBatchim(source) && canBeJongsung(`${lastConsonant}${nextCharacter}`)) {
-    return combineJongsung(`${lastConsonant}${nextCharacter}`);
+  if (hasSingleBatchim(source) && canBeJongseong(`${lastConsonant}${nextCharacter}`)) {
+    return combineJongseong(`${lastConsonant}${nextCharacter}`);
   }
 
   return joinString(source, nextCharacter);

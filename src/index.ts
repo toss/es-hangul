@@ -1,5 +1,5 @@
 export * from './assemble';
-export * from './chosungIncludes';
+export * from './choseongIncludes';
 export * from './combineHangulCharacter';
 export * from './convertQwertyToHangulAlphabet';
 export * from './disassemble';
