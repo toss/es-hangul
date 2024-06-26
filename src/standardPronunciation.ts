@@ -305,7 +305,7 @@ function 음절분해(hangulPhrase: string): {
 
       return true;
     })
-    .map(syllable => disassembleCompleteHangulCharacter(syllable))
+    .map(disassembleCompleteHangulCharacter)
     .filter(isNotUndefined);
 
   return { notHangulPhrase, disassembleHangul };
