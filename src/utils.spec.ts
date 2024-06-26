@@ -1,4 +1,5 @@
 import {
+  arrayIncludes,
   canBeChosung,
   canBeJongsung,
   canBeJungsung,
@@ -8,7 +9,6 @@ import {
   hasProperty,
   hasSingleBatchim,
   hasValueInReadOnlyStringList,
-  isIncludedInArray,
   isNotUndefined,
 } from './utils';
 
@@ -242,25 +242,25 @@ describe('isNotUndefined', () => {
   });
 });
 
-describe('isIncludedInArray', () => {
+describe('arrayIncludes', () => {
   it('값이 배열에 포함된 경우 true를 반환해야 한다', () => {
     const array = ['a', 'b', 'c'] as const;
     const value = 'a';
-    const result = isIncludedInArray(array, value);
+    const result = arrayIncludes(array, value);
     expect(result).toBe(true);
   });
 
   it('값이 배열에 포함되지 않은 경우 false를 반환해야 한다', () => {
     const array = ['a', 'b', 'c'] as const;
     const value = 'd';
-    const result = isIncludedInArray(array, value);
+    const result = arrayIncludes(array, value);
     expect(result).toBe(false);
   });
 
   it('undefined 값에 대해 false를 반환해야 합니다', () => {
     const array = ['a', 'b', 'c'] as const;
     const value = undefined;
-    const result = isIncludedInArray(array, value);
+    const result = arrayIncludes(array, value);
     expect(result).toBe(false);
   });
 });

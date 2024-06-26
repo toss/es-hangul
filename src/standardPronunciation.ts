@@ -24,7 +24,7 @@ import {
   한글_자모,
 } from './constants';
 import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
-import { hasProperty, isIncludedInArray, isNotUndefined } from './utils';
+import { arrayIncludes, hasProperty, isNotUndefined } from './utils';
 
 type NotHangul = {
   index: number;
@@ -67,7 +67,7 @@ export function standardPronunciation(
           제 6장 - 경음화
           제23항 - 받침 ‘ㄱ(ㄲ, ㅋ, ㄳ, ㄺ), ㄷ(ㅅ, ㅆ, ㅈ, ㅊ, ㅌ), ㅂ(ㅍ, ㄼ, ㄿ, ㅄ)’ 뒤에 연결되는 ‘ㄱ, ㄷ, ㅂ, ㅅ, ㅈ’은 된소리로 발음한다.
         */
-        if (isIncludedInArray(된소리_받침_23항, currentSyllable.last) && hasProperty(된소리, nextSyllable.first)) {
+        if (arrayIncludes(된소리_받침_23항, currentSyllable.last) && hasProperty(된소리, nextSyllable.first)) {
           nextSyllable.first = 된소리[nextSyllable.first];
         }
 
@@ -76,7 +76,7 @@ export function standardPronunciation(
           제25항 - 어간 받침 ‘ㄼ, ㄾ’ 뒤에 결합되는 어미의 첫소리 ‘ㄱ, ㄷ, ㅅ, ㅈ’은 된소리로 발음한다.
         */
         if (
-          isIncludedInArray(어간_받침, currentSyllable.last) &&
+          arrayIncludes(어간_받침, currentSyllable.last) &&
           nextSyllable.first !== 'ㅂ' &&
           hasProperty(된소리, nextSyllable.first)
         ) {
@@ -93,7 +93,7 @@ export function standardPronunciation(
       if (i > 0 && currentSyllable.last && nextSyllable?.first === 음가가_없는_자음) {
         const combinedSyllables = hangulPhrase[i - 1] + hangulPhrase[i];
 
-        if (isIncludedInArray(특별한_한글_자모, combinedSyllables)) {
+        if (arrayIncludes(특별한_한글_자모, combinedSyllables)) {
           const 다음_음절의_초성 =
             특별한_한글_자모의_발음[currentSyllable.last as keyof typeof 특별한_한글_자모의_발음];
 
@@ -101,7 +101,7 @@ export function standardPronunciation(
           nextSyllable.first = 다음_음절의_초성;
 
           continue;
-        } else if (isIncludedInArray(한글_자모, combinedSyllables)) {
+        } else if (arrayIncludes(한글_자모, combinedSyllables)) {
           nextSyllable.first = currentSyllable.last as typeof nextSyllable.first;
 
           if (currentSyllable.last !== 'ㅇ') {
@@ -135,15 +135,15 @@ export function standardPronunciation(
       if (
         currentSyllable.last &&
         nextSyllable?.first === 'ㅇ' &&
-        isIncludedInArray(ㄴㄹ이_덧나는_모음, nextSyllable.middle)
+        arrayIncludes(ㄴㄹ이_덧나는_모음, nextSyllable.middle)
       ) {
-        if (isIncludedInArray(ㄴㄹ이_덧나서_받침_ㄴ_변환, currentSyllable.last)) {
+        if (arrayIncludes(ㄴㄹ이_덧나서_받침_ㄴ_변환, currentSyllable.last)) {
           if (currentSyllable.last === 'ㄱ') {
             currentSyllable.last = 'ㅇ';
           }
 
           nextSyllable.first = 'ㄴ';
-        } else if (isIncludedInArray(ㄴㄹ이_덧나서_받침_ㄹ_변환, currentSyllable.last)) {
+        } else if (arrayIncludes(ㄴㄹ이_덧나서_받침_ㄹ_변환, currentSyllable.last)) {
           nextSyllable.first = 'ㄹ';
         }
       }
@@ -152,7 +152,7 @@ export function standardPronunciation(
         19항 - 받침 ‘ㅁ, ㅇ’ 뒤에 연결되는 ‘ㄹ’은 [ㄴ]으로 발음한다.
         [붙임] 받침 ‘ㄱ, ㅂ’ 뒤에 연결되는 ‘ㄹ’도 [ㄴ]으로 발음한다.
       */
-      if (isIncludedInArray(자음동화_받침_ㄴ_변환, currentSyllable.last) && nextSyllable?.first === 'ㄹ') {
+      if (arrayIncludes(자음동화_받침_ㄴ_변환, currentSyllable.last) && nextSyllable?.first === 'ㄹ') {
         nextSyllable.first = 'ㄴ';
       }
 
@@ -160,11 +160,11 @@ export function standardPronunciation(
         18항 - 받침 ‘ㄱ(ㄲ, ㅋ, ㄳ, ㄺ), ㄷ(ㅅ, ㅆ, ㅈ, ㅊ, ㅌ, ㅎ), ㅂ(ㅍ, ㄼ, ㄿ, ㅄ)’은 ‘ㄴ, ㅁ’ 앞에서 [ㅇ, ㄴ, ㅁ]으로 발음한다.
       */
       if (currentSyllable.last && nextSyllable && ['ㄴ', 'ㅁ'].includes(nextSyllable.first)) {
-        if (isIncludedInArray(비음화_받침_ㅇ_변환, currentSyllable.last)) {
+        if (arrayIncludes(비음화_받침_ㅇ_변환, currentSyllable.last)) {
           currentSyllable.last = 'ㅇ';
-        } else if (isIncludedInArray(비음화_받침_ㄴ_변환, currentSyllable.last)) {
+        } else if (arrayIncludes(비음화_받침_ㄴ_변환, currentSyllable.last)) {
           currentSyllable.last = 'ㄴ';
-        } else if (isIncludedInArray(비음화_받침_ㅁ_변환, currentSyllable.last)) {
+        } else if (arrayIncludes(비음화_받침_ㅁ_변환, currentSyllable.last)) {
           currentSyllable.last = 'ㅁ';
         }
       }
@@ -196,7 +196,7 @@ export function standardPronunciation(
     */
 
       if (currentSyllable.last) {
-        if (isIncludedInArray(발음변환_받침_ㅎ, currentSyllable.last)) {
+        if (arrayIncludes(발음변환_받침_ㅎ, currentSyllable.last)) {
           if (nextSyllable) {
             if (['ㄱ', 'ㄷ', 'ㅈ', 'ㅅ'].includes(nextSyllable.first)) {
               nextSyllable.first = 발음변환_받침_ㅎ_발음[nextSyllable.first as keyof typeof 발음변환_받침_ㅎ_발음];
@@ -216,7 +216,7 @@ export function standardPronunciation(
             replace받침ㅎ(currentSyllable);
           }
         } else if (
-          isIncludedInArray(발음변환_첫소리_ㅎ, currentSyllable.last) &&
+          arrayIncludes(발음변환_첫소리_ㅎ, currentSyllable.last) &&
           nextSyllable &&
           ['ㅎ'].includes(nextSyllable.first)
         ) {
