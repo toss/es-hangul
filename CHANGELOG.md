@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.3.7
+
+### Patch Changes
+
+- [#124](https://github.com/toss/es-hangul/pull/124) [`0f38431`](https://github.com/toss/es-hangul/commit/0f38431ee611cb89c7e121fd02ab34f749a0c386) Thanks [@crucifyer](https://github.com/crucifyer)! - fix: 코드 효율 개선
+
 ## 1.3.6
 
 ### Patch Changes
