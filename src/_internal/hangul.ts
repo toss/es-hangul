@@ -12,6 +12,40 @@ export function isHangulAlphabet(character: string) {
   return /^[ㄱ-ㅣ]$/.test(character);
 }
 
+export function isHangul(actual: unknown): actual is string {
+  return typeof actual === 'string' && /^[가-힣ㄱ-ㅣ\s]+$/.test(actual);
+}
+
+export function assertHangul(actual: unknown, message?: string): asserts actual is string {
+  assert(isHangul(actual), message || `${JSON.stringify(actual)} is not a valid hangul string`);
+}
+
+export function parseHangul(actual: unknown): string {
+  assertHangul(actual);
+  return actual;
+}
+
+type SafeParseSuccess = {
+  success: true;
+  data: string;
+  error?: never;
+};
+
+type SafeParseError = {
+  success: false;
+  error: unknown;
+  data?: never;
+};
+
+export function safeParseHangul(actual: unknown): SafeParseSuccess | SafeParseError {
+  try {
+    const parsedHangul = parseHangul(actual);
+    return { success: true, data: parsedHangul };
+  } catch (error) {
+    return { success: false, error };
+  }
+}
+
 /**
  * @name binaryAssembleHangulAlphabets
  * @description
