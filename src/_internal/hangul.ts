@@ -47,15 +47,6 @@ export function safeParseHangul(actual: unknown): SafeParseSuccess | SafeParseEr
 }
 
 /**
- * @name isHangulOnly
- * @description
- * text를 받으면 해당 text가 한글 문장인지를 구분합니다.
- *
- */
-export function isHangulOnly(text: string): boolean {
-  return /^[가-힣\s]+$/.test(text);
-}
-/**
  * @name binaryAssembleHangulAlphabets
  * @description
  * 두 개의 한글 자모를 합칩니다. 완성된 한글 문자는 취급하지 않습니다.
