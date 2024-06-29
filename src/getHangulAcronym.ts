@@ -12,9 +12,5 @@ export function getHangulAcronym(hangul: string) {
     throw new Error('Invalid Hangul text, please input Hangul text only.');
   }
 
-  const words = text.split(' ');
-
-  const firstHangulLetters = words.map(word => word.charAt(0));
-
-  return firstHangulLetters;
+return text.split(' ').map(word => word.charAt(0));
 }
