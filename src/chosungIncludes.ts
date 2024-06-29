@@ -2,13 +2,13 @@ import { disassembleHangulToGroups } from './disassemble';
 import { canBeChosung, getChosung } from './utils';
 
 export function chosungIncludes(x: string, y: string) {
-  const trimmedY = y.replace(/\s/g, '');
+  const trimmedY = y.replace(/\s+/g, '');
 
   if (!isOnlyChosung(trimmedY)) {
     return false;
   }
 
-  const chosungX = getChosung(x).replace(/\s/g, '');
+  const chosungX = getChosung(x).replace(/\s+/g, '');
   const chosungY = trimmedY;
 
   return chosungX.includes(chosungY);
