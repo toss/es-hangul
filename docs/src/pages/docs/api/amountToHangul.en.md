@@ -9,16 +9,14 @@ Converts numeric amounts to the Korean reading of the [National Institute of Kor
 For detailed examples, see below.
 
 ```typescript
-function amountToHangul(
-  // A string of numeric amounts
-  str: string
-): string;
+function amountToHangul(amount: string | number): string;
 ```
 
 ## Examples
 
 ```tsx
-amountToHangul('15,201,100'); // '일천오백이십만천백';
-amountToHangul('120,030원'); // '일십이만삼십' - Ignore non-numeric characters
-amountToHangul('392.24'); // '삼백구십이' - Ignore decimals
+amountToHangul('15,201,100'); // '일천오백이십만천백'
+amountToHangul('120,030원'); // '일십이만삼십'
+amountToHangul('12345.6789'); // '일만이천삼백사십오점육칠팔구'
+amountToHangul(15_201_100); // '일천오백이십만천백''
 ```
