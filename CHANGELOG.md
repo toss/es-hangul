@@ -1,5 +1,17 @@
 # es-hangul
 
+## 1.3.8
+
+### Patch Changes
+
+- [#133](https://github.com/toss/es-hangul/pull/133) [`b0e1184`](https://github.com/toss/es-hangul/commit/b0e1184204be0cb9f3c13937888c83c8a94e7ca6) Thanks [@KNU-K](https://github.com/KNU-K)! - feat : 문장의 각 단어 중 첫 문자만 뽑는 extractHangul 함수를 추가합니다.
+
+## 1.3.7
+
+### Patch Changes
+
+- [#124](https://github.com/toss/es-hangul/pull/124) [`0f38431`](https://github.com/toss/es-hangul/commit/0f38431ee611cb89c7e121fd02ab34f749a0c386) Thanks [@crucifyer](https://github.com/crucifyer)! - fix: 코드 효율 개선
+
 ## 1.3.6
 
 ### Patch Changes
