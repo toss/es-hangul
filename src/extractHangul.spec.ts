@@ -1,7 +1,7 @@
 import { extractHangul } from './extractHangul';
 
 describe('extractHangul', () => {
-  it('숫자와 알파벳과 특수문자를 제외한 한글 추출', () => {
+  it('숫자와 알파벳과 특수문자를 제외한 한글 반환', () => {
     expect(extractHangul('안녕하세요1234abc!@#')).toBe('안녕하세요');
   });
 
