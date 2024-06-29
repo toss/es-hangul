@@ -34,6 +34,18 @@ describe('hasBatchim', () => {
       expect(hasBatchim('')).toBe(false);
     });
   });
+
+  describe('완성된 한글이 아닌 경우', () => {
+    it('한글이 자음 또는 모음으로만 구성된 경우 false를 반환한다.', () => {
+      expect(hasBatchim('ㄱ')).toBe(false);
+      expect(hasBatchim('ㅏ')).toBe(false);
+    });
+
+    it('한글 외의 문자를 입력하면 false를 반환한다', () => {
+      expect(hasBatchim('cat')).toBe(false);
+      expect(hasBatchim('!')).toBe(false);
+    });
+  });
 });
 
 describe('hasSingleBatchim', () => {
