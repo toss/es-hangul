@@ -8,7 +8,9 @@ import { isHangulOnly } from './_internal/hangul';
  * 한글 문장이 아닌, 문장은 취급하지않습니다. 추가로 한글 문장 + 영어 문장의 경우에도 취급하지않습니다.
  */
 export function getHangulAcronym(text: string) {
-  if (!isHangulOnly(text)) throw new Error('Invalid Hangul text, please input Hangul text only.');
+  if (!isHangulOnly(text)) {
+    throw new Error('Invalid Hangul text, please input Hangul text only.');
+  }
 
   const words = text.split(' ');
 

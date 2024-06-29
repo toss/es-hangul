@@ -19,7 +19,7 @@ export function isHangulAlphabet(character: string) {
  *
  */
 export function isHangulOnly(text: string): boolean {
-  return /^[\가-\힣\s]+$/.test(text);
+  return /^[가-힣\s]+$/.test(text);
 }
 /**
  * @name binaryAssembleHangulAlphabets
