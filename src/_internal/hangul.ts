@@ -18,7 +18,7 @@ export function isHangulAlphabet(character: string) {
  * text를 받으면 해당 text가 한글 문장인지를 구분합니다.
  *
  */
-export function isHangulText(text: string): boolean {
+export function isHangulOnly(text: string): boolean {
   return /^[\가-\힣\s]+$/.test(text);
 }
 /**
