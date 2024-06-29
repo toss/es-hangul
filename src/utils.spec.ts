@@ -66,6 +66,12 @@ describe('hasSingleBatchim', () => {
       expect(hasSingleBatchim('토')).toBe(false);
       expect(hasSingleBatchim('서')).toBe(false);
     });
+
+    it('한글 외의 문자를 입력하면 false를 반환한다.', () => {
+      expect(hasSingleBatchim('cat')).toBe(false);
+      expect(hasSingleBatchim('')).toBe(false);
+      expect(hasSingleBatchim('?')).toBe(false);
+    });
   });
 });
 
