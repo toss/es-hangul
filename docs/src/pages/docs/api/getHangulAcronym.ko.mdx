@@ -1,11 +1,12 @@
+import { ChosungIncludesDemo } from '@/components/demo/chosung-includes-demo';
+
 # getHangulAcronym
 
-It receives the Korean sentence and returns the first letter of that Korean sentence.
-(We don't deal with non-Korean sentences; we don't deal with additional Korean + English sentences.)
+문자열의 초성 일치 검색을 수행합니다.
 
 ```typescript
 function getHangulAcronym(
-  // 복수 명사로 이루워진 문자열 (e.g. '버스 충전', '치킨과 맥주')
+  // String consisting of plural nouns (e.g. '버스 충전', '치킨과 맥주')
   text: string
 ): boolean;
 ```
