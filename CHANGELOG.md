@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.3.9
+
+### Patch Changes
+
+- [#130](https://github.com/toss/es-hangul/pull/130) [`acd6edb`](https://github.com/toss/es-hangul/commit/acd6edb1d8aadced517f6b57a49c01152ff19d0a) Thanks [@Collection50](https://github.com/Collection50)! - feat: 문자열에서 한글만 반환하는 extractHangul을 구현합니다.
+
 ## 1.3.8
 
 ### Patch Changes
