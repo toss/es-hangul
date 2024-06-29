@@ -1,5 +1,12 @@
 # docs
 
+## 0.1.6
+
+### Patch Changes
+
+- Updated dependencies [[`f3c7fe9`](https://github.com/toss/es-hangul/commit/f3c7fe9f73138b932af817b8ac925d54c3283151)]:
+  - es-hangul@1.3.10
+
 ## 0.1.5
 
 ### Patch Changes

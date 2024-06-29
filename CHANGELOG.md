@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.3.10
+
+### Patch Changes
+
+- [#148](https://github.com/toss/es-hangul/pull/148) [`f3c7fe9`](https://github.com/toss/es-hangul/commit/f3c7fe9f73138b932af817b8ac925d54c3283151) Thanks [@KNU-K](https://github.com/KNU-K)! - fix : getHangulacronym함수를 acronymizeHangul 메서드로 대체합니다
+
 ## 1.3.9
 
 ### Patch Changes

@@ -11,4 +11,4 @@ export * from './romanizeHangul';
 export * from './standardPronunciation';
 export * from './utils';
 export * from './extractHangul';
-export * from './getHangulAcronym';
+export * from './acronymizeHangul';
