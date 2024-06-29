@@ -9,10 +9,10 @@ describe('getHangulAcronym', () => {
     expect(getHangulAcronym('버스 충전 카드').join('')).toBe('버충카');
   });
   it('한글이 아닌 문장 넣었을 때', () => {
-    expect(() => getHangulAcronym('test test')).toThrowError('Invalid Hangul text, please input Hangul text only.');
+    expect(() => getHangulAcronym('test test')).toThrowError('"test test" is not a valid hangul string');
   });
 
   it('한글과 영어가 섞인 문장을 넣었을 때', () => {
-    expect(() => getHangulAcronym('고기와 Cheese')).toThrowError('Invalid Hangul text, please input Hangul text only.');
+    expect(() => getHangulAcronym('고기와 Cheese')).toThrowError('"고기와 Cheese" is not a valid hangul string');
   });
 });
