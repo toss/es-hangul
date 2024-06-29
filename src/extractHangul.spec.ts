@@ -1,6 +1,6 @@
 import { extractHangul } from './extractHangul';
 
-describe('extractHangul 함수 테스트', () => {
+describe('extractHangul', () => {
   it('숫자와 알파벳 추출', () => {
     expect(extractHangul('안녕하세요1234abc!@#')).toBe('안녕하세요');
   });
