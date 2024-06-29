@@ -8,4 +8,9 @@ describe('amountToHangul', () => {
     expect(amountToHangul('100000000')).toEqual('일억');
     expect(amountToHangul('100000100')).toEqual('일억백');
   });
+
+  it('숫자로 된 금액이 80글자를 넘을 시 에러 발생', () => {
+    const longNumberString = '1'.repeat(81);
+    assert.throws(() => amountToHangul(longNumberString), Error, `convert range exceeded : ${longNumberString}`);
+  });
 });
