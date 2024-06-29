@@ -72,4 +72,9 @@ describe('romanizeHangul', () => {
     expect(romanizeHangul('')).toBe('');
     expect(romanizeHangul('!?/')).toBe('!?/');
   });
+
+  it('한글과 영어가 혼합된 경우에는 영어는 그대로 반환된다', () => {
+    expect(romanizeHangul('안녕하세요 korea')).toBe('annyeonghaseyo korea');
+    expect(romanizeHangul('고양이는cat')).toBe('goyangnineuncat');
+  });
 });
