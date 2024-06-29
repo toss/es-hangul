@@ -8,4 +8,5 @@ export * from './hangulIncludes';
 export * from './josa';
 export * from './removeLastHangulCharacter';
 export * from './utils';
+export * from './extractHangul';
 export * from './getHangulAcronym';
