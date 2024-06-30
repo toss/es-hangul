@@ -55,15 +55,23 @@ es-hangul에서 제공하는 메서드들은 특별한 이유가 없다면, hang
 
 ```ts
 // Don't
-function getSimilarity()
+function getSimilarity();
 // Do
-function getHangulSimilarity()
-
+function getHangulSimilarity();
 
 // Don't
-function disassemble()
+function disassemble();
 // Do
-function disassembleHangul()
+function disassembleHangul();
+```
+
+메서드명 자체에서 한글을 다룬다는 사실이 명확히 느껴진다면, 생략할 수 있습니다
+
+```ts
+// Don't
+function getHangulJosa();
+// Do
+function josa();
 ```
 
 - [래퍼런스](https://github.com/toss/es-hangul/issues/121)
