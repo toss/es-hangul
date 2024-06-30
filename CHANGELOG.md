@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.4.1
+
+### Patch Changes
+
+- [#157](https://github.com/toss/es-hangul/pull/157) [`f7e60ae`](https://github.com/toss/es-hangul/commit/f7e60aeca9f315ac1e34eba0a1f8a82f55d79956) Thanks [@manudeli](https://github.com/manudeli)! - fix: 패키지가 노출하는 인터페이스를 명확히 하기 위해 index.ts를 named export로 수정합니다
+
 ## 1.4.0
 
 ### Minor Changes
