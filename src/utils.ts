@@ -54,7 +54,7 @@ export function hasSingleBatchim(str: string) {
   }
 
   const disassembled = disassembleHangul(lastChar);
-  return disassembled.length === 3;
+  return disassembled.length === (canBeJungsung(`${disassembled[1]}${disassembled[2]}`) ? 4 : 3);
 }
 
 /**

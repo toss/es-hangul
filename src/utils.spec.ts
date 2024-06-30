@@ -42,17 +42,20 @@ describe('hasSingleBatchim', () => {
     expect(hasSingleBatchim('핫')).toBe(true);
     expect(hasSingleBatchim('양')).toBe(true);
     expect(hasSingleBatchim('신')).toBe(true);
+    expect(hasSingleBatchim('확')).toBe(true);
   });
 
   describe('홑받침이 아니라고 판단되는 경우', () => {
     it('겹받침을 받으면 false를 반환한다.', () => {
       expect(hasSingleBatchim('값')).toBe(false);
       expect(hasSingleBatchim('읊')).toBe(false);
+      expect(hasSingleBatchim('웱')).toBe(false);
     });
 
     it('받침이 없는 문자를 받으면 false를 반환한다.', () => {
       expect(hasSingleBatchim('토')).toBe(false);
       expect(hasSingleBatchim('서')).toBe(false);
+      expect(hasSingleBatchim('와')).toBe(false);
     });
   });
 });

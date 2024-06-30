@@ -1,6 +1,7 @@
 import { combineHangulCharacter } from './combineHangulCharacter';
 import { disassembleHangulToGroups } from './disassemble';
 import { excludeLastElement } from './_internal';
+import { canBeJungsung } from './utils';
 
 /**
  * @name removeLastHangulCharacter
@@ -29,16 +30,48 @@ export function removeLastHangulCharacter(words: string) {
 
   const withoutLastCharacter = disassembledGroups
     .filter(v => v !== lastCharacter)
-    .map(([first, middle, last]) => {
+    .map(disassembledGroup => {
+      if (disassembledGroup.length <= 3) {
+        const [first, middle, last] = disassembledGroup;
+        if (middle != null) {
+          return canBeJungsung(last)
+            ? combineHangulCharacter(first, `${middle}${last}`)
+            : combineHangulCharacter(first, middle, last);
+        }
+
+        return first;
+      } else if (canBeJungsung(disassembledGroup[2])) {
+        const [first, firstJungsung, secondJungsung, firstJongsung, secondJongsung] = disassembledGroup;
+
+        return combineHangulCharacter(
+          first,
+          `${firstJungsung}${secondJungsung}`,
+          `${firstJongsung}${secondJongsung ?? ''}`
+        );
+      } else {
+        const [first, middle, firstJongsung, secondJongsung] = disassembledGroup;
+
+        return combineHangulCharacter(first, middle, `${firstJongsung}${secondJongsung}`);
+      }
+    });
+
+  const result = (() => {
+    const [lastCharacterWithoutLastAlphabet] = excludeLastElement(lastCharacter);
+    if (lastCharacterWithoutLastAlphabet.length <= 3) {
+      const [first, middle, last] = lastCharacterWithoutLastAlphabet;
       if (middle != null) {
-        return combineHangulCharacter(first, middle, last);
+        return canBeJungsung(last)
+          ? combineHangulCharacter(first, `${middle}${last}`)
+          : combineHangulCharacter(first, middle, last);
       }
 
       return first;
-    });
+    } else {
+      const [first, firstJungsung, secondJungsung, firstJongsung] = lastCharacterWithoutLastAlphabet;
 
-  const [[first, middle, last]] = excludeLastElement(lastCharacter);
-  const result = middle != null ? combineHangulCharacter(first, middle, last) : first;
+      return combineHangulCharacter(first, `${firstJungsung}${secondJungsung}`, firstJongsung);
+    }
+  })();
 
   return [...withoutLastCharacter, result].join('');
 }
