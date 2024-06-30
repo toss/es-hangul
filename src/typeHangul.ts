@@ -2,10 +2,9 @@ import { isHangulCharacter } from './_internal/hangul';
 import { assembleHangul } from './assemble';
 import { disassembleHangulToGroups } from './disassemble';
 
-export async function* typeHangul(
-  target: string,
-  options?: { speed?: number; initial?: string; decomposeOnBackward?: boolean }
-) {
+type TypingOptions = { speed?: number; initial?: string; decomposeOnBackward?: boolean };
+
+export async function* typeHangul(target: string, options?: TypingOptions) {
   const { speed = 50, initial = '', decomposeOnBackward = true } = options ?? {};
 
   if (initial === target) {
@@ -25,7 +24,7 @@ export async function* typeHangul(
     throw Error(`'${initial}' can't be typed as ${target}`);
   }
 
-  if (isBackward && !decomposeOnBackward && !isHangulCharacter([...target].reverse()[0])) {
+  if (isBackward && !decomposeOnBackward && target.length > 0 && !isHangulCharacter([...target].reverse()[0])) {
     throw Error(
       `'options.decomposeOnBackward' is set to false, but the last character of 'target'(${target}) is not a complete character`
     );
@@ -50,4 +49,43 @@ export async function* typeHangul(
       yield i === 0 ? '' : assembleHangul(longer.slice(0, i));
     }
   }
+}
+
+type TypingEventListener = (value: string, info: { from: string; to: string; isReset: boolean }) => void;
+
+export function getTypewriterHangul(initial = '') {
+  let _current = initial;
+  let _listeners: TypingEventListener[] = [];
+
+  const onType = (callback: TypingEventListener) => {
+    _listeners.push(callback);
+
+    return () => {
+      _listeners = _listeners.filter(listener => listener !== callback);
+    };
+  };
+
+  const _callListeners = (from: string, to: string, isReset: boolean) =>
+    _listeners.forEach(listener => listener.call(null, _current, { from, to, isReset }));
+
+  const type = async (target: string, options?: Omit<TypingOptions, 'initial'>) => {
+    const from = _current;
+    const typeHangulGenerator = typeHangul(target, { ...options, initial: _current });
+
+    for await (const value of typeHangulGenerator) {
+      _current = value;
+      _callListeners(from, target, false);
+    }
+  };
+
+  const reset = (value = initial) => {
+    _current = value;
+    _callListeners(_current, value, true);
+  };
+
+  return {
+    onType,
+    type,
+    reset,
+  };
 }
