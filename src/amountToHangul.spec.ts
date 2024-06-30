@@ -11,6 +11,6 @@ describe('amountToHangul', () => {
 
   it('숫자로 된 금액이 80글자를 넘을 시 에러 발생', () => {
     const longNumberString = '1'.repeat(81);
-    assert.throws(() => amountToHangul(longNumberString), Error, `convert range exceeded : ${longNumberString}`);
+    expect(() => amountToHangul(longNumberString)).toThrow(`convert range exceeded : ${longNumberString}`);
   });
 });
