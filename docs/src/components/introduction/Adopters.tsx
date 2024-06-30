@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { ComponentProps } from 'react';
 
 /**
- * 이 곳에 적용한 조직을 추가해주세요.
+ * 이 곳에 적용한 조직을 추가해주세요
  */
 export const adopterLogoImagePropsList = [
   {
