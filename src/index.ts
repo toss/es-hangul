@@ -7,4 +7,5 @@ export * from './disassembleCompleteHangulCharacter';
 export * from './hangulIncludes';
 export * from './josa';
 export * from './removeLastHangulCharacter';
+export * from './typeHangul';
 export * from './utils';
