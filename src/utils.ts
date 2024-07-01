@@ -2,9 +2,19 @@ import {
   HANGUL_CHARACTERS_BY_FIRST_INDEX,
   HANGUL_CHARACTERS_BY_LAST_INDEX,
   HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
+  JASO_HANGUL_NFD,
 } from './constants';
 import { disassembleHangul, disassembleHangulToGroups } from './disassemble';
 import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
+
+const EXTRACT_CHOSEONG_REGEX = new RegExp(
+  `[^\\u${JASO_HANGUL_NFD.START_CHOSEONG.toString(16)}-\\u${JASO_HANGUL_NFD.END_CHOSEONG.toString(16)}ㄱ-ㅎ\\s]+`,
+  'ug'
+);
+const CHOOSE_NFD_CHOSEONG_REGEX = new RegExp(
+  `[\\u${JASO_HANGUL_NFD.START_CHOSEONG.toString(16)}-\\u${JASO_HANGUL_NFD.END_CHOSEONG.toString(16)}]`,
+  'g'
+);
 
 /**
  * @name hasBatchim
@@ -74,9 +84,10 @@ export function hasSingleBatchim(str: string) {
  * getChosung('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
  */
 export function getChosung(word: string) {
-  return disassembleHangulToGroups(word).reduce((choseong, [consonant]) => {
-    return `${choseong}${consonant}`;
-  }, '');
+  return word
+    .normalize('NFD')
+    .replace(EXTRACT_CHOSEONG_REGEX, '') // NFD ㄱ-ㅎ, NFC ㄱ-ㅎ 외 문자 삭제
+    .replace(CHOOSE_NFD_CHOSEONG_REGEX, $0 => HANGUL_CHARACTERS_BY_FIRST_INDEX[$0.charCodeAt(0) - 0x1100]); // NFD to NFC
 }
 
 /**
@@ -95,9 +106,10 @@ export function getChosung(word: string) {
  * getChoseong('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
  */
 export function getChoseong(word: string) {
-  return disassembleHangulToGroups(word).reduce((choseong, [consonant]) => {
-    return `${choseong}${consonant}`;
-  }, '');
+  return word
+    .normalize('NFD')
+    .replace(EXTRACT_CHOSEONG_REGEX, '') // NFD ㄱ-ㅎ, NFC ㄱ-ㅎ 외 문자 삭제
+    .replace(CHOOSE_NFD_CHOSEONG_REGEX, $0 => HANGUL_CHARACTERS_BY_FIRST_INDEX[$0.charCodeAt(0) - 0x1100]); // NFD to NFC
 }
 
 /**
