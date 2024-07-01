@@ -1,11 +1,21 @@
 import {
+  COMPLETE_HANGUL_START_CHARCODE,
+  COMPLETE_HANGUL_END_CHARCODE,
   HANGUL_CHARACTERS_BY_FIRST_INDEX,
   HANGUL_CHARACTERS_BY_LAST_INDEX,
   HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
   JASO_HANGUL_NFD,
 } from './constants';
-import { disassembleHangul, disassembleHangulToGroups } from './disassemble';
-import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
+import { disassembleHangulToGroups } from './disassemble';
+
+const EXTRACT_CHOSEONG_REGEX = new RegExp(
+  `[^\\u${JASO_HANGUL_NFD.START_CHOSEONG.toString(16)}-\\u${JASO_HANGUL_NFD.END_CHOSEONG.toString(16)}ㄱ-ㅎ\\s]+`,
+  'ug'
+);
+const CHOOSE_NFD_CHOSEONG_REGEX = new RegExp(
+  `[\\u${JASO_HANGUL_NFD.START_CHOSEONG.toString(16)}-\\u${JASO_HANGUL_NFD.END_CHOSEONG.toString(16)}]`,
+  'g'
+);
 
 const EXTRACT_CHOSEONG_REGEX = new RegExp(
   `[^\\u${JASO_HANGUL_NFD.START_CHOSEONG.toString(16)}-\\u${JASO_HANGUL_NFD.END_CHOSEONG.toString(16)}ㄱ-ㅎ\\s]+`,
@@ -36,9 +46,14 @@ export function hasBatchim(str: string) {
   if (lastChar == null) {
     return false;
   }
+  const charCode = lastChar.charCodeAt(0);
+  const isCompleteHangul = COMPLETE_HANGUL_START_CHARCODE <= charCode && charCode <= COMPLETE_HANGUL_END_CHARCODE;
 
-  const disassembled = disassembleCompleteHangulCharacter(lastChar);
-  return disassembled != null && disassembled.last !== '';
+  if (!isCompleteHangul) {
+    return false;
+  }
+
+  return (charCode - COMPLETE_HANGUL_START_CHARCODE) % NUMBER_OF_JONGSUNG > 0;
 }
 
 /**
@@ -59,12 +74,18 @@ export function hasBatchim(str: string) {
 export function hasSingleBatchim(str: string) {
   const lastChar = str[str.length - 1];
 
-  if (lastChar == null || hasBatchim(lastChar) === false) {
+  if (lastChar == null) {
+    return false;
+  }
+  const charCode = lastChar.charCodeAt(0);
+  const isCompleteHangul = COMPLETE_HANGUL_START_CHARCODE <= charCode && charCode <= COMPLETE_HANGUL_END_CHARCODE;
+
+  if (!isCompleteHangul) {
     return false;
   }
 
-  const disassembled = disassembleHangul(lastChar);
-  return disassembled.length === 3;
+  const batchimCode = (charCode - COMPLETE_HANGUL_START_CHARCODE) % NUMBER_OF_JONGSUNG;
+  return HANGUL_CHARACTERS_BY_LAST_INDEX[batchimCode].length === 1;
 }
 
 /**
@@ -106,8 +127,7 @@ export function getChosung(word: string) {
  * getChoseong('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
  */
 export function getChoseong(word: string) {
-  return word
-    .normalize('NFD')
+  return word.normalize('NFD')
     .replace(EXTRACT_CHOSEONG_REGEX, '') // NFD ㄱ-ㅎ, NFC ㄱ-ㅎ 외 문자 삭제
     .replace(CHOOSE_NFD_CHOSEONG_REGEX, $0 => HANGUL_CHARACTERS_BY_FIRST_INDEX[$0.charCodeAt(0) - 0x1100]); // NFD to NFC
 }
