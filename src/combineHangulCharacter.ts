@@ -5,7 +5,7 @@ import {
   HANGUL_CHARACTERS_BY_LAST_INDEX,
   HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
 } from './constants';
-import { canBeChosung, canBeJongsung, canBeJungsung } from './utils';
+import { canBeChoseong, canBeJongseong, canBeJungseong } from './utils';
 
 /**
  * @name combineHangulCharacter
@@ -27,9 +27,9 @@ import { canBeChosung, canBeJongsung, canBeJungsung } from './utils';
  */
 export function combineHangulCharacter(firstCharacter: string, middleCharacter: string, lastCharacter = '') {
   if (
-    canBeChosung(firstCharacter) === false ||
-    canBeJungsung(middleCharacter) === false ||
-    canBeJongsung(lastCharacter) === false
+    canBeChoseong(firstCharacter) === false ||
+    canBeJungseong(middleCharacter) === false ||
+    canBeJongseong(lastCharacter) === false
   ) {
     throw new Error(`Invalid hangul Characters: ${firstCharacter}, ${middleCharacter}, ${lastCharacter}`);
   }

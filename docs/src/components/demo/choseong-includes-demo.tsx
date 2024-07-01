@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { chosungIncludes } from 'es-hangul';
 
-export function ChosungIncludesDemo() {
+export function chosungIncludesDemo() {
   const [searchWord, setSearchWord] = useState<string>('홍길동');
   const [userInput, setUserInput] = useState<string>('ㅎㄱㄷ');
 
