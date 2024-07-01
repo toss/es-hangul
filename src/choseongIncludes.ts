@@ -17,7 +17,7 @@ export function choseongIncludes(x: string, y: string) {
 /*
  * @description 문자열이 한글초성으로만 주어진 경우
  */
-function isOnlyChoseong(str: string) {
+export function isOnlyChoseong(str: string) {
   const groups = disassembleHangulToGroups(str);
   if (groups.length === 0) {
     return false;
