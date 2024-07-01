@@ -377,7 +377,7 @@ export function applyㄴㄹ덧남(currentSyllable: Syllable, nextSyllable: Sylla
       nextSyllable.first = 'ㄹ';
     }
   } else {
-    // ㄴ/ㄹ이 되기 위한 조건이지만 현재 음절의 중성의 가로획이 하나가 아닐 경우에는 덧나지 않고 연음규칙이 적용된다
+    // ㄴ/ㄹ이 되기 위한 조건이지만 현재 음절의 중성의 ∙(하늘)이 하나가 아닐 경우에는 덧나지 않고 연음규칙이 적용된다
     nextSyllable.first = currentSyllable.last as typeof nextSyllable.first;
   }
 }

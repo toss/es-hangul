@@ -78,7 +78,7 @@ describe('standardPronunciation', () => {
         expect(standardPronunciation('불여우')).toBe('불려우');
       });
 
-      it('ㄴ/ㄹ이 되기 위한 조건이지만 현재 음절의 중성의 가로획이 하나가 아닐 경우에는 덧나지 않고 연음규칙이 적용된다', () => {
+      it('ㄴ/ㄹ이 되기 위한 조건이지만 현재 음절의 중성의 ∙(하늘)이 하나가 아닐 경우에는 덧나지 않고 연음규칙이 적용된다', () => {
         expect(standardPronunciation('고양이')).toBe('고양이');
         expect(standardPronunciation('윤여정')).toBe('윤녀정');
       });
