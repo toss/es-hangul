@@ -2,6 +2,7 @@ import { disassembleCompleteHangulCharacter } from '../disassembleCompleteHangul
 import { arrayIncludes, hasProperty } from '../utils';
 import {
   ㄴㄹ이_덧나는_모음,
+  ㄴㄹ이_덧나는_후속음절_모음,
   ㄴㄹ이_덧나서_받침_ㄴ_변환,
   ㄴㄹ이_덧나서_받침_ㄹ_변환,
   된소리,
@@ -355,21 +356,28 @@ export function apply경음화(currentSyllable: Syllable, nextSyllable: Syllable
  */
 export function applyㄴㄹ덧남(currentSyllable: Syllable, nextSyllable: Syllable) {
   const ㄴㄹ이덧나는조건 =
-    currentSyllable.last && nextSyllable.first === 'ㅇ' && arrayIncludes(ㄴㄹ이_덧나는_모음, nextSyllable.middle);
+    currentSyllable.last &&
+    nextSyllable.first === 'ㅇ' &&
+    arrayIncludes(ㄴㄹ이_덧나는_후속음절_모음, nextSyllable.middle);
 
   if (!ㄴㄹ이덧나는조건) {
     return;
   }
 
-  if (arrayIncludes(ㄴㄹ이_덧나서_받침_ㄴ_변환, currentSyllable.last)) {
-    if (currentSyllable.last === 'ㄱ') {
-      currentSyllable.last = 'ㅇ';
+  if (arrayIncludes(ㄴㄹ이_덧나는_모음, currentSyllable.middle)) {
+    if (arrayIncludes(ㄴㄹ이_덧나서_받침_ㄴ_변환, currentSyllable.last)) {
+      if (currentSyllable.last === 'ㄱ') {
+        currentSyllable.last = 'ㅇ';
+      }
+
+      nextSyllable.first = 'ㄴ';
     }
 
-    nextSyllable.first = 'ㄴ';
-  }
-
-  if (arrayIncludes(ㄴㄹ이_덧나서_받침_ㄹ_변환, currentSyllable.last)) {
-    nextSyllable.first = 'ㄹ';
+    if (arrayIncludes(ㄴㄹ이_덧나서_받침_ㄹ_변환, currentSyllable.last)) {
+      nextSyllable.first = 'ㄹ';
+    }
+  } else {
+    // ㄴ/ㄹ이 되기 위한 조건이지만 현재 음절의 중성의 가로획이 하나가 아닐 경우에는 덧나지 않고 연음규칙이 적용된다
+    nextSyllable.first = currentSyllable.last as typeof nextSyllable.first;
   }
 }
