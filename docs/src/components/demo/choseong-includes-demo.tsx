@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { choseongIncludes } from 'es-hangul';
+import { chosungIncludes } from 'es-hangul';
 
-export function choseongIncludesDemo() {
+export function chosungIncludesDemo() {
   const [searchWord, setSearchWord] = useState<string>('홍길동');
   const [userInput, setUserInput] = useState<string>('ㅎㄱㄷ');
 
-  const result = choseongIncludes(searchWord, userInput);
+  const result = chosungIncludes(searchWord, userInput);
 
   return (
     <div className="bg-gray-200 dark:bg-gray-800 rounded-lg shadow-md p-6 max-w-md mx-auto my-8">

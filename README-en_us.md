@@ -11,12 +11,12 @@ es-hangul is a library that makes it easy to handle [Hangul](https://en.wikipedi
 You can easily implement tasks related to Hangul, such as initial consonant search and attaching particles(josas).
 
 ```tsx
-import { choseongIncludes } from 'es-hangul';
+import { chosungIncludes } from 'es-hangul';
 
 const searchWord = '라면';
 const userInput = 'ㄹㅁ';
 
-const result = choseongIncludes(searchWord, userInput); // true
+const result = chosungIncludes(searchWord, userInput); // true
 ```
 
 ```tsx

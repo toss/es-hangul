@@ -11,12 +11,12 @@
 초성 검색, 조사 붙이기와 같은 한글 작업을 간단히 할 수 있습니다.
 
 ```tsx
-import { choseongIncludes } from 'es-hangul';
+import { chosungIncludes } from 'es-hangul';
 
 const searchWord = '라면';
 const userInput = 'ㄹㅁ';
 
-const result = choseongIncludes(searchWord, userInput); // true
+const result = chosungIncludes(searchWord, userInput); // true
 ```
 
 ```tsx
