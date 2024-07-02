@@ -1,0 +1,16 @@
+# acronymizeHangul
+
+It receives the Korean sentence and returns the first letter of that Korean sentence.
+(We don't deal with non-Korean sentences; we don't deal with additional Korean + English sentences.)
+
+```typescript
+function acronymizeHangul(
+  // String consisting of plural nouns (e.g. '버스 충전', '치킨과 맥주')
+  hangul: string
+): boolean;
+```
+
+```typescript
+acronymizeHangul('치킨과 맥주').join(''); //치맥
+acronymizeHangul('버스 충전 카드').join(''); //버충카
+```
