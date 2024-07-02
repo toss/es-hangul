@@ -30,7 +30,6 @@ const computeLevenshteinRow = (prevRow: number[], bChar: string, a: string): num
 const computeLevenshteinDistance = (a: string, b: string, matrix: number[][]): number =>
   b.split('').reduce((prevRow, bChar) => computeLevenshteinRow(prevRow, bChar, a), matrix[0])[a.length];
 
-// https://en.wikipedia.org/wiki/Levenshtein_distance
 const levenshtein = (a: string, b: string): number => {
   const matrix = initializeLevenshteinMatrix(b.length + 1, a.length + 1);
   return computeLevenshteinDistance(a, b, matrix);
