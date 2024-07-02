@@ -51,27 +51,18 @@ A clear and concise description of what the pr is about.
 
 ## 3. Convention
 
-es-hangul에서 제공하는 메서드들은 특별한 이유가 없다면, hangul이라는 맥락을 드러내는 것을 지향합니다.
+es-hangul에서 외부로 노출하는 메서드들은 특별한 이유가 없다면 hangul을 생략합니다
 
 ```ts
 // Don't
-function getSimilarity();
-// Do
 function getHangulSimilarity();
+// Do
+function getSimilarity();
 
 // Don't
-function disassemble();
-// Do
 function disassembleHangul();
-```
-
-메서드명 자체에서 한글을 다룬다는 사실이 명확히 느껴진다면, 생략할 수 있습니다
-
-```ts
-// Don't
-function getHangulJosa();
 // Do
-function josa();
+function disassemble();
 ```
 
-- [래퍼런스](https://github.com/toss/es-hangul/issues/121)
+- [결정된 논의를 자세히 살펴보기](https://github.com/toss/es-hangul/pull/132#discussion_r1660063497)
