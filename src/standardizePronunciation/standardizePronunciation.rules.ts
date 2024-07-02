@@ -22,7 +22,7 @@ import {
   특별한_한글_자모,
   특별한_한글_자모의_발음,
   한글_자모,
-} from './standardPronunciation.constants';
+} from './standardizePronunciation.constants';
 
 export type NonUndefined<T> = T extends undefined ? never : T;
 export type Nullable<T> = T | null | undefined;

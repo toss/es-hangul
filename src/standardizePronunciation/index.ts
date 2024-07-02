@@ -16,7 +16,7 @@ import {
   apply제20항,
   apply제9와10과11항,
   type Syllable,
-} from './standardPronunciation.rules';
+} from './standardizePronunciation.rules';
 
 type NotHangul = {
   index: number;
@@ -30,7 +30,7 @@ type NotHangul = {
  * @param options.hardConversion 경음화 등의 된소리를 적용할지 여부를 설정합니다. 기본값은 true입니다.
  * @returns 변환된 표준 발음 문자열을 반환합니다.
  */
-export function standardPronunciation(
+export function standardizePronunciation(
   hangul: string,
   options: {
     hardConversion: boolean;
@@ -88,7 +88,7 @@ function applyRules(
   nextSyllable: Nullable<Syllable>,
   index: number,
   hangulPhrase: string,
-  options: NonNullable<Parameters<typeof standardPronunciation>[1]>
+  options: NonNullable<Parameters<typeof standardizePronunciation>[1]>
 ): void {
   if (nextSyllable) {
     if (options.hardConversion) {

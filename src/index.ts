@@ -9,8 +9,8 @@ export { extractHangul } from './extractHangul';
 export { hangulIncludes } from './hangulIncludes';
 export { josa } from './josa';
 export { removeLastHangulCharacter } from './removeLastHangulCharacter';
-export { romanizeHangul } from './romanizeHangul';
-export { standardPronunciation } from './standardPronunciation';
+export { romanize } from './romanize';
+export { standardizePronunciation } from './standardizePronunciation';
 export {
   canBeChosung,
   canBeJongsung,
