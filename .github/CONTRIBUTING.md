@@ -51,7 +51,7 @@ A clear and concise description of what the pr is about.
 
 ## 3. Convention
 
-es-hangul에서 외부로 노출하는 메서드들은 특별한 이유가 없다면 hangul을 생략합니다
+함수명에는 특별한 이유가 없다면 hangul을 포함하지 않습니다.
 
 ```ts
 // Don't
