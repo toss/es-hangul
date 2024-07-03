@@ -75,4 +75,3 @@ hangul.getSimilarity(...)
 hangul.disassemble(...)
 hangul.josa(...)
 
-- [결정된 논의를 자세히 살펴보기](https://github.com/toss/es-hangul/pull/132#discussion_r1660063497)
