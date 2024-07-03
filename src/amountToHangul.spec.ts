@@ -5,6 +5,8 @@ describe('amountToHangul', () => {
     expect(amountToHangul('15,201,100')).toEqual('일천오백이십만천백');
     expect(amountToHangul('100000000')).toEqual('일억');
     expect(amountToHangul('100000100')).toEqual('일억백');
+    expect(amountToHangul('0')).toEqual('영');
+    expect(amountToHangul('')).toEqual('');
   });
 
   it('숫자로 된 금액이 80글자를 넘을 시 에러 발생', () => {
@@ -17,6 +19,9 @@ describe('amountToHangul', () => {
   });
 
   it('소수점이 있는 경우도 표기', () => {
+    expect(amountToHangul('0.01020')).toEqual('영점영일영이');
+    expect(amountToHangul('0.0000')).toEqual('영');
+    expect(amountToHangul('.0000')).toEqual('영');
     expect(amountToHangul('392.24')).toEqual('삼백구십이점이사');
     expect(amountToHangul('12345.6789')).toEqual('일만이천삼백사십오점육칠팔구');
   });
