@@ -125,27 +125,19 @@ describe('binaryAssembleHangulCharacters', () => {
   });
 
   it('소스가 두 글자 이상이라면 Invalid source 에러를 발생시킨다.', () => {
-    assert.throws(
-      () => binaryAssembleHangulCharacters('가나', 'ㄴ'),
-      Error,
+    expect(() => binaryAssembleHangulCharacters('가나', 'ㄴ')).toThrowError(
       'Invalid source character: 가나. Source must be one character.'
     );
-    assert.throws(
-      () => binaryAssembleHangulCharacters('ㄱㄴ', 'ㅏ'),
-      Error,
+    expect(() => binaryAssembleHangulCharacters('ㄱㄴ', 'ㅏ')).toThrowError(
       'Invalid source character: ㄱㄴ. Source must be one character.'
     );
   });
 
   it('다음 문자가 한글 문자 한 글자가 아니라면 Invalid next character 에러를 발생시킨다.', () => {
-    assert.throws(
-      () => binaryAssembleHangulCharacters('ㄱ', 'a'),
-      Error,
+    expect(() => binaryAssembleHangulCharacters('ㄱ', 'a')).toThrowError(
       'Invalid next character: a. Next character must be one of the chosung, jungsung, or jongsung.'
     );
-    assert.throws(
-      () => binaryAssembleHangulCharacters('ㄱ', 'ㅡㅏ'),
-      Error,
+    expect(() => binaryAssembleHangulCharacters('ㄱ', 'ㅡㅏ')).toThrowError(
       'Invalid next character: ㅡㅏ. Next character must be one of the chosung, jungsung, or jongsung.'
     );
   });
@@ -176,10 +168,10 @@ describe('binaryAssembleHangul', () => {
 
   describe('assertHangul', () => {
     it('한글 문자열을 받으면 에러를 발생시키지 않는다.', () => {
-      expect(() => assertHangul('ㄱ')).not.toThrow();
-      expect(() => assertHangul('고양이')).not.toThrow();
-      expect(() => assertHangul('저는 고양이를 좋아합니다')).not.toThrow();
-      expect(() => assertHangul('저는 고양이를 좋아합니ㄷ')).not.toThrow();
+      expect(() => assertHangul('ㄱ')).not.toThrowError();
+      expect(() => assertHangul('고양이')).not.toThrowError();
+      expect(() => assertHangul('저는 고양이를 좋아합니다')).not.toThrowError();
+      expect(() => assertHangul('저는 고양이를 좋아합니ㄷ')).not.toThrowError();
     });
 
     it("한글 문자열이 아닌 값을 받으면 '___ is not a valid hangul string' 에러를 발생시킨다.", () => {
