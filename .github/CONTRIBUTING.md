@@ -65,4 +65,14 @@ function disassembleHangul();
 function disassemble();
 ```
 
+함수명을 지을 때 아래와 같이 import될 것을 고려해야 합니다.
+
+```ts
+import { getSimilarity, disassemble, josa } from 'es-hangul' // 따로 나눠서도 제공
+import hangul from 'es-hangul' // hangul default export에 묶어서도 제공
+
+hangul.getSimilarity(...)
+hangul.disassemble(...)
+hangul.josa(...)
+
 - [결정된 논의를 자세히 살펴보기](https://github.com/toss/es-hangul/pull/132#discussion_r1660063497)
