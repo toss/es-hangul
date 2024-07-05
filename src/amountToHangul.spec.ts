@@ -10,10 +10,10 @@ describe('amountToHangul', () => {
   });
 
   it('숫자로 된 금액이 80글자를 넘을 시 에러 발생', () => {
-    const longNumberString = '1'.repeat(81);    
+    const longNumberString = '1'.repeat(81);
     expect(() => amountToHangul(longNumberString)).toThrowError(`convert range exceeded : ${longNumberString}`);
-  })
-  
+  });
+
   it('숫자 외 문자를 무시하여 반환', () => {
     expect(amountToHangul('120,030원')).toEqual('일십이만삼십');
   });
