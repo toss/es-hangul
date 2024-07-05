@@ -36,9 +36,9 @@ export function amountToHangul(amount: string | number) {
   const decimalPart = tempDecimalPart?.replace(/0+$/, '');
 
   const result = [];
-  let pronunDigits = true;
+  let pronounceDigits = true;
 
-  if(integerPart === '0' || (integerPart === '' && tempDecimalPart)) {
+  if (integerPart === '0' || (integerPart === '' && tempDecimalPart)) {
     result.push(HANGUL_NUMBERS_FOR_DECIMAL[0]);
   } else {
     for (let i = 0; i < integerPart.length - 1; i++) {
@@ -49,13 +49,13 @@ export function amountToHangul(amount: string | number) {
 
         if (hangulNumber) {
           result.push(hangulNumber);
-          pronunDigits = true;
+          pronounceDigits = true;
         }
       }
 
-      if (pronunDigits && digit % 4 === 0) {
+      if (pronounceDigits && digit % 4 === 0) {
         result.push(HANGUL_DIGITS[digit / 4]);
-        pronunDigits = false;
+        pronounceDigits = false;
       }
 
       if (integerPart[i] !== '0') {
