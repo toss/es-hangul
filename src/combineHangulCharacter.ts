@@ -1,5 +1,5 @@
 import {
-  COMPLETE_HANGUL_START_CHARCODE,
+  COMPLETE_HANGUL_START_CHAR_CODE,
   DISASSEMBLED_VOWELS_BY_VOWEL,
   HANGUL_CHARACTERS_BY_FIRST_INDEX,
   HANGUL_CHARACTERS_BY_LAST_INDEX,
@@ -45,7 +45,7 @@ export function combineHangulCharacter(firstCharacter: string, middleCharacter: 
   const firstIndexOfTargetVowel = middleCharacterIndex * numOfLastCharacters;
 
   const unicode =
-    COMPLETE_HANGUL_START_CHARCODE + firstIndexOfTargetConsonant + firstIndexOfTargetVowel + lastCharacterIndex;
+    COMPLETE_HANGUL_START_CHAR_CODE + firstIndexOfTargetConsonant + firstIndexOfTargetVowel + lastCharacterIndex;
 
   return String.fromCharCode(unicode);
 }

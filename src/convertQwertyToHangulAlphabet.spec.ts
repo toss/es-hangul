@@ -23,6 +23,7 @@ describe('convertQwertyToHangulAlphabet', () => {
 
   it('영문 대문자는 쌍자/모음으로 바꾼다.', () => {
     expect(convertQwertyToHangulAlphabet('RㅏㄱEㅜrl')).toBe('ㄲㅏㄱㄸㅜㄱㅣ');
+    // eslint-disable-next-line @cspell/spellchecker
     expect(convertQwertyToHangulAlphabet('ㅇPdml')).toBe('ㅇㅖㅇㅡㅣ');
   });
 
@@ -34,11 +35,13 @@ describe('convertQwertyToHangulAlphabet', () => {
 describe('convertQwertyToHangul', () => {
   it('영어 알파벳을 한글로 합성한다.', () => {
     expect(convertQwertyToHangul('abc')).toBe('뮻');
+    // eslint-disable-next-line @cspell/spellchecker
     expect(convertQwertyToHangul('vmfhsxmdpsem')).toBe('프론트엔드');
   });
 
   it('쌍/자모음에 대응하지 않는 영어 알파벳을 한글로 합성한다.', () => {
     expect(convertQwertyToHangul('ABC')).toBe('뮻');
+    // eslint-disable-next-line @cspell/spellchecker
     expect(convertQwertyToHangul('VMFHSXM')).toBe('프론트');
   });
 
@@ -52,6 +55,7 @@ describe('convertQwertyToHangul', () => {
 
   it('영문 대문자는 쌍자/모음에 대응하며 한글로 합성한다.', () => {
     expect(convertQwertyToHangul('RㅏㄱEㅜrl')).toBe('깍뚜기');
+    // eslint-disable-next-line @cspell/spellchecker
     expect(convertQwertyToHangul('ㅇPdml')).toBe('예의');
   });
 

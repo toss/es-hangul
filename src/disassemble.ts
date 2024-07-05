@@ -41,5 +41,8 @@ export function disassembleHangulToGroups(str: string) {
 }
 
 export function disassembleHangul(str: string) {
-  return disassembleHangulToGroups(str).reduce((hanguls, disassembleds) => `${hanguls}${disassembleds.join('')}`, '');
+  return disassembleHangulToGroups(str).reduce(
+    (hanguls, disassembledHanguls) => `${hanguls}${disassembledHanguls.join('')}`,
+    ''
+  );
 }

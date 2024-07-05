@@ -1,6 +1,6 @@
 import {
-  COMPLETE_HANGUL_END_CHARCODE,
-  COMPLETE_HANGUL_START_CHARCODE,
+  COMPLETE_HANGUL_END_CHAR_CODE,
+  COMPLETE_HANGUL_START_CHAR_CODE,
   HANGUL_CHARACTERS_BY_FIRST_INDEX,
   HANGUL_CHARACTERS_BY_LAST_INDEX,
   HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
@@ -33,13 +33,13 @@ export function disassembleCompleteHangulCharacter(
 ): ReturnTypeDisassembleCompleteHangulCharacter | undefined {
   const charCode = letter.charCodeAt(0);
 
-  const isCompleteHangul = COMPLETE_HANGUL_START_CHARCODE <= charCode && charCode <= COMPLETE_HANGUL_END_CHARCODE;
+  const isCompleteHangul = COMPLETE_HANGUL_START_CHAR_CODE <= charCode && charCode <= COMPLETE_HANGUL_END_CHAR_CODE;
 
   if (!isCompleteHangul) {
     return undefined;
   }
 
-  const hangulCode = charCode - COMPLETE_HANGUL_START_CHARCODE;
+  const hangulCode = charCode - COMPLETE_HANGUL_START_CHAR_CODE;
 
   const lastIndex = hangulCode % NUMBER_OF_JONGSUNG;
   const middleIndex = ((hangulCode - lastIndex) / NUMBER_OF_JONGSUNG) % NUMBER_OF_JUNGSUNG;
