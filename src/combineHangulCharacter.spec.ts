@@ -14,19 +14,19 @@ describe('combineHangulCharacter', () => {
   });
 
   it('초성이 될 수 없는 문자가 초성으로 입력되면 에러를 반환한다. (ㅏ, ㅏ, ㄱ)', () => {
-    assert.throws(() => combineHangulCharacter('ㅏ', 'ㅏ', 'ㄱ'), Error, 'Invalid hangul Characters: ㅏ, ㅏ, ㄱ');
+    expect(() => combineHangulCharacter('ㅏ', 'ㅏ', 'ㄱ')).toThrowError('Invalid hangul Characters: ㅏ, ㅏ, ㄱ');
   });
 
   it('중성이 될 수 없는 문자가 중성으로 입력되면 에러를 반환한다. (ㄱ, ㄴ, ㅃ)', () => {
-    assert.throws(() => combineHangulCharacter('ㄱ', 'ㄴ', 'ㅃ'), Error, 'Invalid hangul Characters: ㄱ, ㄴ, ㅃ');
+    expect(() => combineHangulCharacter('ㄱ', 'ㄴ', 'ㅃ')).toThrowError('Invalid hangul Characters: ㄱ, ㄴ, ㅃ');
   });
 
   it('종성이 될 수 없는 문자가 종성으로 입력되면 에러를 반환한다. (ㄱ, ㅏ, ㅃ)', () => {
-    assert.throws(() => combineHangulCharacter('ㄱ', 'ㅏ', 'ㅃ'), Error, 'Invalid hangul Characters: ㄱ, ㅏ, ㅃ');
+    expect(() => combineHangulCharacter('ㄱ', 'ㅏ', 'ㅃ')).toThrowError('Invalid hangul Characters: ㄱ, ㅏ, ㅃ');
   });
 
   it('온전한 한글 문자가 하나라도 입력되면 에러를 반환한다. (가, ㅏ, ㄱ)', () => {
-    assert.throws(() => combineHangulCharacter('가', 'ㅏ', 'ㄱ'), Error, 'Invalid hangul Characters: 가, ㅏ, ㄱ');
+    expect(() => combineHangulCharacter('가', 'ㅏ', 'ㄱ')).toThrowError('Invalid hangul Characters: 가, ㅏ, ㄱ');
   });
 });
 
