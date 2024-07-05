@@ -16,7 +16,7 @@ module.exports = {
     project: true,
   },
 
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier', 'plugin:@cspell/recommended'],
   plugins: ['@typescript-eslint'],
   rules: {
     'no-implicit-coercion': 'error',
@@ -64,6 +64,16 @@ module.exports = {
           'public-instance-method',
           'private-instance-method',
         ],
+      },
+    ],
+    '@cspell/spellchecker': [
+      'error',
+      {
+        cspell: {
+          words: ['choseong', 'jungseong', 'jongseong'],
+          // eslint-disable-next-line @cspell/spellchecker
+          flagWords: ['chosung', 'jungsung', 'jongsung'],
+        },
       },
     ],
   },
