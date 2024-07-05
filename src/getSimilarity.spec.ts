@@ -64,4 +64,30 @@ describe('getSimilarity', () => {
     const result = getSimilarity(left, right);
     expect(result).toBeCloseTo(0.714, 2);
   });
+
+  describe('한글 이외의 문자가 섞인 문자열인 경우', () => {
+    it('한글과 영어가 섞여도 유사도를 계산할 수 있다', () => {
+      const left = '안녕하hello세요';
+      const right = 'foo안녕하bar세요baz';
+
+      const result = getSimilarity(left, right);
+      expect(result).toBeCloseTo(0.476, 2);
+    });
+
+    it('한글과 숫자가 섞여도 유사도를 계산할 수 있다', () => {
+      const left = '안녕하123세요';
+      const right = 'foo안녕하456bar세요baz';
+
+      const result = getSimilarity(left, right);
+      expect(result).toBeCloseTo(0.5, 2);
+    });
+
+    it('한글과 특수문자가 섞여도 유사도를 계산할 수 있다', () => {
+      const left = '안녕하!@#$세요';
+      const right = 'foo안녕하%^&bar세요baz';
+
+      const result = getSimilarity(left, right);
+      expect(result).toBeCloseTo(0.5, 2);
+    });
+  });
 });

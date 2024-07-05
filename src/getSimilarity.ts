@@ -1,10 +1,7 @@
-import { parseHangul, safeParseHangul } from './_internal/hangul';
+import { safeParseHangul } from './_internal/hangul';
 import { disassembleHangul } from './disassemble';
 
 export function getSimilarity(left: string, right: string): number {
-  safeParseHangul(left);
-  safeParseHangul(right);
-
   const disassembledLeft = disassembleHangul(left).replace(/\s/g, '');
   const disassembledRight = disassembleHangul(right).replace(/\s/g, '');
 
