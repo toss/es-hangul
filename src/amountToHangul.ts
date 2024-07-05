@@ -26,21 +26,21 @@ export const HANGUL_NUMBERS_FOR_DECIMAL = ['영', '일', '이', '삼', '사', '�
 export const HANGUL_CARDINAL = ['', '십', '백', '천'];
 
 export function amountToHangul(amount: string | number) {
-  const [tempIntegerPart, tempDecimalPart] = String(amount)
+  const [rawIntegerPart, rawDecimalPart] = String(amount)
     .replace(/[^\d.]+/g, '')
     .split('.');
 
-  const integerPart = tempIntegerPart !== '0' ? tempIntegerPart.replace(/^0+/, '') : tempIntegerPart;
+  const integerPart = rawIntegerPart !== '0' ? rawIntegerPart.replace(/^0+/, '') : rawIntegerPart;
 
   if (integerPart.length > HANGUL_DIGITS_MAX) {
     throw new Error(`convert range exceeded : ${amount}`);
   }
-  const decimalPart = tempDecimalPart?.replace(/0+$/, '');
+  const decimalPart = rawDecimalPart?.replace(/0+$/, '');
 
   const result = [];
   let pronunDigits = true;
 
-  if (integerPart === '0' || (integerPart === '' && tempDecimalPart)) {
+  if (integerPart === '0' || (integerPart === '' && rawDecimalPart)) {
     result.push(HANGUL_NUMBERS_FOR_DECIMAL[0]);
   } else {
     for (let i = 0; i < integerPart.length - 1; i++) {
