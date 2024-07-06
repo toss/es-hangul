@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.4.2
+
+### Patch Changes
+
+- [#159](https://github.com/toss/es-hangul/pull/159) [`aaddf6f`](https://github.com/toss/es-hangul/commit/aaddf6f91a9c82a939cf333d29cdd875b358e8cd) Thanks [@crucifyer](https://github.com/crucifyer)! - fix: 소수점 추가 후 발생한 '영'읽기 버그 수정
+
 ## 1.4.1
 
 ### Patch Changes
