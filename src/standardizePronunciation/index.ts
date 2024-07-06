@@ -50,7 +50,13 @@ export function standardizePronunciation(
       const currentSyllable = disassembleHangul[i];
       const nextSyllable = i < disassembleHangul.length - 1 ? disassembleHangul[i + 1] : null;
 
-      applyRules(currentSyllable, nextSyllable, i, hangulPhrase, options);
+      applyRules({
+        currentSyllable,
+        nextSyllable,
+        index: i,
+        hangulPhrase,
+        options,
+      });
     }
 
     changedHangul.push(assembleChangedHangul(disassembleHangul, notHangulPhrase));
@@ -83,13 +89,15 @@ function 음절분해(hangulPhrase: string): {
   return { notHangulPhrase, disassembleHangul };
 }
 
-function applyRules(
-  currentSyllable: Syllable,
-  nextSyllable: Nullable<Syllable>,
-  index: number,
-  hangulPhrase: string,
-  options: NonNullable<Parameters<typeof standardizePronunciation>[1]>
-): void {
+type ApplyRules = {
+  currentSyllable: Syllable;
+  nextSyllable: Nullable<Syllable>;
+  index: number;
+  hangulPhrase: string;
+  options: NonNullable<Parameters<typeof standardizePronunciation>[1]>;
+};
+
+function applyRules({ currentSyllable, nextSyllable, index, hangulPhrase, options }: ApplyRules): void {
   if (nextSyllable) {
     if (options.hardConversion) {
       apply경음화(currentSyllable, nextSyllable);
