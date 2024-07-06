@@ -21,42 +21,14 @@ import { canBeJungsung } from './utils';
  * removeLastHangulCharacter('신세계') // 신세ㄱ
  */
 export function removeLastHangulCharacter(words: string) {
-  const disassembledGroups = disassembleHangulToGroups(words);
-  const lastCharacter = disassembledGroups[disassembledGroups.length - 1];
-
+  const lastCharacter = words[words.length - 1];
   if (lastCharacter == null) {
     return '';
   }
 
-  const withoutLastCharacter = disassembledGroups
-    .filter(v => v !== lastCharacter)
-    .map(disassembledGroup => {
-      if (disassembledGroup.length <= 3) {
-        const [first, middle, last] = disassembledGroup;
-        if (middle != null) {
-          return canBeJungsung(last)
-            ? combineHangulCharacter(first, `${middle}${last}`)
-            : combineHangulCharacter(first, middle, last);
-        }
-
-        return first;
-      } else if (canBeJungsung(disassembledGroup[2])) {
-        const [first, firstJungsung, secondJungsung, firstJongsung, secondJongsung] = disassembledGroup;
-
-        return combineHangulCharacter(
-          first,
-          `${firstJungsung}${secondJungsung}`,
-          `${firstJongsung}${secondJongsung ?? ''}`
-        );
-      } else {
-        const [first, middle, firstJongsung, secondJongsung] = disassembledGroup;
-
-        return combineHangulCharacter(first, middle, `${firstJongsung}${secondJongsung}`);
-      }
-    });
-
   const result = (() => {
-    const [lastCharacterWithoutLastAlphabet] = excludeLastElement(lastCharacter);
+    const disassembleLastCharacter = disassembleHangulToGroups(lastCharacter);
+    const [lastCharacterWithoutLastAlphabet] = excludeLastElement(disassembleLastCharacter[0]);
     if (lastCharacterWithoutLastAlphabet.length <= 3) {
       const [first, middle, last] = lastCharacterWithoutLastAlphabet;
       if (middle != null) {
@@ -73,5 +45,5 @@ export function removeLastHangulCharacter(words: string) {
     }
   })();
 
-  return [...withoutLastCharacter, result].join('');
+  return [words.substring(0, words.length - 1), result].join('');
 }
