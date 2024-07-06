@@ -18,6 +18,10 @@ import {
   type Syllable,
 } from './standardizePronunciation.rules';
 
+type Options = {
+  hardConversion: boolean;
+};
+
 type NotHangul = {
   index: number;
   syllable: string;
@@ -30,39 +34,37 @@ type NotHangul = {
  * @param options.hardConversion 경음화 등의 된소리를 적용할지 여부를 설정합니다. 기본값은 true입니다.
  * @returns 변환된 표준 발음 문자열을 반환합니다.
  */
-export function standardizePronunciation(
-  hangul: string,
-  options: {
-    hardConversion: boolean;
-  } = { hardConversion: true }
-): string {
+export function standardizePronunciation(hangul: string, options: Options = { hardConversion: true }): string {
   if (!hangul) {
     return '';
   }
 
-  const hangulPhrases = hangul.split(' ');
-  const changedHangul: string[] = [];
-
-  for (const hangulPhrase of hangulPhrases) {
-    const { notHangulPhrase, disassembleHangul } = 음절분해(hangulPhrase);
-
-    for (let i = 0; i < disassembleHangul.length; i += 1) {
-      const currentSyllable = disassembleHangul[i];
-      const nextSyllable = i < disassembleHangul.length - 1 ? disassembleHangul[i + 1] : null;
+  const processSyllables = (syllables: Syllable[], phrase: string, options: Options) =>
+    syllables.map((currentSyllable, I, array) => {
+      const nextSyllable = I < array.length - 1 ? array[I + 1] : null;
 
       applyRules({
         currentSyllable,
+        hangulPhrase: phrase,
+        index: I,
         nextSyllable,
-        index: i,
-        hangulPhrase,
         options,
       });
-    }
 
-    changedHangul.push(assembleChangedHangul(disassembleHangul, notHangulPhrase));
-  }
+      return currentSyllable;
+    });
 
-  return changedHangul.join(' ');
+  const transformHangulPhrase = (phrase: string, options: Options): string => {
+    const { notHangulPhrase, disassembleHangul } = 음절분해(phrase);
+    const processedSyllables = processSyllables(disassembleHangul, phrase, options);
+
+    return assembleChangedHangul(processedSyllables, notHangulPhrase);
+  };
+
+  return hangul
+    .split(' ')
+    .map(phrase => transformHangulPhrase(phrase, options))
+    .join(' ');
 }
 
 function 음절분해(hangulPhrase: string): {
