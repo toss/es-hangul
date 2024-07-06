@@ -25,7 +25,7 @@ export function removeLastHangulCharacter(words: string) {
   if (lastCharacter == null) {
     return '';
   }
-
+  
   const result = (() => {
     const disassembleLastCharacter = disassembleHangulToGroups(lastCharacter);
     const [lastCharacterWithoutLastAlphabet] = excludeLastElement(disassembleLastCharacter[0]);
