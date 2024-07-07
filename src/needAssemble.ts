@@ -13,31 +13,32 @@ export function needAssemble(hangul: string): boolean {
   for (const Jamo of hangul.matchAll(/[ㄱ-ㅎㅏ-ㅣ]/g)) {
     const letter = Jamo[0];
     const previous = Jamo.index - 1;
-
     const previousCharacter = hangul.slice(previous, previous + 1);
+
     if (canBeChosung(previousCharacter) && canBeJungsung(letter)) {
       return true;
     }
+
     const isPreviousCompleteHangul = /[가-힣]/.test(previousCharacter);
     if (isPreviousCompleteHangul) {
       if (hasBatchim(previousCharacter) === false && canBeJongsung(letter)) {
         return true;
       }
+
       if (hasSingleBatchim(previousCharacter)) {
         const previousBatchim = disassembleCompleteHangulCharacter(previousCharacter)?.last;
-        if(canBeJongsung(previousBatchim + letter))
-        {
+        if(canBeJongsung(previousBatchim + letter)) {
           return true;
         }
       }
-      if (hasBatchim(previousCharacter)) {
+
+      if (hasBatchim(previousCharacter) && canBeJungsung(letter)){
         return true;
       }
-      if (hasBatchim(previousCharacter) === false)
-      {
+      
+      if (hasBatchim(previousCharacter) === false) {
         const previousJungSung = disassembleCompleteHangulCharacter(previousCharacter)?.middle;
-        if (canBeJungsung(previousJungSung + letter))
-        {
+        if (canBeJungsung(previousJungSung + letter)) {
           return true;
         }
       }
