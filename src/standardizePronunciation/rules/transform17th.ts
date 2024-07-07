@@ -10,7 +10,7 @@ import { ReturnSyllables, Syllable } from './rules.types';
  * @param nextSyllable 다음 음절을 입력합니다.
  * @returns 17항이 적용되었는지의 여부를 반환합니다.
  */
-export function transform17항(currentSyllable: Syllable, nextSyllable: Syllable): ReturnSyllables {
+export function transform17th(currentSyllable: Syllable, nextSyllable: Syllable): ReturnSyllables {
   let current = { ...currentSyllable };
   let next = { ...nextSyllable };
 

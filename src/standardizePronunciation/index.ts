@@ -5,16 +5,16 @@ import { disassembleCompleteHangulCharacter } from '../disassembleCompleteHangul
 import { isNotUndefined } from '../utils';
 import {
   Nullable,
-  transform12항,
-  transform13과14항,
-  transform16항,
-  transform17항,
-  transform18항,
-  transform19항,
-  transform20항,
-  transform9와10과11항,
-  transformㄴㄹ덧남,
-  transform경음화,
+  transform12th,
+  transform13And14th,
+  transform16th,
+  transform17th,
+  transform18th,
+  transform19th,
+  transform20th,
+  transform9And10And11th,
+  transformHardConversion,
+  transformNLAssimilation,
   type Syllable,
 } from './rules';
 
@@ -113,30 +113,30 @@ function applyRules(params: ApplyParameters): {
   let next = nextSyllable ? { ...nextSyllable } : nextSyllable;
 
   if (next && options.hardConversion) {
-    ({ next } = transform경음화(current, next));
+    ({ next } = transformHardConversion(current, next));
   }
 
   if (next) {
-    ({ current, next } = transform16항({
+    ({ current, next } = transform16th({
       currentSyllable: current,
       nextSyllable: next,
       index,
       phrase,
     }));
-    ({ current, next } = transform17항(current, next));
-    ({ next } = transform19항(current, next));
-    ({ current, next } = transformㄴㄹ덧남(current, next));
-    ({ current } = transform18항(current, next));
-    ({ current, next } = transform20항(current, next));
+    ({ current, next } = transform17th(current, next));
+    ({ next } = transform19th(current, next));
+    ({ current, next } = transformNLAssimilation(current, next));
+    ({ current } = transform18th(current, next));
+    ({ current, next } = transform20th(current, next));
   }
 
-  ({ current, next } = transform12항(current, next));
+  ({ current, next } = transform12th(current, next));
 
   if (next) {
-    ({ current, next } = transform13과14항(current, next));
+    ({ current, next } = transform13And14th(current, next));
   }
 
-  ({ current } = transform9와10과11항(current, next));
+  ({ current } = transform9And10And11th(current, next));
 
   return {
     current,

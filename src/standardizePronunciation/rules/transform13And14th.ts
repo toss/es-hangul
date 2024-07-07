@@ -15,7 +15,7 @@ const 받침의길이 = {
  * @param nextSyllable 다음 음절을 입력합니다.
  * @returns 13, 14항이 적용되었는지의 여부를 반환합니다.
  */
-export function transform13과14항(currentSyllable: Syllable, nextSyllable: Syllable): ReturnSyllables {
+export function transform13And14th(currentSyllable: Syllable, nextSyllable: Syllable): ReturnSyllables {
   let current = { ...currentSyllable };
   let next = { ...nextSyllable };
 

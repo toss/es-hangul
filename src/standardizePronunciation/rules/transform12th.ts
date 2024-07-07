@@ -21,7 +21,7 @@ import { replace받침ㅎ } from './rules.utils';
  * @param currentSyllable 현재 음절을 입력합니다.
  * @param nextSyllable 다음 음절을 입력합니다.
  */
-export function transform12항(currentSyllable: Syllable, nextSyllable: Nullable<Syllable>): NullableReturnSyllables {
+export function transform12th(currentSyllable: Syllable, nextSyllable: Nullable<Syllable>): NullableReturnSyllables {
   let current = { ...currentSyllable };
   let next = nextSyllable ? { ...nextSyllable } : nextSyllable;
 

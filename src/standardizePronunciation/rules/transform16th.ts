@@ -22,7 +22,7 @@ type Apply16항 = {
  * @param index 현재 음절의 순서를 입력합니다.
  * @returns 16항이 적용되었는지의 여부를 반환합니다.
  */
-export function transform16항({ currentSyllable, phrase, index, nextSyllable }: Apply16항): ReturnSyllables {
+export function transform16th({ currentSyllable, phrase, index, nextSyllable }: Apply16항): ReturnSyllables {
   let current = { ...currentSyllable };
   let next = { ...nextSyllable };
 

@@ -10,7 +10,10 @@ import { ReturnSyllables, Syllable } from './rules.types';
  * @param currentSyllable 현재 음절을 입력합니다.
  * @param nextSyllable 다음 음절을 입력합니다.
  */
-export function transform경음화(currentSyllable: Syllable, nextSyllable: Syllable): Pick<ReturnSyllables, 'next'> {
+export function transformHardConversion(
+  currentSyllable: Syllable,
+  nextSyllable: Syllable
+): Pick<ReturnSyllables, 'next'> {
   const next = { ...nextSyllable };
 
   if (hasProperty(된소리, next.first)) {

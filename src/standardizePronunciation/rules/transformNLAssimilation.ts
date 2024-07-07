@@ -15,7 +15,7 @@ import { ReturnSyllables, Syllable } from './rules.types';
  * @param currentSyllable 현재 음절을 입력합니다.
  * @param nextSyllable 다음 음절을 입력합니다.
  */
-export function transformㄴㄹ덧남(currentSyllable: Syllable, nextSyllable: Syllable): ReturnSyllables {
+export function transformNLAssimilation(currentSyllable: Syllable, nextSyllable: Syllable): ReturnSyllables {
   let current = { ...currentSyllable };
   let next = { ...nextSyllable };
 

@@ -10,7 +10,7 @@ import { Nullable, ReturnSyllables, Syllable } from './rules.types';
  * @param currentSyllable 현재 음절을 입력합니다.
  * @param nextSyllable 다음 음절을 입력합니다.
  */
-export function transform9와10과11항(
+export function transform9And10And11th(
   currentSyllable: Syllable,
   nextSyllable: Nullable<Syllable>
 ): Pick<ReturnSyllables, 'current'> {

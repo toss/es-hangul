@@ -9,7 +9,7 @@ import { ReturnSyllables, Syllable } from './rules.types';
  * @param nextSyllable 다음 음절을 입력합니다.
  * @returns 18항이 적용되었는지의 여부를 반환합니다.
  */
-export function transform18항(currentSyllable: Syllable, nextSyllable: Syllable): Pick<ReturnSyllables, 'current'> {
+export function transform18th(currentSyllable: Syllable, nextSyllable: Syllable): Pick<ReturnSyllables, 'current'> {
   const current = { ...currentSyllable };
 
   const 제18항주요조건 = current.last && arrayIncludes(['ㄴ', 'ㅁ'], nextSyllable.first);

@@ -9,7 +9,7 @@ import { ReturnSyllables, Syllable } from './rules.types';
  * @param currentSyllable 현재 음절을 입력합니다.
  * @param nextSyllable 다음 음절을 입력합니다.
  */
-export function transform19항(currentSyllable: Syllable, nextSyllable: Syllable): Pick<ReturnSyllables, 'next'> {
+export function transform19th(currentSyllable: Syllable, nextSyllable: Syllable): Pick<ReturnSyllables, 'next'> {
   const next = { ...nextSyllable };
   const 제19항조건 = arrayIncludes(자음동화_받침_ㄴ_변환, currentSyllable.last) && next.first === 'ㄹ';
 
