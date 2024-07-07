@@ -31,8 +31,8 @@ type ChangedPronunciation = {
   isChanged: boolean;
 };
 
-function replace받침ㅎ(currentSyllable: Syllable): void {
-  currentSyllable.last = currentSyllable.last.replace('ㅎ', '') as Syllable['last'];
+function replace받침ㅎ(currentSyllable: Syllable): Syllable['last'] {
+  return currentSyllable.last.replace('ㅎ', '') as Syllable['last'];
 }
 
 /**
@@ -75,29 +75,29 @@ export function apply제12항(currentSyllable: Syllable, nextSyllable: Nullable<
     if (nextSyllable) {
       if (arrayIncludes(['ㄱ', 'ㄷ', 'ㅈ', 'ㅅ'], nextSyllable.first)) {
         nextSyllable.first = 발음변환_받침_ㅎ_발음[nextSyllable.first as keyof typeof 발음변환_받침_ㅎ_발음];
-        replace받침ㅎ(currentSyllable);
+        currentSyllable.last = replace받침ㅎ(currentSyllable);
         return;
       }
 
       if (nextSyllable.first === 'ㄴ' && arrayIncludes(['ㄴㅎ', 'ㄹㅎ'], currentSyllable.last)) {
-        replace받침ㅎ(currentSyllable);
+        currentSyllable.last = replace받침ㅎ(currentSyllable);
       }
 
       if (nextSyllable.first === 음가가_없는_자음) {
         if (arrayIncludes(['ㄴㅎ', 'ㄹㅎ'], currentSyllable.last)) {
-          replace받침ㅎ(currentSyllable);
+          currentSyllable.last = replace받침ㅎ(currentSyllable);
         } else {
           currentSyllable.last = '';
         }
       }
 
       if (nextSyllable.first !== 음가가_없는_자음) {
-        replace받침ㅎ(currentSyllable);
+        currentSyllable.last = replace받침ㅎ(currentSyllable);
       }
     }
 
     if (!nextSyllable) {
-      replace받침ㅎ(currentSyllable);
+      currentSyllable.last = replace받침ㅎ(currentSyllable);
     }
   }
 
