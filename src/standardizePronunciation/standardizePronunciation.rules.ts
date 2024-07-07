@@ -30,6 +30,14 @@ export type Syllable = NonUndefined<ReturnType<typeof disassembleCompleteHangulC
 type ChangedPronunciation = {
   isChanged: boolean;
 };
+type ReturnRules = {
+  current: Syllable;
+  next: Syllable;
+};
+type NullableReturnRules = {
+  current: Syllable;
+  next: Nullable<Syllable>;
+};
 
 function replace받침ㅎ(currentSyllable: Syllable): Syllable['last'] {
   return currentSyllable.last.replace('ㅎ', '') as Syllable['last'];
@@ -43,15 +51,23 @@ function replace받침ㅎ(currentSyllable: Syllable): Syllable['last'] {
  * @param currentSyllable 현재 음절을 입력합니다.
  * @param nextSyllable 다음 음절을 입력합니다.
  */
-export function apply제9와10과11항(currentSyllable: Syllable, nextSyllable: Nullable<Syllable>): void {
-  const is어말 = currentSyllable.last && !nextSyllable;
-  const is음가있는자음앞 = currentSyllable.last && nextSyllable?.first !== 음가가_없는_자음;
+export function apply제9와10과11항(
+  currentSyllable: Syllable,
+  nextSyllable: Nullable<Syllable>
+): Pick<ReturnRules, 'current'> {
+  console.log('😆', nextSyllable);
+  const current = { ...currentSyllable };
 
-  const 제9_10_11항주요조건 = (is어말 || is음가있는자음앞) && hasProperty(받침_대표음_발음, currentSyllable.last);
+  const is어말 = current.last && !nextSyllable;
+  const is음가있는자음앞 = current.last && nextSyllable?.first !== 음가가_없는_자음;
+
+  const 제9_10_11항주요조건 = (is어말 || is음가있는자음앞) && hasProperty(받침_대표음_발음, current.last);
 
   if (제9_10_11항주요조건) {
-    currentSyllable.last = 받침_대표음_발음[currentSyllable.last as keyof typeof 받침_대표음_발음];
+    current.last = 받침_대표음_발음[current.last as keyof typeof 받침_대표음_발음];
   }
+
+  return { current };
 }
 
 /**
@@ -66,51 +82,71 @@ export function apply제9와10과11항(currentSyllable: Syllable, nextSyllable: 
  * @param currentSyllable 현재 음절을 입력합니다.
  * @param nextSyllable 다음 음절을 입력합니다.
  */
-export function apply제12항(currentSyllable: Syllable, nextSyllable: Nullable<Syllable>): void {
-  if (!currentSyllable.last) {
-    return;
+export function apply제12항(currentSyllable: Syllable, nextSyllable: Nullable<Syllable>): NullableReturnRules {
+  const current = { ...currentSyllable };
+  const next = nextSyllable ? { ...nextSyllable } : nextSyllable;
+
+  if (!current.last) {
+    return {
+      current,
+      next,
+    };
   }
 
-  if (arrayIncludes(발음변환_받침_ㅎ, currentSyllable.last)) {
-    if (nextSyllable) {
-      if (arrayIncludes(['ㄱ', 'ㄷ', 'ㅈ', 'ㅅ'], nextSyllable.first)) {
-        nextSyllable.first = 발음변환_받침_ㅎ_발음[nextSyllable.first as keyof typeof 발음변환_받침_ㅎ_발음];
-        currentSyllable.last = replace받침ㅎ(currentSyllable);
-        return;
+  if (arrayIncludes(발음변환_받침_ㅎ, current.last)) {
+    if (next) {
+      if (arrayIncludes(['ㄱ', 'ㄷ', 'ㅈ', 'ㅅ'], next.first)) {
+        next.first = 발음변환_받침_ㅎ_발음[next.first as keyof typeof 발음변환_받침_ㅎ_발음];
+        current.last = replace받침ㅎ(current);
+
+        return {
+          current,
+          next,
+        };
       }
 
-      if (nextSyllable.first === 'ㄴ' && arrayIncludes(['ㄴㅎ', 'ㄹㅎ'], currentSyllable.last)) {
-        currentSyllable.last = replace받침ㅎ(currentSyllable);
+      if (next.first === 'ㄴ' && arrayIncludes(['ㄴㅎ', 'ㄹㅎ'], current.last)) {
+        current.last = replace받침ㅎ(current);
       }
 
-      if (nextSyllable.first === 음가가_없는_자음) {
-        if (arrayIncludes(['ㄴㅎ', 'ㄹㅎ'], currentSyllable.last)) {
-          currentSyllable.last = replace받침ㅎ(currentSyllable);
+      if (next.first === 음가가_없는_자음) {
+        if (arrayIncludes(['ㄴㅎ', 'ㄹㅎ'], current.last)) {
+          current.last = replace받침ㅎ(current);
         } else {
-          currentSyllable.last = '';
+          current.last = '';
         }
       }
 
-      if (nextSyllable.first !== 음가가_없는_자음) {
-        currentSyllable.last = replace받침ㅎ(currentSyllable);
+      if (next.first !== 음가가_없는_자음) {
+        current.last = replace받침ㅎ(current);
       }
     }
 
-    if (!nextSyllable) {
-      currentSyllable.last = replace받침ㅎ(currentSyllable);
+    if (!next) {
+      current.last = replace받침ㅎ(current);
     }
   }
 
-  if (arrayIncludes(발음변환_첫소리_ㅎ, currentSyllable.last) && arrayIncludes(['ㅎ'], nextSyllable?.first)) {
-    nextSyllable.first = 발음변환_첫소리_ㅎ_발음[currentSyllable.last];
+  if (arrayIncludes(발음변환_첫소리_ㅎ, current.last) && arrayIncludes(['ㅎ'], next?.first)) {
+    next.first = 발음변환_첫소리_ㅎ_발음[current.last];
 
-    if (currentSyllable.last.length === 1) {
-      currentSyllable.last = '';
+    if (current.last.length === 1) {
+      current.last = '';
     } else {
-      currentSyllable.last = currentSyllable.last[0] as Syllable['last'];
+      current.last = current.last[0] as Syllable['last'];
     }
   }
+
+  return {
+    current,
+    next,
+  };
 }
+
+const 받침의길이 = {
+  홀받침: 1,
+  쌍_겹받침: 2,
+} as const;
 
 /**
  * 제13, 14항을 적용합니다.
@@ -120,100 +156,121 @@ export function apply제12항(currentSyllable: Syllable, nextSyllable: Nullable<
  * @param nextSyllable 다음 음절을 입력합니다.
  * @returns 13, 14항이 적용되었는지의 여부를 반환합니다.
  */
-export function apply제13과14항(currentSyllable: Syllable, nextSyllable: Syllable): ChangedPronunciation {
-  const changedSyllable = {
-    isChanged: false,
-  };
+export function apply제13과14항(currentSyllable: Syllable, nextSyllable: Syllable): ChangedPronunciation & ReturnRules {
+  let isChanged = false;
+  const current = { ...currentSyllable };
+  const next = { ...nextSyllable };
 
-  const 받침의길이 = {
-    홀받침: 1,
-    쌍_겹받침: 2,
-  } as const;
-
-  const 제13_14항주요조건 = currentSyllable.last && nextSyllable.first === 음가가_없는_자음;
+  const 제13_14항주요조건 = current.last && next.first === 음가가_없는_자음;
 
   if (!제13_14항주요조건) {
-    return changedSyllable;
+    return {
+      isChanged,
+      current,
+      next,
+    };
   }
 
-  const is홑받침 = currentSyllable.last.length === 받침의길이['홀받침'];
-  const is쌍받침 =
-    currentSyllable.last.length === 받침의길이['쌍_겹받침'] && currentSyllable.last[0] === currentSyllable.last[1];
-  const is겹받침 =
-    currentSyllable.last.length === 받침의길이['쌍_겹받침'] && currentSyllable.last[0] !== currentSyllable.last[1];
+  const is홑받침 = current.last.length === 받침의길이['홀받침'];
+  const is쌍받침 = current.last.length === 받침의길이['쌍_겹받침'] && current.last[0] === current.last[1];
+  const is겹받침 = current.last.length === 받침의길이['쌍_겹받침'] && current.last[0] !== current.last[1];
 
-  if (!arrayIncludes(['ㅇ', ''], currentSyllable.last) && (is홑받침 || is쌍받침)) {
-    nextSyllable.first = currentSyllable.last;
-    currentSyllable.last = '';
-    changedSyllable.isChanged = true;
+  if (!arrayIncludes(['ㅇ', ''], current.last) && (is홑받침 || is쌍받침)) {
+    next.first = current.last;
+    current.last = '';
+    isChanged = true;
 
-    return changedSyllable;
+    return {
+      isChanged,
+      current,
+      next,
+    };
   }
 
   if (is겹받침) {
-    if (currentSyllable.last[1] === 'ㅅ') {
-      nextSyllable.first = 'ㅆ';
+    if (current.last[1] === 'ㅅ') {
+      next.first = 'ㅆ';
     } else {
-      nextSyllable.first = currentSyllable.last[1] as Syllable['first'];
+      next.first = current.last[1] as Syllable['first'];
     }
 
-    currentSyllable.last = currentSyllable.last.replace(currentSyllable.last[1], '') as Syllable['last'];
+    current.last = current.last.replace(current.last[1], '') as Syllable['last'];
+    isChanged = true;
 
-    changedSyllable.isChanged = true;
-    return changedSyllable;
+    return {
+      isChanged,
+      current,
+      next,
+    };
   }
 
-  return changedSyllable;
+  return {
+    isChanged,
+    current,
+    next,
+  };
 }
 
+type Apply16항 = {
+  currentSyllable: Syllable;
+  nextSyllable: Syllable;
+  phrase: string;
+  index: number;
+};
 /**
  * 제16항을 적용합니다.
  * @description 제16항 - 한글 자모의 이름은 그 받침소리를 연음하되, ‘ㄷ, ㅈ, ㅊ, ㅋ, ㅌ, ㅍ, ㅎ’의 경우에는 특별히 다음과 같이 발음한다. ㄷ, ㅈ, ㅊ, ㅌ, ㅎ > ㅅ (디귿이:디그시, 지읒이:지으시, 치읓이:치으시, 티읕이:티으시, 히읗이:히으시), ㅋ > ㄱ (키읔이:키으기), ㅍ > ㅂ (피읖이:피으비)
  * @param currentSyllable 현재 음절을 입력합니다.
  * @param nextSyllable 다음 음절을 입력합니다.
- * @param hangulPhrase 분리되지 않은 한글 구절을 입력합니다.
+ * @param phrase 분리되지 않은 한글 구절을 입력합니다.
  * @param index 현재 음절의 순서를 입력합니다.
  * @returns 16항이 적용되었는지의 여부를 반환합니다.
  */
-export function apply제16항(
-  currentSyllable: Syllable,
-  nextSyllable: Syllable,
-  hangulPhrase: string,
-  index: number
-): ChangedPronunciation {
-  const changedSyllable = {
-    nextSyllableChoseong: nextSyllable.first,
-    currentSyllableJongseong: currentSyllable.last,
-    isChanged: false,
-  };
+export function apply제16항({
+  currentSyllable,
+  phrase,
+  index,
+  nextSyllable,
+}: Apply16항): ChangedPronunciation & ReturnRules {
+  let isChanged = false;
+  const current = { ...currentSyllable };
+  const next = { ...nextSyllable };
 
-  const 제16항주요조건 = currentSyllable.last && nextSyllable.first === 음가가_없는_자음;
+  const 제16항주요조건 = current.last && next.first === 음가가_없는_자음;
 
   if (!제16항주요조건) {
-    return changedSyllable;
+    return {
+      isChanged,
+      current,
+      next,
+    };
   }
 
-  const combinedSyllables = hangulPhrase[index - 1] + hangulPhrase[index];
+  const combinedSyllables = phrase[index - 1] + phrase[index];
 
   if (arrayIncludes(특별한_한글_자모, combinedSyllables)) {
-    const 다음_음절의_초성 = 특별한_한글_자모의_발음[currentSyllable.last as keyof typeof 특별한_한글_자모의_발음];
+    const 다음_음절의_초성 = 특별한_한글_자모의_발음[current.last as keyof typeof 특별한_한글_자모의_발음];
 
-    currentSyllable.last = '';
-    nextSyllable.first = 다음_음절의_초성;
-    changedSyllable.isChanged = true;
+    current.last = '';
+    next.first = 다음_음절의_초성;
+    isChanged = true;
   }
 
   if (arrayIncludes(한글_자모, combinedSyllables)) {
-    nextSyllable.first = currentSyllable.last as typeof nextSyllable.first;
+    next.first = current.last as typeof next.first;
 
-    if (currentSyllable.last !== 'ㅇ') {
-      currentSyllable.last = '';
+    if (current.last !== 'ㅇ') {
+      current.last = '';
     }
 
-    changedSyllable.isChanged = true;
+    isChanged = true;
   }
 
-  return changedSyllable;
+  return {
+    isChanged,
+    current,
+    next,
+  };
 }
 
 /**
@@ -224,30 +281,38 @@ export function apply제16항(
  * @param nextSyllable 다음 음절을 입력합니다.
  * @returns 17항이 적용되었는지의 여부를 반환합니다.
  */
-export function apply제17항(currentSyllable: Syllable, nextSyllable: Syllable): ChangedPronunciation {
-  const changedSyllable = {
-    isChanged: false,
-  };
+export function apply제17항(currentSyllable: Syllable, nextSyllable: Syllable): ChangedPronunciation & ReturnRules {
+  let isChanged = false;
+  const current = { ...currentSyllable };
+  const next = { ...nextSyllable };
 
-  const 제17항주요조건 = nextSyllable.middle === 'ㅣ';
+  const 제17항주요조건 = next.middle === 'ㅣ';
 
   if (!제17항주요조건) {
-    return changedSyllable;
+    return {
+      isChanged,
+      current,
+      next,
+    };
   }
 
-  if (nextSyllable.first === 'ㅇ' && hasProperty(음의_동화_받침, currentSyllable.last)) {
-    nextSyllable.first = 음의_동화_받침[currentSyllable.last];
-    currentSyllable.last = currentSyllable.last === 'ㄹㅌ' ? 'ㄹ' : '';
-    changedSyllable.isChanged = true;
+  if (next.first === 'ㅇ' && hasProperty(음의_동화_받침, current.last)) {
+    next.first = 음의_동화_받침[current.last];
+    current.last = current.last === 'ㄹㅌ' ? 'ㄹ' : '';
+    isChanged = true;
   }
 
-  if (nextSyllable.first === 'ㅎ' && currentSyllable.last === 'ㄷ') {
-    nextSyllable.first = 'ㅊ';
-    currentSyllable.last = '';
-    changedSyllable.isChanged = true;
+  if (next.first === 'ㅎ' && current.last === 'ㄷ') {
+    next.first = 'ㅊ';
+    current.last = '';
+    isChanged = true;
   }
 
-  return changedSyllable;
+  return {
+    isChanged,
+    current,
+    next,
+  };
 }
 
 /**
@@ -257,33 +322,41 @@ export function apply제17항(currentSyllable: Syllable, nextSyllable: Syllable)
  * @param nextSyllable 다음 음절을 입력합니다.
  * @returns 18항이 적용되었는지의 여부를 반환합니다.
  */
-export function apply제18항(currentSyllable: Syllable, nextSyllable: Syllable): ChangedPronunciation {
-  const changedSyllable = {
-    isChanged: false,
-  };
+export function apply제18항(
+  currentSyllable: Syllable,
+  nextSyllable: Syllable
+): ChangedPronunciation & Pick<ReturnRules, 'current'> {
+  let isChanged = false;
+  const current = { ...currentSyllable };
 
-  const 제18항주요조건 = currentSyllable.last && arrayIncludes(['ㄴ', 'ㅁ'], nextSyllable.first);
+  const 제18항주요조건 = current.last && arrayIncludes(['ㄴ', 'ㅁ'], nextSyllable.first);
 
   if (!제18항주요조건) {
-    return changedSyllable;
+    return {
+      isChanged,
+      current,
+    };
   }
 
-  if (arrayIncludes(비음화_받침_ㅇ_변환, currentSyllable.last)) {
-    currentSyllable.last = 'ㅇ';
-    changedSyllable.isChanged = true;
+  if (arrayIncludes(비음화_받침_ㅇ_변환, current.last)) {
+    current.last = 'ㅇ';
+    isChanged = true;
   }
 
-  if (arrayIncludes(비음화_받침_ㄴ_변환, currentSyllable.last)) {
-    currentSyllable.last = 'ㄴ';
-    changedSyllable.isChanged = true;
+  if (arrayIncludes(비음화_받침_ㄴ_변환, current.last)) {
+    current.last = 'ㄴ';
+    isChanged = true;
   }
 
-  if (arrayIncludes(비음화_받침_ㅁ_변환, currentSyllable.last)) {
-    currentSyllable.last = 'ㅁ';
-    changedSyllable.isChanged = true;
+  if (arrayIncludes(비음화_받침_ㅁ_변환, current.last)) {
+    current.last = 'ㅁ';
+    isChanged = true;
   }
 
-  return changedSyllable;
+  return {
+    isChanged,
+    current,
+  };
 }
 
 /**
@@ -293,12 +366,15 @@ export function apply제18항(currentSyllable: Syllable, nextSyllable: Syllable)
  * @param currentSyllable 현재 음절을 입력합니다.
  * @param nextSyllable 다음 음절을 입력합니다.
  */
-export function apply제19항(currentSyllable: Syllable, nextSyllable: Syllable): void {
-  const 제19항조건 = arrayIncludes(자음동화_받침_ㄴ_변환, currentSyllable.last) && nextSyllable.first === 'ㄹ';
+export function apply제19항(currentSyllable: Syllable, nextSyllable: Syllable): Pick<ReturnRules, 'next'> {
+  const next = { ...nextSyllable };
+  const 제19항조건 = arrayIncludes(자음동화_받침_ㄴ_변환, currentSyllable.last) && next.first === 'ㄹ';
 
   if (제19항조건) {
-    nextSyllable.first = 'ㄴ';
+    next.first = 'ㄴ';
   }
+
+  return { next };
 }
 
 /**
@@ -308,23 +384,31 @@ export function apply제19항(currentSyllable: Syllable, nextSyllable: Syllable)
  * @param currentSyllable 현재 음절을 입력합니다.
  * @param nextSyllable 다음 음절을 입력합니다.
  */
-export function apply제20항(currentSyllable: Syllable, nextSyllable: Syllable): void {
-  const 제20항주요조건 = currentSyllable.last === 'ㄴ' && nextSyllable.first === 'ㄹ';
-  const 제20항붙임조건 = nextSyllable.first === 'ㄴ';
+export function apply제20항(currentSyllable: Syllable, nextSyllable: Syllable): ReturnRules {
+  const current = { ...currentSyllable };
+  const next = { ...nextSyllable };
+
+  const 제20항주요조건 = current.last === 'ㄴ' && next.first === 'ㄹ';
+  const 제20항붙임조건 = next.first === 'ㄴ';
 
   if (제20항주요조건) {
-    currentSyllable.last = 'ㄹ';
+    current.last = 'ㄹ';
   }
 
   if (제20항붙임조건) {
-    if (currentSyllable.last === 'ㄹ') {
-      nextSyllable.first = 'ㄹ';
+    if (current.last === 'ㄹ') {
+      next.first = 'ㄹ';
     }
 
-    if (arrayIncludes(['ㄹㅎ', 'ㄹㅌ'], currentSyllable.last)) {
-      nextSyllable.first = 'ㄹ';
+    if (arrayIncludes(['ㄹㅎ', 'ㄹㅌ'], current.last)) {
+      next.first = 'ㄹ';
     }
   }
+
+  return {
+    current,
+    next,
+  };
 }
 
 /**
@@ -335,15 +419,19 @@ export function apply제20항(currentSyllable: Syllable, nextSyllable: Syllable)
  * @param currentSyllable 현재 음절을 입력합니다.
  * @param nextSyllable 다음 음절을 입력합니다.
  */
-export function apply경음화(currentSyllable: Syllable, nextSyllable: Syllable): void {
-  if (hasProperty(된소리, nextSyllable.first)) {
+export function apply경음화(currentSyllable: Syllable, nextSyllable: Syllable): Pick<ReturnRules, 'next'> {
+  const next = { ...nextSyllable };
+
+  if (hasProperty(된소리, next.first)) {
     const 제23항조건 = arrayIncludes(된소리_받침, currentSyllable.last);
-    const 제24_25항조건 = arrayIncludes(어간_받침, currentSyllable.last) && nextSyllable.first !== 'ㅂ';
+    const 제24_25항조건 = arrayIncludes(어간_받침, currentSyllable.last) && next.first !== 'ㅂ';
 
     if (제23항조건 || 제24_25항조건) {
-      nextSyllable.first = 된소리[nextSyllable.first];
+      next.first = 된소리[next.first];
     }
   }
+
+  return { next };
 }
 
 /**
@@ -354,30 +442,39 @@ export function apply경음화(currentSyllable: Syllable, nextSyllable: Syllable
  * @param currentSyllable 현재 음절을 입력합니다.
  * @param nextSyllable 다음 음절을 입력합니다.
  */
-export function applyㄴㄹ덧남(currentSyllable: Syllable, nextSyllable: Syllable) {
+export function applyㄴㄹ덧남(currentSyllable: Syllable, nextSyllable: Syllable): ReturnRules {
+  const current = { ...currentSyllable };
+  const next = { ...nextSyllable };
+
   const ㄴㄹ이덧나는조건 =
-    currentSyllable.last &&
-    nextSyllable.first === 'ㅇ' &&
-    arrayIncludes(ㄴㄹ이_덧나는_후속음절_모음, nextSyllable.middle);
+    current.last && next.first === 'ㅇ' && arrayIncludes(ㄴㄹ이_덧나는_후속음절_모음, next.middle);
 
   if (!ㄴㄹ이덧나는조건) {
-    return;
+    return {
+      current,
+      next,
+    };
   }
 
-  if (arrayIncludes(ㄴㄹ이_덧나는_모음, currentSyllable.middle)) {
-    if (arrayIncludes(ㄴㄹ이_덧나서_받침_ㄴ_변환, currentSyllable.last)) {
-      if (currentSyllable.last === 'ㄱ') {
-        currentSyllable.last = 'ㅇ';
+  if (arrayIncludes(ㄴㄹ이_덧나는_모음, current.middle)) {
+    if (arrayIncludes(ㄴㄹ이_덧나서_받침_ㄴ_변환, current.last)) {
+      if (current.last === 'ㄱ') {
+        current.last = 'ㅇ';
       }
 
-      nextSyllable.first = 'ㄴ';
+      next.first = 'ㄴ';
     }
 
-    if (arrayIncludes(ㄴㄹ이_덧나서_받침_ㄹ_변환, currentSyllable.last)) {
-      nextSyllable.first = 'ㄹ';
+    if (arrayIncludes(ㄴㄹ이_덧나서_받침_ㄹ_변환, current.last)) {
+      next.first = 'ㄹ';
     }
   } else {
     // ㄴ/ㄹ이 되기 위한 조건이지만 현재 음절의 중성의 ∙(아래아)가 하나가 아닐 경우에는 덧나지 않고 연음규칙이 적용된다
-    nextSyllable.first = currentSyllable.last as typeof nextSyllable.first;
+    next.first = current.last as typeof next.first;
   }
+
+  return {
+    current,
+    next,
+  };
 }

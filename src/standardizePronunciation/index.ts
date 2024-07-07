@@ -43,15 +43,19 @@ export function standardizePronunciation(hangul: string, options: Options = { ha
     syllables.map((currentSyllable, I, array) => {
       const nextSyllable = I < array.length - 1 ? array[I + 1] : null;
 
-      applyRules({
+      const { updatedCurrent, updatedNext } = applyRules({
         currentSyllable,
-        hangulPhrase: phrase,
+        phrase,
         index: I,
         nextSyllable,
         options,
       });
 
-      return currentSyllable;
+      if (updatedNext) {
+        array[I + 1] = updatedNext;
+      }
+
+      return updatedCurrent;
     });
 
   const transformHangulPhrase = (phrase: string, options: Options): string => {
@@ -95,53 +99,91 @@ type ApplyRules = {
   currentSyllable: Syllable;
   nextSyllable: Nullable<Syllable>;
   index: number;
-  hangulPhrase: string;
+  phrase: string;
   options: NonNullable<Parameters<typeof standardizePronunciation>[1]>;
 };
 
-function applyRules({ currentSyllable, nextSyllable, index, hangulPhrase, options }: ApplyRules): void {
-  if (nextSyllable) {
+function applyRules({ currentSyllable, nextSyllable, index, phrase, options }: ApplyRules): {
+  updatedCurrent: Syllable;
+  updatedNext: Nullable<Syllable>;
+} {
+  let updatedCurrent = { ...currentSyllable };
+  let updatedNext = nextSyllable ? { ...nextSyllable } : nextSyllable;
+
+  if (updatedNext) {
     if (options.hardConversion) {
-      apply경음화(currentSyllable, nextSyllable);
+      const { next } = apply경음화(updatedCurrent, updatedNext);
+      updatedNext = { ...next };
     }
 
     if (index > 0) {
-      const { isChanged: is제16항Changed } = apply제16항(currentSyllable, nextSyllable, hangulPhrase, index);
+      const { isChanged, current, next } = apply제16항({
+        currentSyllable: updatedCurrent,
+        nextSyllable: updatedNext,
+        index,
+        phrase,
+      });
 
-      if (is제16항Changed) {
-        return;
+      if (isChanged) {
+        return {
+          updatedCurrent: current,
+          updatedNext: next,
+        };
       }
     }
 
-    const { isChanged: is제17항Changed } = apply제17항(currentSyllable, nextSyllable);
+    const { isChanged: isChanged17항, current: current17항, next: next17항 } = apply제17항(updatedCurrent, updatedNext);
 
-    if (is제17항Changed) {
-      return;
+    if (isChanged17항) {
+      return {
+        updatedCurrent: current17항,
+        updatedNext: next17항,
+      };
     }
 
-    apply제19항(currentSyllable, nextSyllable);
-    applyㄴㄹ덧남(currentSyllable, nextSyllable);
+    const { next: next19항 } = apply제19항(updatedCurrent, updatedNext);
+    updatedNext = { ...next19항 };
 
-    const { isChanged: is제18항Changed } = apply제18항(currentSyllable, nextSyllable);
+    const { current, next } = applyㄴㄹ덧남(updatedCurrent, updatedNext);
+    updatedCurrent = current;
+    updatedNext = next;
 
-    if (is제18항Changed) {
-      return;
+    const { isChanged: isChanged18항, current: current18항 } = apply제18항(updatedCurrent, updatedNext);
+
+    if (isChanged18항) {
+      return {
+        updatedCurrent: current18항,
+        updatedNext,
+      };
     }
 
-    apply제20항(currentSyllable, nextSyllable);
+    const { current: current20항, next: next20항 } = apply제20항(updatedCurrent, updatedNext);
+    updatedCurrent = current20항;
+    updatedNext = next20항;
   }
 
-  apply제12항(currentSyllable, nextSyllable);
+  const { current: current12항, next: next12항 } = apply제12항(updatedCurrent, updatedNext);
+  updatedCurrent = current12항;
+  updatedNext = next12항;
 
-  if (nextSyllable) {
-    const { isChanged } = apply제13과14항(currentSyllable, nextSyllable);
+  if (updatedNext) {
+    const { isChanged, current, next } = apply제13과14항(updatedCurrent, updatedNext);
 
     if (isChanged) {
-      return;
+      return {
+        updatedCurrent: current,
+        updatedNext: next,
+      };
     }
   }
 
-  apply제9와10과11항(currentSyllable, nextSyllable);
+  const { current } = apply제9와10과11항(updatedCurrent, updatedNext);
+  updatedCurrent = { ...current };
+
+  return {
+    updatedCurrent,
+    updatedNext,
+  };
 }
 
 function assembleChangedHangul(disassembleHangul: Syllable[], notHangulPhrase: NotHangul[]): string {
