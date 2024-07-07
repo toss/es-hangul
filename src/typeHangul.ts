@@ -8,7 +8,7 @@ export async function* typeHangul(target: string, options?: TypingOptions) {
   const { speed = 50, initial = '', decomposeOnBackward = true } = options ?? {};
 
   if (initial === target) {
-    throw Error(`'${initial}' and '${target}'`);
+    throw Error(`The initial value and the target are the same ('${initial}')`);
   }
 
   const disassembledInitial = initial.length === 0 ? [] : disassembleHangulToGroups(initial).flat();
@@ -21,12 +21,12 @@ export async function* typeHangul(target: string, options?: TypingOptions) {
     : [disassembledInitial, disassembledTarget];
 
   if (shorter.some((alphabet, idx) => alphabet !== longer[idx])) {
-    throw Error(`'${initial}' can't be typed as ${target}`);
+    throw Error(`'${initial}' can't be typed as '${target}'`);
   }
 
-  if (isBackward && !decomposeOnBackward && target.length > 0 && !isHangulCharacter([...target].reverse()[0])) {
+  if (isBackward && !decomposeOnBackward && target.length > 0 && !initial.includes(target)) {
     throw Error(
-      `'options.decomposeOnBackward' is set to false, but the last character of 'target'(${target}) is not a complete character`
+      `'options.decomposeOnBackward' is set to false, but the last character of 'target'(${target}) is not a complete character for 'initial'(${initial})`
     );
   }
 
@@ -51,7 +51,7 @@ export async function* typeHangul(target: string, options?: TypingOptions) {
   }
 }
 
-type TypingEventListener = (value: string, info: { from: string; to: string; isReset: boolean }) => void;
+export type TypingEventListener = (value: string, info: { from: string; to: string; isReset: boolean }) => void;
 
 export function getTypewriterHangul(initial = '') {
   let _current = initial;
@@ -79,8 +79,9 @@ export function getTypewriterHangul(initial = '') {
   };
 
   const reset = (value = initial) => {
+    const from = _current;
     _current = value;
-    _callListeners(_current, value, true);
+    _callListeners(from, value, true);
   };
 
   return {

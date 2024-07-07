@@ -1,5 +1,47 @@
 # es-hangul
 
+## 1.4.2
+
+### Patch Changes
+
+- [#159](https://github.com/toss/es-hangul/pull/159) [`aaddf6f`](https://github.com/toss/es-hangul/commit/aaddf6f91a9c82a939cf333d29cdd875b358e8cd) Thanks [@crucifyer](https://github.com/crucifyer)! - fix: 소수점 추가 후 발생한 '영'읽기 버그 수정
+
+## 1.4.1
+
+### Patch Changes
+
+- [#157](https://github.com/toss/es-hangul/pull/157) [`f7e60ae`](https://github.com/toss/es-hangul/commit/f7e60aeca9f315ac1e34eba0a1f8a82f55d79956) Thanks [@manudeli](https://github.com/manudeli)! - fix: 패키지가 노출하는 인터페이스를 명확히 하기 위해 index.ts를 named export로 수정합니다
+
+## 1.4.0
+
+### Minor Changes
+
+- [#144](https://github.com/toss/es-hangul/pull/144) [`b114897`](https://github.com/toss/es-hangul/commit/b1148973e6c2b640ce528fc8ba4b8e2e034b90de) Thanks [@Collection50](https://github.com/Collection50)! - fix: amountToHangul이 소수점, 숫자도 대응할 수 있도록 수정
+
+## 1.3.10
+
+### Patch Changes
+
+- [#148](https://github.com/toss/es-hangul/pull/148) [`f3c7fe9`](https://github.com/toss/es-hangul/commit/f3c7fe9f73138b932af817b8ac925d54c3283151) Thanks [@KNU-K](https://github.com/KNU-K)! - fix : getHangulacronym함수를 acronymizeHangul 메서드로 대체합니다
+
+## 1.3.9
+
+### Patch Changes
+
+- [#130](https://github.com/toss/es-hangul/pull/130) [`acd6edb`](https://github.com/toss/es-hangul/commit/acd6edb1d8aadced517f6b57a49c01152ff19d0a) Thanks [@Collection50](https://github.com/Collection50)! - feat: 문자열에서 한글만 반환하는 extractHangul을 구현합니다.
+
+## 1.3.8
+
+### Patch Changes
+
+- [#133](https://github.com/toss/es-hangul/pull/133) [`b0e1184`](https://github.com/toss/es-hangul/commit/b0e1184204be0cb9f3c13937888c83c8a94e7ca6) Thanks [@KNU-K](https://github.com/KNU-K)! - feat : 문장의 각 단어 중 첫 문자만 뽑는 extractHangul 함수를 추가합니다.
+
+## 1.3.7
+
+### Patch Changes
+
+- [#124](https://github.com/toss/es-hangul/pull/124) [`0f38431`](https://github.com/toss/es-hangul/commit/0f38431ee611cb89c7e121fd02ab34f749a0c386) Thanks [@crucifyer](https://github.com/crucifyer)! - fix: 코드 효율 개선
+
 ## 1.3.6
 
 ### Patch Changes

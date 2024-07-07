@@ -20,25 +20,13 @@ import { excludeLastElement } from './_internal';
  * removeLastHangulCharacter('신세계') // 신세ㄱ
  */
 export function removeLastHangulCharacter(words: string) {
-  const disassembledGroups = disassembleHangulToGroups(words);
-  const lastCharacter = disassembledGroups[disassembledGroups.length - 1];
-
+  const lastCharacter = words[words.length - 1];
   if (lastCharacter == null) {
     return '';
   }
-
-  const withoutLastCharacter = disassembledGroups
-    .filter(v => v !== lastCharacter)
-    .map(([first, middle, last]) => {
-      if (middle != null) {
-        return combineHangulCharacter(first, middle, last);
-      }
-
-      return first;
-    });
-
-  const [[first, middle, last]] = excludeLastElement(lastCharacter);
+  const disassembleLastCharacter = disassembleHangulToGroups(lastCharacter);
+  const [[first, middle, last]] = excludeLastElement(disassembleLastCharacter[0]);
   const result = middle != null ? combineHangulCharacter(first, middle, last) : first;
 
-  return [...withoutLastCharacter, result].join('');
+  return [words.substring(0, words.length - 1), result].join('');
 }

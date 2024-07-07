@@ -48,3 +48,30 @@
 ### 2.2 Description
 
 A clear and concise description of what the pr is about.
+
+## 3. Convention
+
+함수명에는 특별한 이유가 없다면 hangul을 포함하지 않습니다.
+
+```ts
+// Don't
+function getHangulSimilarity();
+// Do
+function getSimilarity();
+
+// Don't
+function disassembleHangul();
+// Do
+function disassemble();
+```
+
+함수명을 지을 때 아래와 같이 import될 것을 고려해야 합니다.
+
+```ts
+import { getSimilarity, disassemble, josa } from 'es-hangul' // 따로 나눠서도 제공
+import hangul from 'es-hangul' // hangul default export에 묶어서도 제공
+
+hangul.getSimilarity(...)
+hangul.disassemble(...)
+hangul.josa(...)
+

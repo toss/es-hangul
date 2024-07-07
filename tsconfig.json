@@ -8,5 +8,5 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["src", ".eslintrc.js"]
+  "include": ["src", ".eslintrc.js", "packlint.config.mjs"]
 }
