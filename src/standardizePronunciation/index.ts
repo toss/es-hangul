@@ -5,18 +5,18 @@ import { disassembleCompleteHangulCharacter } from '../disassembleCompleteHangul
 import { isNotUndefined } from '../utils';
 import {
   Nullable,
-  applyㄴㄹ덧남,
-  apply경음화,
-  apply제12항,
-  apply제13과14항,
-  apply제16항,
-  apply제17항,
-  apply제18항,
-  apply제19항,
-  apply제20항,
-  apply제9와10과11항,
+  transform12항,
+  transform13과14항,
+  transform16항,
+  transform17항,
+  transform18항,
+  transform19항,
+  transform20항,
+  transform9와10과11항,
+  transformㄴㄹ덧남,
+  transform경음화,
   type Syllable,
-} from './standardizePronunciation.rules';
+} from './rules';
 
 type Options = {
   hardConversion: boolean;
@@ -113,30 +113,30 @@ function applyRules(params: ApplyParameters): {
   let next = nextSyllable ? { ...nextSyllable } : nextSyllable;
 
   if (next && options.hardConversion) {
-    ({ next } = apply경음화(current, next));
+    ({ next } = transform경음화(current, next));
   }
 
   if (next) {
-    ({ current, next } = apply제16항({
+    ({ current, next } = transform16항({
       currentSyllable: current,
       nextSyllable: next,
       index,
       phrase,
     }));
-    ({ current, next } = apply제17항(current, next));
-    ({ next } = apply제19항(current, next));
-    ({ current, next } = applyㄴㄹ덧남(current, next));
-    ({ current } = apply제18항(current, next));
-    ({ current, next } = apply제20항(current, next));
+    ({ current, next } = transform17항(current, next));
+    ({ next } = transform19항(current, next));
+    ({ current, next } = transformㄴㄹ덧남(current, next));
+    ({ current } = transform18항(current, next));
+    ({ current, next } = transform20항(current, next));
   }
 
-  ({ current, next } = apply제12항(current, next));
+  ({ current, next } = transform12항(current, next));
 
   if (next) {
-    ({ current, next } = apply제13과14항(current, next));
+    ({ current, next } = transform13과14항(current, next));
   }
 
-  ({ current } = apply제9와10과11항(current, next));
+  ({ current } = transform9와10과11항(current, next));
 
   return {
     current,
