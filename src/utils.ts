@@ -1,11 +1,12 @@
+import assert from './_internal';
 import {
-  COMPLETE_HANGUL_START_CHARCODE,
   COMPLETE_HANGUL_END_CHARCODE,
+  COMPLETE_HANGUL_START_CHARCODE,
   HANGUL_CHARACTERS_BY_FIRST_INDEX,
   HANGUL_CHARACTERS_BY_LAST_INDEX,
   HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
-  NUMBER_OF_JONGSUNG,
   JASO_HANGUL_NFD,
+  NUMBER_OF_JONGSUNG,
 } from './constants';
 import { disassembleHangulToGroups } from './disassemble';
 
@@ -96,7 +97,8 @@ export function hasSingleBatchim(str: string) {
  * getChosung('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
  */
 export function getChosung(word: string) {
-  return word.normalize('NFD')
+  return word
+    .normalize('NFD')
     .replace(EXTRACT_CHOSEONG_REGEX, '') // NFD ㄱ-ㅎ, NFC ㄱ-ㅎ 외 문자 삭제
     .replace(CHOOSE_NFD_CHOSEONG_REGEX, $0 => HANGUL_CHARACTERS_BY_FIRST_INDEX[$0.charCodeAt(0) - 0x1100]); // NFD to NFC
 }
@@ -198,6 +200,12 @@ export function hasProperty<T extends object, K extends PropertyKey>(obj: T, key
 
 export function isNotUndefined<T>(value: T | undefined): value is T {
   return value !== undefined;
+}
+
+export function defined<T>(value: T | undefined): T {
+  assert(value !== undefined);
+
+  return value as T;
 }
 
 export function arrayIncludes<Type>(array: Type[] | readonly Type[], item: unknown, fromIndex?: number): item is Type {
