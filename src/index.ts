@@ -10,3 +10,4 @@ export * from './removeLastHangulCharacter';
 export * from './utils';
 export * from './extractHangul';
 export * from './acronymizeHangul';
+export * from './needAssemble';
