@@ -43,7 +43,7 @@ export function standardizePronunciation(hangul: string, options: Options = { ha
     syllables.map((currentSyllable, I, array) => {
       const nextSyllable = I < array.length - 1 ? array[I + 1] : null;
 
-      const { updatedCurrent, updatedNext } = applyRules({
+      const { current, next } = applyRules({
         currentSyllable,
         phrase,
         index: I,
@@ -51,11 +51,11 @@ export function standardizePronunciation(hangul: string, options: Options = { ha
         options,
       });
 
-      if (updatedNext) {
-        array[I + 1] = updatedNext;
+      if (next) {
+        array[I + 1] = next;
       }
 
-      return updatedCurrent;
+      return current;
     });
 
   const transformHangulPhrase = (phrase: string, options: Options): string => {
@@ -95,7 +95,7 @@ function 음절분해(hangulPhrase: string): {
   return { notHangulPhrase, disassembleHangul };
 }
 
-type ApplyRules = {
+type ApplyParameters = {
   currentSyllable: Syllable;
   nextSyllable: Nullable<Syllable>;
   index: number;
@@ -103,86 +103,44 @@ type ApplyRules = {
   options: NonNullable<Parameters<typeof standardizePronunciation>[1]>;
 };
 
-function applyRules({ currentSyllable, nextSyllable, index, phrase, options }: ApplyRules): {
-  updatedCurrent: Syllable;
-  updatedNext: Nullable<Syllable>;
+function applyRules(params: ApplyParameters): {
+  current: Syllable;
+  next: Nullable<Syllable>;
 } {
-  let updatedCurrent = { ...currentSyllable };
-  let updatedNext = nextSyllable ? { ...nextSyllable } : nextSyllable;
+  const { currentSyllable, nextSyllable, index, phrase, options } = params;
 
-  if (updatedNext) {
-    if (options.hardConversion) {
-      const { next } = apply경음화(updatedCurrent, updatedNext);
-      updatedNext = { ...next };
-    }
+  let current = { ...currentSyllable };
+  let next = nextSyllable ? { ...nextSyllable } : nextSyllable;
 
-    if (index > 0) {
-      const { isChanged, current, next } = apply제16항({
-        currentSyllable: updatedCurrent,
-        nextSyllable: updatedNext,
-        index,
-        phrase,
-      });
-
-      if (isChanged) {
-        return {
-          updatedCurrent: current,
-          updatedNext: next,
-        };
-      }
-    }
-
-    const { isChanged: isChanged17항, current: current17항, next: next17항 } = apply제17항(updatedCurrent, updatedNext);
-
-    if (isChanged17항) {
-      return {
-        updatedCurrent: current17항,
-        updatedNext: next17항,
-      };
-    }
-
-    const { next: next19항 } = apply제19항(updatedCurrent, updatedNext);
-    updatedNext = { ...next19항 };
-
-    const { current, next } = applyㄴㄹ덧남(updatedCurrent, updatedNext);
-    updatedCurrent = current;
-    updatedNext = next;
-
-    const { isChanged: isChanged18항, current: current18항 } = apply제18항(updatedCurrent, updatedNext);
-
-    if (isChanged18항) {
-      return {
-        updatedCurrent: current18항,
-        updatedNext,
-      };
-    }
-
-    const { current: current20항, next: next20항 } = apply제20항(updatedCurrent, updatedNext);
-    updatedCurrent = current20항;
-    updatedNext = next20항;
+  if (next && options.hardConversion) {
+    ({ next } = apply경음화(current, next));
   }
 
-  const { current: current12항, next: next12항 } = apply제12항(updatedCurrent, updatedNext);
-  updatedCurrent = current12항;
-  updatedNext = next12항;
-
-  if (updatedNext) {
-    const { isChanged, current, next } = apply제13과14항(updatedCurrent, updatedNext);
-
-    if (isChanged) {
-      return {
-        updatedCurrent: current,
-        updatedNext: next,
-      };
-    }
+  if (next) {
+    ({ current, next } = apply제16항({
+      currentSyllable: current,
+      nextSyllable: next,
+      index,
+      phrase,
+    }));
+    ({ current, next } = apply제17항(current, next));
+    ({ next } = apply제19항(current, next));
+    ({ current, next } = applyㄴㄹ덧남(current, next));
+    ({ current } = apply제18항(current, next));
+    ({ current, next } = apply제20항(current, next));
   }
 
-  const { current } = apply제9와10과11항(updatedCurrent, updatedNext);
-  updatedCurrent = { ...current };
+  ({ current, next } = apply제12항(current, next));
+
+  if (next) {
+    ({ current, next } = apply제13과14항(current, next));
+  }
+
+  ({ current } = apply제9와10과11항(current, next));
 
   return {
-    updatedCurrent,
-    updatedNext,
+    current,
+    next,
   };
 }
 
