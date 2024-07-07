@@ -4,7 +4,6 @@ import { combineHangulCharacter } from '../combineHangulCharacter';
 import { disassembleCompleteHangulCharacter } from '../disassembleCompleteHangulCharacter';
 import { isNotUndefined } from '../utils';
 import {
-  Nullable,
   transform12th,
   transform13And14th,
   transform16th,
@@ -15,6 +14,7 @@ import {
   transform9And10And11th,
   transformHardConversion,
   transformNLAssimilation,
+  type Nullable,
   type Syllable,
 } from './rules';
 
