@@ -2,12 +2,11 @@ import { disassembleCompleteHangulCharacter } from "./disassembleCompleteHangulC
 import { canBeChosung, canBeJongsung, canBeJungsung, hasBatchim, hasSingleBatchim } from "./utils";
 
 /**
- * 
  * @name needAssemble
  * @description
- * 한글 문자열중 자음이나 모음이 있다면 완전한 문자로 조합 가능한지 검사합니다.
- * @param hangul 변환하고자 하는 한글 문자열
- * @returns 문자로 조합 가능한지 여부
+ * 문자열 안에서 자음과 모음을 찾고 완전한 한글 문자로 조합이 가능한지 검사합니다.
+ * @param hangul 검사하고자 하는 한글 문자열
+ * @returns 조합가능한 문자가 하나라도 존재하는지 여부
  */
 export function needAssemble(hangul: string): boolean {
   for (const Jamo of hangul.matchAll(/[ㄱ-ㅎㅏ-ㅣ]/g)) {
