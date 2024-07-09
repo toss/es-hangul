@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 export { assembleHangul } from './assemble';
 export { chosungIncludes } from './chosungIncludes';
 export { combineHangulCharacter, combineVowels, curriedCombineHangulCharacter } from './combineHangulCharacter';
@@ -20,16 +19,3 @@ export {
 } from './utils';
 export { extractHangul } from './extractHangul';
 export { acronymizeHangul } from './acronymizeHangul';
-=======
-export * from './assemble';
-export * from './choseongIncludes';
-export * from './chosungIncludes';
-export * from './combineHangulCharacter';
-export * from './convertQwertyToHangulAlphabet';
-export * from './disassemble';
-export * from './disassembleCompleteHangulCharacter';
-export * from './hangulIncludes';
-export * from './josa';
-export * from './removeLastHangulCharacter';
-export * from './utils';
->>>>>>> bdeca9f (fix: 일관된 한글 표기법 적용)
