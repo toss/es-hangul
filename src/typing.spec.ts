@@ -1,9 +1,9 @@
-import { getTypewriterHangul, typeHangul, TypingEventListener } from './typeHangul';
+import { getTypewriter, typing, TypingEventListener } from './typing';
 
 describe('typeHangul', () => {
   it('"" -> "안녕하세요"', async () => {
     vi.useFakeTimers();
-    const generator = typeHangul('안녕하세요');
+    const generator = typing('안녕하세요');
     const steps = [
       '',
       'ㅇ',
@@ -37,7 +37,7 @@ describe('typeHangul', () => {
 
   it('"" -> "안녕하세요" (speed = 100)', async () => {
     vi.useFakeTimers();
-    const generator = typeHangul('안녕하세요', {
+    const generator = typing('안녕하세요', {
       speed: 100,
     });
     const steps = [
@@ -73,7 +73,7 @@ describe('typeHangul', () => {
 
   it('"안녕하세요" -> "안녕"', async () => {
     vi.useFakeTimers();
-    const generator = typeHangul('안녕', {
+    const generator = typing('안녕', {
       initial: '안녕하세요',
     });
 
@@ -96,7 +96,7 @@ describe('typeHangul', () => {
 
   it('"안녕하세요" -> "안녕" (decomposeOnBackward = true)', async () => {
     vi.useFakeTimers();
-    const generator = typeHangul('안녕', {
+    const generator = typing('안녕', {
       initial: '안녕하세요',
       decomposeOnBackward: true,
     });
@@ -120,7 +120,7 @@ describe('typeHangul', () => {
 
   it('"안녕하세요" -> "안녕" (decomposeOnBackward = false)', async () => {
     vi.useFakeTimers();
-    const generator = typeHangul('안녕', {
+    const generator = typing('안녕', {
       initial: '안녕하세요',
       decomposeOnBackward: false,
     });
@@ -144,7 +144,7 @@ describe('typeHangul', () => {
 
   it('"안녕하세요" -> ""', async () => {
     vi.useFakeTimers();
-    const generator = typeHangul('', {
+    const generator = typing('', {
       initial: '안녕하세요',
     });
 
@@ -181,7 +181,7 @@ describe('typeHangul', () => {
 
   it(`초기값과 결과값이 같은 경우 에러를 반환한다. ("안녕하세요" -> "안녕하세요")`, async () => {
     vi.useFakeTimers();
-    const generator = typeHangul('안녕하세요', {
+    const generator = typing('안녕하세요', {
       initial: '안녕하세요',
     });
 
@@ -192,7 +192,7 @@ describe('typeHangul', () => {
 
   it(`타이핑 될 수 없는 조합의 초기값과 결과값이 입력 되는 경우 에러를 반환한다. ("하이" -> "안녕하세요")`, async () => {
     vi.useFakeTimers();
-    const generator = typeHangul('안녕하세요', {
+    const generator = typing('안녕하세요', {
       initial: '하이',
     });
 
@@ -201,16 +201,16 @@ describe('typeHangul', () => {
 
   it(`타이핑 될 수 없는 조합의 초기값과 결과값이 입력 되는 경우 에러를 반환한다. ("안녕하세요" -> "하이")`, async () => {
     vi.useFakeTimers();
-    const generator = typeHangul('하이', {
+    const generator = typing('하이', {
       initial: '안녕하세요',
     });
 
     await expect(() => generator.next()).rejects.toThrowError(`'안녕하세요' can't be typed as '하이'`);
   });
 
-  it(`백스페이스 타이핑이고, decomposeonBackward = false일 때, target에 완전하지 않은 단어가 입력되면 에러를 반환한다. ("안녕하세요" -> "안녀")`, async () => {
+  it(`백스페이스 타이핑이고, decomposeOnBackward = false일 때, target에 완전하지 않은 단어가 입력되면 에러를 반환한다. ("안녕하세요" -> "안녀")`, async () => {
     vi.useFakeTimers();
-    const generator = typeHangul('안녀', {
+    const generator = typing('안녀', {
       initial: '안녕하세요',
       decomposeOnBackward: false,
     });
@@ -224,7 +224,7 @@ describe('typeHangul', () => {
 describe('getTypewriterHangul', () => {
   it('"" -> "안녕하세요" -> "안녕" -> ""(decomposeOnBackward = true)', async () => {
     vi.useFakeTimers();
-    const typewriter = getTypewriterHangul();
+    const typewriter = getTypewriter();
 
     const steps = [
       '',
@@ -242,7 +242,7 @@ describe('getTypewriterHangul', () => {
       '안녕하세요',
     ].map(value => [value, { from: '', to: '안녕하세요', isReset: false }]);
 
-    const result: Parameters<TypingEventListener>[] = [];
+    const result: Array<Parameters<TypingEventListener>> = [];
 
     typewriter.onType((...args) => {
       result.push(args);
@@ -278,9 +278,9 @@ describe('getTypewriterHangul', () => {
 
   it('reset 메소드를 실행하면 값이 즉시 변경되어야 한다. ("" -> "안녕하세요")', () => {
     vi.useFakeTimers();
-    const typewriter = getTypewriterHangul();
+    const typewriter = getTypewriter();
 
-    const result: Parameters<TypingEventListener>[] = [];
+    const result: Array<Parameters<TypingEventListener>> = [];
 
     typewriter.onType((...args) => {
       result.push(args);
@@ -293,7 +293,7 @@ describe('getTypewriterHangul', () => {
 
   it('onType 메소드가 반환하는 unsubscribe를 실행하면 타이핑 구독이 취소되어야 한다. ("" -> "안녕하세요" -> "안녕")', async () => {
     vi.useFakeTimers();
-    const typewriter = getTypewriterHangul();
+    const typewriter = getTypewriter();
 
     const steps = [
       '',
@@ -311,7 +311,7 @@ describe('getTypewriterHangul', () => {
       '안녕하세요',
     ].map(value => [value, { from: '', to: '안녕하세요', isReset: false }]);
 
-    const result: Parameters<TypingEventListener>[] = [];
+    const result: Array<Parameters<TypingEventListener>> = [];
 
     const unsubscribe = typewriter.onType((...args) => {
       result.push(args);

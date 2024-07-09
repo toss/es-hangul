@@ -19,4 +19,4 @@ export {
 } from './utils';
 export { extractHangul } from './extractHangul';
 export { acronymizeHangul } from './acronymizeHangul';
-export { typeHangul, getTypewriterHangul } from './typeHangul';
+export { typing as typeHangul, getTypewriter as getTypewriterHangul } from './typing';

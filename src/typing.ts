@@ -1,10 +1,9 @@
-import { isHangulCharacter } from './_internal/hangul';
 import { assembleHangul } from './assemble';
 import { disassembleHangulToGroups } from './disassemble';
 
 type TypingOptions = { speed?: number; initial?: string; decomposeOnBackward?: boolean };
 
-export async function* typeHangul(target: string, options?: TypingOptions) {
+export async function* typing(target: string, options?: TypingOptions) {
   const { speed = 50, initial = '', decomposeOnBackward = true } = options ?? {};
 
   if (initial === target) {
@@ -53,7 +52,7 @@ export async function* typeHangul(target: string, options?: TypingOptions) {
 
 export type TypingEventListener = (value: string, info: { from: string; to: string; isReset: boolean }) => void;
 
-export function getTypewriterHangul(initial = '') {
+export function getTypewriter(initial = '') {
   let _current = initial;
   let _listeners: TypingEventListener[] = [];
 
@@ -70,7 +69,7 @@ export function getTypewriterHangul(initial = '') {
 
   const type = async (target: string, options?: Omit<TypingOptions, 'initial'>) => {
     const from = _current;
-    const typeHangulGenerator = typeHangul(target, { ...options, initial: _current });
+    const typeHangulGenerator = typing(target, { ...options, initial: _current });
 
     for await (const value of typeHangulGenerator) {
       _current = value;
