@@ -16,7 +16,7 @@ module.exports = {
     project: true,
   },
 
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier', 'plugin:@cspell/recommended'],
   plugins: ['@typescript-eslint'],
   rules: {
     'no-implicit-coercion': 'error',
