@@ -89,12 +89,24 @@ describe('binaryAssembleHangulCharacters', () => {
     expect(binaryAssembleHangulCharacters('고', 'ㅏ')).toEqual('과');
   });
 
+  it('초성과 중성(겹모음)이 합쳐진 문자와 자음을 조합', () => {
+    expect(binaryAssembleHangulCharacters('과', 'ㄱ')).toEqual('곽');
+  });
+
+  it('초성과 중성(겹모음)과 종성이 합쳐진 문자와 자음을 조합하여 겹받침 만들기', () => {
+    expect(binaryAssembleHangulCharacters('완', 'ㅈ')).toEqual('왅');
+  });
+
   it('모음만 있는 문자와 모음을 조합하여 겹모음 만들기', () => {
     expect(binaryAssembleHangulCharacters('ㅗ', 'ㅏ')).toEqual('ㅘ');
   });
 
   it('초성과 중성과 종성이 합쳐진 문자의 연음 법칙', () => {
     expect(binaryAssembleHangulCharacters('톳', 'ㅡ')).toEqual('토스');
+  });
+
+  it('초성과 종성(겹모음)과 종성이 합쳐진 문자의 연음 법칙', () => {
+    expect(binaryAssembleHangulCharacters('왅', 'ㅓ')).toEqual('완저');
   });
 
   it('초성과 중성과 종성(겹받침)이 합쳐진 문자의 연음 법칙', () => {
