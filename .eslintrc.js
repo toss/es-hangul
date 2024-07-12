@@ -66,15 +66,5 @@ module.exports = {
         ],
       },
     ],
-    '@cspell/spellchecker': [
-      'error',
-      {
-        cspell: {
-          words: ['choseong', 'jungseong', 'jongseong'],
-          // eslint-disable-next-line @cspell/spellchecker
-          flagWords: ['chosung', 'jungsung', 'jongsung'],
-        },
-      },
-    ],
   },
 };
