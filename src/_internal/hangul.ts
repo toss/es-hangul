@@ -118,6 +118,7 @@ export function binaryAssembleHangulCharacters(source: string, nextCharacter: st
   }
 
   const [restJamos, lastJamo] = excludeLastElement(sourceJamos);
+  const secondaryLastJamo = excludeLastElement(restJamos)[1];
 
   const needLinking = canBeChosung(lastJamo) && canBeJungsung(nextCharacter);
   if (needLinking) {
@@ -131,12 +132,18 @@ export function binaryAssembleHangulCharacters(source: string, nextCharacter: st
     return combineJungsung(`${lastJamo}${nextCharacter}`)();
   }
 
+  if (canBeJungsung(`${secondaryLastJamo}${lastJamo}`) && canBeJongsung(nextCharacter)) {
+    return combineJungsung(`${secondaryLastJamo}${lastJamo}`)(nextCharacter);
+  }
+
   if (canBeJungsung(lastJamo) && canBeJongsung(nextCharacter)) {
     return combineJungsung(lastJamo)(nextCharacter);
   }
 
   const fixVowel = combineJungsung;
-  const combineJongsung = fixVowel(restJamos[1]);
+  const combineJongsung = fixVowel(
+    canBeJungsung(`${restJamos[1]}${restJamos[2]}`) ? `${restJamos[1]}${restJamos[2]}` : restJamos[1]
+  );
 
   const lastConsonant = lastJamo;
 
