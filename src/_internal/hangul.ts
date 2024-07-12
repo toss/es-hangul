@@ -1,6 +1,6 @@
 import assert, { excludeLastElement, isBlank, joinString } from '.';
 import { combineHangulCharacter, combineVowels, curriedCombineHangulCharacter } from '../combineHangulCharacter';
-import { disassembleHangulToGroups } from '../disassemble';
+import { disassembleToGroups } from '../disassemble';
 import { removeLastHangulCharacter } from '../removeLastHangulCharacter';
 import { canBeChoseong, canBeJongseong, canBeJungseong, hasSingleBatchim } from '../utils';
 
@@ -75,7 +75,7 @@ export function binaryAssembleHangulAlphabets(source: string, nextCharacter: str
  * 연음 법칙을 적용하여 두 개의 한글 문자를 연결합니다.
  */
 export function linkHangulCharacters(source: string, nextCharacter: string) {
-  const sourceJamo = disassembleHangulToGroups(source)[0];
+  const sourceJamo = disassembleToGroups(source)[0];
   const [, lastJamo] = excludeLastElement(sourceJamo);
 
   return joinString(removeLastHangulCharacter(source), combineHangulCharacter(lastJamo, nextCharacter));
@@ -109,7 +109,7 @@ export function binaryAssembleHangulCharacters(source: string, nextCharacter: st
     `Invalid next character: ${nextCharacter}. Next character must be one of the choseong, jungseong, or jongseong.`
   );
 
-  const sourceJamos = disassembleHangulToGroups(source)[0];
+  const sourceJamos = disassembleToGroups(source)[0];
 
   const isSingleCharacter = sourceJamos.length === 1;
   if (isSingleCharacter) {

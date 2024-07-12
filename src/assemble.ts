@@ -1,4 +1,4 @@
-import { disassembleHangul } from './disassemble';
+import { disassemble } from './disassemble';
 import { binaryAssembleHangul } from './_internal/hangul';
 
 /**
@@ -17,6 +17,6 @@ import { binaryAssembleHangul } from './_internal/hangul';
  * assembleHangul(['ㅇ', 'ㅏ', 'ㅂ', 'ㅓ', 'ㅈ', 'ㅣ']) // 아버지
  */
 export function assembleHangul(words: string[]) {
-  const disassembled = disassembleHangul(words.join('')).split('');
+  const disassembled = disassemble(words.join('')).split('');
   return disassembled.reduce(binaryAssembleHangul);
 }
