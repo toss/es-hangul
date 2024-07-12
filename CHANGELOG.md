@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.4.3
+
+### Patch Changes
+
+- [#156](https://github.com/toss/es-hangul/pull/156) [`8a9ba36`](https://github.com/toss/es-hangul/commit/8a9ba364aa5debae204028b4b1cf1b2568575c0e) Thanks [@seungrodotlee](https://github.com/seungrodotlee)! - fix. 겹모음과 관련하여 일부 메소드에서 잘못된 동작을 수정합니다.
+
 ## 1.4.2
 
 ### Patch Changes
