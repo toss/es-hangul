@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.4.4
+
+### Patch Changes
+
+- [#168](https://github.com/toss/es-hangul/pull/168) [`e3d0259`](https://github.com/toss/es-hangul/commit/e3d0259561a0e14df13e1aea31ecc3c5c8253150) Thanks [@jungwoo3490](https://github.com/jungwoo3490)! - fix: amountToHangul이 선행 0이 있는 문자열을 잘못 변환하는 오류를 수정합니다.
+
 ## 1.4.3
 
 ### Patch Changes
