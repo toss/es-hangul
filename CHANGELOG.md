@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.4.5
+
+### Patch Changes
+
+- [#138](https://github.com/toss/es-hangul/pull/138) [`6160363`](https://github.com/toss/es-hangul/commit/6160363abea439cb2e320704fdb6b7b503b28961) Thanks [@Collection50](https://github.com/Collection50)! - fix: chosung => choseong으로 변환하는 규칙을 적용합니다
+
 ## 1.4.4
 
 ### Patch Changes
