@@ -4,8 +4,8 @@ import {
   HANGUL_CHARACTERS_BY_FIRST_INDEX,
   HANGUL_CHARACTERS_BY_LAST_INDEX,
   HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
-  NUMBER_OF_JONGSUNG,
-  NUMBER_OF_JUNGSUNG,
+  NUMBER_OF_JONGSEONG,
+  NUMBER_OF_JUNGSEONG,
 } from './constants';
 
 interface ReturnTypeDisassembleCompleteHangulCharacter {
@@ -41,9 +41,9 @@ export function disassembleCompleteHangulCharacter(
 
   const hangulCode = charCode - COMPLETE_HANGUL_START_CHARCODE;
 
-  const lastIndex = hangulCode % NUMBER_OF_JONGSUNG;
-  const middleIndex = ((hangulCode - lastIndex) / NUMBER_OF_JONGSUNG) % NUMBER_OF_JUNGSUNG;
-  const firstIndex = Math.floor((hangulCode - lastIndex) / NUMBER_OF_JONGSUNG / NUMBER_OF_JUNGSUNG);
+  const lastIndex = hangulCode % NUMBER_OF_JONGSEONG;
+  const middleIndex = ((hangulCode - lastIndex) / NUMBER_OF_JONGSEONG) % NUMBER_OF_JUNGSEONG;
+  const firstIndex = Math.floor((hangulCode - lastIndex) / NUMBER_OF_JONGSEONG / NUMBER_OF_JUNGSEONG);
 
   return {
     first: HANGUL_CHARACTERS_BY_FIRST_INDEX[firstIndex],
