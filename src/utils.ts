@@ -99,7 +99,6 @@ export function hasSingleBatchim(str: string) {
 export function getChosung(word: string) {
   return word
     .normalize('NFD')
-<<<<<<< HEAD
     .replace(EXTRACT_CHOSEONG_REGEX, '') // NFD ㄱ-ㅎ, NFC ㄱ-ㅎ 외 문자 삭제
     .replace(CHOOSE_NFD_CHOSEONG_REGEX, $0 => HANGUL_CHARACTERS_BY_FIRST_INDEX[$0.charCodeAt(0) - 0x1100]); // NFD to NFC
 }
@@ -122,8 +121,6 @@ export function getChosung(word: string) {
 export function getChoseong(word: string) {
   return word
     .normalize('NFD')
-=======
->>>>>>> 4cc942c (dissemble관련 메서드에서 hangul이름을 제거합니다)
     .replace(EXTRACT_CHOSEONG_REGEX, '') // NFD ㄱ-ㅎ, NFC ㄱ-ㅎ 외 문자 삭제
     .replace(CHOOSE_NFD_CHOSEONG_REGEX, $0 => HANGUL_CHARACTERS_BY_FIRST_INDEX[$0.charCodeAt(0) - 0x1100]); // NFD to NFC
 }
