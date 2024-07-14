@@ -17,4 +17,3 @@ export {
   hasSingleBatchim,
   hasValueInReadOnlyStringList,
 } from './utils';
-export { acronymizeHangul } from './acronymizeHangul';
