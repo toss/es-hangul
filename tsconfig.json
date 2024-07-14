@@ -6,7 +6,8 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   },
-  "include": ["src", ".eslintrc.js", "packlint.config.mjs"]
+  "include": ["src", ".eslintrc.js", "packlint.config.mjs", "vitest.config.mts"]
 }

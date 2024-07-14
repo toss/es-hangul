@@ -1,5 +1,26 @@
 # docs
 
+## 0.1.12
+
+### Patch Changes
+
+- Updated dependencies [[`6160363`](https://github.com/toss/es-hangul/commit/6160363abea439cb2e320704fdb6b7b503b28961)]:
+  - es-hangul@1.4.5
+
+## 0.1.11
+
+### Patch Changes
+
+- Updated dependencies [[`e3d0259`](https://github.com/toss/es-hangul/commit/e3d0259561a0e14df13e1aea31ecc3c5c8253150)]:
+  - es-hangul@1.4.4
+
+## 0.1.10
+
+### Patch Changes
+
+- Updated dependencies [[`8a9ba36`](https://github.com/toss/es-hangul/commit/8a9ba364aa5debae204028b4b1cf1b2568575c0e)]:
+  - es-hangul@1.4.3
+
 ## 0.1.9
 
 ### Patch Changes

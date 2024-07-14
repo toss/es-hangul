@@ -1,8 +1,8 @@
 import {
-  canBeChosung,
-  canBeJongsung,
-  canBeJungsung,
-  getChosung,
+  canBeChoseong,
+  canBeJongseong,
+  canBeJungseong,
+  getChoseong,
   getFirstConsonants,
   hasBatchim,
   hasProperty,
@@ -54,17 +54,26 @@ describe('hasSingleBatchim', () => {
     expect(hasSingleBatchim('핫')).toBe(true);
     expect(hasSingleBatchim('양')).toBe(true);
     expect(hasSingleBatchim('신')).toBe(true);
+    expect(hasSingleBatchim('확')).toBe(true);
   });
 
   describe('홑받침이 아니라고 판단되는 경우', () => {
     it('겹받침을 받으면 false를 반환한다.', () => {
       expect(hasSingleBatchim('값')).toBe(false);
       expect(hasSingleBatchim('읊')).toBe(false);
+      expect(hasSingleBatchim('웱')).toBe(false);
     });
 
     it('받침이 없는 문자를 받으면 false를 반환한다.', () => {
       expect(hasSingleBatchim('토')).toBe(false);
       expect(hasSingleBatchim('서')).toBe(false);
+      expect(hasSingleBatchim('와')).toBe(false);
+    });
+
+    it('한글 외의 문자를 입력하면 false를 반환한다.', () => {
+      expect(hasSingleBatchim('cat')).toBe(false);
+      expect(hasSingleBatchim('')).toBe(false);
+      expect(hasSingleBatchim('?')).toBe(false);
     });
 
     it('한글 외의 문자를 입력하면 false를 반환한다.', () => {
@@ -75,22 +84,22 @@ describe('hasSingleBatchim', () => {
   });
 });
 
-describe('getChosung', () => {
+describe('getChoseong', () => {
   it('"사과" 단어에서 초성 "ㅅㄱ"을 추출한다.', () => {
-    expect(getChosung('사과')).toBe('ㅅㄱ');
+    expect(getChoseong('사과')).toBe('ㅅㄱ');
   });
   it('"프론트엔드" 단어에서 초성 "ㅍㄹㅌㅇㄷ"을 추출한다.', () => {
-    expect(getChosung('프론트엔드')).toBe('ㅍㄹㅌㅇㄷ');
+    expect(getChoseong('프론트엔드')).toBe('ㅍㄹㅌㅇㄷ');
   });
   it('"ㄴㅈ" 문자에서 초성 "ㄴㅈ"을 추출한다.', () => {
-    expect(getChosung('ㄴㅈ')).toBe('ㄴㅈ');
+    expect(getChoseong('ㄴㅈ')).toBe('ㄴㅈ');
   });
   it('"리액트" 단어에서 초성 "ㄹㅇㅌ"을 추출한다.', () => {
-    expect(getChosung('리액트')).toBe('ㄹㅇㅌ');
+    expect(getChoseong('리액트')).toBe('ㄹㅇㅌ');
   });
 
   it('"띄어 쓰기" 문장에서 초성 "ㄸㅇ ㅆㄱ"을 추출한다.', () => {
-    expect(getChosung('띄어 쓰기')).toBe('ㄸㅇ ㅆㄱ');
+    expect(getChoseong('띄어 쓰기')).toBe('ㄸㅇ ㅆㄱ');
   });
 });
 
@@ -165,80 +174,80 @@ describe('hasProperty', () => {
   });
 });
 
-describe('canBeChosung', () => {
+describe('canBeChoseong', () => {
   describe('초성이 될 수 있다고 판단되는 경우', () => {
     it('ㄱ', () => {
-      expect(canBeChosung('ㄱ')).toBe(true);
+      expect(canBeChoseong('ㄱ')).toBe(true);
     });
     it('ㅃ', () => {
-      expect(canBeChosung('ㅃ')).toBe(true);
+      expect(canBeChoseong('ㅃ')).toBe(true);
     });
   });
 
   describe('초성이 될 수 없다고 판단되는 경우', () => {
     it('ㅏ', () => {
-      expect(canBeChosung('ㅏ')).toBe(false);
+      expect(canBeChoseong('ㅏ')).toBe(false);
     });
     it('ㅘ', () => {
-      expect(canBeChosung('ㅘ')).toBe(false);
+      expect(canBeChoseong('ㅘ')).toBe(false);
     });
     it('ㄱㅅ', () => {
-      expect(canBeChosung('ㄱㅅ')).toBe(false);
+      expect(canBeChoseong('ㄱㅅ')).toBe(false);
     });
     it('가', () => {
-      expect(canBeChosung('가')).toBe(false);
+      expect(canBeChoseong('가')).toBe(false);
     });
   });
 });
 
-describe('canBeJungsung', () => {
+describe('canBeJungseong', () => {
   describe('중성이 될 수 있다고 판단되는 경우', () => {
     it('ㅗㅏ', () => {
-      expect(canBeJungsung('ㅗㅏ')).toBe(true);
+      expect(canBeJungseong('ㅗㅏ')).toBe(true);
     });
     it('ㅏ', () => {
-      expect(canBeJungsung('ㅏ')).toBe(true);
+      expect(canBeJungseong('ㅏ')).toBe(true);
     });
   });
 
   describe('중성이 될 수 없다고 판단되는 경우', () => {
     it('ㄱ', () => {
-      expect(canBeJungsung('ㄱ')).toBe(false);
+      expect(canBeJungseong('ㄱ')).toBe(false);
     });
     it('ㄱㅅ', () => {
-      expect(canBeJungsung('ㄱㅅ')).toBe(false);
+      expect(canBeJungseong('ㄱㅅ')).toBe(false);
     });
     it('가', () => {
-      expect(canBeJungsung('가')).toBe(false);
+      expect(canBeJungseong('가')).toBe(false);
     });
   });
 });
 
-describe('canBeJongsung', () => {
+describe('canBeJongseong', () => {
   describe('종성이 될 수 있다고 판단되는 경우', () => {
     it('ㄱ', () => {
-      expect(canBeJongsung('ㄱ')).toBe(true);
+      expect(canBeJongseong('ㄱ')).toBe(true);
     });
     it('ㄱㅅ', () => {
-      expect(canBeJongsung('ㄱㅅ')).toBe(true);
+      expect(canBeJongseong('ㄱㅅ')).toBe(true);
     });
     it('ㅂㅅ', () => {
-      expect(canBeJongsung('ㅂㅅ')).toBe(true);
+      expect(canBeJongseong('ㅂㅅ')).toBe(true);
     });
   });
 
   describe('종성이 될 수 없다고 판단되는 경우', () => {
     it('ㅎㄹ', () => {
-      expect(canBeJongsung('ㅎㄹ')).toBe(false);
+      expect(canBeJongseong('ㅎㄹ')).toBe(false);
     });
     it('ㅗㅏ', () => {
-      expect(canBeJongsung('ㅗㅏ')).toBe(false);
+      expect(canBeJongseong('ㅗㅏ')).toBe(false);
     });
     it('ㅏ', () => {
-      expect(canBeJongsung('ㅏ')).toBe(false);
+      expect(canBeJongseong('ㅏ')).toBe(false);
     });
     it('가', () => {
-      expect(canBeJongsung('ㅏ')).toBe(false);
+      expect(canBeJongseong('ㅏ')).toBe(false);
     });
   });
 });
