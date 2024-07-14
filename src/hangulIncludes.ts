@@ -1,8 +1,8 @@
-import { disassembleHangul } from './disassemble';
+import { disassemble } from './disassemble';
 
 export function hangulIncludes(x: string, y: string) {
-  const disassembledX = disassembleHangul(x);
-  const disassembledY = disassembleHangul(y);
+  const disassembledX = disassemble(x);
+  const disassembledY = disassemble(y);
 
   return disassembledX.includes(disassembledY);
 }
