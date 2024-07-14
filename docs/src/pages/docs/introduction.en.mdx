@@ -48,15 +48,15 @@ const result = choseongIncludes(searchWord, userInput);
 console.log(result); // true
 ```
 
-#### Disassembling Hangul Characters ([disassembleHangul](./api/disassembleHangul))
+#### Disassembling Hangul Characters ([disassemble](./api/disassemble))
 
 You can decompose a given Hangul string into initial consonants, vowels, and final consonants, and return it in array form to allow for more detailed analysis or modification of the string.
 
-```tsx /disassembleHangul/
-import { disassembleHangul } from 'es-hangul';
+```tsx /disassemble/
+import { disassemble } from 'es-hangul';
 
 const word = '안녕하세요';
-const disassembled = disassembleHangul(word);
+const disassembled = disassemble(word);
 console.log(disassembled); // 'ㅇㅏㄴㄴㅕㅇㅎㅏㅅㅔㅇㅛ'
 ```
 
