@@ -1,4 +1,3 @@
-export { acronymizeHangul } from './acronymizeHangul';
 export { assembleHangul } from './assemble';
 export { choseongIncludes } from './choseongIncludes';
 export { chosungIncludes } from './chosungIncludes';
@@ -6,7 +5,6 @@ export { combineHangulCharacter, combineVowels, curriedCombineHangulCharacter } 
 export { convertQwertyToHangul, convertQwertyToHangulAlphabet } from './convertQwertyToHangulAlphabet';
 export { disassembleHangul, disassembleHangulToGroups } from './disassemble';
 export { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
-export { extractHangul } from './extractHangul';
 export { hangulIncludes } from './hangulIncludes';
 export { josa } from './josa';
 export { removeLastHangulCharacter } from './removeLastHangulCharacter';
