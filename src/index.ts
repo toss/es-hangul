@@ -5,7 +5,6 @@ export { combineHangulCharacter, combineVowels, curriedCombineHangulCharacter } 
 export { convertQwertyToHangul, convertQwertyToHangulAlphabet } from './convertQwertyToHangulAlphabet';
 export { disassemble, disassembleToGroups } from './disassemble';
 export { disassembleCompleteCharacter } from './disassembleCompleteCharacter';
-export { hangulIncludes } from './hangulIncludes';
 export { josa } from './josa';
 export { removeLastHangulCharacter } from './removeLastHangulCharacter';
 export { romanize } from './romanize';
