@@ -1,14 +1,14 @@
-export { assembleHangul } from './assemble';
-export { chosungIncludes } from './chosungIncludes';
-export { choseongIncludes } from './choseongIncludes';
-export { combineHangulCharacter, combineVowels, curriedCombineHangulCharacter } from './combineHangulCharacter';
-export { convertQwertyToHangul, convertQwertyToHangulAlphabet } from './convertQwertyToHangulAlphabet';
-export { disassembleHangul, disassembleHangulToGroups } from './disassemble';
-export { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
-export { hangulIncludes } from './hangulIncludes';
-export { josa } from './josa';
-export { removeLastHangulCharacter } from './removeLastHangulCharacter';
-export {
+import { assembleHangul } from './assemble';
+import { chosungIncludes } from './chosungIncludes';
+import { choseongIncludes } from './choseongIncludes';
+import { combineHangulCharacter, combineVowels, curriedCombineHangulCharacter } from './combineHangulCharacter';
+import { convertQwertyToHangul, convertQwertyToHangulAlphabet } from './convertQwertyToHangulAlphabet';
+import { disassembleHangul, disassembleHangulToGroups } from './disassemble';
+import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
+import { hangulIncludes } from './hangulIncludes';
+import { josa } from './josa';
+import { removeLastHangulCharacter } from './removeLastHangulCharacter';
+import {
   canBeChosung,
   canBeJongsung,
   canBeJungsung,
@@ -18,5 +18,61 @@ export {
   hasSingleBatchim,
   hasValueInReadOnlyStringList,
 } from './utils';
-export { extractHangul } from './extractHangul';
-export { acronymizeHangul } from './acronymizeHangul';
+import { extractHangul } from './extractHangul';
+import { acronymizeHangul } from './acronymizeHangul';
+
+const hangul = {
+  assembleHangul,
+  chosungIncludes,
+  choseongIncludes,
+  combineHangulCharacter,
+  combineVowels,
+  curriedCombineHangulCharacter,
+  convertQwertyToHangul,
+  convertQwertyToHangulAlphabet,
+  disassembleHangul,
+  disassembleHangulToGroups,
+  disassembleCompleteHangulCharacter,
+  hangulIncludes,
+  josa,
+  removeLastHangulCharacter,
+  canBeChosung,
+  canBeJongsung,
+  canBeJungsung,
+  getChosung,
+  hasBatchim,
+  hasProperty,
+  hasSingleBatchim,
+  hasValueInReadOnlyStringList,
+  extractHangul,
+  acronymizeHangul,
+};
+
+export default hangul;
+
+export {
+  assembleHangul,
+  chosungIncludes,
+  choseongIncludes,
+  combineHangulCharacter,
+  combineVowels,
+  curriedCombineHangulCharacter,
+  convertQwertyToHangul,
+  convertQwertyToHangulAlphabet,
+  disassembleHangul,
+  disassembleHangulToGroups,
+  disassembleCompleteHangulCharacter,
+  hangulIncludes,
+  josa,
+  removeLastHangulCharacter,
+  canBeChosung,
+  canBeJongsung,
+  canBeJungsung,
+  getChosung,
+  hasBatchim,
+  hasProperty,
+  hasSingleBatchim,
+  hasValueInReadOnlyStringList,
+  extractHangul,
+  acronymizeHangul,
+};
