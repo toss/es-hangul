@@ -1,8 +1,8 @@
 ---
-title: disassembleHangulToGroups
+title: disassembleToGroups
 ---
 
-# disassembleHangulToGroups
+# disassembleToGroups
 
 Completely separate a Hangul string into individual characters based on the initial consonant, medial vowel, and final consonant.
 
@@ -11,7 +11,7 @@ Complex consonants like `ㄵ` are split into `['ㄴ', 'ㅈ']`, and complex vowel
 For detailed examples, please refer to the section below.
 
 ```typescript
-function disassembleHangulToGroups(
+function disassembleToGroups(
   // The Korean string to be disassembled
   str: string
 ): string[][];
@@ -20,7 +20,7 @@ function disassembleHangulToGroups(
 ## Examples
 
 ```typescript
-disassembleHangulToGroups('값'); // [['ㄱ', 'ㅏ', 'ㅂ', 'ㅅ']]
-disassembleHangulToGroups('ㅘ'); // [['ㅗ', 'ㅏ']]
-disassembleHangulToGroups('ㄵ'); // [['ㄴ', 'ㅈ']]
+disassembleToGroups('값'); // [['ㄱ', 'ㅏ', 'ㅂ', 'ㅅ']]
+disassembleToGroups('ㅘ'); // [['ㅗ', 'ㅏ']]
+disassembleToGroups('ㄵ'); // [['ㄴ', 'ㅈ']]
 ```

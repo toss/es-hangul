@@ -1,4 +1,4 @@
-export const HANGUL_DIGITS = [
+export const HANGUL_MONEY_UNITS = [
   '',
   '만',
   '억',
@@ -20,19 +20,19 @@ export const HANGUL_DIGITS = [
   '겁',
   '업',
 ];
-export const HANGUL_DIGITS_MAX = HANGUL_DIGITS.length * 4;
+export const HANGUL_MONEY_UNIT_MAX = HANGUL_MONEY_UNITS.length * 4;
 export const HANGUL_NUMBERS = ['', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
 export const HANGUL_NUMBERS_FOR_DECIMAL = ['영', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
 export const HANGUL_CARDINAL = ['', '십', '백', '천'];
 
-export function amountToHangul(amount: string | number) {
+export function amountToMoneyUnit(amount: string | number) {
   const [rawIntegerPart, rawDecimalPart] = String(amount)
     .replace(/[^\d.]+/g, '')
     .split('.');
 
   const integerPart = rawIntegerPart !== '0' ? rawIntegerPart.replace(/^0+/, '') : rawIntegerPart;
 
-  if (integerPart.length > HANGUL_DIGITS_MAX) {
+  if (integerPart.length > HANGUL_MONEY_UNIT_MAX) {
     throw new Error(`convert range exceeded : ${amount}`);
   }
   const decimalPart = rawDecimalPart?.replace(/0+$/, '');
@@ -56,7 +56,7 @@ export function amountToHangul(amount: string | number) {
       }
 
       if (pronunDigits && digit % 4 === 0) {
-        result.push(HANGUL_DIGITS[digit / 4]);
+        result.push(HANGUL_MONEY_UNITS[digit / 4]);
         pronunDigits = false;
       }
 

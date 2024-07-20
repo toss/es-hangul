@@ -1,13 +1,12 @@
-import { assembleHangul } from './assemble';
+import { assemble } from './assemble';
 import { chosungIncludes } from './chosungIncludes';
 import { choseongIncludes } from './choseongIncludes';
-import { combineHangulCharacter, combineVowels, curriedCombineHangulCharacter } from './combineHangulCharacter';
-import { convertQwertyToHangul, convertQwertyToHangulAlphabet } from './convertQwertyToHangulAlphabet';
-import { disassembleHangul, disassembleHangulToGroups } from './disassemble';
-import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
-import { hangulIncludes } from './hangulIncludes';
+import { combineCharacter, combineVowels, curriedcombineCharacter } from './combineCharacter';
+import { convertQwerty, convertQwertyToAlphabet } from './convertQwertyToAlphabet';
+import { disassemble, disassembleToGroups } from './disassemble';
+import { disassembleCompleteCharacter } from './disassembleCompleteCharacter';
 import { josa } from './josa';
-import { removeLastHangulCharacter } from './removeLastHangulCharacter';
+import { removeLastCharacter } from './removeLastCharacter';
 import {
   canBeChosung,
   canBeJongsung,
@@ -18,24 +17,21 @@ import {
   hasSingleBatchim,
   hasValueInReadOnlyStringList,
 } from './utils';
-import { extractHangul } from './extractHangul';
-import { acronymizeHangul } from './acronymizeHangul';
 
 const hangul = {
-  assembleHangul,
+  assemble,
   chosungIncludes,
   choseongIncludes,
-  combineHangulCharacter,
+  combineCharacter,
   combineVowels,
-  curriedCombineHangulCharacter,
-  convertQwertyToHangul,
-  convertQwertyToHangulAlphabet,
-  disassembleHangul,
-  disassembleHangulToGroups,
-  disassembleCompleteHangulCharacter,
-  hangulIncludes,
+  curriedcombineCharacter,
+  convertQwerty,
+  convertQwertyToAlphabet,
+  disassemble,
+  disassembleToGroups,
+  disassembleCompleteCharacter,
   josa,
-  removeLastHangulCharacter,
+  removeLastCharacter,
   canBeChosung,
   canBeJongsung,
   canBeJungsung,
@@ -44,27 +40,24 @@ const hangul = {
   hasProperty,
   hasSingleBatchim,
   hasValueInReadOnlyStringList,
-  extractHangul,
-  acronymizeHangul,
 };
 
 export default hangul;
 
 export {
-  assembleHangul,
+  assemble,
   chosungIncludes,
   choseongIncludes,
-  combineHangulCharacter,
+  combineCharacter,
   combineVowels,
-  curriedCombineHangulCharacter,
-  convertQwertyToHangul,
-  convertQwertyToHangulAlphabet,
-  disassembleHangul,
-  disassembleHangulToGroups,
-  disassembleCompleteHangulCharacter,
-  hangulIncludes,
+  curriedcombineCharacter,
+  convertQwerty,
+  convertQwertyToAlphabet,
+  disassemble,
+  disassembleToGroups,
+  disassembleCompleteCharacter,
   josa,
-  removeLastHangulCharacter,
+  removeLastCharacter,
   canBeChosung,
   canBeJongsung,
   canBeJungsung,
@@ -73,6 +66,4 @@ export {
   hasProperty,
   hasSingleBatchim,
   hasValueInReadOnlyStringList,
-  extractHangul,
-  acronymizeHangul,
 };

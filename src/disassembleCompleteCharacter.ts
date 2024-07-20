@@ -8,29 +8,27 @@ import {
   NUMBER_OF_JUNGSEONG,
 } from './constants';
 
-interface ReturnTypeDisassembleCompleteHangulCharacter {
+interface ReturnTypedisassembleCompleteCharacter {
   first: (typeof HANGUL_CHARACTERS_BY_FIRST_INDEX)[number];
   middle: (typeof HANGUL_CHARACTERS_BY_MIDDLE_INDEX)[number];
   last: (typeof HANGUL_CHARACTERS_BY_LAST_INDEX)[number];
 }
 
 /**
- * @name disassembleCompleteHangulCharacter
+ * @name disassembleCompleteCharacter
  * @description
  * 완전한 한글 문자열을 초성, 중성, 종성으로 분리합니다.
  *
  * @param {string} letter 분리하고자 하는 완전한 한글 문자열
  *
  * @example
- * disassembleCompleteHangulCharacter('값') // { first: 'ㄱ', middle: 'ㅏ', last: 'ㅂㅅ' }
- * disassembleCompleteHangulCharacter('리') // { first: 'ㄹ', middle: 'ㅣ', last: '' }
- * disassembleCompleteHangulCharacter('빚') // { first: 'ㅂ', middle: 'ㅣ', last: 'ㅈ' }
- * disassembleCompleteHangulCharacter('박') // { first: 'ㅂ', middle: 'ㅏ', last: 'ㄱ' }
+ * disassembleCompleteCharacter('값') // { first: 'ㄱ', middle: 'ㅏ', last: 'ㅂㅅ' }
+ * disassembleCompleteCharacter('리') // { first: 'ㄹ', middle: 'ㅣ', last: '' }
+ * disassembleCompleteCharacter('빚') // { first: 'ㅂ', middle: 'ㅣ', last: 'ㅈ' }
+ * disassembleCompleteCharacter('박') // { first: 'ㅂ', middle: 'ㅏ', last: 'ㄱ' }
  */
 
-export function disassembleCompleteHangulCharacter(
-  letter: string
-): ReturnTypeDisassembleCompleteHangulCharacter | undefined {
+export function disassembleCompleteCharacter(letter: string): ReturnTypedisassembleCompleteCharacter | undefined {
   const charCode = letter.charCodeAt(0);
 
   const isCompleteHangul = COMPLETE_HANGUL_START_CHARCODE <= charCode && charCode <= COMPLETE_HANGUL_END_CHARCODE;
