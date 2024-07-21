@@ -7,11 +7,11 @@ export { disassemble, disassembleToGroups } from './disassemble';
 export { disassembleCompleteCharacter } from './disassembleCompleteCharacter';
 export { josa } from './josa';
 export { removeLastHangulCharacter } from './removeLastHangulCharacter';
+export { getChoseong } from './getChoseong';
 export {
   canBeChosung,
   canBeJongsung,
   canBeJungsung,
-  getChosung,
   hasBatchim,
   hasProperty,
   hasSingleBatchim,
