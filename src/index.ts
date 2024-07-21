@@ -1,12 +1,13 @@
 export { assembleHangul } from './assemble';
-export { canBeChoseong, canBeJongseong, canBeJungseong } from './canBe';
 export { choseongIncludes } from './choseongIncludes';
 export { chosungIncludes } from './chosungIncludes';
 export { combineHangulCharacter, combineVowels, curriedCombineHangulCharacter } from './combineHangulCharacter';
 export { convertQwertyToHangul, convertQwertyToHangulAlphabet } from './convertQwertyToHangulAlphabet';
 export { disassemble, disassembleToGroups } from './disassemble';
 export { disassembleCompleteCharacter } from './disassembleCompleteCharacter';
-export { getChoseong } from './getChoseong';
 export { josa } from './josa';
 export { removeLastHangulCharacter } from './removeLastHangulCharacter';
-export { hasBatchim, hasProperty, hasSingleBatchim, hasValueInReadOnlyStringList } from './utils';
+export { hasBatchim } from './hasBatchim';
+export { hasProperty, hasValueInReadOnlyStringList } from './utils';
+export { canBeChoseong, canBeJongseong, canBeJungseong } from './canBe';
+export { getChoseong } from './getChoseong';

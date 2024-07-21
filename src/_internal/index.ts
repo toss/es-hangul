@@ -16,3 +16,11 @@ export default function assert(condition: boolean, errorMessage?: string): asser
     throw new Error(errorMessage ?? 'Invalid condition');
   }
 }
+
+export function hasValueInReadOnlyStringList<T extends string>(list: readonly T[], value: string): value is T {
+  return list.some(item => item === value);
+}
+
+export function hasProperty<T extends object, K extends PropertyKey>(obj: T, key: K): key is K & keyof T {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
