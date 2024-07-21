@@ -2,8 +2,6 @@ import {
   canBeChoseong,
   canBeJongseong,
   canBeJungseong,
-  getChoseong,
-  getFirstConsonants,
   hasBatchim,
   hasProperty,
   hasSingleBatchim,
