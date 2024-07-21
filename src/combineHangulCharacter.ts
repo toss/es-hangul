@@ -1,3 +1,4 @@
+import { canBeChoseong, canBeJongseong, canBeJungseong } from './canBe';
 import {
   COMPLETE_HANGUL_START_CHARCODE,
   DISASSEMBLED_VOWELS_BY_VOWEL,
@@ -5,7 +6,6 @@ import {
   HANGUL_CHARACTERS_BY_LAST_INDEX,
   HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
 } from './constants';
-import { canBeChoseong, canBeJongseong, canBeJungseong } from './utils';
 
 /**
  * @name combineHangulCharacter
