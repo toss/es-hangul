@@ -2,8 +2,8 @@ import assert, { excludeLastElement, isBlank, joinString } from '.';
 import { canBeChoseong, canBeJungseong, canBeJongseong } from '../canBe';
 import { combineHangulCharacter, combineVowels, curriedCombineHangulCharacter } from '../combineHangulCharacter';
 import { disassembleToGroups } from '../disassemble';
+import { hasBatchim } from '../hasBatchim';
 import { removeLastHangulCharacter } from '../removeLastHangulCharacter';
-import { hasSingleBatchim } from '../utils';
 
 export function isHangulCharacter(character: string) {
   return /^[가-힣]$/.test(character);
@@ -149,7 +149,12 @@ export function binaryAssembleHangulCharacters(source: string, nextCharacter: st
 
   const lastConsonant = lastJamo;
 
-  if (hasSingleBatchim(source) && canBeJongseong(`${lastConsonant}${nextCharacter}`)) {
+  if (
+    hasBatchim(source, {
+      single: true,
+    }) &&
+    canBeJongseong(`${lastConsonant}${nextCharacter}`)
+  ) {
     return combineJongseong(`${lastConsonant}${nextCharacter}`);
   }
 
