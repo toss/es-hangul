@@ -4,19 +4,8 @@ import {
   HANGUL_CHARACTERS_BY_FIRST_INDEX,
   HANGUL_CHARACTERS_BY_LAST_INDEX,
   HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
-  JASO_HANGUL_NFD,
   NUMBER_OF_JONGSEONG,
 } from './constants';
-import { disassembleToGroups } from './disassemble';
-
-const EXTRACT_CHOSEONG_REGEX = new RegExp(
-  `[^\\u${JASO_HANGUL_NFD.START_CHOSEONG.toString(16)}-\\u${JASO_HANGUL_NFD.END_CHOSEONG.toString(16)}ㄱ-ㅎ\\s]+`,
-  'ug'
-);
-const CHOOSE_NFD_CHOSEONG_REGEX = new RegExp(
-  `[\\u${JASO_HANGUL_NFD.START_CHOSEONG.toString(16)}-\\u${JASO_HANGUL_NFD.END_CHOSEONG.toString(16)}]`,
-  'g'
-);
 
 /**
  * @name hasBatchim
