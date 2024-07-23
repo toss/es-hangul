@@ -1,6 +1,4 @@
 export { assembleHangul } from './assemble';
-export { choseongIncludes } from './choseongIncludes';
-export { chosungIncludes } from './chosungIncludes';
 export { combineHangulCharacter, combineVowels, curriedCombineHangulCharacter } from './combineHangulCharacter';
 export { convertQwertyToHangul, convertQwertyToHangulAlphabet } from './convertQwertyToHangulAlphabet';
 export { disassemble, disassembleToGroups } from './disassemble';
