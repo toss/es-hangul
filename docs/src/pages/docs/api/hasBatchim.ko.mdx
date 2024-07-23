@@ -1,0 +1,21 @@
+# hasBatchim
+
+
+한글 문자열의 마지막 글자가 받침이 있는지 확인합니다.
+
+
+```typescript
+hasBatchim(
+  str: string, 
+  // 홑받침 여부를 확인할지 여부
+  options?: { single?: boolean }
+): boolean
+
+ 
+ ```typescript
+ hasBatchim('값') // true
+ hasBatchim('토') // false
+ hasBatchim('갑', { single: true }) // true
+ hasBatchim('값', { single: true }) // false
+ hasBatchim('토', { single: true }) // false
+ ````

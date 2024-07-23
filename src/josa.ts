@@ -1,5 +1,5 @@
 import { disassembleCompleteCharacter } from './disassembleCompleteCharacter';
-import { hasBatchim } from './utils';
+import { hasBatchim } from './hasBatchim';
 
 type JosaOption =
   | '이/가'

@@ -1,9 +1,9 @@
+import { hasValueInReadOnlyStringList } from './_internal';
 import {
   HANGUL_CHARACTERS_BY_FIRST_INDEX,
   HANGUL_CHARACTERS_BY_LAST_INDEX,
   HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
 } from './constants';
-import { hasValueInReadOnlyStringList } from './utils';
 
 /**
  * @name canBeChoseong
