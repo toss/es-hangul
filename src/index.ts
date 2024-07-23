@@ -1,10 +1,29 @@
-export { assembleHangul } from './assemble';
-export { combineHangulCharacter, combineVowels, curriedCombineHangulCharacter } from './combineHangulCharacter';
-export { convertQwertyToHangul, convertQwertyToHangulAlphabet } from './convertQwertyToHangulAlphabet';
-export { disassemble, disassembleToGroups } from './disassemble';
-export { disassembleCompleteCharacter } from './disassembleCompleteCharacter';
-export { josa } from './josa';
-export { removeLastHangulCharacter } from './removeLastHangulCharacter';
-export { hasBatchim } from './hasBatchim';
-export { canBeChoseong, canBeJongseong, canBeJungseong } from './canBe';
-export { getChoseong } from './getChoseong';
+import { assemble } from './assemble';
+import { combineCharacter, combineVowels, curriedCombineCharacter } from './combineCharacter';
+import { convertQwertyToHangul, convertQwertyToAlphabet } from './convertQwertyToAlphabet';
+import { disassemble, disassembleToGroups } from './disassemble';
+import { disassembleCompleteCharacter } from './disassembleCompleteCharacter';
+import { josa } from './josa';
+import { removeLastCharacter } from './removeLastCharacter';
+import { hasBatchim } from './hasBatchim';
+import { canBeChoseong, canBeJongseong, canBeJungseong } from './canBe';
+import { getChoseong } from './getChoseong';
+
+export {
+  assemble,
+  combineCharacter,
+  combineVowels,
+  curriedCombineCharacter,
+  convertQwertyToHangul,
+  convertQwertyToAlphabet,
+  disassemble,
+  disassembleToGroups,
+  disassembleCompleteCharacter,
+  josa,
+  removeLastCharacter,
+  hasBatchim,
+  canBeChoseong,
+  canBeJongseong,
+  canBeJungseong,
+  getChoseong,
+};
