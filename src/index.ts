@@ -8,6 +8,5 @@ export { disassembleCompleteCharacter } from './disassembleCompleteCharacter';
 export { josa } from './josa';
 export { removeLastHangulCharacter } from './removeLastHangulCharacter';
 export { hasBatchim } from './hasBatchim';
-export { hasProperty, hasValueInReadOnlyStringList } from './utils';
 export { canBeChoseong, canBeJongseong, canBeJungseong } from './canBe';
 export { getChoseong } from './getChoseong';

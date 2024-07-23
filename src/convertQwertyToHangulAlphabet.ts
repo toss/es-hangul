@@ -1,6 +1,6 @@
+import { hasProperty } from './_internal';
 import { assembleHangul } from './assemble';
 import { QWERTY_KEYBOARD_MAP } from './constants';
-import { hasProperty } from './utils';
 
 /**
  * @name convertQwertyToHangulAlphabet
