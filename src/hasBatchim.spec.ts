@@ -74,7 +74,7 @@ describe('홑받침', () => {
   describe('홑받침이 아니라고 판단되는 경우', () => {
     it('겹받침을 받으면 false를 반환한다.', () => {
       expect(
-        hasBatchim('갑', {
+        hasBatchim('값', {
           single: true,
         })
       ).toBe(false);
