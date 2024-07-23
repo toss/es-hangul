@@ -10,13 +10,4 @@ export { removeLastHangulCharacter } from './removeLastHangulCharacter';
 export { romanize } from './romanize';
 export { standardizePronunciation } from './standardizePronunciation';
 export { susa } from './susa';
-export {
-  canBeChosung,
-  canBeJongsung,
-  canBeJungsung,
-  getChosung,
-  hasBatchim,
-  hasProperty,
-  hasSingleBatchim,
-  hasValueInReadOnlyStringList,
-} from './utils';
+export { getChoseong } from './getChoseong';

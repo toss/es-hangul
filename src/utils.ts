@@ -5,19 +5,8 @@ import {
   HANGUL_CHARACTERS_BY_FIRST_INDEX,
   HANGUL_CHARACTERS_BY_LAST_INDEX,
   HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
-  JASO_HANGUL_NFD,
   NUMBER_OF_JONGSEONG,
 } from './constants';
-import { disassembleToGroups } from './disassemble';
-
-const EXTRACT_CHOSEONG_REGEX = new RegExp(
-  `[^\\u${JASO_HANGUL_NFD.START_CHOSEONG.toString(16)}-\\u${JASO_HANGUL_NFD.END_CHOSEONG.toString(16)}ㄱ-ㅎ\\s]+`,
-  'ug'
-);
-const CHOOSE_NFD_CHOSEONG_REGEX = new RegExp(
-  `[\\u${JASO_HANGUL_NFD.START_CHOSEONG.toString(16)}-\\u${JASO_HANGUL_NFD.END_CHOSEONG.toString(16)}]`,
-  'g'
-);
 
 /**
  * @name hasBatchim
@@ -79,73 +68,6 @@ export function hasSingleBatchim(str: string) {
 
   const batchimCode = (charCode - COMPLETE_HANGUL_START_CHARCODE) % NUMBER_OF_JONGSEONG;
   return HANGUL_CHARACTERS_BY_LAST_INDEX[batchimCode].length === 1;
-}
-
-/**
- * @name getChosung
- * @deprecated getChoseong을 사용해 주세요.
- * @description
- * 단어에서 초성을 추출합니다. (예: `사과` -> `'ㅅㄱ'`)
- * ```typescript
- * getChoseong(
- *   // 초성을 추출할 단어
- *   word: string
- * ): string
- * ```
- * @example
- * getChoseong('사과') // 'ㅅㄱ'
- * getChoseong('리액트') // 'ㄹㅇㅌ'
- * getChoseong('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
- */
-export function getChosung(word: string) {
-  return word
-    .normalize('NFD')
-    .replace(EXTRACT_CHOSEONG_REGEX, '') // NFD ㄱ-ㅎ, NFC ㄱ-ㅎ 외 문자 삭제
-    .replace(CHOOSE_NFD_CHOSEONG_REGEX, $0 => HANGUL_CHARACTERS_BY_FIRST_INDEX[$0.charCodeAt(0) - 0x1100]); // NFD to NFC
-}
-
-/**
- * @name getChoseong
- * @description
- * 단어에서 초성을 추출합니다. (예: `사과` -> `'ㅅㄱ'`)
- * ```typescript
- * getChoseong(
- *   // 초성을 추출할 단어
- *   word: string
- * ): string
- * ```
- * @example
- * getChoseong('사과') // 'ㅅㄱ'
- * getChoseong('리액트') // 'ㄹㅇㅌ'
- * getChoseong('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
- */
-export function getChoseong(word: string) {
-  return word
-    .normalize('NFD')
-    .replace(EXTRACT_CHOSEONG_REGEX, '') // NFD ㄱ-ㅎ, NFC ㄱ-ㅎ 외 문자 삭제
-    .replace(CHOOSE_NFD_CHOSEONG_REGEX, $0 => HANGUL_CHARACTERS_BY_FIRST_INDEX[$0.charCodeAt(0) - 0x1100]); // NFD to NFC
-}
-
-/**
- * @name getFirstConsonants
- * @deprecated getChoseong을 사용해 주세요.
- * @description
- * 단어에서 초성을 추출합니다. (예: `사과` -> `'ㅅㄱ'`)
- * ```typescript
- * getFirstConsonants(
- *   // 초성을 추출할 단어
- *   word: string
- * ): string
- * ```
- * @example
- * getFirstConsonants('사과') // 'ㅅㄱ'
- * getFirstConsonants('리액트') // 'ㄹㅇㅌ'
- * getFirstConsonants('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
- */
-export function getFirstConsonants(word: string) {
-  return disassembleToGroups(word).reduce((firstConsonants, [consonant]) => {
-    return `${firstConsonants}${consonant}`;
-  }, '');
 }
 
 /**
