@@ -1,8 +1,9 @@
 import assert, { excludeLastElement, isBlank, joinString } from '.';
+import { canBeChoseong, canBeJungseong, canBeJongseong } from '../canBe';
 import { combineHangulCharacter, combineVowels, curriedCombineHangulCharacter } from '../combineHangulCharacter';
 import { disassembleToGroups } from '../disassemble';
 import { removeLastHangulCharacter } from '../removeLastHangulCharacter';
-import { canBeChoseong, canBeJongseong, canBeJungseong, hasSingleBatchim } from '../utils';
+import { hasSingleBatchim } from '../utils';
 
 export function isHangulCharacter(character: string) {
   return /^[가-힣]$/.test(character);

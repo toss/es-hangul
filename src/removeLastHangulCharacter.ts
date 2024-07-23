@@ -1,6 +1,6 @@
 import { combineHangulCharacter } from './combineHangulCharacter';
 import { excludeLastElement } from './_internal';
-import { canBeJungsung } from './utils';
+import { canBeJungseong } from './canBe';
 import { disassembleToGroups } from './disassemble';
 
 /**
@@ -32,7 +32,7 @@ export function removeLastHangulCharacter(words: string) {
     if (lastCharacterWithoutLastAlphabet.length <= 3) {
       const [first, middle, last] = lastCharacterWithoutLastAlphabet;
       if (middle != null) {
-        return canBeJungsung(last)
+        return canBeJungseong(last)
           ? combineHangulCharacter(first, `${middle}${last}`)
           : combineHangulCharacter(first, middle, last);
       }
