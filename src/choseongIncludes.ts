@@ -1,5 +1,6 @@
 import { disassembleToGroups } from './disassemble';
-import { canBeChoseong, getChoseong } from './utils';
+import { getChoseong } from './getChoseong';
+import { canBeChoseong } from './utils';
 
 export function choseongIncludes(x: string, y: string) {
   const trimmedY = y.replace(/\s/g, '');

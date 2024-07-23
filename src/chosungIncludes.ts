@@ -1,5 +1,5 @@
 import { isOnlyChoseong } from './choseongIncludes';
-import { getChoseong } from './utils';
+import { getChoseong } from './getChoseong';
 
 /**
  * @deprecated choseongIncludes를 사용해 주세요.
