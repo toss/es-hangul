@@ -20,3 +20,4 @@ export {
 } from './utils';
 export { extractHangul } from './extractHangul';
 export { acronymizeHangul } from './acronymizeHangul';
+export { susa } from './susa';
