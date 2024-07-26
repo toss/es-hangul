@@ -21,6 +21,7 @@ export function Sandpack({ files }: SandpackProps) {
         devDependencies: baseTemplate.devDependencies,
       }}
       options={{
+        recompileDelay: 300,
         initMode: 'user-visible',
         initModeObserverOptions: { rootMargin: '1400px 0px' },
         bundlerURL: 'https://sandpack-bundler.codesandbox.io/',
