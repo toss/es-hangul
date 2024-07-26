@@ -1,4 +1,4 @@
-import { ChosungIncludesDemo } from '@/components/demo/chosung-includes-demo';
+import { Sandpack } from '@/components/Sandpack';
 
 # chosungIncludes (deprecated, Please use choseongIncludes)
 
@@ -24,4 +24,12 @@ chosungIncludes('프론트엔드', '푸롴트'); // false
 
 <br />
 
-<ChosungIncludesDemo />
+<Sandpack>
+
+```ts index.ts
+import { choseongIncludes } from 'es-hangul';
+
+console.log(choseongIncludes('프론트엔드', 'ㅍㄹㅌ'));
+```
+
+</Sandpack>
