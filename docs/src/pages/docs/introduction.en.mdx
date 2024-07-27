@@ -7,6 +7,7 @@ import { Adopters } from '@/components/introduction/Adopters';
 
 When developing products that handle Hangul, tasks such as initial consonant search and accurate particle attachment often need to be performed. In addition, there are cases where you need to separate or combine Hangul elements like initial consonants, vowels, and final consonants. es-hangul helps to easily and quickly implement these frequently occurring Hangul-related functions in business.
 
+es-hangul provides an interface for complex Hangul string processing, including extraction and conversion of initial, medial, and final consonants. By combining the functions of es-hangul with basic JavaScript methods, you can handle all cases of Hangul string processing.
 <br />
 
 ## Key features
@@ -31,19 +32,19 @@ Our library provides strong typing, allowing for easy detection of type errors d
 
 ### Full Support for Hangul-related Features
 
-Our library provides a [modern API](./api/chosungIncludes) that can be conveniently used in various applications.
+Our library provides a [modern API](./api/choseongIncludes) that can be conveniently used in various applications.
 
-#### First Consonant Search ([chosungIncludes](./api/chosungIncludes))
+#### First Consonant Search ([choseongIncludes](./api/choseongIncludes))
 
 It checks whether an initial consonant is included in a specific word. For example, you can easily find out if the word '라면' (ramyeon) contains the initial consonants 'ㄹㅁ'.
 
-```tsx /chosungIncludes/
-import { chosungIncludes } from 'es-hangul';
+```tsx /choseongIncludes/
+import { choseongIncludes } from 'es-hangul';
 
 const searchWord = '라면';
 const userInput = 'ㄹㅁ';
 
-const result = chosungIncludes(searchWord, userInput);
+const result = choseongIncludes(searchWord, userInput);
 console.log(result); // true
 ```
 

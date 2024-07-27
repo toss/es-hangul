@@ -1,7 +1,7 @@
 export const COMPLETE_HANGUL_START_CHARCODE = '가'.charCodeAt(0);
 export const COMPLETE_HANGUL_END_CHARCODE = '힣'.charCodeAt(0);
-export const NUMBER_OF_JONGSUNG = 28;
-export const NUMBER_OF_JUNGSUNG = 21;
+export const NUMBER_OF_JONGSEONG = 28;
+export const NUMBER_OF_JUNGSEONG = 21;
 
 const _JASO_HANGUL_NFD = [...'각힣'.normalize('NFD')].map(char => char.charCodeAt(0)); // NFC 에 정의되지 않은 문자는 포함하지 않음
 export const JASO_HANGUL_NFD = {
@@ -11,7 +11,7 @@ export const JASO_HANGUL_NFD = {
   END_CHOSEONG: _JASO_HANGUL_NFD[3], // ㅎ
   END_JUNGSEONG: _JASO_HANGUL_NFD[4], // ㅣ
   END_JONGSEONG: _JASO_HANGUL_NFD[5], // ㅎ
-}
+};
 
 /**
  * ㄱ -> 'ㄱ'

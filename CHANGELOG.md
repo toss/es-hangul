@@ -1,5 +1,23 @@
 # es-hangul
 
+## 1.4.5
+
+### Patch Changes
+
+- [#138](https://github.com/toss/es-hangul/pull/138) [`6160363`](https://github.com/toss/es-hangul/commit/6160363abea439cb2e320704fdb6b7b503b28961) Thanks [@Collection50](https://github.com/Collection50)! - fix: chosung => choseong으로 변환하는 규칙을 적용합니다
+
+## 1.4.4
+
+### Patch Changes
+
+- [#168](https://github.com/toss/es-hangul/pull/168) [`e3d0259`](https://github.com/toss/es-hangul/commit/e3d0259561a0e14df13e1aea31ecc3c5c8253150) Thanks [@jungwoo3490](https://github.com/jungwoo3490)! - fix: amountToHangul이 선행 0이 있는 문자열을 잘못 변환하는 오류를 수정합니다.
+
+## 1.4.3
+
+### Patch Changes
+
+- [#156](https://github.com/toss/es-hangul/pull/156) [`8a9ba36`](https://github.com/toss/es-hangul/commit/8a9ba364aa5debae204028b4b1cf1b2568575c0e) Thanks [@seungrodotlee](https://github.com/seungrodotlee)! - fix. 겹모음과 관련하여 일부 메소드에서 잘못된 동작을 수정합니다.
+
 ## 1.4.2
 
 ### Patch Changes

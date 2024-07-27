@@ -27,18 +27,18 @@ import { Callout, useTheme, Steps } from 'nextra-theme-docs';
       <h3 className="">A modern JavaScript Hangul library</h3>
     </div>
     <Callout className="w-full">
-      es-hangul is a small JavaScript library that helps you conveniently handle Hangul. It provides a convenient and clean API for actions such as searching for initial consonants and attaching particles.
+    es-hangul is a library that provides an interface for complex Hangul (Korean script) string processing. It allows for searching initial consonants and attaching particles.
     </Callout>
   </div>
 </div>
 
 ```tsx
-import { chosungIncludes } from 'es-hangul';
+import { choseongIncludes } from 'es-hangul';
 
 const searchWord = '라면';
 const userInput = 'ㄹㅁ';
 
-const result = chosungIncludes(searchWord, userInput);
+const result = choseongIncludes(searchWord, userInput);
 console.log(result); // true
 ```
 

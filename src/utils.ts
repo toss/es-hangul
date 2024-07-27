@@ -6,7 +6,7 @@ import {
   HANGUL_CHARACTERS_BY_LAST_INDEX,
   HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
   JASO_HANGUL_NFD,
-  NUMBER_OF_JONGSUNG,
+  NUMBER_OF_JONGSEONG,
 } from './constants';
 import { disassembleHangulToGroups } from './disassemble';
 
@@ -46,7 +46,7 @@ export function hasBatchim(str: string) {
     return false;
   }
 
-  return (charCode - COMPLETE_HANGUL_START_CHARCODE) % NUMBER_OF_JONGSUNG > 0;
+  return (charCode - COMPLETE_HANGUL_START_CHARCODE) % NUMBER_OF_JONGSEONG > 0;
 }
 
 /**
@@ -77,24 +77,25 @@ export function hasSingleBatchim(str: string) {
     return false;
   }
 
-  const batchimCode = (charCode - COMPLETE_HANGUL_START_CHARCODE) % NUMBER_OF_JONGSUNG;
+  const batchimCode = (charCode - COMPLETE_HANGUL_START_CHARCODE) % NUMBER_OF_JONGSEONG;
   return HANGUL_CHARACTERS_BY_LAST_INDEX[batchimCode].length === 1;
 }
 
 /**
  * @name getChosung
+ * @deprecated getChoseong을 사용해 주세요.
  * @description
  * 단어에서 초성을 추출합니다. (예: `사과` -> `'ㅅㄱ'`)
  * ```typescript
- * getChosung(
+ * getChoseong(
  *   // 초성을 추출할 단어
  *   word: string
  * ): string
  * ```
  * @example
- * getChosung('사과') // 'ㅅㄱ'
- * getChosung('리액트') // 'ㄹㅇㅌ'
- * getChosung('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
+ * getChoseong('사과') // 'ㅅㄱ'
+ * getChoseong('리액트') // 'ㄹㅇㅌ'
+ * getChoseong('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
  */
 export function getChosung(word: string) {
   return word
@@ -104,8 +105,30 @@ export function getChosung(word: string) {
 }
 
 /**
+ * @name getChoseong
+ * @description
+ * 단어에서 초성을 추출합니다. (예: `사과` -> `'ㅅㄱ'`)
+ * ```typescript
+ * getChoseong(
+ *   // 초성을 추출할 단어
+ *   word: string
+ * ): string
+ * ```
+ * @example
+ * getChoseong('사과') // 'ㅅㄱ'
+ * getChoseong('리액트') // 'ㄹㅇㅌ'
+ * getChoseong('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
+ */
+export function getChoseong(word: string) {
+  return word
+    .normalize('NFD')
+    .replace(EXTRACT_CHOSEONG_REGEX, '') // NFD ㄱ-ㅎ, NFC ㄱ-ㅎ 외 문자 삭제
+    .replace(CHOOSE_NFD_CHOSEONG_REGEX, $0 => HANGUL_CHARACTERS_BY_FIRST_INDEX[$0.charCodeAt(0) - 0x1100]); // NFD to NFC
+}
+
+/**
  * @name getFirstConsonants
- * @deprecated getChosung을 사용해 주세요.
+ * @deprecated getChoseong을 사용해 주세요.
  * @description
  * 단어에서 초성을 추출합니다. (예: `사과` -> `'ㅅㄱ'`)
  * ```typescript
@@ -127,6 +150,7 @@ export function getFirstConsonants(word: string) {
 
 /**
  * @name canBeChosung
+ * @deprecated canBeChoseong을 사용해 주세요.
  * @description
  * 인자로 받은 문자가 초성으로 위치할 수 있는 문자인지 검사합니다.
  * ```typescript
@@ -147,7 +171,29 @@ export function canBeChosung(character: string): character is (typeof HANGUL_CHA
 }
 
 /**
+ * @name canBeChoseong
+ * @description
+ * 인자로 받은 문자가 초성으로 위치할 수 있는 문자인지 검사합니다.
+ * ```typescript
+ * canBeChoseong(
+ *   // 대상 문자
+ *   character: string
+ * ): boolean
+ * ```
+ * @example
+ * canBeChoseong('ㄱ') // true
+ * canBeChoseong('ㅃ') // true
+ * canBeChoseong('ㄱㅅ') // false
+ * canBeChoseong('ㅏ') // false
+ * canBeChoseong('가') // false
+ */
+export function canBeChoseong(character: string): character is (typeof HANGUL_CHARACTERS_BY_FIRST_INDEX)[number] {
+  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_FIRST_INDEX, character);
+}
+
+/**
  * @name canBeJungsung
+ * @deprecated canBeJungseong을 사용해 주세요.
  * @description
  * 인자로 받은 문자가 중성으로 위치할 수 있는 문자인지 검사합니다.
  * ```typescript
@@ -169,7 +215,30 @@ export function canBeJungsung(character: string): character is (typeof HANGUL_CH
 }
 
 /**
+ * @name canBeJungseong
+ * @description
+ * 인자로 받은 문자가 중성으로 위치할 수 있는 문자인지 검사합니다.
+ * ```typescript
+ * canBeJungseong(
+ *   // 대상 문자
+ *   character: string
+ * ): boolean
+ * ```
+ * @example
+ * canBeJungseong('ㅏ') // true
+ * canBeJungseong('ㅗㅏ') // true
+ * canBeJungseong('ㅏㅗ') // false
+ * canBeJungseong('ㄱ') // false
+ * canBeJungseong('ㄱㅅ') // false
+ * canBeJungseong('가') // false
+ */
+export function canBeJungseong(character: string): character is (typeof HANGUL_CHARACTERS_BY_MIDDLE_INDEX)[number] {
+  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_MIDDLE_INDEX, character);
+}
+
+/**
  * @name canBeJongsung
+ * @deprecated canBeJongseong을 사용해 주세요.
  * @description
  * 인자로 받은 문자가 종성으로 위치할 수 있는 문자인지 검사합니다.
  * ```typescript
@@ -187,6 +256,28 @@ export function canBeJungsung(character: string): character is (typeof HANGUL_CH
  * canBeJongsung('ㅗㅏ') // false
  */
 export function canBeJongsung(character: string): character is (typeof HANGUL_CHARACTERS_BY_LAST_INDEX)[number] {
+  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_LAST_INDEX, character);
+}
+
+/**
+ * @name canBeJongseong
+ * @description
+ * 인자로 받은 문자가 종성으로 위치할 수 있는 문자인지 검사합니다.
+ * ```typescript
+ * canBeJongseong(
+ *   // 대상 문자
+ *   character: string
+ * ): boolean
+ * ```
+ * @example
+ * canBeJongseong('ㄱ') // true
+ * canBeJongseong('ㄱㅅ') // true
+ * canBeJongseong('ㅎㄹ') // false
+ * canBeJongseong('가') // false
+ * canBeJongseong('ㅏ') // false
+ * canBeJongseong('ㅗㅏ') // false
+ */
+export function canBeJongseong(character: string): character is (typeof HANGUL_CHARACTERS_BY_LAST_INDEX)[number] {
   return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_LAST_INDEX, character);
 }
 
