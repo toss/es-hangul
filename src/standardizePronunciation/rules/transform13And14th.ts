@@ -1,4 +1,4 @@
-import { arrayIncludes } from '../../utils';
+import { arrayIncludes } from '../../_internal';
 import { 음가가_없는_자음 } from '../standardizePronunciation.constants';
 import { ReturnSyllables, Syllable } from './rules.types';
 

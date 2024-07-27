@@ -1,4 +1,4 @@
-import { arrayIncludes } from '../../utils';
+import { arrayIncludes } from '../../_internal';
 import { ReturnSyllables, Syllable } from './rules.types';
 
 /**

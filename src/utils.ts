@@ -288,17 +288,3 @@ export function hasValueInReadOnlyStringList<T extends string>(list: readonly T[
 export function hasProperty<T extends object, K extends PropertyKey>(obj: T, key: K): key is K & keyof T {
   return Object.prototype.hasOwnProperty.call(obj, key);
 }
-
-export function isNotUndefined<T>(value: T | undefined): value is T {
-  return value !== undefined;
-}
-
-export function defined<T>(value: T | undefined): T {
-  assert(value !== undefined);
-
-  return value as T;
-}
-
-export function arrayIncludes<Type>(array: Type[] | readonly Type[], item: unknown, fromIndex?: number): item is Type {
-  return array.includes(item as Type, fromIndex);
-}

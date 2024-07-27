@@ -1,4 +1,4 @@
-import { arrayIncludes } from '../../utils';
+import { arrayIncludes } from '../../_internal';
 import {
   발음변환_받침_ㅎ,
   발음변환_받침_ㅎ_발음,

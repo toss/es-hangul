@@ -1,4 +1,4 @@
-import { arrayIncludes } from '../../utils';
+import { arrayIncludes } from '../../_internal';
 import {
   음가가_없는_자음,
   특별한_한글_자모,

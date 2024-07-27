@@ -1,5 +1,5 @@
+import { defined } from '../../_internal';
 import { disassembleCompleteHangulCharacter } from '../../disassembleCompleteHangulCharacter';
-import { defined } from '../../utils';
 import { transform9And10And11th } from './transform9And10And11th';
 
 describe('transform9And10And11th', () => {

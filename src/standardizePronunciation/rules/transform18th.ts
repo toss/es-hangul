@@ -1,4 +1,4 @@
-import { arrayIncludes } from '../../utils';
+import { arrayIncludes } from '../../_internal';
 import { 비음화_받침_ㄴ_변환, 비음화_받침_ㅁ_변환, 비음화_받침_ㅇ_변환 } from '../standardizePronunciation.constants';
 import { ReturnSyllables, Syllable } from './rules.types';
 

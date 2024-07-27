@@ -1,8 +1,7 @@
-import { joinString } from '../_internal';
+import { isNotUndefined, joinString } from '../_internal';
 import { isHangulAlphabet, isHangulCharacter } from '../_internal/hangul';
 import { combineHangulCharacter } from '../combineHangulCharacter';
 import { disassembleCompleteHangulCharacter } from '../disassembleCompleteHangulCharacter';
-import { isNotUndefined } from '../utils';
 import {
   transform12th,
   transform13And14th,

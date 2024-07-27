@@ -1,5 +1,5 @@
+import { arrayIncludes, isNotUndefined } from './_internal';
 import {
-  arrayIncludes,
   canBeChoseong,
   canBeJongseong,
   canBeJungseong,
@@ -9,7 +9,6 @@ import {
   hasProperty,
   hasSingleBatchim,
   hasValueInReadOnlyStringList,
-  isNotUndefined,
 } from './utils';
 
 describe('hasBatchim', () => {

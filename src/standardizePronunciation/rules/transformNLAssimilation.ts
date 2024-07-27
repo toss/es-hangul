@@ -1,4 +1,4 @@
-import { arrayIncludes } from '../../utils';
+import { arrayIncludes } from '../../_internal';
 import {
   ㄴㄹ이_덧나는_모음,
   ㄴㄹ이_덧나는_후속음절_모음,
