@@ -67,7 +67,7 @@ describe('romanize', () => {
   });
 
   it('특수문자는 로마자 표기로 변경하지 않는다', () => {
-    expect(romanize('안녕하세요')).toBe('annyeonghaseyo');
+    expect(romanize('안녕하세요.')).toBe('annyeonghaseyo.');
     expect(romanize('한국어!')).toBe('hangugeo!');
     expect(romanize('')).toBe('');
     expect(romanize('!?/')).toBe('!?/');
