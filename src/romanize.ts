@@ -1,7 +1,9 @@
-import { assembleHangul, canBeChosung, disassembleCompleteHangulCharacter } from '.';
 import { isHangulCharacter } from './_internal/hangul';
+import { assembleHangul } from './assemble';
 import { 종성_알파벳_발음, 중성_알파벳_발음, 초성_알파벳_발음 } from './constants';
+import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
 import { standardizePronunciation } from './standardizePronunciation';
+import { canBeChoseong } from './utils';
 
 /**
  * 주어진 한글 문자열을 로마자로 변환합니다.
@@ -45,7 +47,7 @@ const romanizeSyllableHangul = (arrayHangul: string[], index: number): string =>
     return 중성_알파벳_발음[syllable as keyof typeof 중성_알파벳_발음];
   }
 
-  if (canBeChosung(syllable)) {
+  if (canBeChoseong(syllable)) {
     return 초성_알파벳_발음[syllable as keyof typeof 초성_알파벳_발음];
   }
 
