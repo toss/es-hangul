@@ -18,6 +18,11 @@ module.exports = {
 
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier', 'plugin:@cspell/recommended'],
   plugins: ['@typescript-eslint'],
+  settings: {
+    next: {
+      rootDir: 'docs/',
+    },
+  },
   rules: {
     'no-implicit-coercion': 'error',
     'no-warning-comments': [
