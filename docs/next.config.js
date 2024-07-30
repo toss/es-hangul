@@ -4,6 +4,7 @@ const withNextra = require('nextra')({
   themeConfig: './theme.config.tsx',
   defaultShowCopyCode: true,
   mdxOptions: {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     remarkPlugins: [require('remark-sandpack').remarkSandpack],
   },
 });
