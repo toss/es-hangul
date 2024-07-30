@@ -14,22 +14,26 @@ function getClassifierWord(num: number): string {
   const tens = Math.floor(num / 10) * 10;
   const ones = num % 10;
 
-  let classifier = '';
+  const tensWord = hasProperty(SUSA_MAP, tens) ? SUSA_MAP[tens] : '';
 
-  if (hasProperty(SUSA_MAP, tens)) {
-    classifier += SUSA_MAP[tens];
+  if (ones === 0) {
+    return tensWord;
   }
 
   if (hasProperty(SUSA_CLASSIFIER_MAP, ones)) {
-    classifier += SUSA_CLASSIFIER_MAP[ones];
-    return classifier;
+    const onesWord = SUSA_CLASSIFIER_MAP[ones];
+
+    return `${tensWord}${onesWord}`;
   }
 
   if (hasProperty(SUSA_MAP, ones)) {
-    classifier += SUSA_MAP[ones];
+    const onesWord = SUSA_MAP[ones];
+
+    return `${tensWord}${onesWord}`;
   }
 
-  return classifier;
+  // `susa`에서` `validateNumber` 하기 때문에 도달할 수 없는 분기입니다. 타입 추론을 위해 에러를 던져줍니다.
+  throw new Error('지원하지 않는 숫자입니다.');
 }
 
 function validateNumber(num: number): void {
