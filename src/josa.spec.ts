@@ -41,6 +41,10 @@ describe('Hangul', () => {
       expect(josa('고기', '이랑/랑')).toBe('고기랑');
       expect(josa('과일', '이랑/랑')).toBe('과일이랑');
     });
+    it('주제의 보조사', () => {
+      expect(josa('의사', '이라/라')).toBe('의사라');
+      expect(josa('선생님', '이라/라')).toBe('선생님이라');
+    });
     it('서술격조사와 종결어미', () => {
       expect(josa('사과', '이에요/예요')).toBe('사과예요');
       expect(josa('책', '이에요/예요')).toBe('책이에요');
