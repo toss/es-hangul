@@ -45,14 +45,9 @@ function getNumberWord(num: number): string {
 
   const tens = Math.floor(num / 10) * 10;
   const ones = num % 10;
-  let result = '';
 
-  if (tens > 0 && hasProperty(SUSA_MAP, tens)) {
-    result += SUSA_MAP[tens];
-  }
-  if (ones > 0 && hasProperty(SUSA_MAP, ones)) {
-    result += SUSA_MAP[ones];
-  }
+  const tensWord = hasProperty(SUSA_MAP, tens) ? SUSA_MAP[tens] : '';
+  const onesWord = hasProperty(SUSA_MAP, ones) ? SUSA_MAP[ones] : '';
 
-  return result;
+  return `${tensWord}${onesWord}`;
 }
