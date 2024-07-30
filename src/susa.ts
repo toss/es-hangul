@@ -33,7 +33,7 @@ function getClassifierWord(num: number): string {
 }
 
 function validateNumber(num: number): void {
-  if (Number.isNaN(num) || !Number.isFinite(num) || num <= 0 || num > 100) {
+  if (Number.isNaN(num) || num <= 0 || num > 100 || !Number.isInteger(num) || !Number.isFinite(num)) {
     throw new Error('지원하지 않는 숫자입니다.');
   }
 }
