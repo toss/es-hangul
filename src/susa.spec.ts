@@ -21,7 +21,7 @@ describe('susa', () => {
     { num: 100, word: '백', classifier: '백' },
   ];
 
-  const invalidNumbers = [0, -1, 101, Infinity, -Infinity, NaN];
+  const invalidNumbers = [0, -1, 101, 1.1, -1.1, Infinity, -Infinity, NaN];
 
   validNumbers.forEach(({ num, word, classifier }) => {
     it(`${num} - 순 우리말 수사로 바꿔 반환해야 한다.`, () => {
