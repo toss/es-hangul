@@ -1,5 +1,16 @@
 # docs
 
+## 0.1.13
+
+### Patch Changes
+
+- [#203](https://github.com/toss/es-hangul/pull/203) [`fbe3ad6`](https://github.com/toss/es-hangul/commit/fbe3ad67f4bd796773f60f0ab04359135b03d414) Thanks [@kangju2000](https://github.com/kangju2000)! - fix: eslint CI가 제대로 작동하지 않는 문제를 수정합니다.
+
+- [#199](https://github.com/toss/es-hangul/pull/199) [`5fa97f8`](https://github.com/toss/es-hangul/commit/5fa97f825deaec03c42a9842a06ee262d0a8fd87) Thanks [@kangju2000](https://github.com/kangju2000)! - docs: 문서 배포 오류를 해결합니다.
+
+- Updated dependencies [[`e6142b0`](https://github.com/toss/es-hangul/commit/e6142b04159133dbcab6f2771baa88adf7aa4a45), [`fbe3ad6`](https://github.com/toss/es-hangul/commit/fbe3ad67f4bd796773f60f0ab04359135b03d414)]:
+  - es-hangul@1.4.6
+
 ## 0.1.12
 
 ### Patch Changes

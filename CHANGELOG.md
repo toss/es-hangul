@@ -1,5 +1,13 @@
 # es-hangul
 
+## 1.4.6
+
+### Patch Changes
+
+- [#198](https://github.com/toss/es-hangul/pull/198) [`e6142b0`](https://github.com/toss/es-hangul/commit/e6142b04159133dbcab6f2771baa88adf7aa4a45) Thanks [@linenumbertwo](https://github.com/linenumbertwo)! - feat: "이라/라" 케이스 추가
+
+- [#203](https://github.com/toss/es-hangul/pull/203) [`fbe3ad6`](https://github.com/toss/es-hangul/commit/fbe3ad67f4bd796773f60f0ab04359135b03d414) Thanks [@kangju2000](https://github.com/kangju2000)! - fix: eslint CI가 제대로 작동하지 않는 문제를 수정합니다.
+
 ## 1.4.5
 
 ### Patch Changes
