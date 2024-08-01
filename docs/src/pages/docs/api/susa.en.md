@@ -1,0 +1,33 @@
+---
+title: susa
+---
+
+# susa
+
+Convert numbers to native Korean numeral words or numeral determiners. The given number is valid when it is greater than 0 and less than or equal to 100.
+
+```typescript
+function susa(
+  // Number to convert
+  num: number,
+  // Whether to use numeral determiners
+  classifier?: boolean
+): string;
+```
+
+## Examples
+
+```typescript
+susa(1); // '하나'
+susa(2); // '둘'
+susa(11); // '열하나'
+susa(21); // '스물하나'
+susa(99); // '아흔아홉'
+susa(100); // '백'
+
+susa(1, true); // '한'
+susa(2, true); // '두'
+susa(11, true); // '열한'
+susa(20, true); // '스무'
+susa(21, true); // '스물한'
+```
