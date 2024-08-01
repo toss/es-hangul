@@ -1,3 +1,5 @@
+import { Sandpack } from '@/components/Sandpack';
+
 # acronymizeHangul
 
 It receives the Korean sentence and returns the first letter of that Korean sentence.
@@ -10,7 +12,23 @@ function acronymizeHangul(
 ): string[];
 ```
 
+## Examples
+
 ```typescript
 acronymizeHangul('치킨과 맥주').join(''); //치맥
 acronymizeHangul('버스 충전 카드').join(''); //버충카
 ```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { acronymizeHangul } from 'es-hangul';
+
+console.log(acronymizeHangul('치킨과 맥주').join(''));
+```
+
+</Sandpack>
