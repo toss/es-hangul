@@ -2,6 +2,8 @@
 title: hangulIncludes
 ---
 
+import { Sandpack } from '@/components/Sandpack';
+
 # hangulIncludes
 
 Checks if a Hangul string contains another Hangul string.
@@ -26,3 +28,17 @@ hangulIncludes('사과', '삭'); // true
 hangulIncludes('사과', '삽'); // false
 hangulIncludes('사과', '사과'); // true
 ```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { hangulIncludes } from 'es-hangul';
+
+console.log(hangulIncludes('사과', 'ㅅ'));
+```
+
+</Sandpack>
