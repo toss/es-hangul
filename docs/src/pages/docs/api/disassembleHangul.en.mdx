@@ -2,6 +2,8 @@
 title: disassembleHangul
 ---
 
+import { Sandpack } from '@/components/Sandpack';
+
 # disassembleHangul
 
 Completely separates a Hangul string into its individual characters by initial consonants, medial vowels, and final consonants, creating a single string.
@@ -23,3 +25,17 @@ disassembleHangul('값이 비싸다'); // 'ㄱㅏㅂㅅㅇㅣ ㅂㅣㅆㅏㄷㅏ
 disassembleHangul('ㅘ'); // 'ㅗㅏ'
 disassembleHangul('ㄵ'); // 'ㄴㅈ'
 ```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { disassembleHangul } from 'es-hangul';
+
+console.log(disassembleHangul('값'));
+```
+
+</Sandpack>
