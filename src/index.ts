@@ -8,6 +8,7 @@ import { removeLastCharacter } from './removeLastCharacter';
 import { hasBatchim } from './hasBatchim';
 import { canBeChoseong, canBeJongseong, canBeJungseong } from './canBe';
 import { getChoseong } from './getChoseong';
+import { amountToMoneyCurrency } from './amountToMoneyCurrency';
 
 export {
   assemble,
@@ -26,4 +27,5 @@ export {
   canBeJongseong,
   canBeJungseong,
   getChoseong,
+  amountToMoneyCurrency,
 };
