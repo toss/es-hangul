@@ -1,4 +1,4 @@
-import { ChoseongIncludesDemo } from '@/components/demo/choseong-includes-demo';
+import { Sandpack } from '@/components/Sandpack';
 
 # choseongIncludes
 
@@ -24,4 +24,12 @@ choseongIncludes('프론트엔드', '푸롴트'); // false
 
 <br />
 
-<ChoseongIncludesDemo />
+<Sandpack>
+
+```ts index.ts
+import { choseongIncludes } from 'es-hangul';
+
+console.log(choseongIncludes('프론트엔드', 'ㅍㄹㅌ'));
+```
+
+</Sandpack>
