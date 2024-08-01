@@ -1,3 +1,4 @@
+export { amountToHangul } from './amountToHangul';
 export { assembleHangul } from './assemble';
 export { chosungIncludes } from './chosungIncludes';
 export { choseongIncludes } from './choseongIncludes';
