@@ -1,5 +1,13 @@
 # docs
 
+## 0.1.15
+
+### Patch Changes
+
+- [#209](https://github.com/toss/es-hangul/pull/209) [`c15a9d1`](https://github.com/toss/es-hangul/commit/c15a9d18cff0bc36f7672f3d6ab38e422a625d34) Thanks [@kangju2000](https://github.com/kangju2000)! - docs: josa, josa.pick 문서에 demo를 추가합니다.
+
+- [#205](https://github.com/toss/es-hangul/pull/205) [`75ef7df`](https://github.com/toss/es-hangul/commit/75ef7dfb1e1e27f33cb3fb2e4ab3184b6d0901c6) Thanks [@anonymousRecords](https://github.com/anonymousRecords)! - fix : 문서 상단의 깃허브 아이콘이 제대로 보이지 않는 문제를 수정합니다
+
 ## 0.1.14
 
 ### Patch Changes
