@@ -1,5 +1,16 @@
 # docs
 
+## 0.1.14
+
+### Patch Changes
+
+- [#200](https://github.com/toss/es-hangul/pull/200) [`9e6d391`](https://github.com/toss/es-hangul/commit/9e6d391a983eaf2b67bf00e92384839b8a60d8dd) Thanks [@kangju2000](https://github.com/kangju2000)! - feat: 문서에서 바로 실행해볼 수 있는 Sandpack MDX 컴포넌트를 구현합니다.
+
+- [#207](https://github.com/toss/es-hangul/pull/207) [`3c5c7f6`](https://github.com/toss/es-hangul/commit/3c5c7f6176e4cc6902950191a5614b4b12789ded) Thanks [@anonymousRecords](https://github.com/anonymousRecords)! - 새로고침 시 문서 로고의 layout shift를 개선함
+
+- Updated dependencies [[`56db7f0`](https://github.com/toss/es-hangul/commit/56db7f0140ee369fbe0dc2dad834e8d6a218a4ea)]:
+  - es-hangul@1.4.7
+
 ## 0.1.13
 
 ### Patch Changes
