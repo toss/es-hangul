@@ -25,7 +25,7 @@ export const HANGUL_NUMBERS = ['', '일', '이', '삼', '사', '오', '육', '�
 export const HANGUL_NUMBERS_FOR_DECIMAL = ['영', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
 export const HANGUL_CARDINAL = ['', '십', '백', '천'];
 
-export function amountToMoneyCurrency(amount: string | number) {
+export function amountToHangul(amount: string | number) {
   const [rawIntegerPart, rawDecimalPart] = String(amount)
     .replace(/[^\d.]+/g, '')
     .split('.');
