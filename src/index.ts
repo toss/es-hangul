@@ -1,5 +1,5 @@
 export { assembleHangul } from './assemble';
-export { combineHangulCharacter, combineVowels, curriedCombineHangulCharacter } from './combineHangulCharacter';
+export { combineHangulCharacter, combineVowels } from './combineHangulCharacter';
 export { convertQwertyToHangul, convertQwertyToHangulAlphabet } from './convertQwertyToHangulAlphabet';
 export { disassemble, disassembleToGroups } from './disassemble';
 export { disassembleCompleteCharacter } from './disassembleCompleteCharacter';
