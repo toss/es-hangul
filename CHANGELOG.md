@@ -1,5 +1,11 @@
 # es-hangul
 
+## 1.5.0
+
+### Minor Changes
+
+- [#115](https://github.com/toss/es-hangul/pull/115) [`84584d4`](https://github.com/toss/es-hangul/commit/84584d48ac5ded83c55934f0b72e37a6b889f4e1) Thanks [@po4tion](https://github.com/po4tion)! - feat: 한국어를 로마자로 변환해주는 함수와 한국어를 표준 발음법으로 변환해주는 함수를 만들고 문서화를 진행합니다
+
 ## 1.4.7
 
 ### Patch Changes
