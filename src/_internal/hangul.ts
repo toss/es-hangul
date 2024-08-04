@@ -173,13 +173,11 @@ export function binaryAssembleHangulCharacters(source: string, nextCharacter: st
  * binaryAssembleHangul('저는 고양이를 좋아하', 'ㅏ') // 저는 고양이를 좋아하ㅏ
  */
 export function binaryAssembleHangul(source: string, nextCharacter: string) {
-  const [rest, lastCharacter] = excludeLastElement(source.split(''));
-  const needJoinString = isBlank(lastCharacter) || isBlank(nextCharacter);
+  const [rest, jongseong] = excludeLastElement(source.split(''));
+  const needJoinString = isBlank(jongseong) || isBlank(nextCharacter);
 
   return joinString(
     ...rest,
-    needJoinString
-      ? joinString(lastCharacter, nextCharacter)
-      : binaryAssembleHangulCharacters(lastCharacter, nextCharacter)
+    needJoinString ? joinString(jongseong, nextCharacter) : binaryAssembleHangulCharacters(jongseong, nextCharacter)
   );
 }

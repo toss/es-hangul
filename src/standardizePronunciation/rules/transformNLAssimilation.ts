@@ -20,7 +20,7 @@ export function transformNLAssimilation(currentSyllable: Syllable, nextSyllable:
   let next = { ...nextSyllable };
 
   const ㄴㄹ이덧나는조건 =
-    current.last && next.first === 'ㅇ' && arrayIncludes(ㄴㄹ이_덧나는_후속음절_모음, next.middle);
+    current.jongseong && next.choseong === 'ㅇ' && arrayIncludes(ㄴㄹ이_덧나는_후속음절_모음, next.jungseong);
 
   if (!ㄴㄹ이덧나는조건) {
     return {
@@ -41,18 +41,18 @@ function applyㄴㄹ덧남(current: Syllable, next: Syllable): ReturnSyllables {
   const updatedCurrent = { ...current };
   const updatedNext = { ...next };
 
-  if (arrayIncludes(ㄴㄹ이_덧나는_모음, updatedCurrent.middle)) {
-    if (arrayIncludes(ㄴㄹ이_덧나서_받침_ㄴ_변환, updatedCurrent.last)) {
-      updatedCurrent.last = updatedCurrent.last === 'ㄱ' ? 'ㅇ' : updatedCurrent.last;
-      updatedNext.first = 'ㄴ';
+  if (arrayIncludes(ㄴㄹ이_덧나는_모음, updatedCurrent.jungseong)) {
+    if (arrayIncludes(ㄴㄹ이_덧나서_받침_ㄴ_변환, updatedCurrent.jongseong)) {
+      updatedCurrent.jongseong = updatedCurrent.jongseong === 'ㄱ' ? 'ㅇ' : updatedCurrent.jongseong;
+      updatedNext.choseong = 'ㄴ';
     }
 
-    if (arrayIncludes(ㄴㄹ이_덧나서_받침_ㄹ_변환, updatedCurrent.last)) {
-      updatedNext.first = 'ㄹ';
+    if (arrayIncludes(ㄴㄹ이_덧나서_받침_ㄹ_변환, updatedCurrent.jongseong)) {
+      updatedNext.choseong = 'ㄹ';
     }
   } else {
     // ㄴ/ㄹ이 되기 위한 조건이지만 현재 음절의 중성의 ∙(아래아)가 하나가 아닐 경우에는 덧나지 않고 연음규칙이 적용된다
-    updatedNext.first = updatedCurrent.last as typeof updatedNext.first;
+    updatedNext.choseong = updatedCurrent.jongseong as typeof updatedNext.choseong;
   }
 
   return { current: updatedCurrent, next: updatedNext };

@@ -14,7 +14,7 @@ export function transform17th(currentSyllable: Syllable, nextSyllable: Syllable)
   let current = { ...currentSyllable };
   let next = { ...nextSyllable };
 
-  const 제17항주요조건 = next.middle === 'ㅣ';
+  const 제17항주요조건 = next.jungseong === 'ㅣ';
 
   if (!제17항주요조건) {
     return {
@@ -23,8 +23,8 @@ export function transform17th(currentSyllable: Syllable, nextSyllable: Syllable)
     };
   }
 
-  ({ current, next } = handleFirstIsㅇ(current, next));
-  ({ current, next } = handleFirstIsㅎAndㄷ(current, next));
+  ({ current, next } = handleChoseongIsㅇ(current, next));
+  ({ current, next } = handleChoseongIsㅎAndㄷ(current, next));
 
   return {
     current,
@@ -32,24 +32,24 @@ export function transform17th(currentSyllable: Syllable, nextSyllable: Syllable)
   };
 }
 
-function handleFirstIsㅇ(current: Syllable, next: Syllable): ReturnSyllables {
+function handleChoseongIsㅇ(current: Syllable, next: Syllable): ReturnSyllables {
   const updatedCurrent = { ...current };
   const updatedNext = { ...next };
 
-  if (updatedNext.first === 'ㅇ' && hasProperty(음의_동화_받침, updatedCurrent.last)) {
-    updatedNext.first = 음의_동화_받침[updatedCurrent.last];
-    updatedCurrent.last = updatedCurrent.last === 'ㄹㅌ' ? 'ㄹ' : '';
+  if (updatedNext.choseong === 'ㅇ' && hasProperty(음의_동화_받침, updatedCurrent.jongseong)) {
+    updatedNext.choseong = 음의_동화_받침[updatedCurrent.jongseong];
+    updatedCurrent.jongseong = updatedCurrent.jongseong === 'ㄹㅌ' ? 'ㄹ' : '';
   }
   return { current: updatedCurrent, next: updatedNext };
 }
 
-function handleFirstIsㅎAndㄷ(current: Syllable, next: Syllable): ReturnSyllables {
+function handleChoseongIsㅎAndㄷ(current: Syllable, next: Syllable): ReturnSyllables {
   const updatedCurrent = { ...current };
   const updatedNext = { ...next };
 
-  if (updatedNext.first === 'ㅎ' && updatedCurrent.last === 'ㄷ') {
-    updatedNext.first = 'ㅊ';
-    updatedCurrent.last = '';
+  if (updatedNext.choseong === 'ㅎ' && updatedCurrent.jongseong === 'ㄷ') {
+    updatedNext.choseong = 'ㅊ';
+    updatedCurrent.jongseong = '';
   }
   return { current: updatedCurrent, next: updatedNext };
 }

@@ -9,14 +9,14 @@ describe('transform17th', () => {
 
     expect(transform17th(current, next)).toEqual({
       current: {
-        first: 'ㄱ',
-        middle: 'ㅜ',
-        last: '',
+        choseong: 'ㄱ',
+        jungseong: 'ㅜ',
+        jongseong: '',
       },
       next: {
-        first: 'ㅈ',
-        middle: 'ㅣ',
-        last: '',
+        choseong: 'ㅈ',
+        jungseong: 'ㅣ',
+        jongseong: '',
       },
     });
   });
@@ -27,14 +27,14 @@ describe('transform17th', () => {
 
     expect(transform17th(current, next)).toEqual({
       current: {
-        first: 'ㄱ',
-        middle: 'ㅜ',
-        last: '',
+        choseong: 'ㄱ',
+        jungseong: 'ㅜ',
+        jongseong: '',
       },
       next: {
-        first: 'ㅊ',
-        middle: 'ㅣ',
-        last: '',
+        choseong: 'ㅊ',
+        jungseong: 'ㅣ',
+        jongseong: '',
       },
     });
   });

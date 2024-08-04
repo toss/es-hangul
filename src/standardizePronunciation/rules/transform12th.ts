@@ -25,26 +25,26 @@ export function transform12th(currentSyllable: Syllable, nextSyllable: Nullable<
   let current = { ...currentSyllable };
   let next = nextSyllable ? { ...nextSyllable } : nextSyllable;
 
-  if (!current.last) {
+  if (!current.jongseong) {
     return {
       current,
       next,
     };
   }
 
-  if (arrayIncludes(발음변환_받침_ㅎ, current.last)) {
+  if (arrayIncludes(발음변환_받침_ㅎ, current.jongseong)) {
     if (next) {
-      ({ current, next } = handleNextFirstIsㄱㄷㅈㅅ(current, next));
-      ({ current, next } = handleNextFirstIsㄴ(current, next));
-      ({ current, next } = handleNextFirstIsㅇ(current, next));
+      ({ current, next } = handleNextChoseongIsㄱㄷㅈㅅ(current, next));
+      ({ current, next } = handleNextChoseongIsㄴ(current, next));
+      ({ current, next } = handleNextChoseongIsㅇ(current, next));
     }
 
     if (!next) {
-      ({ current } = handleCurrentLastIsㅇ(current));
+      ({ current } = handleCurrentJongseongIsㅇ(current));
     }
   }
 
-  ({ current, next } = handleNextFirstIsㅎ(current, next));
+  ({ current, next } = handleNextChoseongIsㅎ(current, next));
 
   return {
     current,
@@ -52,62 +52,62 @@ export function transform12th(currentSyllable: Syllable, nextSyllable: Nullable<
   };
 }
 
-function handleNextFirstIsㄱㄷㅈㅅ(current: Syllable, next: Syllable): ReturnSyllables {
+function handleNextChoseongIsㄱㄷㅈㅅ(current: Syllable, next: Syllable): ReturnSyllables {
   const updatedCurrent = { ...current };
   const updatedNext = { ...next };
 
-  if (arrayIncludes(['ㄱ', 'ㄷ', 'ㅈ', 'ㅅ'], updatedNext.first)) {
-    updatedNext.first = 발음변환_받침_ㅎ_발음[updatedNext.first as keyof typeof 발음변환_받침_ㅎ_발음];
-    updatedCurrent.last = replace받침ㅎ(updatedCurrent);
+  if (arrayIncludes(['ㄱ', 'ㄷ', 'ㅈ', 'ㅅ'], updatedNext.choseong)) {
+    updatedNext.choseong = 발음변환_받침_ㅎ_발음[updatedNext.choseong as keyof typeof 발음변환_받침_ㅎ_발음];
+    updatedCurrent.jongseong = replace받침ㅎ(updatedCurrent);
   }
 
   return { current: updatedCurrent, next: updatedNext };
 }
 
-function handleNextFirstIsㄴ(current: Syllable, next: Syllable): ReturnSyllables {
+function handleNextChoseongIsㄴ(current: Syllable, next: Syllable): ReturnSyllables {
   const updatedCurrent = { ...current };
   const updatedNext = { ...next };
 
-  if (updatedNext.first === 'ㄴ' && arrayIncludes(['ㄴㅎ', 'ㄹㅎ'], updatedCurrent.last)) {
-    updatedCurrent.last = replace받침ㅎ(updatedCurrent);
+  if (updatedNext.choseong === 'ㄴ' && arrayIncludes(['ㄴㅎ', 'ㄹㅎ'], updatedCurrent.jongseong)) {
+    updatedCurrent.jongseong = replace받침ㅎ(updatedCurrent);
   }
   return { current: updatedCurrent, next: updatedNext };
 }
 
-function handleNextFirstIsㅇ(current: Syllable, next: Syllable): ReturnSyllables {
+function handleNextChoseongIsㅇ(current: Syllable, next: Syllable): ReturnSyllables {
   const updatedCurrent = { ...current };
   const updatedNext = { ...next };
 
-  if (updatedNext.first === 음가가_없는_자음) {
-    if (arrayIncludes(['ㄴㅎ', 'ㄹㅎ'], updatedCurrent.last)) {
-      updatedCurrent.last = replace받침ㅎ(updatedCurrent);
+  if (updatedNext.choseong === 음가가_없는_자음) {
+    if (arrayIncludes(['ㄴㅎ', 'ㄹㅎ'], updatedCurrent.jongseong)) {
+      updatedCurrent.jongseong = replace받침ㅎ(updatedCurrent);
     } else {
-      updatedCurrent.last = '';
+      updatedCurrent.jongseong = '';
     }
   } else {
-    updatedCurrent.last = replace받침ㅎ(updatedCurrent);
+    updatedCurrent.jongseong = replace받침ㅎ(updatedCurrent);
   }
   return { current: updatedCurrent, next: updatedNext };
 }
 
-function handleCurrentLastIsㅇ(current: Syllable): Pick<ReturnSyllables, 'current'> {
+function handleCurrentJongseongIsㅇ(current: Syllable): Pick<ReturnSyllables, 'current'> {
   const updatedCurrent = { ...current };
 
-  updatedCurrent.last = replace받침ㅎ(updatedCurrent);
+  updatedCurrent.jongseong = replace받침ㅎ(updatedCurrent);
   return { current: updatedCurrent };
 }
 
-function handleNextFirstIsㅎ(current: Syllable, next: Nullable<Syllable>): NullableReturnSyllables {
+function handleNextChoseongIsㅎ(current: Syllable, next: Nullable<Syllable>): NullableReturnSyllables {
   const updatedCurrent = { ...current };
   const updatedNext = next ? { ...next } : next;
 
-  if (arrayIncludes(발음변환_첫소리_ㅎ, updatedCurrent.last) && arrayIncludes(['ㅎ'], updatedNext?.first)) {
-    updatedNext.first = 발음변환_첫소리_ㅎ_발음[updatedCurrent.last];
+  if (arrayIncludes(발음변환_첫소리_ㅎ, updatedCurrent.jongseong) && arrayIncludes(['ㅎ'], updatedNext?.choseong)) {
+    updatedNext.choseong = 발음변환_첫소리_ㅎ_발음[updatedCurrent.jongseong];
 
-    if (updatedCurrent.last.length === 1) {
-      updatedCurrent.last = '';
+    if (updatedCurrent.jongseong.length === 1) {
+      updatedCurrent.jongseong = '';
     } else {
-      updatedCurrent.last = updatedCurrent.last[0] as Syllable['last'];
+      updatedCurrent.jongseong = updatedCurrent.jongseong[0] as Syllable['jongseong'];
     }
   }
   return { current: updatedCurrent, next: updatedNext };

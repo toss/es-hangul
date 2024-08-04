@@ -26,7 +26,7 @@ export function transform16th({ currentSyllable, phrase, index, nextSyllable }: 
   let current = { ...currentSyllable };
   let next = { ...nextSyllable };
 
-  const 제16항주요조건 = current.last && next.first === 음가가_없는_자음;
+  const 제16항주요조건 = current.jongseong && next.choseong === 음가가_없는_자음;
 
   if (!제16항주요조건) {
     return {
@@ -57,10 +57,10 @@ function handleSpecialHangulCharacters({
   const updatedNext = { ...next };
 
   if (arrayIncludes(특별한_한글_자모, combinedSyllables)) {
-    const 다음_음절의_초성 = 특별한_한글_자모의_발음[updatedCurrent.last as keyof typeof 특별한_한글_자모의_발음];
+    const 다음_음절의_초성 = 특별한_한글_자모의_발음[updatedCurrent.jongseong as keyof typeof 특별한_한글_자모의_발음];
 
-    updatedCurrent.last = '';
-    updatedNext.first = 다음_음절의_초성;
+    updatedCurrent.jongseong = '';
+    updatedNext.choseong = 다음_음절의_초성;
   }
   return { current: updatedCurrent, next: updatedNext };
 }
@@ -76,10 +76,10 @@ function handleHangulCharacters({
   const updatedNext = { ...next };
 
   if (arrayIncludes(한글_자모, combinedSyllables)) {
-    updatedNext.first = updatedCurrent.last as typeof updatedNext.first;
+    updatedNext.choseong = updatedCurrent.jongseong as typeof updatedNext.choseong;
 
-    if (updatedCurrent.last !== 'ㅇ') {
-      updatedCurrent.last = '';
+    if (updatedCurrent.jongseong !== 'ㅇ') {
+      updatedCurrent.jongseong = '';
     }
   }
   return { current: updatedCurrent, next: updatedNext };

@@ -1,9 +1,9 @@
 import {
   COMPLETE_HANGUL_START_CHARCODE,
   DISASSEMBLED_VOWELS_BY_VOWEL,
-  HANGUL_CHARACTERS_BY_FIRST_INDEX,
-  HANGUL_CHARACTERS_BY_LAST_INDEX,
-  HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
+  CHOSEONGS,
+  JONGSEONGS,
+  JUNSEONGS,
 } from './constants';
 import { canBeChoseong, canBeJongseong, canBeJungseong } from './utils';
 
@@ -14,38 +14,33 @@ import { canBeChoseong, canBeJongseong, canBeJungseong } from './utils';
  * ```typescript
  * combineHangulCharacter(
  *   // 초성
- *   firstCharacter: string
+ *   choseong: string
  *   // 중성
- *   middleCharacter: string
+ *   jungseong: string
  *   // 종성
- *   lastCharacter: string
+ *   jongseong: string
  * ): string
  * ```
  * @example
  * combineHangulCharacter('ㄱ', 'ㅏ', 'ㅂㅅ') // '값'
  * combineHangulCharacter('ㅌ', 'ㅗ') // '토'
  */
-export function combineHangulCharacter(firstCharacter: string, middleCharacter: string, lastCharacter = '') {
-  if (
-    canBeChoseong(firstCharacter) === false ||
-    canBeJungseong(middleCharacter) === false ||
-    canBeJongseong(lastCharacter) === false
-  ) {
-    throw new Error(`Invalid hangul Characters: ${firstCharacter}, ${middleCharacter}, ${lastCharacter}`);
+export function combineHangulCharacter(choseong: string, jungseong: string, jongseong = '') {
+  if (canBeChoseong(choseong) === false || canBeJungseong(jungseong) === false || canBeJongseong(jongseong) === false) {
+    throw new Error(`Invalid hangul Characters: ${choseong}, ${jungseong}, ${jongseong}`);
   }
 
-  const numOfMiddleCharacters = HANGUL_CHARACTERS_BY_MIDDLE_INDEX.length;
-  const numOfLastCharacters = HANGUL_CHARACTERS_BY_LAST_INDEX.length;
+  const numOfJungseongs = JUNSEONGS.length;
+  const numOfJongseongs = JONGSEONGS.length;
 
-  const firstCharacterIndex = HANGUL_CHARACTERS_BY_FIRST_INDEX.indexOf(firstCharacter);
-  const middleCharacterIndex = HANGUL_CHARACTERS_BY_MIDDLE_INDEX.indexOf(middleCharacter);
-  const lastCharacterIndex = HANGUL_CHARACTERS_BY_LAST_INDEX.indexOf(lastCharacter);
+  const choseongIndex = CHOSEONGS.indexOf(choseong);
+  const jungseongIndex = JUNSEONGS.indexOf(jungseong);
+  const jongseongIndex = JONGSEONGS.indexOf(jongseong);
 
-  const firstIndexOfTargetConsonant = firstCharacterIndex * numOfMiddleCharacters * numOfLastCharacters;
-  const firstIndexOfTargetVowel = middleCharacterIndex * numOfLastCharacters;
+  const choseongOfTargetConsonant = choseongIndex * numOfJungseongs * numOfJongseongs;
+  const choseongOfTargetVowel = jungseongIndex * numOfJongseongs;
 
-  const unicode =
-    COMPLETE_HANGUL_START_CHARCODE + firstIndexOfTargetConsonant + firstIndexOfTargetVowel + lastCharacterIndex;
+  const unicode = COMPLETE_HANGUL_START_CHARCODE + choseongOfTargetConsonant + choseongOfTargetVowel + jongseongIndex;
 
   return String.fromCharCode(unicode);
 }
@@ -60,10 +55,10 @@ export function combineHangulCharacter(firstCharacter: string, middleCharacter: 
  * combineLastHangulCharacter('ㄱ') // '각'
  */
 export const curriedCombineHangulCharacter =
-  (firstCharacter: string) =>
-  (middleCharacter: string) =>
-  (lastCharacter = '') =>
-    combineHangulCharacter(firstCharacter, middleCharacter, lastCharacter);
+  (choseong: string) =>
+  (jungseong: string) =>
+  (jongseong = '') =>
+    combineHangulCharacter(choseong, jungseong, jongseong);
 
 /**
  * @name combineVowels

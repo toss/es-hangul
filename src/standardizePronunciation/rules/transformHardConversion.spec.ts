@@ -9,9 +9,9 @@ describe('transformHardConversion', () => {
 
     expect(transformHardConversion(current, next)).toEqual({
       next: {
-        first: 'ㅃ',
-        middle: 'ㅏ',
-        last: 'ㅂ',
+        choseong: 'ㅃ',
+        jungseong: 'ㅏ',
+        jongseong: 'ㅂ',
       },
     });
   });
@@ -22,9 +22,9 @@ describe('transformHardConversion', () => {
 
     expect(transformHardConversion(current, next)).toEqual({
       next: {
-        first: 'ㄲ',
-        middle: 'ㅗ',
-        last: '',
+        choseong: 'ㄲ',
+        jungseong: 'ㅗ',
+        jongseong: '',
       },
     });
   });
@@ -35,9 +35,9 @@ describe('transformHardConversion', () => {
 
     expect(transformHardConversion(current, next)).toEqual({
       next: {
-        first: 'ㄲ',
-        middle: 'ㅔ',
-        last: '',
+        choseong: 'ㄲ',
+        jungseong: 'ㅔ',
+        jongseong: '',
       },
     });
   });

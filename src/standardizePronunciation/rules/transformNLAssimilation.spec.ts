@@ -9,14 +9,14 @@ describe('transformNLAssimilation', () => {
 
     expect(transformNLAssimilation(current, next)).toEqual({
       current: {
-        first: 'ㅁ',
-        middle: 'ㅐ',
-        last: 'ㄴ',
+        choseong: 'ㅁ',
+        jungseong: 'ㅐ',
+        jongseong: 'ㄴ',
       },
       next: {
-        first: 'ㄴ',
-        middle: 'ㅣ',
-        last: 'ㅂ',
+        choseong: 'ㄴ',
+        jungseong: 'ㅣ',
+        jongseong: 'ㅂ',
       },
     });
   });
@@ -27,14 +27,14 @@ describe('transformNLAssimilation', () => {
 
     expect(transformNLAssimilation(current, next)).toEqual({
       current: {
-        first: 'ㅇ',
-        middle: 'ㅏ',
-        last: 'ㄹ',
+        choseong: 'ㅇ',
+        jungseong: 'ㅏ',
+        jongseong: 'ㄹ',
       },
       next: {
-        first: 'ㄹ',
-        middle: 'ㅑ',
-        last: 'ㄱ',
+        choseong: 'ㄹ',
+        jungseong: 'ㅑ',
+        jongseong: 'ㄱ',
       },
     });
   });
@@ -45,14 +45,14 @@ describe('transformNLAssimilation', () => {
 
     expect(transformNLAssimilation(current, next)).toEqual({
       current: {
-        first: 'ㅇ',
-        middle: 'ㅑ',
-        last: 'ㅇ',
+        choseong: 'ㅇ',
+        jungseong: 'ㅑ',
+        jongseong: 'ㅇ',
       },
       next: {
-        first: 'ㅇ',
-        middle: 'ㅣ',
-        last: '',
+        choseong: 'ㅇ',
+        jungseong: 'ㅣ',
+        jongseong: '',
       },
     });
   });

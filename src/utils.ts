@@ -2,9 +2,9 @@ import assert from './_internal';
 import {
   COMPLETE_HANGUL_END_CHARCODE,
   COMPLETE_HANGUL_START_CHARCODE,
-  HANGUL_CHARACTERS_BY_FIRST_INDEX,
-  HANGUL_CHARACTERS_BY_LAST_INDEX,
-  HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
+  CHOSEONGS,
+  JONGSEONGS,
+  JUNSEONGS,
   JASO_HANGUL_NFD,
   NUMBER_OF_JONGSEONG,
 } from './constants';
@@ -78,7 +78,7 @@ export function hasSingleBatchim(str: string) {
   }
 
   const batchimCode = (charCode - COMPLETE_HANGUL_START_CHARCODE) % NUMBER_OF_JONGSEONG;
-  return HANGUL_CHARACTERS_BY_LAST_INDEX[batchimCode].length === 1;
+  return JONGSEONGS[batchimCode].length === 1;
 }
 
 /**
@@ -101,7 +101,7 @@ export function getChosung(word: string) {
   return word
     .normalize('NFD')
     .replace(EXTRACT_CHOSEONG_REGEX, '') // NFD ㄱ-ㅎ, NFC ㄱ-ㅎ 외 문자 삭제
-    .replace(CHOOSE_NFD_CHOSEONG_REGEX, $0 => HANGUL_CHARACTERS_BY_FIRST_INDEX[$0.charCodeAt(0) - 0x1100]); // NFD to NFC
+    .replace(CHOOSE_NFD_CHOSEONG_REGEX, $0 => CHOSEONGS[$0.charCodeAt(0) - 0x1100]); // NFD to NFC
 }
 
 /**
@@ -123,7 +123,7 @@ export function getChoseong(word: string) {
   return word
     .normalize('NFD')
     .replace(EXTRACT_CHOSEONG_REGEX, '') // NFD ㄱ-ㅎ, NFC ㄱ-ㅎ 외 문자 삭제
-    .replace(CHOOSE_NFD_CHOSEONG_REGEX, $0 => HANGUL_CHARACTERS_BY_FIRST_INDEX[$0.charCodeAt(0) - 0x1100]); // NFD to NFC
+    .replace(CHOOSE_NFD_CHOSEONG_REGEX, $0 => CHOSEONGS[$0.charCodeAt(0) - 0x1100]); // NFD to NFC
 }
 
 /**
@@ -166,8 +166,8 @@ export function getFirstConsonants(word: string) {
  * canBeChosung('ㅏ') // false
  * canBeChosung('가') // false
  */
-export function canBeChosung(character: string): character is (typeof HANGUL_CHARACTERS_BY_FIRST_INDEX)[number] {
-  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_FIRST_INDEX, character);
+export function canBeChosung(character: string): character is (typeof CHOSEONGS)[number] {
+  return hasValueInReadOnlyStringList(CHOSEONGS, character);
 }
 
 /**
@@ -187,8 +187,8 @@ export function canBeChosung(character: string): character is (typeof HANGUL_CHA
  * canBeChoseong('ㅏ') // false
  * canBeChoseong('가') // false
  */
-export function canBeChoseong(character: string): character is (typeof HANGUL_CHARACTERS_BY_FIRST_INDEX)[number] {
-  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_FIRST_INDEX, character);
+export function canBeChoseong(character: string): character is (typeof CHOSEONGS)[number] {
+  return hasValueInReadOnlyStringList(CHOSEONGS, character);
 }
 
 /**
@@ -210,8 +210,8 @@ export function canBeChoseong(character: string): character is (typeof HANGUL_CH
  * canBeJungsung('ㄱㅅ') // false
  * canBeJungsung('가') // false
  */
-export function canBeJungsung(character: string): character is (typeof HANGUL_CHARACTERS_BY_MIDDLE_INDEX)[number] {
-  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_MIDDLE_INDEX, character);
+export function canBeJungsung(character: string): character is (typeof JUNSEONGS)[number] {
+  return hasValueInReadOnlyStringList(JUNSEONGS, character);
 }
 
 /**
@@ -232,8 +232,8 @@ export function canBeJungsung(character: string): character is (typeof HANGUL_CH
  * canBeJungseong('ㄱㅅ') // false
  * canBeJungseong('가') // false
  */
-export function canBeJungseong(character: string): character is (typeof HANGUL_CHARACTERS_BY_MIDDLE_INDEX)[number] {
-  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_MIDDLE_INDEX, character);
+export function canBeJungseong(character: string): character is (typeof JUNSEONGS)[number] {
+  return hasValueInReadOnlyStringList(JUNSEONGS, character);
 }
 
 /**
@@ -255,8 +255,8 @@ export function canBeJungseong(character: string): character is (typeof HANGUL_C
  * canBeJongsung('ㅏ') // false
  * canBeJongsung('ㅗㅏ') // false
  */
-export function canBeJongsung(character: string): character is (typeof HANGUL_CHARACTERS_BY_LAST_INDEX)[number] {
-  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_LAST_INDEX, character);
+export function canBeJongsung(character: string): character is (typeof JONGSEONGS)[number] {
+  return hasValueInReadOnlyStringList(JONGSEONGS, character);
 }
 
 /**
@@ -277,8 +277,8 @@ export function canBeJongsung(character: string): character is (typeof HANGUL_CH
  * canBeJongseong('ㅏ') // false
  * canBeJongseong('ㅗㅏ') // false
  */
-export function canBeJongseong(character: string): character is (typeof HANGUL_CHARACTERS_BY_LAST_INDEX)[number] {
-  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_LAST_INDEX, character);
+export function canBeJongseong(character: string): character is (typeof JONGSEONGS)[number] {
+  return hasValueInReadOnlyStringList(JONGSEONGS, character);
 }
 
 export function hasValueInReadOnlyStringList<T extends string>(list: readonly T[], value: string): value is T {

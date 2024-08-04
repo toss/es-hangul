@@ -16,7 +16,11 @@ export function disassembleHangulToGroups(str: string) {
     const disassembledComplete = disassembleCompleteHangulCharacter(letter);
 
     if (disassembledComplete != null) {
-      result.push([...disassembledComplete.first, ...disassembledComplete.middle, ...disassembledComplete.last]);
+      result.push([
+        ...disassembledComplete.choseong,
+        ...disassembledComplete.jungseong,
+        ...disassembledComplete.jongseong,
+      ]);
       continue;
     }
 

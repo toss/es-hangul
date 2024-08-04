@@ -9,9 +9,9 @@ describe('transform18th', () => {
 
     expect(transform18th(current, next)).toEqual({
       current: {
-        first: 'ㅁ',
-        middle: 'ㅓ',
-        last: 'ㅇ',
+        choseong: 'ㅁ',
+        jungseong: 'ㅓ',
+        jongseong: 'ㅇ',
       },
     });
   });
@@ -22,9 +22,9 @@ describe('transform18th', () => {
 
     expect(transform18th(current, next)).toEqual({
       current: {
-        first: 'ㄷ',
-        middle: 'ㅏ',
-        last: 'ㄴ',
+        choseong: 'ㄷ',
+        jungseong: 'ㅏ',
+        jongseong: 'ㄴ',
       },
     });
   });
@@ -35,9 +35,9 @@ describe('transform18th', () => {
 
     expect(transform18th(current, next)).toEqual({
       current: {
-        first: 'ㅈ',
-        middle: 'ㅏ',
-        last: 'ㅁ',
+        choseong: 'ㅈ',
+        jungseong: 'ㅏ',
+        jongseong: 'ㅁ',
       },
     });
   });

@@ -12,7 +12,7 @@ import { ReturnSyllables, Syllable } from './rules.types';
 export function transform18th(currentSyllable: Syllable, nextSyllable: Syllable): Pick<ReturnSyllables, 'current'> {
   const current = { ...currentSyllable };
 
-  const 제18항주요조건 = current.last && arrayIncludes(['ㄴ', 'ㅁ'], nextSyllable.first);
+  const 제18항주요조건 = current.jongseong && arrayIncludes(['ㄴ', 'ㅁ'], nextSyllable.choseong);
 
   if (!제18항주요조건) {
     return {
@@ -20,16 +20,16 @@ export function transform18th(currentSyllable: Syllable, nextSyllable: Syllable)
     };
   }
 
-  if (arrayIncludes(비음화_받침_ㅇ_변환, current.last)) {
-    current.last = 'ㅇ';
+  if (arrayIncludes(비음화_받침_ㅇ_변환, current.jongseong)) {
+    current.jongseong = 'ㅇ';
   }
 
-  if (arrayIncludes(비음화_받침_ㄴ_변환, current.last)) {
-    current.last = 'ㄴ';
+  if (arrayIncludes(비음화_받침_ㄴ_변환, current.jongseong)) {
+    current.jongseong = 'ㄴ';
   }
 
-  if (arrayIncludes(비음화_받침_ㅁ_변환, current.last)) {
-    current.last = 'ㅁ';
+  if (arrayIncludes(비음화_받침_ㅁ_변환, current.jongseong)) {
+    current.jongseong = 'ㅁ';
   }
 
   return {
