@@ -41,13 +41,13 @@ export function disassembleCompleteHangulCharacter(
 
   const hangulCode = charCode - COMPLETE_HANGUL_START_CHARCODE;
 
-  const jongseong = hangulCode % NUMBER_OF_JONGSEONG;
-  const jungseong = ((hangulCode - jongseong) / NUMBER_OF_JONGSEONG) % NUMBER_OF_JUNGSEONG;
-  const choseong = Math.floor((hangulCode - jongseong) / NUMBER_OF_JONGSEONG / NUMBER_OF_JUNGSEONG);
+  const jongseongIndex = hangulCode % NUMBER_OF_JONGSEONG;
+  const jungseongIndex = ((hangulCode - jongseongIndex) / NUMBER_OF_JONGSEONG) % NUMBER_OF_JUNGSEONG;
+  const choseongIndex = Math.floor((hangulCode - jongseongIndex) / NUMBER_OF_JONGSEONG / NUMBER_OF_JUNGSEONG);
 
   return {
-    choseong: CHOSEONGS[choseong],
-    jungseong: JUNSEONGS[jungseong],
-    jongseong: JONGSEONGS[jongseong],
+    choseong: CHOSEONGS[choseongIndex],
+    jungseong: JUNSEONGS[jungseongIndex],
+    jongseong: JONGSEONGS[jongseongIndex],
   } as const;
 }
