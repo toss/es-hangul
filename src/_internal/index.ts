@@ -17,6 +17,20 @@ export default function assert(condition: boolean, errorMessage?: string): asser
   }
 }
 
+export function isNotUndefined<T>(value: T | undefined): value is T {
+  return value !== undefined;
+}
+
+export function defined<T>(value: T | undefined): T {
+  assert(value !== undefined);
+
+  return value as T;
+}
+
+export function arrayIncludes<Type>(array: Type[] | readonly Type[], item: unknown, fromIndex?: number): item is Type {
+  return array.includes(item as Type, fromIndex);
+}
+
 export function hasValueInReadOnlyStringList<T extends string>(list: readonly T[], value: string): value is T {
   return list.some(item => item === value);
 }

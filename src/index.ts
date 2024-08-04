@@ -9,6 +9,9 @@ import { hasBatchim } from './hasBatchim';
 import { canBeChoseong, canBeJongseong, canBeJungseong } from './canBe';
 import { getChoseong } from './getChoseong';
 import { amountToHangul } from './amountToHangul';
+import { romanize } from './romanize';
+import { standardizePronunciation } from './standardizePronunciation';
+import { susa } from './susa';
 
 export {
   assemble,
@@ -28,4 +31,7 @@ export {
   canBeJungseong,
   getChoseong,
   amountToHangul,
+  romanize,
+  susa,
+  standardizePronunciation,
 };
