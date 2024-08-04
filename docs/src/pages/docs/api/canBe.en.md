@@ -1,10 +1,7 @@
-<<<<<<< HEAD
-=======
 ---
 title: canBe
 ---
 
->>>>>>> v2
 # canBeChoseong
 
 Check if a given character can be a choseong in Korean.

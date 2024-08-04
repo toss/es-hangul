@@ -1,9 +1,5 @@
 import { disassemble } from './disassemble';
-<<<<<<< HEAD
 import { binaryAssemble } from './_internal/hangul';
-=======
-import { binaryAssembleHangul } from './_internal/hangul';
->>>>>>> v2
 
 /**
  * @name assemble
@@ -20,13 +16,7 @@ import { binaryAssembleHangul } from './_internal/hangul';
  * assemble(['아버지가', ' ', '방에 ', '들어갑니다']) // 아버지가 방에 들어갑니다
  * assemble(['ㅇ', 'ㅏ', 'ㅂ', 'ㅓ', 'ㅈ', 'ㅣ']) // 아버지
  */
-<<<<<<< HEAD
 export function assemble(words: string[]) {
   const disassembled = disassemble(words.join('')).split('');
   return disassembled.reduce(binaryAssemble);
-=======
-export function assembleHangul(words: string[]) {
-  const disassembled = disassemble(words.join('')).split('');
-  return disassembled.reduce(binaryAssembleHangul);
->>>>>>> v2
 }
