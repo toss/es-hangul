@@ -20,7 +20,7 @@ const config: DocsThemeConfig = {
   logo: function useLogo() {
     const isDarkMode = useIsDarkMode();
 
-    return <Image src={isDarkMode ? '/logo-white.png' : '/logo.png'} alt="logo" width={120} height={48} />;
+    return <Image src={isDarkMode ? '/logo-white.png' : '/logo.png'} alt="logo" width={120} height={48} priority />;
   },
   head: function useHead() {
     const { title } = useConfig();

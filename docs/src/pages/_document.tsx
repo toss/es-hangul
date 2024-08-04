@@ -1,3 +1,4 @@
+import { getSandpackCssText } from '@codesandbox/sandpack-react';
 import { Html, Head, Main, NextScript } from 'next/document';
 
 export default function Document() {
@@ -6,6 +7,7 @@ export default function Document() {
       <Head>
         <link rel="stylesheet" href="https://static.toss.im/tps/main.css" />
         <link rel="stylesheet" href="https://static.toss.im/tps/others.css" />
+        <style dangerouslySetInnerHTML={{ __html: getSandpackCssText() }} id="sandpack" key="sandpack-css" />
       </Head>
       <body>
         <Main />
