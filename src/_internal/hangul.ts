@@ -106,7 +106,7 @@ export function binaryAssembleHangulCharacters(source: string, nextCharacter: st
   );
   assert(
     isHangulAlphabet(nextCharacter),
-    `Invalid next character: ${nextCharacter}. Next character must be one of the choseong, jungseong, or lastCharacter.`
+    `Invalid next character: ${nextCharacter}. Next character must be one of the choseong, jungseong, or jongseong.`
   );
 
   const sourceJamos = disassembleHangulToGroups(source)[0];
