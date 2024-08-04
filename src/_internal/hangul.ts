@@ -106,7 +106,7 @@ export function binaryAssembleHangulCharacters(source: string, nextCharacter: st
   );
   assert(
     isHangulAlphabet(nextCharacter),
-    `Invalid next character: ${nextCharacter}. Next character must be one of the choseong, jungseong, or jongseong.`
+    `Invalid next character: ${nextCharacter}. Next character must be one of the choseong, jungseong, or lastCharacter.`
   );
 
   const sourceJamos = disassembleHangulToGroups(source)[0];
@@ -173,11 +173,13 @@ export function binaryAssembleHangulCharacters(source: string, nextCharacter: st
  * binaryAssembleHangul('저는 고양이를 좋아하', 'ㅏ') // 저는 고양이를 좋아하ㅏ
  */
 export function binaryAssembleHangul(source: string, nextCharacter: string) {
-  const [rest, jongseong] = excludeLastElement(source.split(''));
-  const needJoinString = isBlank(jongseong) || isBlank(nextCharacter);
+  const [rest, lastCharacter] = excludeLastElement(source.split(''));
+  const needJoinString = isBlank(lastCharacter) || isBlank(nextCharacter);
 
   return joinString(
     ...rest,
-    needJoinString ? joinString(jongseong, nextCharacter) : binaryAssembleHangulCharacters(jongseong, nextCharacter)
+    needJoinString
+      ? joinString(lastCharacter, nextCharacter)
+      : binaryAssembleHangulCharacters(lastCharacter, nextCharacter)
   );
 }
