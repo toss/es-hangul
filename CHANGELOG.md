@@ -1,5 +1,25 @@
 # es-hangul
 
+## 1.5.0
+
+### Minor Changes
+
+- [#115](https://github.com/toss/es-hangul/pull/115) [`84584d4`](https://github.com/toss/es-hangul/commit/84584d48ac5ded83c55934f0b72e37a6b889f4e1) Thanks [@po4tion](https://github.com/po4tion)! - feat: 한국어를 로마자로 변환해주는 함수와 한국어를 표준 발음법으로 변환해주는 함수를 만들고 문서화를 진행합니다
+
+## 1.4.7
+
+### Patch Changes
+
+- [#201](https://github.com/toss/es-hangul/pull/201) [`56db7f0`](https://github.com/toss/es-hangul/commit/56db7f0140ee369fbe0dc2dad834e8d6a218a4ea) Thanks [@BO-LIKE-CHICKEN](https://github.com/BO-LIKE-CHICKEN)! - feat: 숫자를 순 우리말 수사로 변환하거나 수 관형사로 변환하는 함수를 추가
+
+## 1.4.6
+
+### Patch Changes
+
+- [#198](https://github.com/toss/es-hangul/pull/198) [`e6142b0`](https://github.com/toss/es-hangul/commit/e6142b04159133dbcab6f2771baa88adf7aa4a45) Thanks [@linenumbertwo](https://github.com/linenumbertwo)! - feat: "이라/라" 케이스 추가
+
+- [#203](https://github.com/toss/es-hangul/pull/203) [`fbe3ad6`](https://github.com/toss/es-hangul/commit/fbe3ad67f4bd796773f60f0ab04359135b03d414) Thanks [@kangju2000](https://github.com/kangju2000)! - fix: eslint CI가 제대로 작동하지 않는 문제를 수정합니다.
+
 ## 1.4.5
 
 ### Patch Changes
