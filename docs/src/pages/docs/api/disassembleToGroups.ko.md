@@ -20,7 +20,7 @@ function disassembleToGroups(
 ## Examples
 
 ```typescript
-disassembleToGroups('값'); // [['ㄱ', 'ㅏ', 'ㅂ', 'ㅅ']]
+disassembleToGroups('사과'); // [['ㅅ', 'ㅏ'], ['ㄱ', 'ㅗ', 'ㅏ']]
 disassembleToGroups('ㅘ'); // [['ㅗ', 'ㅏ']]
 disassembleToGroups('ㄵ'); // [['ㄴ', 'ㅈ']]
 ```

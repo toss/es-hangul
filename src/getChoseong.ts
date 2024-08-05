@@ -12,7 +12,6 @@ import { HANGUL_CHARACTERS_BY_FIRST_INDEX, JASO_HANGUL_NFD } from './constants';
  * ```
  * @example
  * getChoseong('사과') // 'ㅅㄱ'
- * getChoseong('리액트') // 'ㄹㅇㅌ'
  * getChoseong('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
  */
 export function getChoseong(word: string) {
