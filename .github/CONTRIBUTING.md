@@ -74,4 +74,4 @@ import hangul from 'es-hangul' // hangul default export에 묶어서도 제공
 hangul.getSimilarity(...)
 hangul.disassemble(...)
 hangul.josa(...)
-
+```
