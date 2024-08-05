@@ -44,6 +44,8 @@
   "scripts": {
     "attw": "attw --pack",
     "build": "tsup",
+    "changeset": "changeset",
+    "changeset:add": "changeset add",
     "changeset:publish": "changeset publish",
     "changeset:version": "changeset version",
     "packlint": "packlint sort -R",
