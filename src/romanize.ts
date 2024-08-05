@@ -43,12 +43,12 @@ const romanizeSyllableHangul = (arrayHangul: string[], index: number): string =>
     return choseong + jungseong + jongseong;
   }
 
-  if (syllable in 중성_알파벳_발음) {
-    return 중성_알파벳_발음[syllable as keyof typeof 중성_알파벳_발음];
+  if (hasProperty(중성_알파벳_발음, syllable)) {
+    return 중성_알파벳_발음[syllable];
   }
 
-  if (canBeChoseong(syllable)) {
-    return 초성_알파벳_발음[syllable as keyof typeof 초성_알파벳_발음];
+  if (hasProperty(초성_알파벳_발음, syllable)) {
+    return 초성_알파벳_발음[syllable];
   }
 
   return syllable;
