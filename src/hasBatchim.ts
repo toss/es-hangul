@@ -13,18 +13,19 @@ import {
  * hasBatchim(
  *   // 글자에 받침이 있는지 확인하고 싶은 문자열
  *   str: string,
- *   // 옵션 객체로 홑받침 여부를 확인
- *   options?: { single?: boolean }
+ *   // 옵션 객체로 only 속성을 받을 수 있습니다.
+ *   options?: { only?: "single" | "double" }
  * ): boolean
  * ```
  * @example
  * hasBatchim('값') // true
  * hasBatchim('토') // false
- * hasBatchim('갑', { single: true }) // true
- * hasBatchim('값', { single: true }) // false
- * hasBatchim('토', { single: true }) // false
+ * hasBatchim('갑', { only: "single" }) // true
+ * hasBatchim('값', { only: "single" }) // false
+ * hasBatchim('값', { only: "double" }) // true
+ * hasBatchim('토', { only: "double" }) // false
  */
-export function hasBatchim(str: string, options?: { single?: boolean }) {
+export function hasBatchim(str: string, options?: { only?: 'single' | 'double' }) {
   const lastChar = str[str.length - 1];
 
   if (lastChar == null) {
@@ -39,8 +40,12 @@ export function hasBatchim(str: string, options?: { single?: boolean }) {
 
   const batchimCode = (charCode - COMPLETE_HANGUL_START_CHARCODE) % NUMBER_OF_JONGSEONG;
 
-  if (options?.single) {
+  if (options?.only === 'single') {
     return HANGUL_CHARACTERS_BY_LAST_INDEX[batchimCode].length === 1;
+  }
+
+  if (options?.only === 'double') {
+    return HANGUL_CHARACTERS_BY_LAST_INDEX[batchimCode].length === 2;
   }
 
   return batchimCode > 0;

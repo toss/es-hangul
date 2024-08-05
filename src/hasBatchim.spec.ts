@@ -1,3 +1,4 @@
+import { deserialize } from 'v8';
 import { hasBatchim } from './hasBatchim';
 
 describe('hasBatchim', () => {
@@ -42,31 +43,31 @@ describe('홑받침', () => {
   it('홑받침을 받으면 true를 반환한다.', () => {
     expect(
       hasBatchim('공', {
-        single: true,
+        only: 'single',
       })
     ).toBe(true);
 
     expect(
       hasBatchim('핫', {
-        single: true,
+        only: 'single',
       })
     ).toBe(true);
 
     expect(
       hasBatchim('양', {
-        single: true,
+        only: 'single',
       })
     ).toBe(true);
 
     expect(
       hasBatchim('신', {
-        single: true,
+        only: 'single',
       })
     ).toBe(true);
 
     expect(
       hasBatchim('확', {
-        single: true,
+        only: 'single',
       })
     ).toBe(true);
   });
@@ -75,25 +76,97 @@ describe('홑받침', () => {
     it('겹받침을 받으면 false를 반환한다.', () => {
       expect(
         hasBatchim('값', {
-          single: true,
+          only: 'single',
         })
       ).toBe(false);
 
-      expect(hasBatchim('읊', { single: true })).toBe(false);
+      expect(
+        hasBatchim('읊', {
+          only: 'single',
+        })
+      ).toBe(false);
 
-      expect(hasBatchim('웱', { single: true })).toBe(false);
+      expect(hasBatchim('웱', { only: 'single' })).toBe(false);
     });
 
     it('받침이 없는 문자를 받으면 false를 반환한다.', () => {
-      expect(hasBatchim('토', { single: true })).toBe(false);
-      expect(hasBatchim('서', { single: true })).toBe(false);
-      expect(hasBatchim('와', { single: true })).toBe(false);
+      expect(hasBatchim('토', { only: 'single' })).toBe(false);
+      expect(hasBatchim('서', { only: 'single' })).toBe(false);
+      expect(hasBatchim('와', { only: 'single' })).toBe(false);
     });
 
     it('한글 외의 문자를 입력하면 false를 반환한다.', () => {
-      expect(hasBatchim('cat', { single: true })).toBe(false);
-      expect(hasBatchim('', { single: true })).toBe(false);
-      expect(hasBatchim('?', { single: true })).toBe(false);
+      expect(hasBatchim('cat', { only: 'single' })).toBe(false);
+      expect(hasBatchim('', { only: 'single' })).toBe(false);
+      expect(hasBatchim('?', { only: 'single' })).toBe(false);
+    });
+  });
+
+  describe('겹받침', () => {
+    it('겹받침을 받으면 true를 반환한다.', () => {
+      expect(
+        hasBatchim('값', {
+          only: 'double',
+        })
+      ).toBe(true);
+
+      expect(
+        hasBatchim('읊', {
+          only: 'double',
+        })
+      ).toBe(true);
+
+      expect(
+        hasBatchim('웱', {
+          only: 'double',
+        })
+      ).toBe(true);
+    });
+
+    describe('겹받침이 아니라고 판단되는 경우', () => {
+      it('홑받침을 받으면 false를 반환한다.', () => {
+        expect(
+          hasBatchim('공', {
+            only: 'double',
+          })
+        ).toBe(false);
+
+        expect(
+          hasBatchim('핫', {
+            only: 'double',
+          })
+        ).toBe(false);
+
+        expect(
+          hasBatchim('양', {
+            only: 'double',
+          })
+        ).toBe(false);
+
+        expect(
+          hasBatchim('신', {
+            only: 'double',
+          })
+        ).toBe(false);
+
+        expect(
+          hasBatchim('확', {
+            only: 'double',
+          })
+        ).toBe(false);
+      });
+
+      it('받침이 없는 문자를 받으면 false를 반환한다.', () => {
+        expect(hasBatchim('토', { only: 'double' })).toBe(false);
+        expect(hasBatchim('서', { only: 'double' })).toBe(false);
+        expect(hasBatchim('와', { only: 'double' })).toBe(false);
+      });
+
+      it('한글 외의 문자를 입력하면 false를 반환한다.', () => {
+        expect(hasBatchim('cat', { only: 'double' })).toBe(false);
+        expect(hasBatchim('', { only: 'double' })).toBe(false);
+        expect(hasBatchim('?', { only: 'double' })).toBe(false);
+      });
     });
   });
 });
