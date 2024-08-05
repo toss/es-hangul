@@ -54,11 +54,14 @@ const romanizeSyllableHangul = (arrayHangul: string[], index: number): string =>
   }
 
   if (hasProperty(DISASSEMBLED_CONSONANTS_BY_CONSONANT, syllable)) {
-    return DISASSEMBLED_CONSONANTS_BY_CONSONANT[syllable].split('').reduce((acc, consonant) => {
-      assert(hasProperty(초성_알파벳_발음, consonant), `${consonant}에 해당하는 알파벳 발음이 존재하지 않습니다.`);
+    return DISASSEMBLED_CONSONANTS_BY_CONSONANT[syllable]
+      .split('')
+      .map(consonant => {
+        assert(hasProperty(초성_알파벳_발음, consonant), `${consonant}에 해당하는 알파벳 발음이 존재하지 않습니다.`);
 
-      return acc + 초성_알파벳_발음[consonant];
-    }, '');
+        return 초성_알파벳_발음[consonant];
+      })
+      .join('');
   }
 
   return syllable;
