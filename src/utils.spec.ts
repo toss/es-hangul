@@ -1,3 +1,4 @@
+import { arrayIncludes, isNotUndefined } from './_internal';
 import {
   canBeChoseong,
   canBeJongseong,
@@ -29,6 +30,7 @@ describe('hasBatchim', () => {
     });
     it('"서" 문자에서 받침이 없으므로 false를 반환한다.', () => {
       expect(hasBatchim('서')).toBe(false);
+      expect(hasBatchim('')).toBe(false);
     });
     it('빈 문자열은 받침이 없으므로 false를 반환한다.', () => {
       expect(hasBatchim('')).toBe(false);
@@ -249,5 +251,50 @@ describe('canBeJongseong', () => {
     it('가', () => {
       expect(canBeJongseong('ㅏ')).toBe(false);
     });
+  });
+});
+
+describe('isNotUndefined', () => {
+  it('정의된 값에 대해 true를 반환해야 한다', () => {
+    expect(isNotUndefined(5)).toBe(true);
+    expect(isNotUndefined('test')).toBe(true);
+    expect(isNotUndefined({})).toBe(true);
+    expect(isNotUndefined([])).toBe(true);
+    expect(isNotUndefined(null)).toBe(true);
+  });
+
+  it('undefined에 대해 false를 반환해야 한다', () => {
+    expect(isNotUndefined(undefined)).toBe(false);
+  });
+});
+
+describe('arrayIncludes', () => {
+  it('값이 배열에 포함된 경우 true를 반환해야 한다', () => {
+    const array = ['a', 'b', 'c'] as const;
+    const value = 'a';
+    const result = arrayIncludes(array, value);
+    expect(result).toBe(true);
+  });
+
+  it('값이 배열에 포함되지 않은 경우 false를 반환해야 한다', () => {
+    const array = ['a', 'b', 'c'] as const;
+    const value = 'd';
+    const result = arrayIncludes(array, value);
+    expect(result).toBe(false);
+  });
+
+  it('undefined 값에 대해 false를 반환해야 합니다', () => {
+    const array = ['a', 'b', 'c'] as const;
+    const value = undefined;
+    const result = arrayIncludes(array, value);
+    expect(result).toBe(false);
+  });
+
+  it('검색을 시작할 인덱스를 기반으로 값을 반환합니다', () => {
+    const array: Array<'a' | 'b' | 'c'> = ['a', 'b', 'c'];
+
+    const element = 'a';
+    expect(arrayIncludes(array, element, 0)).toBe(true);
+    expect(arrayIncludes(array, element, 1)).toBe(false);
   });
 });

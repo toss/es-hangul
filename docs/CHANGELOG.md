@@ -1,5 +1,31 @@
 # docs
 
+## 0.1.16
+
+### Patch Changes
+
+- Updated dependencies [[`84584d4`](https://github.com/toss/es-hangul/commit/84584d48ac5ded83c55934f0b72e37a6b889f4e1)]:
+  - es-hangul@1.5.0
+
+## 0.1.15
+
+### Patch Changes
+
+- [#209](https://github.com/toss/es-hangul/pull/209) [`c15a9d1`](https://github.com/toss/es-hangul/commit/c15a9d18cff0bc36f7672f3d6ab38e422a625d34) Thanks [@kangju2000](https://github.com/kangju2000)! - docs: josa, josa.pick 문서에 demo를 추가합니다.
+
+- [#205](https://github.com/toss/es-hangul/pull/205) [`75ef7df`](https://github.com/toss/es-hangul/commit/75ef7dfb1e1e27f33cb3fb2e4ab3184b6d0901c6) Thanks [@anonymousRecords](https://github.com/anonymousRecords)! - fix : 문서 상단의 깃허브 아이콘이 제대로 보이지 않는 문제를 수정합니다
+
+## 0.1.14
+
+### Patch Changes
+
+- [#200](https://github.com/toss/es-hangul/pull/200) [`9e6d391`](https://github.com/toss/es-hangul/commit/9e6d391a983eaf2b67bf00e92384839b8a60d8dd) Thanks [@kangju2000](https://github.com/kangju2000)! - feat: 문서에서 바로 실행해볼 수 있는 Sandpack MDX 컴포넌트를 구현합니다.
+
+- [#207](https://github.com/toss/es-hangul/pull/207) [`3c5c7f6`](https://github.com/toss/es-hangul/commit/3c5c7f6176e4cc6902950191a5614b4b12789ded) Thanks [@anonymousRecords](https://github.com/anonymousRecords)! - 새로고침 시 문서 로고의 layout shift를 개선함
+
+- Updated dependencies [[`56db7f0`](https://github.com/toss/es-hangul/commit/56db7f0140ee369fbe0dc2dad834e8d6a218a4ea)]:
+  - es-hangul@1.4.7
+
 ## 0.1.13
 
 ### Patch Changes

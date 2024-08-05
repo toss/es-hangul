@@ -1,0 +1,28 @@
+---
+title: romanize
+---
+
+# romanize
+
+한글 문자열을 로마자로 변경합니다.
+
+자세한 예시는 아래 Example을 참고하세요.
+
+```typescript
+function romanize(hangul: string): string;
+```
+
+## Examples
+
+```tsx
+romanize('백마'); // 'baengma'
+romanize('학여울'); // 'hangnyeoul'
+romanize('해돋이'); // 'haedoji'
+romanize('좋고'); // 'joko'
+romanize('압구정'); // 'apgujeong'
+romanize('구미'); // 'gumi'
+romanize('대관령'); // 'daegwallyeong'
+romanize('ㄱ'); // 'g'
+romanize('한국어!'); // 'hangugeo!'
+romanize('안녕하세요'); // 'annyeonghaseyo'
+```

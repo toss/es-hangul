@@ -2,6 +2,8 @@
 title: josa.pick
 ---
 
+import { Sandpack } from '@/components/Sandpack';
+
 # josa.pick
 
 The josa.pick method selects and returns the appropriate Korean particle based on a given Korean string and particle options. This method is used within the [josa](https://es-hangul.slash.page/en/docs/api/josa) function, and the form of the particle is determined by the last character of the string.
@@ -50,3 +52,17 @@ josa.pick('칫솔', '이/가'); // '이'
 josa.pick('바깥', '으로/로'); // '으로'
 josa.pick('내부', '으로/로'); // '로'
 ```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { josa } from 'es-hangul';
+
+console.log(josa.pick('샴푸', '이/가'));
+```
+
+</Sandpack>
