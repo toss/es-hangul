@@ -151,7 +151,7 @@ export function binaryAssembleCharacters(source: string, nextCharacter: string) 
 
   if (
     hasBatchim(source, {
-      single: true,
+      only: 'single',
     }) &&
     canBeJongseong(`${lastConsonant}${nextCharacter}`)
   ) {

@@ -25,7 +25,16 @@ import {
  * hasBatchim('값', { only: "double" }) // true
  * hasBatchim('토', { only: "double" }) // false
  */
-export function hasBatchim(str: string, options?: { only?: 'single' | 'double' }) {
+export function hasBatchim(
+  str: string,
+  options?: {
+    /**
+     * 체크할 받침의 종류
+     * 사용하지 않으면 둘다 체크합니다.
+     */
+    only?: 'single' | 'double';
+  }
+) {
   const lastChar = str[str.length - 1];
 
   if (lastChar == null) {
