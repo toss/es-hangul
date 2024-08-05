@@ -39,19 +39,19 @@ export function standardizePronunciation(hangul: string, options: Options = { ha
   }
 
   const processSyllables = (syllables: Syllable[], phrase: string, options: Options) =>
-    syllables.map((currentSyllable, I, array) => {
-      const nextSyllable = I < array.length - 1 ? array[I + 1] : null;
+    syllables.map((currentSyllable, index, array) => {
+      const nextSyllable = index < array.length - 1 ? array[index + 1] : null;
 
       const { current, next } = applyRules({
         currentSyllable,
         phrase,
-        index: I,
+        index,
         nextSyllable,
         options,
       });
 
       if (next) {
-        array[I + 1] = next;
+        array[index + 1] = next;
       }
 
       return current;
