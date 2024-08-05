@@ -1,4 +1,3 @@
-import { deserialize } from 'v8';
 import { hasBatchim } from './hasBatchim';
 
 describe('hasBatchim', () => {
