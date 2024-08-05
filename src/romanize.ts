@@ -1,9 +1,15 @@
+import assert from './_internal';
 import { isHangulCharacter } from './_internal/hangul';
 import { assembleHangul } from './assemble';
-import { 종성_알파벳_발음, 중성_알파벳_발음, 초성_알파벳_발음 } from './constants';
+import {
+  DISASSEMBLED_CONSONANTS_BY_CONSONANT,
+  종성_알파벳_발음,
+  중성_알파벳_발음,
+  초성_알파벳_발음,
+} from './constants';
 import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
 import { standardizePronunciation } from './standardizePronunciation';
-import { canBeChoseong } from './utils';
+import { hasProperty } from './utils';
 
 /**
  * 주어진 한글 문자열을 로마자로 변환합니다.
@@ -47,8 +53,12 @@ const romanizeSyllableHangul = (arrayHangul: string[], index: number): string =>
     return 중성_알파벳_발음[syllable];
   }
 
-  if (hasProperty(초성_알파벳_발음, syllable)) {
-    return 초성_알파벳_발음[syllable];
+  if (hasProperty(DISASSEMBLED_CONSONANTS_BY_CONSONANT, syllable)) {
+    return DISASSEMBLED_CONSONANTS_BY_CONSONANT[syllable].split('').reduce((acc, consonant) => {
+      assert(hasProperty(초성_알파벳_발음, consonant), `${consonant}에 해당하는 알파벳 발음이 존재하지 않습니다.`);
+
+      return acc + 초성_알파벳_발음[consonant];
+    }, '');
   }
 
   return syllable;

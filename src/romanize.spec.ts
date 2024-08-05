@@ -64,6 +64,7 @@ describe('romanize', () => {
     expect(romanize('가나다라ㅁㅂㅅㅇ')).toBe('ganadarambs');
     expect(romanize('ㅏ')).toBe('a');
     expect(romanize('ㅘ')).toBe('wa');
+    expect(romanize('ㄳ')).toBe('gs');
   });
 
   it('특수문자는 로마자 표기로 변경하지 않는다', () => {
