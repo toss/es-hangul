@@ -1,8 +1,8 @@
 ---
-title: disassembleHangulToGroups
+title: disassembleToGroups
 ---
 
-# disassembleHangulToGroups
+# disassembleToGroups
 
 한글 문자열을 글자별로 초성/중성/종성 단위로 완전히 분리합니다.
 
@@ -11,7 +11,7 @@ title: disassembleHangulToGroups
 자세한 예시는 아래 Example을 참고하세요.
 
 ```typescript
-function disassembleHangulToGroups(
+function disassembleToGroups(
   // 분리할 한글 문자열
   str: string
 ): string[][];
@@ -20,7 +20,7 @@ function disassembleHangulToGroups(
 ## Examples
 
 ```typescript
-disassembleHangulToGroups('값'); // [['ㄱ', 'ㅏ', 'ㅂ', 'ㅅ']]
-disassembleHangulToGroups('ㅘ'); // [['ㅗ', 'ㅏ']]
-disassembleHangulToGroups('ㄵ'); // [['ㄴ', 'ㅈ']]
+disassembleToGroups('사과'); // [['ㅅ', 'ㅏ'], ['ㄱ', 'ㅗ', 'ㅏ']]
+disassembleToGroups('ㅘ'); // [['ㅗ', 'ㅏ']]
+disassembleToGroups('ㄵ'); // [['ㄴ', 'ㅈ']]
 ```

@@ -1,0 +1,21 @@
+---
+title: getChoseong
+---
+
+# getChoseong
+
+Extracts the Choseong from a Korean word. (Example: 사과 -> 'ㅅㄱ')
+
+```typescript
+function getChoseong(
+  // Korean string from which to extract the choseong
+  word: string
+): string;
+```
+
+## Examples
+
+```tsx
+getChoseong('사과'); // 'ㅅㄱ'
+getChoseong('띄어 쓰기'); // 'ㄸㅇ ㅆㄱ'
+```

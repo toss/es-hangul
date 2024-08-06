@@ -1,0 +1,23 @@
+---
+title: hasBatchim
+---
+
+# hasBatchim
+
+Checks if the last character of a Korean string has a batchim (jongseong).
+
+````typescript
+hasBatchim(
+  str: string,
+  options?: { only?: "single" | "double" }
+): boolean
+
+
+ ```typescript
+ hasBatchim('값') // true
+ hasBatchim('토') // false
+ hasBatchim('갑', { only : "single" }) // true
+ hasBatchim('값', { only : "single" }) // false
+ hasBatchim('토', { only : "double" }) // false
+````
+

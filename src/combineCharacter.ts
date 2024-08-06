@@ -1,3 +1,4 @@
+import { canBeChoseong, canBeJongseong, canBeJungseong } from './canBe';
 import {
   COMPLETE_HANGUL_START_CHARCODE,
   DISASSEMBLED_VOWELS_BY_VOWEL,
@@ -5,14 +6,13 @@ import {
   JONGSEONGS,
   JUNSEONGS,
 } from './constants';
-import { canBeChoseong, canBeJongseong, canBeJungseong } from './utils';
 
 /**
- * @name combineHangulCharacter
+ * @name combineCharacter
  * @description
  * 인자로 초성, 중성, 종성을 받아 하나의 한글 문자를 반환합니다.
  * ```typescript
- * combineHangulCharacter(
+ * combineCharacter(
  *   // 초성
  *   choseong: string
  *   // 중성
@@ -22,10 +22,10 @@ import { canBeChoseong, canBeJongseong, canBeJungseong } from './utils';
  * ): string
  * ```
  * @example
- * combineHangulCharacter('ㄱ', 'ㅏ', 'ㅂㅅ') // '값'
- * combineHangulCharacter('ㅌ', 'ㅗ') // '토'
+ * combineCharacter('ㄱ', 'ㅏ', 'ㅂㅅ') // '값'
+ * combineCharacter('ㅌ', 'ㅗ') // '토'
  */
-export function combineHangulCharacter(choseong: string, jungseong: string, jongseong = '') {
+export function combineCharacter(choseong: string, jungseong: string, jongseong = '') {
   if (canBeChoseong(choseong) === false || canBeJungseong(jungseong) === false || canBeJongseong(jongseong) === false) {
     throw new Error(`Invalid hangul Characters: ${choseong}, ${jungseong}, ${jongseong}`);
   }
@@ -33,9 +33,9 @@ export function combineHangulCharacter(choseong: string, jungseong: string, jong
   const numOfJungseongs = JUNSEONGS.length;
   const numOfJongseongs = JONGSEONGS.length;
 
-  const choseongIndex = CHOSEONGS.indexOf(choseong);
-  const jungseongIndex = JUNSEONGS.indexOf(jungseong);
-  const jongseongIndex = JONGSEONGS.indexOf(jongseong);
+  const choseongIndex = CHOSEONGS.indexOf(choseong as (typeof CHOSEONGS)[number]);
+  const jungseongIndex = JUNSEONGS.indexOf(jungseong as (typeof JUNSEONGS)[number]);
+  const jongseongIndex = JONGSEONGS.indexOf(jongseong as (typeof JONGSEONGS)[number]);
 
   const choseongOfTargetConsonant = choseongIndex * numOfJungseongs * numOfJongseongs;
   const choseongOfTargetVowel = jungseongIndex * numOfJongseongs;
@@ -46,19 +46,19 @@ export function combineHangulCharacter(choseong: string, jungseong: string, jong
 }
 
 /**
- * @name curriedCombineHangulCharacter
+ * @name curriedCombineCharacter
  * @description
- * 인자로 초성, 중성, 종성을 받아 하나의 한글 문자를 반환하는 `combineHangulCharacter` 함수의 커링된 버전입니다.
+ * 인자로 초성, 중성, 종성을 받아 하나의 한글 문자를 반환하는 `combineCharacter` 함수의 커링된 버전입니다.
  * @example
- * const combineMiddleHangulCharacter = curriedCombineHangulCharacter('ㄱ')
+ * const combineMiddleHangulCharacter = curriedCombineCharacter('ㄱ')
  * const combineLastHangulCharacter = combineMiddleHangulCharacter('ㅏ')
  * combineLastHangulCharacter('ㄱ') // '각'
  */
-export const curriedCombineHangulCharacter =
+export const curriedCombineCharacter =
   (choseong: string) =>
   (jungseong: string) =>
   (jongseong = '') =>
-    combineHangulCharacter(choseong, jungseong, jongseong);
+    combineCharacter(choseong, jungseong, jongseong);
 
 /**
  * @name combineVowels
