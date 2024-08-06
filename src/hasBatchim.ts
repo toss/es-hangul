@@ -1,7 +1,7 @@
 import {
   COMPLETE_HANGUL_END_CHARCODE,
   COMPLETE_HANGUL_START_CHARCODE,
-  HANGUL_CHARACTERS_BY_LAST_INDEX,
+  JONGSEONGS,
   NUMBER_OF_JONGSEONG,
 } from './constants';
 
@@ -50,11 +50,11 @@ export function hasBatchim(
   const batchimCode = (charCode - COMPLETE_HANGUL_START_CHARCODE) % NUMBER_OF_JONGSEONG;
 
   if (options?.only === 'single') {
-    return HANGUL_CHARACTERS_BY_LAST_INDEX[batchimCode].length === 1;
+    return JONGSEONGS[batchimCode].length === 1;
   }
 
   if (options?.only === 'double') {
-    return HANGUL_CHARACTERS_BY_LAST_INDEX[batchimCode].length === 2;
+    return JONGSEONGS[batchimCode].length === 2;
   }
 
   return batchimCode > 0;
