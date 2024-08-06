@@ -1,4 +1,3 @@
-import assert from './_internal';
 import {
   COMPLETE_HANGUL_END_CHARCODE,
   COMPLETE_HANGUL_START_CHARCODE,
@@ -8,7 +7,7 @@ import {
   JASO_HANGUL_NFD,
   NUMBER_OF_JONGSEONG,
 } from './constants';
-import { disassembleHangulToGroups } from './disassemble';
+import { disassembleToGroups } from './disassemble';
 
 const EXTRACT_CHOSEONG_REGEX = new RegExp(
   `[^\\u${JASO_HANGUL_NFD.START_CHOSEONG.toString(16)}-\\u${JASO_HANGUL_NFD.END_CHOSEONG.toString(16)}ㄱ-ㅎ\\s]+`,
@@ -143,7 +142,7 @@ export function getChoseong(word: string) {
  * getFirstConsonants('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
  */
 export function getFirstConsonants(word: string) {
-  return disassembleHangulToGroups(word).reduce((firstConsonants, [consonant]) => {
+  return disassembleToGroups(word).reduce((firstConsonants, [consonant]) => {
     return `${firstConsonants}${consonant}`;
   }, '');
 }
