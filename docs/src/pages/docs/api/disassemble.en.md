@@ -33,9 +33,9 @@ disassemble('ㄵ'); // 'ㄴㅈ'
 <Sandpack>
 
 ```ts index.ts
-import { disassembleHangul } from 'es-hangul';
+import { disassemble } from 'es-hangul';
 
-console.log(disassembleHangul('값'));
+console.log(disassemble('값'));
 ```
 
 </Sandpack>
