@@ -1,4 +1,4 @@
-import assert, { excludeLastElement, isBlank, joinString } from './index';
+import assert, { excludeLastElement, hasProperty, hasValueInReadOnlyStringList, isBlank, joinString } from './index';
 
 describe('excludeLastElement', () => {
   it('마지막 요소를 제외한 모든 요소와 마지막 요소를 반환한다', () => {
@@ -57,5 +57,57 @@ describe('assert', () => {
     const customMessage = 'Custom error message';
 
     expect(() => assert(false, customMessage)).toThrowError(customMessage);
+  });
+});
+
+describe('hasValueInReadOnlyStringList', () => {
+  const testReadonlyList = ['ㄱ', 'ㄴ', 'ㄷ'] as const;
+
+  it('read-only 문자열 리스트에 요소가 존재한다면 true를 반환한다.', () => {
+    const testValue = 'ㄱ';
+
+    expect(hasValueInReadOnlyStringList(testReadonlyList, testValue)).toBeTruthy();
+  });
+
+  it('read-only 문자열 리스트에 요소가 존재하지 않으면 false를 반환한다.', () => {
+    const testValue = 'ㄹ';
+
+    expect(hasValueInReadOnlyStringList(testReadonlyList, testValue)).toBeFalsy();
+  });
+
+  it('read-only 문자열 리스트에 요소가 존재한다면 두 번째 인자의 타입을 좁힌다.', () => {
+    const testValue = 'ㄱ' as string;
+
+    if (hasValueInReadOnlyStringList(testReadonlyList, testValue)) {
+      expectTypeOf(testValue).toEqualTypeOf<'ㄱ' | 'ㄴ' | 'ㄷ'>();
+    } else {
+      expectTypeOf(testValue).toEqualTypeOf<string>();
+    }
+  });
+});
+
+describe('hasProperty', () => {
+  const testObj = { ㄱ: 'ㄱ', ㄴ: 'ㄴ', ㄷ: 'ㄷ' } as const;
+
+  it('객체에 속성이 존재하면 true를 반환한다.', () => {
+    const testKey = 'ㄱ';
+
+    expect(hasProperty(testObj, testKey)).toBeTruthy();
+  });
+
+  it('객체에 속성이 존재하지 않으면 false를 반환한다.', () => {
+    const testKey = 'ㄹ';
+
+    expect(hasProperty(testObj, testKey)).toBeFalsy();
+  });
+
+  it('객체에 속성이 존재한다면 두 번째 인자의 타입을 좁힌다.', () => {
+    const testKey = 'ㄱ' as string;
+
+    if (hasProperty(testObj, testKey)) {
+      expectTypeOf(testKey).toEqualTypeOf<'ㄱ' | 'ㄴ' | 'ㄷ'>();
+    } else {
+      expectTypeOf(testKey).toEqualTypeOf<string>();
+    }
   });
 });

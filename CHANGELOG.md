@@ -1,5 +1,37 @@
 # es-hangul
 
+## 2.0.0
+
+### Major Changes
+
+- [#189](https://github.com/toss/es-hangul/pull/189) [`8a97fff`](https://github.com/toss/es-hangul/commit/8a97fffbaf1c4c68c228d10c4b8972f4e507e70e) Thanks [@okinawaa](https://github.com/okinawaa)! - feat: 문자열에서 한글을 추출해주는 extractHangul 함수를 제거합니다
+
+- [#189](https://github.com/toss/es-hangul/pull/189) [`7a33c1e`](https://github.com/toss/es-hangul/commit/7a33c1e2701471628582af3dd051e5ba1cc4c1f1) Thanks [@okinawaa](https://github.com/okinawaa)! - feat: hasBatchim 을 utils에서 별도 함수로 분리합니다.
+
+- [#204](https://github.com/toss/es-hangul/pull/204) [`82e03c3`](https://github.com/toss/es-hangul/commit/82e03c33182d248d7f6c8bfcb9241234464a37c8) Thanks [@Collection50](https://github.com/Collection50)! - fix: 일관된 한글 이름 규칙 설정 함수명에서 꼭 필요하지 않다면 hangul이라는 워딩을 제거합니다
+
+- [#189](https://github.com/toss/es-hangul/pull/189) [`6456f79`](https://github.com/toss/es-hangul/commit/6456f7989abd06d8abda29a3aadd460e5393e11b) Thanks [@okinawaa](https://github.com/okinawaa)! - feat: disassembleHangul, disassemble, disassembleHangulToGroup 함수에서 hangul이라는 글자를 제거합니다
+
+- [#189](https://github.com/toss/es-hangul/pull/189) [`cbf3e4a`](https://github.com/toss/es-hangul/commit/cbf3e4ac2765b427d1c40b3cf7bb1ef059681747) Thanks [@okinawaa](https://github.com/okinawaa)! - feat: choseongIncludes함수를 제거합니다.
+
+- [#189](https://github.com/toss/es-hangul/pull/189) [`7ed39ac`](https://github.com/toss/es-hangul/commit/7ed39acc775e1ea0002a052b7403050c04be1341) Thanks [@okinawaa](https://github.com/okinawaa)! - canBeChoseong, canBeJungseong, canBeJongseong 을 utils에서 별도 함수로 분리합니다.
+
+- [#189](https://github.com/toss/es-hangul/pull/189) [`642a3e4`](https://github.com/toss/es-hangul/commit/642a3e449ecea1312b73679049b0a49efb7da161) Thanks [@okinawaa](https://github.com/okinawaa)! - hangulIncludes 함수를 제거합니다
+
+- [#189](https://github.com/toss/es-hangul/pull/189) [`9f8dd1b`](https://github.com/toss/es-hangul/commit/9f8dd1b84cfbc941c19e105daff316d3d8afeffb) Thanks [@okinawaa](https://github.com/okinawaa)! - feat: 한글의 두음을 반환해주는 acronymizeHangul 함수를 제거합니다.
+
+## 1.5.0
+
+### Minor Changes
+
+- [#115](https://github.com/toss/es-hangul/pull/115) [`84584d4`](https://github.com/toss/es-hangul/commit/84584d48ac5ded83c55934f0b72e37a6b889f4e1) Thanks [@po4tion](https://github.com/po4tion)! - feat: 한국어를 로마자로 변환해주는 함수와 한국어를 표준 발음법으로 변환해주는 함수를 만들고 문서화를 진행합니다
+
+## 1.4.7
+
+### Patch Changes
+
+- [#201](https://github.com/toss/es-hangul/pull/201) [`56db7f0`](https://github.com/toss/es-hangul/commit/56db7f0140ee369fbe0dc2dad834e8d6a218a4ea) Thanks [@BO-LIKE-CHICKEN](https://github.com/BO-LIKE-CHICKEN)! - feat: 숫자를 순 우리말 수사로 변환하거나 수 관형사로 변환하는 함수를 추가
+
 ## 1.4.6
 
 ### Patch Changes

@@ -1,12 +1,12 @@
-import { disassembleHangul, disassembleHangulToGroups } from './disassemble';
+import { disassemble, disassembleToGroups } from './disassemble';
 
-describe('disassembleHangulToGroups', () => {
+describe('disassembleToGroups', () => {
   it('값', () => {
-    expect(disassembleHangulToGroups('값')).toEqual([['ㄱ', 'ㅏ', 'ㅂ', 'ㅅ']]);
+    expect(disassembleToGroups('값')).toEqual([['ㄱ', 'ㅏ', 'ㅂ', 'ㅅ']]);
   });
 
   it('값이 비싸다', () => {
-    expect(disassembleHangulToGroups('값이 비싸다')).toEqual([
+    expect(disassembleToGroups('값이 비싸다')).toEqual([
       ['ㄱ', 'ㅏ', 'ㅂ', 'ㅅ'],
       ['ㅇ', 'ㅣ'],
       [' '],
@@ -17,36 +17,36 @@ describe('disassembleHangulToGroups', () => {
   });
 
   it('사과 짱', () => {
-    expect(disassembleHangulToGroups('사과 짱')).toEqual([['ㅅ', 'ㅏ'], ['ㄱ', 'ㅗ', 'ㅏ'], [' '], ['ㅉ', 'ㅏ', 'ㅇ']]);
+    expect(disassembleToGroups('사과 짱')).toEqual([['ㅅ', 'ㅏ'], ['ㄱ', 'ㅗ', 'ㅏ'], [' '], ['ㅉ', 'ㅏ', 'ㅇ']]);
   });
 
   it('ㄵ', () => {
-    expect(disassembleHangulToGroups('ㄵ')).toEqual([['ㄴ', 'ㅈ']]);
+    expect(disassembleToGroups('ㄵ')).toEqual([['ㄴ', 'ㅈ']]);
   });
 
   it('ㅘ', () => {
-    expect(disassembleHangulToGroups('ㅘ')).toEqual([['ㅗ', 'ㅏ']]);
+    expect(disassembleToGroups('ㅘ')).toEqual([['ㅗ', 'ㅏ']]);
   });
 });
 
-describe('disassembleHangul', () => {
+describe('disassemble', () => {
   it('값', () => {
-    expect(disassembleHangul('값')).toEqual('ㄱㅏㅂㅅ');
+    expect(disassemble('값')).toEqual('ㄱㅏㅂㅅ');
   });
 
   it('값이 비싸다', () => {
-    expect(disassembleHangul('값이 비싸다')).toEqual('ㄱㅏㅂㅅㅇㅣ ㅂㅣㅆㅏㄷㅏ');
+    expect(disassemble('값이 비싸다')).toEqual('ㄱㅏㅂㅅㅇㅣ ㅂㅣㅆㅏㄷㅏ');
   });
 
   it('사과 짱', () => {
-    expect(disassembleHangul('사과 짱')).toEqual('ㅅㅏㄱㅗㅏ ㅉㅏㅇ');
+    expect(disassemble('사과 짱')).toEqual('ㅅㅏㄱㅗㅏ ㅉㅏㅇ');
   });
 
   it('ㄵ', () => {
-    expect(disassembleHangul('ㄵ')).toEqual('ㄴㅈ');
+    expect(disassemble('ㄵ')).toEqual('ㄴㅈ');
   });
 
   it('ㅘ', () => {
-    expect(disassembleHangul('ㅘ')).toEqual('ㅗㅏ');
+    expect(disassemble('ㅘ')).toEqual('ㅗㅏ');
   });
 });

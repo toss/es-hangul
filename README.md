@@ -8,15 +8,19 @@
 
 ## 사용 예시
 
-초성 검색, 조사 붙이기와 같은 한글 작업을 간단히 할 수 있습니다.
+문자열 초성화, 조사 붙이기와 같은 한글 작업을 간단히 할 수 있습니다.
 
 ```tsx
-import { choseongIncludes } from 'es-hangul';
+import { getChoseong } from 'es-hangul';
 
 const searchWord = '라면';
 const userInput = 'ㄹㅁ';
 
-const result = choseongIncludes(searchWord, userInput); // true
+const result = getChoseong(searchWord); // ㄹㅁ
+
+if (result === userInput) {
+  // 일치한다면 if문이 실행
+}
 ```
 
 ```tsx
