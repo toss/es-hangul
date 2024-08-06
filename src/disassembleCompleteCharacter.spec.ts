@@ -3,33 +3,33 @@ import { disassembleCompleteCharacter } from './disassembleCompleteCharacter';
 describe('disassembleCompleteCharacter', () => {
   it('값', () => {
     expect(disassembleCompleteCharacter('값')).toEqual({
-      first: 'ㄱ',
-      middle: 'ㅏ',
-      last: 'ㅂㅅ',
+      choseong: 'ㄱ',
+      jungseong: 'ㅏ',
+      jongseong: 'ㅂㅅ',
     });
   });
 
   it('리', () => {
     expect(disassembleCompleteCharacter('리')).toEqual({
-      first: 'ㄹ',
-      middle: 'ㅣ',
-      last: '',
+      choseong: 'ㄹ',
+      jungseong: 'ㅣ',
+      jongseong: '',
     });
   });
 
   it('빚', () => {
     expect(disassembleCompleteCharacter('빚')).toEqual({
-      first: 'ㅂ',
-      middle: 'ㅣ',
-      last: 'ㅈ',
+      choseong: 'ㅂ',
+      jungseong: 'ㅣ',
+      jongseong: 'ㅈ',
     });
   });
 
   it('박', () => {
     expect(disassembleCompleteCharacter('박')).toEqual({
-      first: 'ㅂ',
-      middle: 'ㅏ',
-      last: 'ㄱ',
+      choseong: 'ㅂ',
+      jungseong: 'ㅏ',
+      jongseong: 'ㄱ',
     });
   });
 
