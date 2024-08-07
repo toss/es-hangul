@@ -24,10 +24,6 @@ describe('days', () => {
     it(`${num} - 순 우리말 날짜 ${word}로 바꿔 반환해야 한다.`, () => {
       expect(days(num)).toBe(word);
     });
-
-    // it(`${num} - 순 우리말 수 관형사가 있다면 수 관형사로 없다면 수사로 반환해야 한다.`, () => {
-    //   expect(days(num, true)).toB);
-    // });
   });
 
   invalidNumbers.forEach(num => {
