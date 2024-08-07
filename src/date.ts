@@ -5,12 +5,6 @@ export function days(num: number): string {
   return getNumberWord(num);
 }
 
-function validateNumber(num: number): void {
-  if (Number.isNaN(num) || num <= 0 || num > 30 || !Number.isInteger(num) || !Number.isFinite(num)) {
-    throw new Error('지원하지 않는 숫자입니다.');
-  }
-}
-
 function getNumberWord(num: number): string {
   validateNumber(num);
 
@@ -25,4 +19,10 @@ function getNumberWord(num: number): string {
   const onesWord = hasProperty(DATE_DAYS_MAP, ones) ? DATE_DAYS_MAP[ones] : '';
 
   return `${tensWord}${onesWord}`;
+}
+
+function validateNumber(num: number): void {
+  if (Number.isNaN(num) || num <= 0 || num > 30 || !Number.isInteger(num) || !Number.isFinite(num)) {
+    throw new Error('지원하지 않는 숫자입니다.');
+  }
 }
