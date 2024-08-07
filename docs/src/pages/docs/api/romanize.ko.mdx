@@ -2,6 +2,8 @@
 title: romanize
 ---
 
+import { Sandpack } from '@/components/Sandpack';
+
 # romanize
 
 한글 문자열을 로마자로 변경합니다.
@@ -26,3 +28,17 @@ romanize('ㄱ'); // 'g'
 romanize('한국어!'); // 'hangugeo!'
 romanize('안녕하세요'); // 'annyeonghaseyo'
 ```
+
+## 사용해보기
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { romanize } from 'es-hangul';
+
+console.log(romanize('백마'));
+```
+
+</Sandpack>

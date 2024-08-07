@@ -2,13 +2,19 @@
 title: canBe
 ---
 
-# canBeChoseong
+import { Sandpack } from '@/components/Sandpack';
+
+# canBe
+
+## canBeChoseong
 
 Check if a given character can be a choseong in Korean.
 
 ```typescript
 function canBeChoseong(character: string): boolean;
 ```
+
+### Examples
 
 ```typescript
 canBeChoseong('ㄱ'); // true
@@ -18,13 +24,29 @@ canBeChoseong('ㅏ'); // false
 canBeChoseong('가'); // false
 ```
 
-# canBeJungseong
+### Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { canBeChoseong } from 'es-hangul';
+
+console.log(canBeChoseong('ㄱ'));
+```
+
+</Sandpack>
+
+## canBeJungseong
 
 Check if a given character can be a jungseong in Korean.
 
 ```typescript
 function canBeJungseong(character: string): boolean;
 ```
+
+### Examples
 
 ```typescript
 canBeJungseong('ㅏ'); // true
@@ -35,13 +57,29 @@ canBeJungseong('ㄱㅅ'); // false
 canBeJungseong('가'); // false
 ```
 
-# canBeJongseong
+### Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { canBeJungseong } from 'es-hangul';
+
+console.log(canBeJungseong('ㅏ'));
+```
+
+</Sandpack>
+
+## canBeJongseong
 
 Check if a given character can be a jongseong in Korean.
 
 ```typescript
 function canBeJongseong(character: string): boolean;
 ```
+
+### Examples
 
 ```typescript
 canBeJongseong('ㄱ'); // true
@@ -51,3 +89,17 @@ canBeJongseong('가'); // false
 canBeJongseong('ㅏ'); // false
 canBeJongseong('ㅗㅏ'); // false
 ```
+
+### Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { canBeJongseong } from 'es-hangul';
+
+console.log(canBeJongseong('ㄱ'));
+```
+
+</Sandpack>

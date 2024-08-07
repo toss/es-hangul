@@ -2,6 +2,8 @@
 title: romanize
 ---
 
+import { Sandpack } from '@/components/Sandpack';
+
 # romanize
 
 Change the Hangul string to Roman.
@@ -26,3 +28,17 @@ romanize('ㄱ'); // 'g'
 romanize('한국어!'); // 'hangugeo!'
 romanize('안녕하세요'); // 'annyeonghaseyo'
 ```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { romanize } from 'es-hangul';
+
+console.log(romanize('백마'));
+```
+
+</Sandpack>

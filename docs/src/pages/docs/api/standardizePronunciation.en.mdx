@@ -2,18 +2,20 @@
 title: standardizePronunciation
 ---
 
+import { Sandpack } from '@/components/Sandpack';
+
 # standardizePronunciation
 
-한글 문자열을 표준 발음법으로 변경합니다.
+Change the Hangul string to standard pronunciation.
 
-자세한 예시는 아래 Example을 참고하세요.
+For detailed examples, see below.
 
 ```typescript
 function standardizePronunciation(
-  // 한글 문자열을 입력합니다.
+  // Input a Hangul string
   hangul: string,
   options: {
-    // 경음화 등의 된소리를 적용할지 여부를 설정합니다. 기본값은 true입니다.
+    // Set whether to apply hard sounds. Default is true."
     hardConversion: boolean;
   } = { hardConversion: true }
 ): string;
@@ -40,3 +42,18 @@ standardizePronunciation('핥다', { hardConversion: false }); // '할다'
 standardizePronunciation('젊다'); // '점따'
 standardizePronunciation('젊다', { hardConversion: false }); // '점다'
 ```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { standardizePronunciation } from 'es-hangul';
+
+console.log(standardizePronunciation('곧이듣다'));
+console.log(standardizePronunciation('곧이듣다', { hardConversion: false }));
+```
+
+</Sandpack>

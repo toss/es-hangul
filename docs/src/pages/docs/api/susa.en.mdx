@@ -2,6 +2,8 @@
 title: susa
 ---
 
+import { Sandpack } from '@/components/Sandpack';
+
 # susa
 
 Convert numbers to native Korean numeral words or numeral determiners. The given number is valid when it is greater than 0 and less than or equal to 100.
@@ -31,3 +33,18 @@ susa(11, true); // '열한'
 susa(20, true); // '스무'
 susa(21, true); // '스물한'
 ```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { susa } from 'es-hangul';
+
+console.log(susa(1));
+console.log(susa(1, true));
+```
+
+</Sandpack>

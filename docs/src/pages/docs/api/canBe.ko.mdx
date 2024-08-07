@@ -2,13 +2,19 @@
 title: canBe
 ---
 
-# canBeChoseong
+import { Sandpack } from '@/components/Sandpack';
+
+# canBe
+
+## canBeChoseong
 
 인자로 받은 문자가 초성으로 위치할 수 있는 문자인지 검사합니다.
 
 ```typescript
 function canBeChoseong(character: string): boolean;
 ```
+
+### Examples
 
 ```typescript
 canBeChoseong('ㄱ'); // true
@@ -18,13 +24,29 @@ canBeChoseong('ㅏ'); // false
 canBeChoseong('가'); // false
 ```
 
-# canBeJungseong
+### 사용해보기
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { canBeJungseong } from 'es-hangul';
+
+console.log(canBeJungseong('ㅏ'));
+```
+
+</Sandpack>
+
+## canBeJungseong
 
 인자로 받은 문자가 중성으로 위치할 수 있는 문자인지 검사합니다.
 
 ```typescript
 function canBeJungseong(character: string): boolean;
 ```
+
+### Examples
 
 ```typescript
 canBeJungseong('ㅏ'); // true
@@ -35,13 +57,29 @@ canBeJungseong('ㄱㅅ'); // false
 canBeJungseong('가'); // false
 ```
 
-# canBeJongseong
+### 사용해보기
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { canBeJungseong } from 'es-hangul';
+
+console.log(canBeJungseong('ㅏ'));
+```
+
+</Sandpack>
+
+## canBeJongseong
 
 인자로 받은 문자가 종성으로 위치할 수 있는 문자인지 검사합니다.
 
 ```typescript
 function canBeJongseong(character: string): boolean;
 ```
+
+### Examples
 
 ```typescript
 canBeJongseong('ㄱ'); // true
@@ -51,3 +89,17 @@ canBeJongseong('가'); // false
 canBeJongseong('ㅏ'); // false
 canBeJongseong('ㅗㅏ'); // false
 ```
+
+### 사용해보기
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { canBeJongseong } from 'es-hangul';
+
+console.log(canBeJongseong('ㄱ'));
+```
+
+</Sandpack>

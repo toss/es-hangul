@@ -2,21 +2,40 @@
 title: hasBatchim
 ---
 
+import { Sandpack } from '@/components/Sandpack';
+
 # hasBatchim
 
 한글 문자열의 마지막 글자가 받침이 있는지 확인합니다.
 
-````typescript
+```typescript
 hasBatchim(
   str: string,
   options?: { only?: "single" | "double" }
 ): boolean
+```
 
+## Examples
 
- ```typescript
- hasBatchim('값') // true
- hasBatchim('토') // false
- hasBatchim('갑', { only : "single" }) // true
- hasBatchim('값', { only : "single" }) // false
- hasBatchim('토', { only : "double" }) // false
-````
+```typescript
+hasBatchim('값'); // true
+hasBatchim('토'); // false
+hasBatchim('갑', { only: 'single' }); // true
+hasBatchim('값', { only: 'single' }); // false
+hasBatchim('토', { only: 'double' }); // false
+```
+
+## 사용해보기
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { hasBatchim } from 'es-hangul';
+
+console.log(hasBatchim('값'));
+console.log(hasBatchim('값', { only: 'single' }));
+```
+
+</Sandpack>
