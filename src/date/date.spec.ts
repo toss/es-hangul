@@ -1,4 +1,4 @@
-import { days } from './date';
+import { days } from '.';
 
 describe('date', () => {
   describe('days', () => {

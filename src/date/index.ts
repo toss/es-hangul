@@ -1,5 +1,5 @@
-import { hasProperty } from './_internal';
-import { DATE_DAYS_MAP, DATE_DAYS_ONLY_TENS_MAP } from './constants';
+import { hasProperty } from '../_internal';
+import { DAYS_MAP, DAYS_ONLY_TENS_MAP } from './days.constants';
 
 export function days(num: number): string {
   return getNumberWord(num);
@@ -11,12 +11,12 @@ function getNumberWord(num: number): string {
   const tens = Math.floor(num / 10) * 10;
   const ones = num % 10;
 
-  if (ones === 0 && hasProperty(DATE_DAYS_ONLY_TENS_MAP, tens)) {
-    return DATE_DAYS_ONLY_TENS_MAP[tens];
+  if (ones === 0 && hasProperty(DAYS_ONLY_TENS_MAP, tens)) {
+    return DAYS_ONLY_TENS_MAP[tens];
   }
 
-  const tensWord = hasProperty(DATE_DAYS_MAP, tens) ? DATE_DAYS_MAP[tens] : '';
-  const onesWord = hasProperty(DATE_DAYS_MAP, ones) ? DATE_DAYS_MAP[ones] : '';
+  const tensWord = hasProperty(DAYS_MAP, tens) ? DAYS_MAP[tens] : '';
+  const onesWord = hasProperty(DAYS_MAP, ones) ? DAYS_MAP[ones] : '';
 
   return `${tensWord}${onesWord}`;
 }
