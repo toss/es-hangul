@@ -20,6 +20,10 @@ const config: DocsThemeConfig = {
   logo: function useLogo() {
     const isDarkMode = useIsDarkMode();
 
+    if (isDarkMode === undefined) {
+      return null;
+    }
+
     return <Image src={isDarkMode ? '/logo-white.png' : '/logo.png'} alt="logo" width={120} height={48} priority />;
   },
   head: function useHead() {
@@ -99,6 +103,10 @@ const config: DocsThemeConfig = {
   footer: {
     text: function useText() {
       const isDarkMode = useIsDarkMode();
+
+      if (isDarkMode === undefined) {
+        return null;
+      }
 
       return (
         <div className="flex w-full flex-col items-center sm:items-start">

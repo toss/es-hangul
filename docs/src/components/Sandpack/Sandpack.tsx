@@ -8,6 +8,10 @@ import { SandpackLogLevel } from '@codesandbox/sandpack-client';
 export function Sandpack({ files }: SandpackProps) {
   const isDarkMode = useIsDarkMode();
 
+  if (isDarkMode === undefined) {
+    return null;
+  }
+  
   return (
     <SandpackProvider
       template="vanilla-ts"

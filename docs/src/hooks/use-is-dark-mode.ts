@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 export function useIsDarkMode() {
   const { resolvedTheme } = useTheme();
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>();
 
   useEffect(() => {
     setIsDarkMode(resolvedTheme === 'dark');
