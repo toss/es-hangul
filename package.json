@@ -44,13 +44,19 @@
   "scripts": {
     "attw": "attw --pack",
     "build": "tsup",
+    "changeset": "changeset",
+    "changeset:add": "changeset add",
     "changeset:publish": "changeset publish",
     "changeset:version": "changeset version",
     "packlint": "packlint sort -R",
     "publint": "publint --strict",
     "test": "vitest run --coverage --typecheck",
     "test:watch": "vitest --ui --coverage --typecheck",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "docs:dev": "yarn workspace docs dev",
+    "docs:build": "yarn workspace docs build",
+    "docs:start": "yarn workspace docs start",
+    "predocs:build": "yarn build"  
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.15.3",
