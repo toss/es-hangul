@@ -1,0 +1,48 @@
+---
+title: date
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# date
+
+숫자를 날짜를 나타내는 순우리말로 바꿔줍니다. 주어진 숫자가 0보다 크고 30 이하일 때 유효합니다.
+
+## days
+
+숫자를 순우리말 날로 바꿔줍니다.
+
+```typescript
+function days(
+  // 변환할 숫자
+  num: number
+): string;
+```
+
+### Examples
+
+```typescript
+days(1); // '하루'
+days(2); // '이틀'
+days(3); // '사흘'
+days(10); // '열흘'
+days(11); // '열하루'
+days(20); // '스무날'
+days(29); // '스무아흐레'
+days(30); // '서른날'
+```
+
+### 사용해보기
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { days } from 'es-hangul';
+
+console.log(days(3));
+console.log(days(4));
+```
+
+</Sandpack>
