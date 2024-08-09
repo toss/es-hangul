@@ -9,9 +9,9 @@ describe('transform9And10And11th', () => {
 
     expect(transform9And10And11th(current, next)).toEqual({
       current: {
-        first: 'ㄷ',
-        middle: 'ㅏ',
-        last: 'ㄱ',
+        choseong: 'ㄷ',
+        jungseong: 'ㅏ',
+        jongseong: 'ㄱ',
       },
     });
   });
@@ -22,9 +22,9 @@ describe('transform9And10And11th', () => {
 
     expect(transform9And10And11th(current, next)).toEqual({
       current: {
-        first: 'ㅇ',
-        middle: 'ㅏ',
-        last: 'ㄴ',
+        choseong: 'ㅇ',
+        jungseong: 'ㅏ',
+        jongseong: 'ㄴ',
       },
     });
   });
@@ -35,9 +35,9 @@ describe('transform9And10And11th', () => {
 
     expect(transform9And10And11th(current, next)).toEqual({
       current: {
-        first: 'ㅎ',
-        middle: 'ㅡ',
-        last: 'ㄱ',
+        choseong: 'ㅎ',
+        jungseong: 'ㅡ',
+        jongseong: 'ㄱ',
       },
     });
   });

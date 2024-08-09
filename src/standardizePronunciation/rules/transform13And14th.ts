@@ -19,7 +19,7 @@ export function transform13And14th(currentSyllable: Syllable, nextSyllable: Syll
   let current = { ...currentSyllable };
   let next = { ...nextSyllable };
 
-  const 제13_14항주요조건 = current.last && next.first === 음가가_없는_자음;
+  const 제13_14항주요조건 = current.jongseong && next.choseong === 음가가_없는_자음;
 
   if (!제13_14항주요조건) {
     return {
@@ -38,24 +38,24 @@ export function transform13And14th(currentSyllable: Syllable, nextSyllable: Syll
 }
 
 function is홑받침(current: Syllable): boolean {
-  return current.last.length === 받침의길이['홀받침'];
+  return current.jongseong.length === 받침의길이['홀받침'];
 }
 
 function is쌍받침(current: Syllable): boolean {
-  return current.last.length === 받침의길이['쌍_겹받침'] && current.last[0] === current.last[1];
+  return current.jongseong.length === 받침의길이['쌍_겹받침'] && current.jongseong[0] === current.jongseong[1];
 }
 
 function is겹받침(current: Syllable): boolean {
-  return current.last.length === 받침의길이['쌍_겹받침'] && current.last[0] !== current.last[1];
+  return current.jongseong.length === 받침의길이['쌍_겹받침'] && current.jongseong[0] !== current.jongseong[1];
 }
 
 function handle홑받침or쌍받침(current: Syllable, next: Syllable): ReturnSyllables {
   const updatedCurrent = { ...current };
   const updatedNext = { ...next };
 
-  if (!arrayIncludes(['ㅇ', ''], updatedCurrent.last) && (is홑받침(updatedCurrent) || is쌍받침(updatedCurrent))) {
-    updatedNext.first = updatedCurrent.last;
-    updatedCurrent.last = '';
+  if (!arrayIncludes(['ㅇ', ''], updatedCurrent.jongseong) && (is홑받침(updatedCurrent) || is쌍받침(updatedCurrent))) {
+    updatedNext.choseong = updatedCurrent.jongseong;
+    updatedCurrent.jongseong = '';
   }
   return { current: updatedCurrent, next: updatedNext };
 }
@@ -65,12 +65,15 @@ function handle겹받침(current: Syllable, next: Syllable): ReturnSyllables {
   const updatedNext = { ...next };
 
   if (is겹받침(updatedCurrent)) {
-    if (updatedCurrent.last[1] === 'ㅅ') {
-      updatedNext.first = 'ㅆ';
+    if (updatedCurrent.jongseong[1] === 'ㅅ') {
+      updatedNext.choseong = 'ㅆ';
     } else {
-      updatedNext.first = updatedCurrent.last[1] as Syllable['first'];
+      updatedNext.choseong = updatedCurrent.jongseong[1] as Syllable['choseong'];
     }
-    updatedCurrent.last = updatedCurrent.last.replace(updatedCurrent.last[1], '') as Syllable['last'];
+    updatedCurrent.jongseong = updatedCurrent.jongseong.replace(
+      updatedCurrent.jongseong[1],
+      ''
+    ) as Syllable['jongseong'];
   }
   return { current: updatedCurrent, next: updatedNext };
 }

@@ -16,7 +16,11 @@ export function disassembleToGroups(str: string) {
     const disassembledComplete = disassembleCompleteCharacter(letter);
 
     if (disassembledComplete != null) {
-      result.push([...disassembledComplete.first, ...disassembledComplete.middle, ...disassembledComplete.last]);
+      result.push([
+        ...disassembledComplete.choseong,
+        ...disassembledComplete.jungseong,
+        ...disassembledComplete.jongseong,
+      ]);
       continue;
     }
 

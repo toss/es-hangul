@@ -146,7 +146,7 @@ function applyRules(params: ApplyParameters): {
 function assembleChangedHangul(disassembleHangul: Syllable[], notHangulPhrase: NotHangul[]): string {
   const changedSyllables = disassembleHangul
     .filter(isNotUndefined)
-    .map(syllable => combineCharacter(syllable.first, syllable.middle, syllable.last));
+    .map(syllable => combineCharacter(syllable.choseong, syllable.jungseong, syllable.jongseong));
 
   for (const { index, syllable } of notHangulPhrase) {
     changedSyllables.splice(index, 0, syllable);

@@ -1,4 +1,4 @@
-import { HANGUL_CHARACTERS_BY_FIRST_INDEX, JASO_HANGUL_NFD } from './constants';
+import { CHOSEONGS, JASO_HANGUL_NFD } from './constants';
 
 /**
  * @name getChoseong
@@ -18,7 +18,7 @@ export function getChoseong(word: string) {
   return word
     .normalize('NFD')
     .replace(EXTRACT_CHOSEONG_REGEX, '') // NFD ㄱ-ㅎ, NFC ㄱ-ㅎ 외 문자 삭제
-    .replace(CHOOSE_NFD_CHOSEONG_REGEX, $0 => HANGUL_CHARACTERS_BY_FIRST_INDEX[$0.charCodeAt(0) - 0x1100]); // NFD to NFC
+    .replace(CHOOSE_NFD_CHOSEONG_REGEX, $0 => CHOSEONGS[$0.charCodeAt(0) - 0x1100]); // NFD to NFC
 }
 
 const EXTRACT_CHOSEONG_REGEX = new RegExp(

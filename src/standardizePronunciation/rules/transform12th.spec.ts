@@ -9,14 +9,14 @@ describe('transform12th', () => {
 
     expect(transform12th(current, next)).toEqual({
       current: {
-        first: 'ㄴ',
-        middle: 'ㅗ',
-        last: '',
+        choseong: 'ㄴ',
+        jungseong: 'ㅗ',
+        jongseong: '',
       },
       next: {
-        first: 'ㅋ',
-        middle: 'ㅗ',
-        last: '',
+        choseong: 'ㅋ',
+        jungseong: 'ㅗ',
+        jongseong: '',
       },
     });
   });
@@ -27,14 +27,14 @@ describe('transform12th', () => {
 
     expect(transform12th(current, next)).toEqual({
       current: {
-        first: 'ㄱ',
-        middle: 'ㅏ',
-        last: '',
+        choseong: 'ㄱ',
+        jungseong: 'ㅏ',
+        jongseong: '',
       },
       next: {
-        first: 'ㅋ',
-        middle: 'ㅏ',
-        last: '',
+        choseong: 'ㅋ',
+        jungseong: 'ㅏ',
+        jongseong: '',
       },
     });
   });
@@ -45,14 +45,14 @@ describe('transform12th', () => {
 
     expect(transform12th(current, next)).toEqual({
       current: {
-        first: 'ㄷ',
-        middle: 'ㅏ',
-        last: '',
+        choseong: 'ㄷ',
+        jungseong: 'ㅏ',
+        jongseong: '',
       },
       next: {
-        first: 'ㅆ',
-        middle: 'ㅗ',
-        last: '',
+        choseong: 'ㅆ',
+        jungseong: 'ㅗ',
+        jongseong: '',
       },
     });
   });
@@ -63,14 +63,14 @@ describe('transform12th', () => {
 
     expect(transform12th(current, next)).toEqual({
       current: {
-        first: 'ㄴ',
-        middle: 'ㅗ',
-        last: '',
+        choseong: 'ㄴ',
+        jungseong: 'ㅗ',
+        jongseong: '',
       },
       next: {
-        first: 'ㄴ',
-        middle: 'ㅡ',
-        last: 'ㄴ',
+        choseong: 'ㄴ',
+        jungseong: 'ㅡ',
+        jongseong: 'ㄴ',
       },
     });
   });
@@ -81,14 +81,14 @@ describe('transform12th', () => {
 
     expect(transform12th(current, next)).toEqual({
       current: {
-        first: 'ㅇ',
-        middle: 'ㅏ',
-        last: 'ㄴ',
+        choseong: 'ㅇ',
+        jungseong: 'ㅏ',
+        jongseong: 'ㄴ',
       },
       next: {
-        first: 'ㄴ',
-        middle: 'ㅔ',
-        last: '',
+        choseong: 'ㄴ',
+        jungseong: 'ㅔ',
+        jongseong: '',
       },
     });
   });
@@ -99,14 +99,14 @@ describe('transform12th', () => {
 
     expect(transform12th(current, next)).toEqual({
       current: {
-        first: 'ㄴ',
-        middle: 'ㅏ',
-        last: '',
+        choseong: 'ㄴ',
+        jungseong: 'ㅏ',
+        jongseong: '',
       },
       next: {
-        first: 'ㅇ',
-        middle: 'ㅡ',
-        last: 'ㄴ',
+        choseong: 'ㅇ',
+        jungseong: 'ㅡ',
+        jongseong: 'ㄴ',
       },
     });
   });
@@ -117,9 +117,9 @@ describe('transform12th', () => {
 
     expect(transform12th(current, next)).toEqual({
       current: {
-        first: 'ㅁ',
-        middle: 'ㅏ',
-        last: 'ㄴ',
+        choseong: 'ㅁ',
+        jungseong: 'ㅏ',
+        jongseong: 'ㄴ',
       },
       next: null,
     });

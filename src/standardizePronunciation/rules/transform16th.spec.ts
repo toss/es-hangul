@@ -18,14 +18,14 @@ describe('transform16th', () => {
       })
     ).toEqual({
       current: {
-        first: 'ㄱ',
-        middle: 'ㅡ',
-        last: '',
+        choseong: 'ㄱ',
+        jungseong: 'ㅡ',
+        jongseong: '',
       },
       next: {
-        first: 'ㅅ',
-        middle: 'ㅣ',
-        last: '',
+        choseong: 'ㅅ',
+        jungseong: 'ㅣ',
+        jongseong: '',
       },
     });
   });
@@ -45,14 +45,14 @@ describe('transform16th', () => {
       })
     ).toEqual({
       current: {
-        first: 'ㅇ',
-        middle: 'ㅕ',
-        last: '',
+        choseong: 'ㅇ',
+        jungseong: 'ㅕ',
+        jongseong: '',
       },
       next: {
-        first: 'ㄱ',
-        middle: 'ㅣ',
-        last: '',
+        choseong: 'ㄱ',
+        jungseong: 'ㅣ',
+        jongseong: '',
       },
     });
   });

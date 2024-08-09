@@ -1,9 +1,5 @@
 import { hasValueInReadOnlyStringList } from './_internal';
-import {
-  HANGUL_CHARACTERS_BY_FIRST_INDEX,
-  HANGUL_CHARACTERS_BY_LAST_INDEX,
-  HANGUL_CHARACTERS_BY_MIDDLE_INDEX,
-} from './constants';
+import { CHOSEONGS, JONGSEONGS, JUNSEONGS } from './constants';
 
 /**
  * @name canBeChoseong
@@ -22,8 +18,8 @@ import {
  * canBeChoseong('ㅏ') // false
  * canBeChoseong('가') // false
  */
-export function canBeChoseong(character: string): character is (typeof HANGUL_CHARACTERS_BY_FIRST_INDEX)[number] {
-  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_FIRST_INDEX, character);
+export function canBeChoseong(character: string): character is (typeof CHOSEONGS)[number] {
+  return hasValueInReadOnlyStringList(CHOSEONGS, character);
 }
 
 /**
@@ -44,8 +40,8 @@ export function canBeChoseong(character: string): character is (typeof HANGUL_CH
  * canBeJungseong('ㄱㅅ') // false
  * canBeJungseong('가') // false
  */
-export function canBeJungseong(character: string): character is (typeof HANGUL_CHARACTERS_BY_MIDDLE_INDEX)[number] {
-  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_MIDDLE_INDEX, character);
+export function canBeJungseong(character: string): character is (typeof JUNSEONGS)[number] {
+  return hasValueInReadOnlyStringList(JUNSEONGS, character);
 }
 
 /**
@@ -66,6 +62,6 @@ export function canBeJungseong(character: string): character is (typeof HANGUL_C
  * canBeJongseong('ㅏ') // false
  * canBeJongseong('ㅗㅏ') // false
  */
-export function canBeJongseong(character: string): character is (typeof HANGUL_CHARACTERS_BY_LAST_INDEX)[number] {
-  return hasValueInReadOnlyStringList(HANGUL_CHARACTERS_BY_LAST_INDEX, character);
+export function canBeJongseong(character: string): character is (typeof JONGSEONGS)[number] {
+  return hasValueInReadOnlyStringList(JONGSEONGS, character);
 }
