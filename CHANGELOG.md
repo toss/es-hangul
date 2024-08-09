@@ -1,5 +1,11 @@
 # es-hangul
 
+## 2.1.0
+
+### Minor Changes
+
+- [#228](https://github.com/toss/es-hangul/pull/228) [`0633b9f`](https://github.com/toss/es-hangul/commit/0633b9f04991ff432004a8ae1ecfbf6bc5682d70) Thanks [@BO-LIKE-CHICKEN](https://github.com/BO-LIKE-CHICKEN)! - feat: 숫자를 날짜를 나타내는 순우리말로 바꿔주는 함수 중 days를 추가
+
 ## 2.0.0
 
 ### Major Changes
