@@ -1,6 +1,6 @@
-import { useIsDarkMode } from '@/hooks/use-is-dark-mode';
 import Image from 'next/image';
 import { ComponentProps } from 'react';
+import { ThemeMode } from '../theme-mode/ThemeMode';
 
 /**
  * 이 곳에 적용한 조직을 추가해주세요.
@@ -28,16 +28,18 @@ export const adopterLogoImagePropsList = [
 >;
 
 export const Adopters = () => {
-  const isDarkMode = useIsDarkMode();
-
-  if (isDarkMode === undefined) {
-    return null;
-  }
-
   return (
     <div className="flex flex-wrap gap-8 justify-center">
       {adopterLogoImagePropsList.map(({ darkSrc, src, alt, ...props }) => (
-        <Image key={src} src={isDarkMode ? darkSrc : src} alt={alt} {...props} />
+        <ThemeMode key={src}>
+          {(theme) => (
+            <Image
+              src={theme === 'dark' ? darkSrc : src}
+              alt={alt}
+              {...props}
+            />
+          )}
+        </ThemeMode>
       ))}
     </div>
   );
