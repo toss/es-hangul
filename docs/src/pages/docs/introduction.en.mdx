@@ -32,31 +32,35 @@ Our library provides strong typing, allowing for easy detection of type errors d
 
 ### Full Support for Hangul-related Features
 
-Our library provides a [modern API](./api/choseongIncludes) that can be conveniently used in various applications.
+Our library provides a [modern API](./api/getChoseong) that can be conveniently used in various applications.
 
-#### First Consonant Search ([choseongIncludes](./api/choseongIncludes))
+#### First Consonant Search ([getChoseong](./api/getChoseong))
 
-It checks whether an initial consonant is included in a specific word. For example, you can easily find out if the word '라면' (ramyeon) contains the initial consonants 'ㄹㅁ'.
+It can get choseong from specific word. For example, you can easily find out if the word '라면' (ramyeon) contains the choseong 'ㄹㅁ'.
 
-```tsx /choseongIncludes/
-import { choseongIncludes } from 'es-hangul';
+```tsx /getChoseong/
+import { getChoseong } from 'es-hangul';
 
 const searchWord = '라면';
 const userInput = 'ㄹㅁ';
 
-const result = choseongIncludes(searchWord, userInput);
-console.log(result); // true
+const result = getChoseong(searchWord); // ㄹㅁ
+
+if (result === userInput) {
+  // do something
+}
 ```
 
-#### Disassembling Hangul Characters ([disassembleHangul](./api/disassembleHangul))
+
+#### Disassembling Hangul Characters ([disassemble](./api/disassemble))
 
 You can decompose a given Hangul string into initial consonants, vowels, and final consonants, and return it in array form to allow for more detailed analysis or modification of the string.
 
-```tsx /disassembleHangul/
-import { disassembleHangul } from 'es-hangul';
+```tsx /disassemble/
+import { disassemble } from 'es-hangul';
 
 const word = '안녕하세요';
-const disassembled = disassembleHangul(word);
+const disassembled = disassemble(word);
 console.log(disassembled); // 'ㅇㅏㄴㄴㅕㅇㅎㅏㅅㅔㅇㅛ'
 ```
 

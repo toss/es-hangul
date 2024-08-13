@@ -1,58 +1,58 @@
 import { defined } from '../../_internal';
-import { disassembleCompleteHangulCharacter } from '../../disassembleCompleteHangulCharacter';
+import { disassembleCompleteCharacter } from '../../disassembleCompleteCharacter';
 import { transformNLAssimilation } from './transformNLAssimilation';
 
 describe('transformNLAssimilation', () => {
   it('받침이 "ㄱ, ㄴ, ㄷ, ㅁ, ㅂ, ㅇ"이고 다음 음절이 "야, 여, 요, 유, 이, 얘, 예"로 이어지는 경우', () => {
-    const current = defined(disassembleCompleteHangulCharacter('맨'));
-    const next = defined(disassembleCompleteHangulCharacter('입'));
+    const current = defined(disassembleCompleteCharacter('맨'));
+    const next = defined(disassembleCompleteCharacter('입'));
 
     expect(transformNLAssimilation(current, next)).toEqual({
       current: {
-        first: 'ㅁ',
-        middle: 'ㅐ',
-        last: 'ㄴ',
+        choseong: 'ㅁ',
+        jungseong: 'ㅐ',
+        jongseong: 'ㄴ',
       },
       next: {
-        first: 'ㄴ',
-        middle: 'ㅣ',
-        last: 'ㅂ',
+        choseong: 'ㄴ',
+        jungseong: 'ㅣ',
+        jongseong: 'ㅂ',
       },
     });
   });
 
   it('받침이 "ㄹ"이고 다음 음절이 "야, 여, 요, 유, 이, 얘, 예"로 이어지는 경우', () => {
-    const current = defined(disassembleCompleteHangulCharacter('알'));
-    const next = defined(disassembleCompleteHangulCharacter('약'));
+    const current = defined(disassembleCompleteCharacter('알'));
+    const next = defined(disassembleCompleteCharacter('약'));
 
     expect(transformNLAssimilation(current, next)).toEqual({
       current: {
-        first: 'ㅇ',
-        middle: 'ㅏ',
-        last: 'ㄹ',
+        choseong: 'ㅇ',
+        jungseong: 'ㅏ',
+        jongseong: 'ㄹ',
       },
       next: {
-        first: 'ㄹ',
-        middle: 'ㅑ',
-        last: 'ㄱ',
+        choseong: 'ㄹ',
+        jungseong: 'ㅑ',
+        jongseong: 'ㄱ',
       },
     });
   });
 
   it('ㄴ/ㄹ이 되기 위한 조건이지만 현재 음절의 중성의 ∙(아래아)가 하나가 아닐 경우에는 덧나지 않고 연음규칙이 적용된다', () => {
-    const current = defined(disassembleCompleteHangulCharacter('양'));
-    const next = defined(disassembleCompleteHangulCharacter('이'));
+    const current = defined(disassembleCompleteCharacter('양'));
+    const next = defined(disassembleCompleteCharacter('이'));
 
     expect(transformNLAssimilation(current, next)).toEqual({
       current: {
-        first: 'ㅇ',
-        middle: 'ㅑ',
-        last: 'ㅇ',
+        choseong: 'ㅇ',
+        jungseong: 'ㅑ',
+        jongseong: 'ㅇ',
       },
       next: {
-        first: 'ㅇ',
-        middle: 'ㅣ',
-        last: '',
+        choseong: 'ㅇ',
+        jungseong: 'ㅣ',
+        jongseong: '',
       },
     });
   });

@@ -11,10 +11,10 @@ import { ReturnSyllables, Syllable } from './rules.types';
  */
 export function transform19th(currentSyllable: Syllable, nextSyllable: Syllable): Pick<ReturnSyllables, 'next'> {
   const next = { ...nextSyllable };
-  const 제19항조건 = arrayIncludes(자음동화_받침_ㄴ_변환, currentSyllable.last) && next.first === 'ㄹ';
+  const 제19항조건 = arrayIncludes(자음동화_받침_ㄴ_변환, currentSyllable.jongseong) && next.choseong === 'ㄹ';
 
   if (제19항조건) {
-    next.first = 'ㄴ';
+    next.choseong = 'ㄴ';
   }
 
   return { next };

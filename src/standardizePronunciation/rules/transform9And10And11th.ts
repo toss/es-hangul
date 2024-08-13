@@ -1,4 +1,4 @@
-import { hasProperty } from '../../utils';
+import { hasProperty } from '../../_internal';
 import { 받침_대표음_발음, 음가가_없는_자음 } from '../standardizePronunciation.constants';
 import { Nullable, ReturnSyllables, Syllable } from './rules.types';
 
@@ -16,13 +16,13 @@ export function transform9And10And11th(
 ): Pick<ReturnSyllables, 'current'> {
   const current = { ...currentSyllable };
 
-  const is어말 = current.last && !nextSyllable;
-  const is음가있는자음앞 = current.last && nextSyllable?.first !== 음가가_없는_자음;
+  const is어말 = current.jongseong && !nextSyllable;
+  const is음가있는자음앞 = current.jongseong && nextSyllable?.choseong !== 음가가_없는_자음;
 
-  const 제9_10_11항주요조건 = (is어말 || is음가있는자음앞) && hasProperty(받침_대표음_발음, current.last);
+  const 제9_10_11항주요조건 = (is어말 || is음가있는자음앞) && hasProperty(받침_대표음_발음, current.jongseong);
 
   if (제9_10_11항주요조건) {
-    current.last = 받침_대표음_발음[current.last as keyof typeof 받침_대표음_발음];
+    current.jongseong = 받침_대표음_발음[current.jongseong as keyof typeof 받침_대표음_발음];
   }
 
   return { current };

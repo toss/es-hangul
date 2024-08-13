@@ -1,5 +1,5 @@
 import { arrayIncludes } from '../../_internal';
-import { hasProperty } from '../../utils';
+import { hasProperty } from '../../_internal';
 import { 된소리, 된소리_받침, 어간_받침 } from '../standardizePronunciation.constants';
 import { ReturnSyllables, Syllable } from './rules.types';
 
@@ -17,12 +17,12 @@ export function transformHardConversion(
 ): Pick<ReturnSyllables, 'next'> {
   const next = { ...nextSyllable };
 
-  if (hasProperty(된소리, next.first)) {
-    const 제23항조건 = arrayIncludes(된소리_받침, currentSyllable.last);
-    const 제24_25항조건 = arrayIncludes(어간_받침, currentSyllable.last) && next.first !== 'ㅂ';
+  if (hasProperty(된소리, next.choseong)) {
+    const 제23항조건 = arrayIncludes(된소리_받침, currentSyllable.jongseong);
+    const 제24_25항조건 = arrayIncludes(어간_받침, currentSyllable.jongseong) && next.choseong !== 'ㅂ';
 
     if (제23항조건 || 제24_25항조건) {
-      next.first = 된소리[next.first];
+      next.choseong = 된소리[next.choseong];
     }
   }
 

@@ -79,7 +79,7 @@ export const DISASSEMBLED_VOWELS_BY_VOWEL = {
 /**
  * 초성으로 올 수 있는 한글 글자
  */
-export const HANGUL_CHARACTERS_BY_FIRST_INDEX = [
+export const CHOSEONGS = [
   'ㄱ',
   'ㄲ',
   'ㄴ',
@@ -104,12 +104,12 @@ export const HANGUL_CHARACTERS_BY_FIRST_INDEX = [
 /**
  * 중성으로 올 수 있는 한글 글자
  */
-export const HANGUL_CHARACTERS_BY_MIDDLE_INDEX = Object.values(DISASSEMBLED_VOWELS_BY_VOWEL);
+export const JUNSEONGS = Object.values(DISASSEMBLED_VOWELS_BY_VOWEL);
 
 /**
  * 종성으로 올 수 있는 한글 글자
  */
-export const HANGUL_CHARACTERS_BY_LAST_INDEX = (
+export const JONGSEONGS = (
   [
     '',
     'ㄱ',

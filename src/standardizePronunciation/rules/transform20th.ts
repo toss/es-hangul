@@ -24,8 +24,8 @@ export function transform20th(currentSyllable: Syllable, nextSyllable: Syllable)
 function applyMainCondition(current: Syllable, next: Syllable): Pick<ReturnSyllables, 'current'> {
   const updatedCurrent = { ...current };
 
-  if (updatedCurrent.last === 'ㄴ' && next.first === 'ㄹ') {
-    updatedCurrent.last = 'ㄹ';
+  if (updatedCurrent.jongseong === 'ㄴ' && next.choseong === 'ㄹ') {
+    updatedCurrent.jongseong = 'ㄹ';
   }
   return { current: updatedCurrent };
 }
@@ -33,8 +33,11 @@ function applyMainCondition(current: Syllable, next: Syllable): Pick<ReturnSylla
 function applySupplementaryCondition(current: Syllable, next: Syllable): Pick<ReturnSyllables, 'next'> {
   const updatedNext = { ...next };
 
-  if (updatedNext.first === 'ㄴ' && (current.last === 'ㄹ' || arrayIncludes(['ㄹㅎ', 'ㄹㅌ'], current.last))) {
-    updatedNext.first = 'ㄹ';
+  if (
+    updatedNext.choseong === 'ㄴ' &&
+    (current.jongseong === 'ㄹ' || arrayIncludes(['ㄹㅎ', 'ㄹㅌ'], current.jongseong))
+  ) {
+    updatedNext.choseong = 'ㄹ';
   }
   return { next: updatedNext };
 }

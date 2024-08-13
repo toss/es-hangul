@@ -33,14 +33,18 @@ import { Callout, useTheme, Steps } from 'nextra-theme-docs';
 </div>
 
 ```tsx
-import { choseongIncludes } from 'es-hangul';
+import { getChoseong } from 'es-hangul';
 
 const searchWord = '라면';
 const userInput = 'ㄹㅁ';
 
-const result = choseongIncludes(searchWord, userInput);
-console.log(result); // true
+const result = getChoseong(searchWord); // ㄹㅁ
+
+if(result === userInput){
+  // do something 
+}
 ```
+
 
 ```tsx
 import { josa } from 'es-hangul';

@@ -1,7 +1,7 @@
 import { isNotUndefined, joinString } from '../_internal';
 import { isHangulAlphabet, isHangulCharacter } from '../_internal/hangul';
-import { combineHangulCharacter } from '../combineHangulCharacter';
-import { disassembleCompleteHangulCharacter } from '../disassembleCompleteHangulCharacter';
+import { combineCharacter } from '../combineCharacter';
+import { disassembleCompleteCharacter } from '../disassembleCompleteCharacter';
 import {
   transform12th,
   transform13And14th,
@@ -39,19 +39,19 @@ export function standardizePronunciation(hangul: string, options: Options = { ha
   }
 
   const processSyllables = (syllables: Syllable[], phrase: string, options: Options) =>
-    syllables.map((currentSyllable, I, array) => {
-      const nextSyllable = I < array.length - 1 ? array[I + 1] : null;
+    syllables.map((currentSyllable, index, array) => {
+      const nextSyllable = index < array.length - 1 ? array[index + 1] : null;
 
       const { current, next } = applyRules({
         currentSyllable,
         phrase,
-        index: I,
+        index,
         nextSyllable,
         options,
       });
 
       if (next) {
-        array[I + 1] = next;
+        array[index + 1] = next;
       }
 
       return current;
@@ -88,7 +88,7 @@ function 음절분해(hangulPhrase: string): {
 
       return true;
     })
-    .map(disassembleCompleteHangulCharacter)
+    .map(disassembleCompleteCharacter)
     .filter(isNotUndefined);
 
   return { notHangulPhrase, disassembleHangul };
@@ -146,7 +146,7 @@ function applyRules(params: ApplyParameters): {
 function assembleChangedHangul(disassembleHangul: Syllable[], notHangulPhrase: NotHangul[]): string {
   const changedSyllables = disassembleHangul
     .filter(isNotUndefined)
-    .map(syllable => combineHangulCharacter(syllable.first, syllable.middle, syllable.last));
+    .map(syllable => combineCharacter(syllable.choseong, syllable.jungseong, syllable.jongseong));
 
   for (const { index, syllable } of notHangulPhrase) {
     changedSyllables.splice(index, 0, syllable);

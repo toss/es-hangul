@@ -1,8 +1,8 @@
-import { disassembleCompleteHangulCharacter } from '../../disassembleCompleteHangulCharacter';
+import { disassembleCompleteCharacter } from '../../disassembleCompleteCharacter';
 
 export type NonUndefined<T> = T extends undefined ? never : T;
 export type Nullable<T> = T | null | undefined;
-export type Syllable = NonUndefined<ReturnType<typeof disassembleCompleteHangulCharacter>>;
+export type Syllable = NonUndefined<ReturnType<typeof disassembleCompleteCharacter>>;
 export type ReturnSyllables = {
   current: Syllable;
   next: Syllable;

@@ -1,8 +1,8 @@
+import { hasProperty } from './_internal';
 import { DISASSEMBLED_CONSONANTS_BY_CONSONANT, DISASSEMBLED_VOWELS_BY_VOWEL } from './constants';
-import { disassembleCompleteHangulCharacter } from './disassembleCompleteHangulCharacter';
-import { hasProperty } from './utils';
+import { disassembleCompleteCharacter } from './disassembleCompleteCharacter';
 
-export function disassembleHangulToGroups(str: string) {
+export function disassembleToGroups(str: string) {
   /*
    * FIXME(@raon0211):
    * Array#map을 사용하는 경우 Safari에서 'Array size is not a small enough positive integer' 오류가 발생함.
@@ -13,10 +13,14 @@ export function disassembleHangulToGroups(str: string) {
   const result: string[][] = [];
 
   for (const letter of str) {
-    const disassembledComplete = disassembleCompleteHangulCharacter(letter);
+    const disassembledComplete = disassembleCompleteCharacter(letter);
 
     if (disassembledComplete != null) {
-      result.push([...disassembledComplete.first, ...disassembledComplete.middle, ...disassembledComplete.last]);
+      result.push([
+        ...disassembledComplete.choseong,
+        ...disassembledComplete.jungseong,
+        ...disassembledComplete.jongseong,
+      ]);
       continue;
     }
 
@@ -40,6 +44,6 @@ export function disassembleHangulToGroups(str: string) {
   return result;
 }
 
-export function disassembleHangul(str: string) {
-  return disassembleHangulToGroups(str).reduce((hanguls, disassembleds) => `${hanguls}${disassembleds.join('')}`, '');
+export function disassemble(str: string) {
+  return disassembleToGroups(str).reduce((hanguls, disassembleds) => `${hanguls}${disassembleds.join('')}`, '');
 }

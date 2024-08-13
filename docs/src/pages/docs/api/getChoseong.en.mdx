@@ -1,0 +1,37 @@
+---
+title: getChoseong
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# getChoseong
+
+Extracts the Choseong from a Korean word. (Example: 사과 -> 'ㅅㄱ')
+
+```typescript
+function getChoseong(
+  // Korean string from which to extract the choseong
+  word: string
+): string;
+```
+
+## Examples
+
+```tsx
+getChoseong('사과'); // 'ㅅㄱ'
+getChoseong('띄어 쓰기'); // 'ㄸㅇ ㅆㄱ'
+```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { getChoseong } from 'es-hangul';
+
+console.log(getChoseong('사과'));
+```
+
+</Sandpack>
