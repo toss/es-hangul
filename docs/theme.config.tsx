@@ -1,4 +1,4 @@
-import { useIsDarkMode } from '@/hooks/use-is-dark-mode';
+import { ThemeMode } from '@/components/theme-mode/ThemeMode';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import type { DocsThemeConfig } from 'nextra-theme-docs';
@@ -17,11 +17,13 @@ const config: DocsThemeConfig = {
       };
     }
   },
-  logo: function useLogo() {
-    const isDarkMode = useIsDarkMode();
-
-    return <Image src={isDarkMode ? '/logo-white.png' : '/logo.png'} alt="logo" width={120} height={48} priority />;
-  },
+  logo: (
+    <ThemeMode>
+      {theme => (
+        <Image src={theme === 'dark' ? '/logo-white.png' : '/logo.png'} alt="logo" width="120" height="48" priority />
+      )}
+    </ThemeMode>
+  ),
   head: function useHead() {
     const { title } = useConfig();
 
@@ -97,32 +99,32 @@ const config: DocsThemeConfig = {
     toggleButton: true,
   },
   footer: {
-    text: function useText() {
-      const isDarkMode = useIsDarkMode();
-
-      return (
-        <div className="flex w-full flex-col items-center sm:items-start">
-          <div>
-            <a
-              className="flex items-center gap-1 text-current"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="toss homepage"
-              href="https://toss.im"
-            >
-              <span>Powered by</span>
-              <Image
-                src={isDarkMode ? '/toss-logo-white.png' : '/toss-logo-gray.png'}
-                alt="Toss"
-                width="64"
-                height="32"
-              />
-            </a>
-          </div>
-          <p className="mt-6 text-xs">© {new Date().getFullYear()} Viva Republica, Inc.</p>
+    text: (
+      <div className="flex w-full flex-col items-center sm:items-start">
+        <div>
+          <a
+            className="flex items-center gap-1 text-current"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="toss homepage"
+            href="https://toss.im"
+          >
+            <span>Powered by</span>
+            <ThemeMode>
+              {theme => (
+                <Image
+                  src={theme === 'dark' ? '/toss-logo-white.png' : '/toss-logo-gray.png'}
+                  alt="Toss"
+                  width="64"
+                  height="32"
+                />
+              )}
+            </ThemeMode>
+          </a>
         </div>
-      );
-    },
+        <p className="mt-6 text-xs">© {new Date().getFullYear()} Viva Republica, Inc.</p>
+      </div>
+    ),
   },
   toc: {
     backToTop: true,

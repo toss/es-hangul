@@ -1,0 +1,187 @@
+---
+title: Migrating to v2
+---
+
+# Migrating to v2
+
+## New Features
+
+### The `hasBatchim` function now has additional options.
+
+The `hasBatchim` function has been updated with an `only` option, allowing you to check if a string has a single batchim, double batchim, or any batchim at all.
+
+```tsx
+// Check if there is only a single batchim
+hasBatchim('감', { only: 'single' });
+
+// Check if there is only a double batchim
+hasBatchim('감', { only: 'double' });
+
+// Check if there is a batchim
+hasBatchim('감');
+
+## Handling BREAKING CHANGES
+
+### The acronymizeHangul function has been removed.
+
+This function was removed as it was not closely related to Hangul domain needs.
+If you need to extract initials, you can use the following method:
+
+```tsx
+string.split(' ').map(word => word.charAt(0));
+```
+
+### The assembleHangul function has been renamed.
+
+
+As specified in the [CONTRIBUTING.md](https://github.com/toss/es-hangul/blob/main/.github/CONTRIBUTING.md), the hangul suffix has been removed from the function name.
+
+```tsx
+// ASIS
+assembleHangul('ㄱ', 'ㅏ', 'ㅁ')
+
+// TOBE
+assemble('ㄱ', 'ㅏ', 'ㅁ')
+```
+
+### The choseongIncludes and chosungIncludes functions have been removed.
+
+The process of extracting the initial consonants (choseong) is provided by es-hangul, and checking for inclusion can be done with basic JavaScript methods, so these functions have been removed. You can use the getChoseong function to extract choseong, then use the includes method.
+
+
+```tsx
+// ASIS
+chosungIncludes('바나나', 'ㅂㄴㄴ');
+choseongIncludes('바나나', 'ㅂㄴㄴ');
+
+// TOBE
+
+const choseonged = getChoseong('바나나');
+chosunged.includes('ㅂㄴㄴ');
+```
+
+
+### The curriedCombineHangulCharacter function has been removed.
+
+The curriedCombineHangulCharacter function was removed as it was not intended for direct user use.
+If needed, you can implement it as follows:
+
+```tsx
+
+export const curriedCombineHangulCharacter=
+  (firstCharacter: string) =>
+  (middleCharacter: string) =>
+  (lastCharacter = '') =>
+    combineCharacter(firstCharacter, middleCharacter, lastCharacter);
+```
+
+
+### The combineHangulCharacter function has been renamed.
+
+As specified in the [CONTRIBUTING.md](https://github.com/toss/es-hangul/blob/main/.github/CONTRIBUTING.md), the hangul suffix has been removed from the function name.
+
+
+```tsx
+// ASIS
+combineHangulCharacter('ㄱ', 'ㅏ', 'ㅁ')
+
+// TOBE
+combineCharacter('ㄱ', 'ㅏ', 'ㅁ')
+```
+
+
+### The convertQwertyToHangulAlphabet function has been renamed.
+ 
+
+As specified in the [CONTRIBUTING.md](https://github.com/toss/es-hangul/blob/main/.github/CONTRIBUTING.md), the hangul suffix has been removed from the function name.
+
+
+```tsx
+// ASIS
+convertQwertyToHangulAlphabet('r')
+
+// TOBE
+convertQwertyToAlphabet('r')
+```
+
+### The disassembleHangul, disassembleHangulToGroups, and disassembleCompleteHangulCharacter functions have been renamed.
+
+As specified in the [CONTRIBUTING.md](https://github.com/toss/es-hangul/blob/main/.github/CONTRIBUTING.md), the hangul suffix has been removed from the function name.
+
+
+
+```tsx
+// ASIS
+disassembleHangul('감');
+disassembleHangulToGroups('감');
+disassembleCompleteHangulCharacter('감');
+
+// TOBE
+disassemble('감');
+disassembleToGroups('감');
+disassembleCompleteCharacter('감');
+```
+
+### The `extractHangul` function has been removed.
+
+It was removed as it is not closely related to the Hangul domain.<br/>
+
+### The `hangulIncludes` function has been removed.
+
+It was removed as it is not closely related to the Hangul domain.<br/>
+
+If needed, you can use the following method:
+
+```tsx
+function hangulIncludes(x: string, y: string) {
+  const disassembledX = disassembleHangul(x);
+  const disassembledY = disassembleHangul(y);
+
+  return disassembledX.includes(disassembledY);
+}
+
+### The function name removeLastHangulCharacter has been changed.
+
+As specified in the [CONTRIBUTING.md](https://github.com/toss/es-hangul/blob/main/.github/CONTRIBUTING.md), the hangul suffix has been removed from the function name.
+
+
+```tsx
+// ASIS
+removeLastHangulCharacter('감');
+
+// TOBE
+removeLastCharacter('감');
+```
+
+### The hasProperty and hasValueInReadOnlyStringList functions have been removed.
+
+
+They were removed as they are not closely related to the Hangul domain.
+
+If needed, you can use the following method:
+
+```tsx
+export function hasValueInReadOnlyStringList<T extends string>(list: readonly T[], value: string): value is T {
+  return list.some(item => item === value);
+}
+
+export function hasProperty<T extends object, K extends PropertyKey>(obj: T, key: K): key is K & keyof T {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
+
+```
+
+### The hasSingleBatchim function has been removed.
+
+
+The hasBatchim function now accepts an option to handle this use case.
+
+```tsx
+// ASIS
+hasSingleBatchim('감');
+
+// TOBE
+hasBatchim('감', { only: "single" });
+```
+
+

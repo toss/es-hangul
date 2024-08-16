@@ -1,0 +1,48 @@
+---
+title: date
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# date
+
+Convert numbers to native Korean words representing dates.
+
+## days
+
+Convert numbers to native Korean words for days. The given number is valid when it is greater than 0 and less than or equal to 30.
+
+```typescript
+function days(
+  // Number to convert
+  num: number
+): string;
+```
+
+### Examples
+
+```typescript
+days(1); // '하루'
+days(2); // '이틀'
+days(3); // '사흘'
+days(10); // '열흘'
+days(11); // '열하루'
+days(20); // '스무날'
+days(29); // '스무아흐레'
+days(30); // '서른날'
+```
+
+### Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { days } from 'es-hangul';
+
+console.log(days(3));
+console.log(days(4));
+```
+
+</Sandpack>

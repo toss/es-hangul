@@ -1,0 +1,180 @@
+---
+title: v2로 마이그레이션하기
+---
+
+# v2로 마이그레이션하기
+
+## 새로운 기능
+
+### hasBatchim 함수에 옵션이 추가되었어요.
+
+`hasBatchim` 함수에 `only` 옵션을 추가하여 단일 받침만 있는지, 복수 받침만 있는지, 받침이 있는지 없는지를 확인할 수 있어요.
+
+```tsx
+// 단일 받침만 있는지 확인
+hasBatchim('감', { only: 'single' });
+
+// 복수 받침만 있는지 확인
+hasBatchim('감', { only: 'double' });
+
+// 받침이 있는지 확인
+hasBatchim('감');
+```
+
+## BREAKING CHANGES 처리하기
+
+### acronymizeHangul 함수가 삭제되었어요.
+
+한글 도메인과 크게 관련이 없어서 제거되었어요.<br/>
+두음을 추출해야하는 경우가 있으면 아래와 같이 사용하면 되어요.
+
+```tsx
+string.split(' ').map(word => word.charAt(0));
+```
+
+### assembleHangul의 함수명이 바뀌었어요.
+
+[CONTRIBUTING.md](https://github.com/toss/es-hangul/blob/main/.github/CONTRIBUTING.md)에 적혀있는 대로 함수명에서 hangul을 제거하였어요.
+
+```tsx
+// ASIS
+assembleHangul('ㄱ', 'ㅏ', 'ㅁ')
+
+// TOBE
+assemble('ㄱ', 'ㅏ', 'ㅁ')
+```
+
+### choseongIncludes, chosungIncludes 함수가 삭제되었어요.
+
+초성화하는 과정은 es-hangul에서 제공하고, 문자열의 포함 여부는 자바스크립트 기본 메서드로 충분하다고 판단하여 제거하였어요.
+[getChoseong](https://es-hangul.slash.page/docs/api/getChoseong) 함수를 사용하여 초성화한 후, includes 메서드를 사용하면 됩니다.
+
+```tsx
+// ASIS
+chosungIncludes('바나나', 'ㅂㄴㄴ');
+choseongIncludes('바나나', 'ㅂㄴㄴ');
+
+// TOBE
+
+const choseonged = getChoseong('바나나');
+chosunged.includes('ㅂㄴㄴ');
+```
+
+
+### curriedCombineHangulCharacter 함수가 삭제되었어요.
+
+curriedCombineHangulCharacter함수는 사용자가 직접 사용할 일이 없어서 제거되었어요.<br/>
+사용이 필요하다면 아래와 같이 사용하면 됩니다.
+
+```tsx
+
+export const curriedCombineHangulCharacter=
+  (firstCharacter: string) =>
+  (middleCharacter: string) =>
+  (lastCharacter = '') =>
+    combineCharacter(firstCharacter, middleCharacter, lastCharacter);
+```
+
+
+### combineHangulCharacter의 함수명이 변경되었어요.
+
+[CONTRIBUTING.md](https://github.com/toss/es-hangul/blob/main/.github/CONTRIBUTING.md)에 적혀있는 대로 함수명에서 hangul을 제거하였어요.
+
+```tsx
+// ASIS
+combineHangulCharacter('ㄱ', 'ㅏ', 'ㅁ')
+
+// TOBE
+combineCharacter('ㄱ', 'ㅏ', 'ㅁ')
+```
+
+
+### convertQwertyToHangulAlphabet의 함수명이 변경되었어요.
+
+[CONTRIBUTING.md](https://github.com/toss/es-hangul/blob/main/.github/CONTRIBUTING.md)에 적혀있는 대로 함수명에서 hangul을 제거하였어요.
+
+```tsx
+// ASIS
+convertQwertyToHangulAlphabet('r')
+
+// TOBE
+convertQwertyToAlphabet('r')
+```
+
+### disassembleHangul, disassembleHangulToGroups, disassembleCompleteHangulCharacter의 함수명이 변경되었어요.
+
+[CONTRIBUTING.md](https://github.com/toss/es-hangul/blob/main/.github/CONTRIBUTING.md)에 적혀있는 대로 함수명에서 hangul을 제거하였어요.
+
+
+```tsx
+// ASIS
+disassembleHangul('감');
+disassembleHangulToGroups('감');
+disassembleCompleteHangulCharacter('감');
+
+// TOBE
+disassemble('감');
+disassembleToGroups('감');
+disassembleCompleteCharacter('감');
+```
+
+### extractHangul 함수가 삭제되었어요.
+
+한글 도메인과 크게 관련이 없어서 제거되었어요.<br/>
+
+### hangulIncludes 함수가 삭제되었어요.
+
+한글 도메인과 크게 관련이 없어서 제거되었어요.<br/>
+
+필요하다면 다음과 같이 사용해주세요.
+
+```tsx
+function hangulIncludes(x: string, y: string) {
+  const disassembledX = disassembleHangul(x);
+  const disassembledY = disassembleHangul(y);
+
+  return disassembledX.includes(disassembledY);
+}
+```
+
+### removeLastHangulCharacter의 함수명이 변경되었어요.
+
+[CONTRIBUTING.md](https://github.com/toss/es-hangul/blob/main/.github/CONTRIBUTING.md)에 적혀있는 대로 함수명에서 hangul을 제거하였어요.
+
+```tsx
+// ASIS
+removeLastHangulCharacter('감');
+
+// TOBE
+removeLastCharacter('감');
+```
+
+### hasProperty, hasValueInReadOnlyStringList 함수가 삭제되었어요.
+
+한글 도메인과 크게 관련이 없어서 제거되었어요.<br/>
+
+필요하다면 다음과 같이 사용해주세요.
+
+```tsx
+export function hasValueInReadOnlyStringList<T extends string>(list: readonly T[], value: string): value is T {
+  return list.some(item => item === value);
+}
+
+export function hasProperty<T extends object, K extends PropertyKey>(obj: T, key: K): key is K & keyof T {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
+
+```
+
+### hasSingleBatchim함수가 삭제되었어요.
+
+hasBatchim에 옵션을 주어 사용이 가능해요.
+
+```tsx
+// ASIS
+hasSingleBatchim('감');
+
+// TOBE
+hasBatchim('감', { only: "single" });
+```
+
