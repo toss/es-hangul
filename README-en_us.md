@@ -18,8 +18,9 @@ const userInput = 'ㄹㅁ';
 
 const result = getChoseong(searchWord); // ㄹㅁ
 
+// Check if the 'choseong' of the search word match the user input
 if (result === userInput) {
-  // do something
+  something()
 }
 ```
 
