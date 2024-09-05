@@ -1,7 +1,7 @@
-import { combineCharacter } from './combineCharacter';
-import { excludeLastElement } from './_internal';
-import { canBeJungseong } from './canBe';
-import { disassembleToGroups } from './disassemble';
+import { combineCharacter } from '../combineCharacter';
+import { excludeLastElement } from '../_internal';
+import { canBeJungseong } from '../canBe';
+import { disassembleToGroups } from '../disassemble';
 
 /**
  * @name removeLastCharacter

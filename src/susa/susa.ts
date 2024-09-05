@@ -1,5 +1,5 @@
-import { hasProperty } from './_internal';
-import { SUSA_MAP, SUSA_CLASSIFIER_MAP } from './constants';
+import { hasProperty } from '../_internal';
+import { SUSA_MAP, SUSA_CLASSIFIER_MAP } from '../constants';
 
 export function susa(num: number, classifier?: boolean): string {
   validateNumber(num);

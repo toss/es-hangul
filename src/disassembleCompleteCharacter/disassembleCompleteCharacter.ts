@@ -6,7 +6,7 @@ import {
   JUNSEONGS,
   NUMBER_OF_JONGSEONG,
   NUMBER_OF_JUNGSEONG,
-} from './constants';
+} from '../constants';
 
 interface ReturnTypeDisassembleCompleteCharacter {
   choseong: (typeof CHOSEONGS)[number];

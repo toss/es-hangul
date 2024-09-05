@@ -1,5 +1,5 @@
-import { hasValueInReadOnlyStringList } from './_internal';
-import { CHOSEONGS, JONGSEONGS, JUNSEONGS } from './constants';
+import { hasValueInReadOnlyStringList } from '../_internal';
+import { CHOSEONGS, JONGSEONGS, JUNSEONGS } from '../constants';
 
 /**
  * @name canBeChoseong
