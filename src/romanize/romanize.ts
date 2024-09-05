@@ -1,9 +1,9 @@
 import { isHangulCharacter } from '../_internal/hangul';
 import { assemble } from '../assemble';
 import { canBeChoseong } from '../canBe';
-import { 종성_알파벳_발음, 중성_알파벳_발음, 초성_알파벳_발음 } from '../constants';
 import { disassembleCompleteCharacter } from '../disassembleCompleteCharacter';
 import { standardizePronunciation } from '../standardizePronunciation';
+import { 종성_알파벳_발음, 중성_알파벳_발음, 초성_알파벳_발음 } from './constants';
 
 /**
  * 주어진 한글 문자열을 로마자로 변환합니다.

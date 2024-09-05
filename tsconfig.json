@@ -7,7 +7,11 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": ["src", ".eslintrc.js", "packlint.config.mjs", "vitest.config.mts"]
 }

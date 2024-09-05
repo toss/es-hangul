@@ -1,6 +1,6 @@
 import { hasProperty } from '../_internal';
 import { assemble } from '../assemble';
-import { QWERTY_KEYBOARD_MAP } from '../constants';
+import { QWERTY_KEYBOARD_MAP } from './constants';
 
 /**
  * @name convertQwertyToAlphabet

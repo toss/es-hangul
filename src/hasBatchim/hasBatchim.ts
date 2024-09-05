@@ -3,7 +3,7 @@ import {
   COMPLETE_HANGUL_START_CHARCODE,
   JONGSEONGS,
   NUMBER_OF_JONGSEONG,
-} from '../constants';
+} from '@/_internal/constants';
 
 /**
  * @name hasBatchim

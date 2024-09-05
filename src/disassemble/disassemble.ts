@@ -1,5 +1,5 @@
+import { DISASSEMBLED_CONSONANTS_BY_CONSONANT, DISASSEMBLED_VOWELS_BY_VOWEL } from '@/_internal/constants';
 import { hasProperty } from '../_internal';
-import { DISASSEMBLED_CONSONANTS_BY_CONSONANT, DISASSEMBLED_VOWELS_BY_VOWEL } from '../constants';
 import { disassembleCompleteCharacter } from '../disassembleCompleteCharacter';
 
 export function disassembleToGroups(str: string) {
