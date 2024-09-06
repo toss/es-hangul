@@ -1,5 +1,5 @@
-import { hasProperty } from './_internal';
-import { assemble } from './assemble';
+import { hasProperty } from '../_internal';
+import { assemble } from '../assemble';
 import { QWERTY_KEYBOARD_MAP } from './constants';
 
 /**

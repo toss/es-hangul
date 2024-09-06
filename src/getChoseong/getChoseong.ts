@@ -1,4 +1,5 @@
-import { CHOSEONGS, JASO_HANGUL_NFD } from './constants';
+import { CHOSEONGS } from '@/_internal/constants';
+import { JASO_HANGUL_NFD } from './constants';
 
 /**
  * @name getChoseong

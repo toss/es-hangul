@@ -1,12 +1,12 @@
 import {
+  CHOSEONGS,
   COMPLETE_HANGUL_END_CHARCODE,
   COMPLETE_HANGUL_START_CHARCODE,
-  CHOSEONGS,
   JONGSEONGS,
   JUNSEONGS,
   NUMBER_OF_JONGSEONG,
   NUMBER_OF_JUNGSEONG,
-} from './constants';
+} from '@/_internal/constants';
 
 interface ReturnTypeDisassembleCompleteCharacter {
   choseong: (typeof CHOSEONGS)[number];

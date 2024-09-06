@@ -1,0 +1,10 @@
+import { _JASO_HANGUL_NFD } from '@/_internal/constants';
+
+export const JASO_HANGUL_NFD = {
+  START_CHOSEONG: _JASO_HANGUL_NFD[0], // ㄱ
+  START_JUNGSEONG: _JASO_HANGUL_NFD[1], // ㅏ
+  START_JONGSEONG: _JASO_HANGUL_NFD[2], // ㄱ
+  END_CHOSEONG: _JASO_HANGUL_NFD[3], // ㅎ
+  END_JUNGSEONG: _JASO_HANGUL_NFD[4], // ㅣ
+  END_JONGSEONG: _JASO_HANGUL_NFD[5], // ㅎ
+};

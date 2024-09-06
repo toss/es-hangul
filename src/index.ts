@@ -1,7 +1,7 @@
 export { assemble } from './assemble';
 export { combineCharacter, combineVowels } from './combineCharacter';
 export { convertQwertyToHangul, convertQwertyToAlphabet } from './convertQwertyToAlphabet';
-export { days } from './date';
+export { days } from './days';
 export { disassemble, disassembleToGroups } from './disassemble';
 export { disassembleCompleteCharacter } from './disassembleCompleteCharacter';
 export { josa } from './josa';
