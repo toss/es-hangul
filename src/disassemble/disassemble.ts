@@ -2,7 +2,7 @@ import { DISASSEMBLED_CONSONANTS_BY_CONSONANT, DISASSEMBLED_VOWELS_BY_VOWEL } fr
 import { hasProperty } from '../_internal';
 import { disassembleCompleteCharacter } from '../disassembleCompleteCharacter';
 
-export function disassembleToGroups(str: string) {
+export function disassembleToGroups(str: string): string[][] {
   /*
    * FIXME(@raon0211):
    * Array#map을 사용하는 경우 Safari에서 'Array size is not a small enough positive integer' 오류가 발생함.
@@ -44,6 +44,6 @@ export function disassembleToGroups(str: string) {
   return result;
 }
 
-export function disassemble(str: string) {
+export function disassemble(str: string): string {
   return disassembleToGroups(str).reduce((hanguls, disassembleds) => `${hanguls}${disassembleds.join('')}`, '');
 }

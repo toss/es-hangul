@@ -16,7 +16,7 @@ import { binaryAssemble } from '../_internal/hangul';
  * assemble(['아버지가', ' ', '방에 ', '들어갑니다']) // 아버지가 방에 들어갑니다
  * assemble(['ㅇ', 'ㅏ', 'ㅂ', 'ㅓ', 'ㅈ', 'ㅣ']) // 아버지
  */
-export function assemble(words: string[]) {
+export function assemble(words: string[]): string {
   const disassembled = disassemble(words.join('')).split('');
   return disassembled.reduce(binaryAssemble);
 }

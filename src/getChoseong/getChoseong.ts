@@ -15,7 +15,7 @@ import { JASO_HANGUL_NFD } from './constants';
  * getChoseong('사과') // 'ㅅㄱ'
  * getChoseong('띄어 쓰기') // 'ㄸㅇ ㅆㄱ'
  */
-export function getChoseong(word: string) {
+export function getChoseong(word: string): string {
   return word
     .normalize('NFD')
     .replace(EXTRACT_CHOSEONG_REGEX, '') // NFD ㄱ-ㅎ, NFC ㄱ-ㅎ 외 문자 삭제

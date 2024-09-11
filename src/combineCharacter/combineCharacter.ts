@@ -25,7 +25,7 @@ import { canBeChoseong, canBeJongseong, canBeJungseong } from '../canBe';
  * combineCharacter('ㄱ', 'ㅏ', 'ㅂㅅ') // '값'
  * combineCharacter('ㅌ', 'ㅗ') // '토'
  */
-export function combineCharacter(choseong: string, jungseong: string, jongseong = '') {
+export function combineCharacter(choseong: string, jungseong: string, jongseong = ''): string {
   if (canBeChoseong(choseong) === false || canBeJungseong(jungseong) === false || canBeJongseong(jongseong) === false) {
     throw new Error(`Invalid hangul Characters: ${choseong}, ${jungseong}, ${jongseong}`);
   }
