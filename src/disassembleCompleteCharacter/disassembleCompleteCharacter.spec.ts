@@ -34,7 +34,7 @@ describe('disassembleCompleteCharacter', () => {
   });
 
   it('완전한 한글 문자열이 아니면 undefined를 반환해야 합니다.', () => {
-    expect(disassembleCompleteCharacter('ㄱ')).toBeUndefined;
-    expect(disassembleCompleteCharacter('ㅏ')).toBeUndefined;
+    expect(disassembleCompleteCharacter('ㄱ')).toBeUndefined();
+    expect(disassembleCompleteCharacter('ㅏ')).toBeUndefined();
   });
 });
