@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: '0 5 * * 1-5'
   workflow_dispatch:
-    inputs: { url: { description: 'URL to check', required: false, default: 'https://es-toolkit.slash.page' } }
+    inputs: { url: { description: 'URL to check', required: false, default: 'https://es-hangul.slash.page' } }
 
 jobs:
   broken-link-checker:
@@ -20,5 +20,5 @@ jobs:
       - run: yarn install
       - name: Check broken link
         env:
-          url: ${{ github.event.inputs.url || 'https://es-toolkit.slash.page' }}
+          url: ${{ github.event.inputs.url || 'https://es-hangul.slash.page' }}
         run: yarn blc $url --ro
