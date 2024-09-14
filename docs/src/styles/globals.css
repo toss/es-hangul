@@ -2,24 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-* body {
+body {
   font-family:
-    Toss Product Sans,
+    'Toss Product Sans',
     Tossface,
     -apple-system,
     BlinkMacSystemFont,
-    Bazier Square,
-    Noto Sans KR,
-    Segoe UI,
-    Apple SD Gothic Neo,
+    'Bazier Square',
+    'Noto Sans KR',
+    'Segoe UI',
+    'Apple SD Gothic Neo',
     Roboto,
-    Helvetica Neue,
+    'Helvetica Neue',
     Arial,
     sans-serif,
-    Apple Color Emoji,
-    Segoe UI Emoji,
-    Segoe UI Symbol,
-    Noto Color Emoji;
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    'Noto Color Emoji';
 }
 
 @layer utilities {
