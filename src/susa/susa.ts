@@ -8,11 +8,11 @@ import { SUSA_MAP, SUSA_CLASSIFIER_MAP } from './constants';
  * @returns 변환된 수사를 반환합니다.
  *
  * @example
- * susa(1); // '하나
- * susa(2); // '둘
- * susa(11); // '열하나
- * susa(21); // '스물하나
- * susa(99); // '아흔아홉
+ * susa(1); // '하나'
+ * susa(2); // '둘'
+ * susa(11); // '열하나'
+ * susa(21); // '스물하나'
+ * susa(99); // '아흔아홉'
  * susa(100); // '백'
  * susa(1, true); // '한'
  * susa(2, true); // '두'
