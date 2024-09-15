@@ -3,6 +3,11 @@ import { SUSA_MAP, SUSA_CLASSIFIER_MAP } from './constants';
 
 /**
  * 숫자를 순 우리말 수사로 변환합니다. 주어진 숫자가 0보다 크고 100 이하일 때 유효합니다.
+ *
+ * @remarks
+ * - **수사**란 숫자를 나타내는 우리말 단어입니다. [자세히 알아보기](https://ko.dict.naver.com/#/entry/koko/d0ce2b674cae4b44b9028f648dd458b0)
+ * - **수관형사**는 사물의 수나 양을 나타내는 관형사입니다. ‘두 사람’의 ‘두’, ‘세 근’의 ‘세’ 따위를 뜻 합니다. [자세히 알아보기](https://ko.dict.naver.com/#/entry/koko/c513782b82554ff499c80ec616c5b611)
+ *
  * @param num 숫자를 입력합니다.
  * @param classifier 수관형사를 사용할지 여부를 입력합니다. 기본값은 false입니다.
  * @returns 변환된 수사를 반환합니다.
