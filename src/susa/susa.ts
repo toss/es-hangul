@@ -1,6 +1,27 @@
 import { hasProperty } from '../_internal';
 import { SUSA_MAP, SUSA_CLASSIFIER_MAP } from './constants';
 
+/**
+ * 숫자를 순 우리말 수사로 변환합니다. 주어진 숫자가 0보다 크고 100 이하일 때 유효합니다.
+ * @param num 숫자를 입력합니다.
+ * @param classifier 수관형사를 사용할지 여부를 입력합니다. 기본값은 false입니다.
+ * @returns 변환된 수사를 반환합니다.
+ *
+ * @example
+ * susa(1); // '하나
+ * susa(2); // '둘
+ * susa(11); // '열하나
+ * susa(21); // '스물하나
+ * susa(99); // '아흔아홉
+ * susa(100); // '백'
+ * susa(1, true); // '한'
+ * susa(2, true); // '두'
+ * susa(11, true); // '열한'
+ * susa(20, true); // '스무'
+ * susa(21, true); // '스물한'
+ *
+ * @see https://es-hangul.slash.page/docs/api/susa
+ */
 export function susa(num: number, classifier?: boolean): string {
   validateNumber(num);
   return classifier ? getClassifierWord(num) : getNumberWord(num);
