@@ -1,29 +1,10 @@
-export const HANGUL_DIGITS = [
-  '',
-  '만',
-  '억',
-  '조',
-  '경',
-  '해',
-  '자',
-  '양',
-  '구',
-  '간',
-  '정',
-  '재',
-  '극',
-  '항하사',
-  '아승기',
-  '나유타',
-  '불가사의',
-  '무량대수',
-  '겁',
-  '업',
-];
-export const HANGUL_DIGITS_MAX = HANGUL_DIGITS.length * 4;
-export const HANGUL_NUMBERS = ['', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
-export const HANGUL_NUMBERS_FOR_DECIMAL = ['영', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
-export const HANGUL_CARDINAL = ['', '십', '백', '천'];
+import {
+  HANGUL_DIGITS_MAX,
+  HANGUL_NUMBERS_FOR_DECIMAL,
+  HANGUL_NUMBERS,
+  HANGUL_DIGITS,
+  HANGUL_CARDINAL,
+} from '@/_internal/constants';
 
 export function amountToHangul(amount: string | number) {
   const [rawIntegerPart, rawDecimalPart] = String(amount)
