@@ -2,15 +2,15 @@ import { numberToHangul } from './numberToHangul';
 
 describe('numberToHangul', () => {
   test('기본 변환', () => {
-    expect(numberToHangul(21_0000)).toBe('이십일만');
-    expect(numberToHangul(1_2345)).toBe('일만이천삼백사십오');
-    expect(numberToHangul(1_2345_6780)).toBe('일억이천삼백사십오만육천칠백팔십');
+    expect(numberToHangul(210_000)).toBe('이십일만');
+    expect(numberToHangul(12_345)).toBe('일만이천삼백사십오');
+    expect(numberToHangul(123_456_780)).toBe('일억이천삼백사십오만육천칠백팔십');
   });
 
   test('공백 포함 변환', () => {
-    expect(numberToHangul(21_0000, true)).toBe('이십일만');
-    expect(numberToHangul(1_2345, true)).toBe('일만 이천삼백사십오');
-    expect(numberToHangul(1_2345_6780, true)).toBe('일억 이천삼백사십오만 육천칠백팔십');
+    expect(numberToHangul(210_000, { spacing: true })).toBe('이십일만');
+    expect(numberToHangul(12_345, { spacing: true })).toBe('일만 이천삼백사십오');
+    expect(numberToHangul(123_456_780, { spacing: true })).toBe('일억 이천삼백사십오만 육천칠백팔십');
   });
 
   test('0과 10,000보다 작은 경우', () => {

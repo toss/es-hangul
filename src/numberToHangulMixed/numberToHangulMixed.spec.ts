@@ -2,15 +2,15 @@ import { numberToHangulMixed } from './numberToHangulMixed';
 
 describe('numberToHangulMixed', () => {
   test('기본 변환', () => {
-    expect(numberToHangulMixed(21_0000)).toBe('21만');
-    expect(numberToHangulMixed(1_2345)).toBe('1만2,345');
-    expect(numberToHangulMixed(1_2345_6780)).toBe('1억2,345만6,780');
+    expect(numberToHangulMixed(210_000)).toBe('21만');
+    expect(numberToHangulMixed(12_345)).toBe('1만2,345');
+    expect(numberToHangulMixed(123_456_780)).toBe('1억2,345만6,780');
   });
 
   test('공백 포함 변환', () => {
-    expect(numberToHangulMixed(21_0000, true)).toBe('21만');
-    expect(numberToHangulMixed(1_2345, true)).toBe('1만 2,345');
-    expect(numberToHangulMixed(1_2345_6780, true)).toBe('1억 2,345만 6,780');
+    expect(numberToHangulMixed(210_000, { spacing: true })).toBe('21만');
+    expect(numberToHangulMixed(12_345, { spacing: true })).toBe('1만 2,345');
+    expect(numberToHangulMixed(123_456_780, { spacing: true })).toBe('1억 2,345만 6,780');
   });
 
   test('0과 10,000보다 작은 경우', () => {
