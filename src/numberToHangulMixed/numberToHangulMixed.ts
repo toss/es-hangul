@@ -1,6 +1,6 @@
 import { HANGUL_DIGITS } from '@/_internal/constants';
 
-export function numberToHangulMixed(input: number, spacing?: boolean): string {
+export function numberToHangulMixed(input: number, options?: { spacing?: boolean }): string {
   if (input === 0) {
     return '0';
   }
@@ -22,7 +22,7 @@ export function numberToHangulMixed(input: number, spacing?: boolean): string {
     placeIndex++;
   }
 
-  if (spacing) {
+  if (options?.spacing) {
     return koreanParts
       .filter(part => part !== '')
       .join(' ')

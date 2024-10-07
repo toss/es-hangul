@@ -1,6 +1,6 @@
 import { HANGUL_CARDINAL, HANGUL_DIGITS, HANGUL_NUMBERS } from '@/_internal/constants';
 
-export function numberToHangul(input: number, spacing?: boolean): string {
+export function numberToHangul(input: number, options?: { spacing?: boolean }): string {
   if (input === 0) {
     return '영';
   }
@@ -18,7 +18,7 @@ export function numberToHangul(input: number, spacing?: boolean): string {
     placeIndex++;
   }
 
-  if (spacing) {
+  if (options?.spacing) {
     return koreanParts
       .filter(part => part !== '')
       .join(' ')
