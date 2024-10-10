@@ -33,21 +33,14 @@ function numberToKoreanUpToThousand(num: number): string {
     throw new Error('0 이상 9999 이하의 숫자만 입력 가능합니다.');
   }
 
-  let result = '';
-  let digitIndex = 0;
+  const koreanDigits = num
+    .toString()
+    .split('')
+    .reverse()
+    .map((digit, index) => (digit === '0' ? '' : HANGUL_NUMBERS[Number(digit)] + HANGUL_CARDINAL[index]))
+    .reverse()
+    .join('');
 
-  while (num > 0) {
-    const currentDigit = num % 10;
+  return koreanDigits.replace(/일천/, '천').replace(/일백/, '백').replace(/일십/, '십') || '';
 
-    if (currentDigit > 0) {
-      result = HANGUL_NUMBERS[currentDigit] + HANGUL_CARDINAL[digitIndex] + result;
-    }
-
-    num = Math.floor(num / 10);
-    digitIndex++;
-  }
-
-  result = result.replace(/일천/, '천').replace(/일백/, '백').replace(/일십/, '십');
-
-  return result || '';
 }
