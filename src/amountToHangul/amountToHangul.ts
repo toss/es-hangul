@@ -6,6 +6,9 @@ import {
   HANGUL_CARDINAL,
 } from '@/_internal/constants';
 
+/**
+ * @deprecated 더 유연하게 사용 가능한 `numberToHangul`을 이용해 주세요
+ */
 export function amountToHangul(amount: string | number) {
   const [rawIntegerPart, rawDecimalPart] = String(amount)
     .replace(/[^\d.]+/g, '')
