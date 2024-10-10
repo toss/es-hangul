@@ -13,3 +13,5 @@ export { hasBatchim } from './hasBatchim';
 export { canBeChoseong, canBeJongseong, canBeJungseong } from './canBe';
 export { getChoseong } from './getChoseong';
 export { amountToHangul } from './amountToHangul';
+export { numberToHangul } from './numberToHangul';
+export { numberToHangulMixed } from './numberToHangulMixed';

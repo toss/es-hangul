@@ -1,0 +1,38 @@
+---
+title: numberToHangulMixed
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# numberToHangulMixed
+
+Attaches the Korean number units that change every 4 digits to the given number.
+It supports spacing for “man(萬)” units to accommodate various requirements.
+
+```typescript
+function numberToHangulMixed(input: number, options?: { spacing?: boolean }): string;
+```
+
+## Examples
+
+```tsx
+numberToHangulMixed(210_000); // '21만';
+numberToHangulMixed(12_345); // '1만2,345';
+numberToHangulMixed(123_456_780); // '1억2,345만6,780';
+numberToHangulMixed(123_456_780, { spacing: true }); // '1억 2,345만 6,780';
+```
+
+## 사용해보기
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { numberToHangulMixed } from 'es-hangul';
+
+console.log(numberToHangulMixed(1_2345_6780));
+console.log(numberToHangulMixed(1_2345_6780, { spacing: true }));
+```
+
+</Sandpack>

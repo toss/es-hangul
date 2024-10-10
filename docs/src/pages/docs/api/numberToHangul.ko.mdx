@@ -1,0 +1,38 @@
+---
+title: numberToHangul
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# numberToHangul
+
+주어진 숫자를 한자어 수사로 바꿔줍니다.
+다양한 요구사항에 대응하도록 '만(萬)' 단위로 띄어쓰기를 지원합니다.
+
+```typescript
+function numberToHangul(input: number, options?: { spacing?: boolean }): string;
+```
+
+## Examples
+
+```tsx
+numberToHangul(210_000); // '이십일만';
+numberToHangul(12_345); // '일만이천삼백사십오';
+numberToHangul(123_456_780); // '일억이천삼백사십오만육천칠백팔십';
+numberToHangul(123_456_780, { spacing: true }); // '일억 이천삼백사십오만 육천칠백팔십';
+```
+
+## 사용해보기
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { numberToHangul } from 'es-hangul';
+
+console.log(numberToHangul(123_456_780));
+console.log(numberToHangul(123_456_780, { spacing: true }));
+```
+
+</Sandpack>

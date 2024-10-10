@@ -1,0 +1,38 @@
+---
+title: numberToHangul
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# numberToHangul
+
+Converts the given number into a Korean numeral expression using Sino-Korean numbers.
+It supports spacing for “man(萬)” units to accommodate various requirements.
+
+```typescript
+function numberToHangul(input: number, options?: { spacing?: boolean }): string;
+```
+
+## Examples
+
+```tsx
+numberToHangul(210_000); // '이십일만';
+numberToHangul(12_345); // '일만이천삼백사십오';
+numberToHangul(123_456_780); // '일억이천삼백사십오만육천칠백팔십';
+numberToHangul(123_456_780, { spacing: true }); // '일억 이천삼백사십오만 육천칠백팔십';
+```
+
+## 사용해보기
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { numberToHangul } from 'es-hangul';
+
+console.log(numberToHangul(123_456_780));
+console.log(numberToHangul(123_456_780, { spacing: true }));
+```
+
+</Sandpack>
