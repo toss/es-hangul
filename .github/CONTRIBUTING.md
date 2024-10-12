@@ -9,14 +9,14 @@
 
 다음과 같은 방법으로 es-hangul 라이브러리에 기여할 수 있습니다:
 
-- Improving our [docs](https://slash.page)
-- [Reporting a bug in our issues tab](https://github.com/toss/slash/issues/new/choose)
-- [Requesting a new feature or package](https://github.com/toss/slash/issues/new/choose)
-- [Having a look at our issue list](https://github.com/toss/slash/issues) to see what's to be fixed
+- Improving our [docs](https://es-hangul.slash.page)
+- [Reporting a bug in our issues tab](https://github.com/toss/es-hangul/issues/new/choose)
+- [Requesting a new feature or package](https://github.com/toss/es-hangul/issues/new/choose)
+- [Having a look at our issue list](https://github.com/toss/es-hangul/issues) to see what's to be fixed
 
 ## 2. Pull Requests
 
-> [Opening a pull request](https://github.com/toss/slash/compare) <br/>
+> [Opening a pull request](https://github.com/toss/es-hangul/compare) <br/>
 
 자신의 PR을 제출할 수 있습니다. PR의 제목은 다음 형식과 일치해야 합니다:
 
