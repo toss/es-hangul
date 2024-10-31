@@ -9,6 +9,8 @@ module.exports = {
     'shared-node-browser': true,
   },
 
+  ignorePatterns: ['benchmarks/**/*'],
+
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: { jsx: true },
