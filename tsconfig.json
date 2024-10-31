@@ -13,5 +13,5 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", ".eslintrc.js", "packlint.config.mjs", "vitest.config.mts"]
+  "include": ["src", ".eslintrc.js", "packlint.config.mjs", "vitest.config.mts", "benchmarks"]
 }
