@@ -1,0 +1,19 @@
+{
+  "name": "benchmarks",
+  "private": true,
+  "scripts": {
+    "check-bundle-size": "vitest --update"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.1.0",
+    "auto-josa": "^1.0.0",
+    "es-hangul": "workspace:^",
+    "esbuild": "0.23.0",
+    "josa": "^3.0.1",
+    "k-popo": "^2.0.5",
+    "vitest": "^2.1.2"
+  },
+  "devDependencies": {
+    "@types/josa": "^3"
+  }
+}

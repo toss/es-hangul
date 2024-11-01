@@ -1,4 +1,4 @@
-import { disassembleCompleteCharacter } from '../disassembleCompleteCharacter';
+import { disassembleCompleteCharacter } from '@/disassembleCompleteCharacter';
 import { hasBatchim } from '../hasBatchim';
 
 type JosaOption =
@@ -37,7 +37,7 @@ function josaPicker(word: string, josa: JosaOption): string {
   const has받침 = hasBatchim(word);
   let index = has받침 ? 0 : 1;
 
-  const is종성ㄹ = disassembleCompleteCharacter(word[word.length - 1])?.jongseong === 'ㄹ';
+  const is종성ㄹ = has받침 && disassembleCompleteCharacter(word[word.length - 1])?.jongseong === 'ㄹ';
 
   const isCaseOf로 = has받침 && is종성ㄹ && 로_조사.includes(josa);
 
