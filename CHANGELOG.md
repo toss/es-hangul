@@ -1,5 +1,11 @@
 # es-hangul
 
+## 2.2.1
+
+### Patch Changes
+
+- [#269](https://github.com/toss/es-hangul/pull/269) [`81432ac`](https://github.com/toss/es-hangul/commit/81432ac117c929d4578935354bd4262c68072d32) Thanks [@okinawaa](https://github.com/okinawaa)! - docs: susa 함수에 jsdoc을 추가합니다
+
 ## 2.2.0
 
 ### Minor Changes
