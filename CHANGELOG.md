@@ -4,19 +4,14 @@
 
 ### Patch Changes
 
-- [#269](https://github.com/toss/es-hangul/pull/269) [`81432ac`](https://github.com/toss/es-hangul/commit/81432ac117c929d4578935354bd4262c68072d32) Thanks [@okinawaa](https://github.com/okinawaa)! - docs: susa 함수에 jsdoc을 추가합니다
-
+- [#250](https://github.com/toss/es-hangul/pull/250) [`c0ca9f5`](https://github.com/toss/es-hangul/commit/c0ca9f5a213e6b8939e72f2719834ac5dbd4759c) Thanks [@minsoo-web](https://github.com/minsoo-web)! - docs: susa 함수에 jsdoc을 추가합니다.
 ## 2.2.0
 
 ### Minor Changes
 
 - [#254](https://github.com/toss/es-hangul/pull/254) [`70895e0`](https://github.com/toss/es-hangul/commit/70895e0eeb5f19707cdaf7af63337080cdb3b6c6) Thanks [@BO-LIKE-CHICKEN](https://github.com/BO-LIKE-CHICKEN)! - feat: 숫자를 한글로 바꾸는 함수 추가
 
-## 2.1.1
 
-### Patch Changes
-
-- [#250](https://github.com/toss/es-hangul/pull/250) [`c0ca9f5`](https://github.com/toss/es-hangul/commit/c0ca9f5a213e6b8939e72f2719834ac5dbd4759c) Thanks [@minsoo-web](https://github.com/minsoo-web)! - docs: susa 함수에 jsdoc을 추가합니다.
 
 ## 2.1.0
 
