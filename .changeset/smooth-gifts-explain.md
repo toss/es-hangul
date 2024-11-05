@@ -1,5 +1,0 @@
----
-"es-hangul": minor
----
-
-publish
