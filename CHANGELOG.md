@@ -1,6 +1,6 @@
 # es-hangul
 
-## 2.2.0
+## 2.2.1
 
 ### Minor Changes
 
