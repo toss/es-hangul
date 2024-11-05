@@ -1,5 +1,11 @@
 # es-hangul
 
+## 2.3.0
+
+### Minor Changes
+
+- [`3dd9fa7`](https://github.com/toss/es-hangul/commit/3dd9fa73ae560390001d97cdc51dcd1959df66c5) Thanks [@okinawaa](https://github.com/okinawaa)! - publish
+
 ## 2.2.0
 
 ### Minor Changes
