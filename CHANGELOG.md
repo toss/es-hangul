@@ -1,16 +1,10 @@
 # es-hangul
 
-## 2.3.0
-
-### Minor Changes
-
-- [#254](https://github.com/toss/es-hangul/pull/254) [`70895e0`](https://github.com/toss/es-hangul/commit/70895e0eeb5f19707cdaf7af63337080cdb3b6c6) Thanks [@BO-LIKE-CHICKEN](https://github.com/BO-LIKE-CHICKEN)! - feat: 숫자를 한글로 바꾸는 함수 추가
-
 ## 2.2.0
 
 ### Minor Changes
 
-
+- [#254](https://github.com/toss/es-hangul/pull/254) [`70895e0`](https://github.com/toss/es-hangul/commit/70895e0eeb5f19707cdaf7af63337080cdb3b6c6) Thanks [@BO-LIKE-CHICKEN](https://github.com/BO-LIKE-CHICKEN)! - feat: 숫자를 한글로 바꾸는 함수 추가
 
 ## 2.1.1
 
