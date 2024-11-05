@@ -1,5 +1,11 @@
 # es-hangul
 
+## 2.4.0
+
+### Minor Changes
+
+- [#265](https://github.com/toss/es-hangul/pull/265) [`3294616`](https://github.com/toss/es-hangul/commit/3294616423bd2786de9ebc8f2d9d0b970bf84d86) Thanks [@okinawaa](https://github.com/okinawaa)! - 숫자를 한글로 바꿔주는 함수를 추가합니다
+
 ## 2.3.0
 
 ### Minor Changes
@@ -9,8 +15,6 @@
 ## 2.2.0
 
 ### Minor Changes
-
-
 
 ## 2.1.1
 
