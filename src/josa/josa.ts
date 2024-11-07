@@ -19,19 +19,21 @@ type JosaOption =
 
 const 로_조사: JosaOption[] = ['으로/로', '으로서/로서', '으로써/로써', '으로부터/로부터'];
 
-export function josa(word: string, josa: JosaOption): string {
+type ExtractJosaOption<T> = T extends `${infer A}/${infer B}` ? A | B : never;
+
+export function josa<T extends string, U extends JosaOption>(word: T, josa: U): `${T}${ExtractJosaOption<U>}` {
   if (word.length === 0) {
-    return word;
+    return word as `${T}${ExtractJosaOption<U>}`;
   }
 
-  return word + josaPicker(word, josa);
+  return (word + josaPicker(word, josa)) as `${T}${ExtractJosaOption<U>}`;
 }
 
 josa.pick = josaPicker;
 
-function josaPicker(word: string, josa: JosaOption): string {
+function josaPicker<T extends JosaOption>(word: string, josa: T): ExtractJosaOption<T> {
   if (word.length === 0) {
-    return josa.split('/')[0];
+    return josa.split('/')[0] as ExtractJosaOption<T>;
   }
 
   const has받침 = hasBatchim(word);
@@ -51,5 +53,5 @@ function josaPicker(word: string, josa: JosaOption): string {
     index = 1;
   }
 
-  return josa.split('/')[index];
+  return josa.split('/')[index] as ExtractJosaOption<T>;
 }
