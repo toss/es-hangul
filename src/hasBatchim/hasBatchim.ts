@@ -35,7 +35,7 @@ export function hasBatchim(
     only?: 'single' | 'double';
   }
 ) {
-  const lastChar = str[str.length - 1];
+  const lastChar = str.charAt(str.length - 1);
 
   if (lastChar == null) {
     return false;
