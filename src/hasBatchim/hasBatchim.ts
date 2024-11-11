@@ -48,14 +48,17 @@ export function hasBatchim(
   }
 
   const batchimCode = (charCode - COMPLETE_HANGUL_START_CHARCODE) % NUMBER_OF_JONGSEONG;
+  const batchimLength = JONGSEONGS[batchimCode].length;
 
-  if (options?.only === 'single') {
-    return JONGSEONGS[batchimCode].length === 1;
+  switch (options?.only) {
+    case 'single': {
+      return batchimLength === 1;
+    }
+    case 'double': {
+      return batchimLength === 2;
+    }
+    default: {
+      return batchimCode > 0;
+    }
   }
-
-  if (options?.only === 'double') {
-    return JONGSEONGS[batchimCode].length === 2;
-  }
-
-  return batchimCode > 0;
 }
