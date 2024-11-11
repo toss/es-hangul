@@ -41,9 +41,9 @@ export function hasBatchim(
     return false;
   }
   const charCode = lastChar.charCodeAt(0);
-  const isCompleteHangul = COMPLETE_HANGUL_START_CHARCODE <= charCode && charCode <= COMPLETE_HANGUL_END_CHARCODE;
+  const isNotCompleteHangul = charCode < COMPLETE_HANGUL_START_CHARCODE || charCode > COMPLETE_HANGUL_END_CHARCODE;
 
-  if (!isCompleteHangul) {
+  if (isNotCompleteHangul) {
     return false;
   }
 
