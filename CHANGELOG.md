@@ -1,5 +1,11 @@
 # es-hangul
 
+## 2.2.2
+
+### Patch Changes
+
+- [#275](https://github.com/toss/es-hangul/pull/275) [`473a845`](https://github.com/toss/es-hangul/commit/473a8451f21380b57a03d9dfb0ff9925c1f1fbed) Thanks [@shcshcshc](https://github.com/shcshcshc)! - fix: josa 리턴 타입 보강
+
 ## 2.2.1
 
 ### Patch Changes
