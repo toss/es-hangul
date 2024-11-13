@@ -1,5 +1,11 @@
 # es-hangul
 
+## 2.2.3
+
+### Patch Changes
+
+- [#279](https://github.com/toss/es-hangul/pull/279) [`0a60a65`](https://github.com/toss/es-hangul/commit/0a60a6553060e86580a3e4ba9eb1b4479c8bdd7d) Thanks [@iamhungry1030](https://github.com/iamhungry1030)! - chore: hasbatchim 함수의 조건문 검사 로직을 개선합니다.
+
 ## 2.2.2
 
 ### Patch Changes
