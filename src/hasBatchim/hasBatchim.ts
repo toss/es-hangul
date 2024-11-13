@@ -41,21 +41,24 @@ export function hasBatchim(
     return false;
   }
   const charCode = lastChar.charCodeAt(0);
-  const isCompleteHangul = COMPLETE_HANGUL_START_CHARCODE <= charCode && charCode <= COMPLETE_HANGUL_END_CHARCODE;
+  const isNotCompleteHangul = charCode < COMPLETE_HANGUL_START_CHARCODE || charCode > COMPLETE_HANGUL_END_CHARCODE;
 
-  if (!isCompleteHangul) {
+  if (isNotCompleteHangul) {
     return false;
   }
 
   const batchimCode = (charCode - COMPLETE_HANGUL_START_CHARCODE) % NUMBER_OF_JONGSEONG;
+  const batchimLength = JONGSEONGS[batchimCode].length;
 
-  if (options?.only === 'single') {
-    return JONGSEONGS[batchimCode].length === 1;
+  switch (options?.only) {
+    case 'single': {
+      return batchimLength === 1;
+    }
+    case 'double': {
+      return batchimLength === 2;
+    }
+    default: {
+      return batchimCode > 0;
+    }
   }
-
-  if (options?.only === 'double') {
-    return JONGSEONGS[batchimCode].length === 2;
-  }
-
-  return batchimCode > 0;
 }
