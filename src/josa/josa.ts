@@ -17,7 +17,7 @@ type JosaOption =
   | '으로부터/로부터'
   | '이라/라';
 
-const 로_조사: JosaOption[] = ['으로/로', '으로서/로서', '으로써/로써', '으로부터/로부터'];
+const 로_조사 = new Set<JosaOption>(['으로/로', '으로서/로서', '으로써/로써', '으로부터/로부터']);
 
 type ExtractJosaOption<T> = T extends `${infer A}/${infer B}` ? A | B : never;
 
@@ -39,18 +39,22 @@ function josaPicker<T extends JosaOption>(word: string, josa: T): ExtractJosaOpt
   const has받침 = hasBatchim(word);
   let index = has받침 ? 0 : 1;
 
-  const is종성ㄹ = has받침 && disassembleCompleteCharacter(word[word.length - 1])?.jongseong === 'ㄹ';
-
-  const isCaseOf로 = has받침 && is종성ㄹ && 로_조사.includes(josa);
-
-  if (josa === '와/과' || isCaseOf로) {
-    index = index === 0 ? 1 : 0;
+  if (josa === '와/과') {
+    return josa.split('/')[has받침 ? 1 : 0];
   }
 
-  const isEndsWith이 = word[word.length - 1] === '이';
+  const 마지막글자 = word[word.length - 1];
+  const isEndsWith이 = 마지막글자 === '이';
 
   if (josa === '이에요/예요' && isEndsWith이) {
-    index = 1;
+    return josa.split('/')[1];
+  }
+
+  const is종성ㄹ = has받침 && disassembleCompleteCharacter(마지막글자)?.jongseong === 'ㄹ';
+  const isCaseOf로 = has받침 && is종성ㄹ && 로_조사.has(josa);
+
+  if (isCaseOf로) {
+    return josa.split('/')[has받침 ? 1 : 0];
   }
 
   return josa.split('/')[index] as ExtractJosaOption<T>;
