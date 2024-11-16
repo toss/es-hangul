@@ -37,7 +37,6 @@ function josaPicker<T extends JosaOption>(word: string, josa: T): ExtractJosaOpt
   }
 
   const has받침 = hasBatchim(word);
-  const index = has받침 ? 0 : 1;
 
   if (josa === '와/과') {
     return josa.split('/')[has받침 ? 1 : 0] as ExtractJosaOption<T>;
@@ -57,5 +56,5 @@ function josaPicker<T extends JosaOption>(word: string, josa: T): ExtractJosaOpt
     return josa.split('/')[has받침 ? 1 : 0] as ExtractJosaOption<T>;
   }
 
-  return josa.split('/')[index] as ExtractJosaOption<T>;
+  return josa.split('/')[has받침 ? 0 : 1] as ExtractJosaOption<T>;
 }
