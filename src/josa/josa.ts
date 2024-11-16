@@ -40,21 +40,21 @@ function josaPicker<T extends JosaOption>(word: string, josa: T): ExtractJosaOpt
   let index = has받침 ? 0 : 1;
 
   if (josa === '와/과') {
-    return josa.split('/')[has받침 ? 1 : 0];
+    return josa.split('/')[has받침 ? 1 : 0] as ExtractJosaOption<T>;
   }
 
   const 마지막글자 = word[word.length - 1];
   const isEndsWith이 = 마지막글자 === '이';
 
   if (josa === '이에요/예요' && isEndsWith이) {
-    return josa.split('/')[1];
+    return josa.split('/')[1] as ExtractJosaOption<T>;
   }
 
   const is종성ㄹ = has받침 && disassembleCompleteCharacter(마지막글자)?.jongseong === 'ㄹ';
   const isCaseOf로 = has받침 && is종성ㄹ && 로_조사.has(josa);
 
   if (isCaseOf로) {
-    return josa.split('/')[has받침 ? 1 : 0];
+    return josa.split('/')[has받침 ? 1 : 0] as ExtractJosaOption<T>;
   }
 
   return josa.split('/')[index] as ExtractJosaOption<T>;
