@@ -10,22 +10,16 @@ export function numberToHangul(input: number, options?: { spacing?: boolean }): 
   let placeIndex = 0;
 
   while (remainingDigits.length > 0) {
-    const currentPart = remainingDigits.slice(-4);
-
-    koreanParts.unshift(`${numberToKoreanUpToThousand(Number(currentPart))}${HANGUL_DIGITS[placeIndex]}`);
+    const currentPart = Number(remainingDigits.slice(-4));
+    if (currentPart > 0) {
+      koreanParts.unshift(`${numberToKoreanUpToThousand(currentPart)}${HANGUL_DIGITS[placeIndex]}`);
+    }
 
     remainingDigits = remainingDigits.slice(0, -4);
     placeIndex++;
   }
 
-  if (options?.spacing) {
-    return koreanParts
-      .filter(part => part !== '')
-      .join(' ')
-      .trim();
-  }
-
-  return koreanParts.join('');
+  return koreanParts.join(options?.spacing ? ' ' : '');
 }
 
 function numberToKoreanUpToThousand(num: number): string {
@@ -42,5 +36,4 @@ function numberToKoreanUpToThousand(num: number): string {
     .join('');
 
   return koreanDigits.replace(/일천/, '천').replace(/일백/, '백').replace(/일십/, '십') || '';
-
 }
