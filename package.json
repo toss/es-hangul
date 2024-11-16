@@ -44,18 +44,18 @@
   ],
   "scripts": {
     "attw": "attw --pack",
+    "bench": "vitest bench",
     "build": "tsup",
     "changeset:publish": "changeset publish",
     "changeset:version": "changeset version",
+    "docs:build": "yarn workspace docs build",
+    "docs:dev": "yarn workspace docs dev",
+    "docs:start": "yarn workspace docs start",
     "packlint": "packlint sort -R",
     "publint": "publint --strict",
     "test": "vitest run --coverage --typecheck",
     "test:watch": "vitest --ui --coverage --typecheck",
-    "typecheck": "tsc --noEmit",
-    "docs:dev": "yarn workspace docs dev",
-    "docs:build": "yarn workspace docs build",
-    "docs:start": "yarn workspace docs start",
-    "bench": "vitest bench"
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.15.3",
