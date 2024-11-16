@@ -35,5 +35,5 @@ function numberToKoreanUpToThousand(num: number): string {
     .reverse()
     .join('');
 
-  return koreanDigits.replace(/일천/, '천').replace(/일백/, '백').replace(/일십/, '십') || '';
+  return koreanDigits.replace(/일(천|백|십)/g, '$1') || '';
 }
