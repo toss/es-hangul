@@ -3650,7 +3650,6 @@ __metadata:
     es-hangul: "workspace:^"
     esbuild: "npm:0.23.0"
     josa: "npm:^3.0.1"
-    k-popo: "npm:^2.0.5"
     vitest: "npm:^2.1.2"
   languageName: unknown
   linkType: soft
@@ -8323,13 +8322,6 @@ __metadata:
     object.assign: "npm:^4.1.4"
     object.values: "npm:^1.1.6"
   checksum: 10c0/a32679e9cb55469cb6d8bbc863f7d631b2c98b7fc7bf172629261751a6e7bc8da6ae374ddb74d5fbd8b06cf0eb4572287b259813d92b36e384024ed35e4c13e1
-  languageName: node
-  linkType: hard
-
-"k-popo@npm:^2.0.5":
-  version: 2.0.5
-  resolution: "k-popo@npm:2.0.5"
-  checksum: 10c0/00e0e84bf04edf5cd61859891c210ed82b5cacc4546dc7302bb708a7409d648b38814ec3b791c2994ccf3f23285e1c88622af0d21614d39b4667a3d49640ba62
   languageName: node
   linkType: hard
 

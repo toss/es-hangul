@@ -10,11 +10,9 @@
     "es-hangul": "workspace:^",
     "esbuild": "0.23.0",
     "josa": "^3.0.1",
-    "k-popo": "^2.0.5",
     "vitest": "^2.1.2"
   },
   "devDependencies": {
     "@types/josa": "^3"
-  },
-  "version": null
+  }
 }
