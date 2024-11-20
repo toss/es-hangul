@@ -3649,7 +3649,6 @@ __metadata:
     auto-josa: "npm:^1.0.0"
     es-hangul: "workspace:^"
     esbuild: "npm:0.23.0"
-    hangul-js: "npm:^0.2.6"
     josa: "npm:^3.0.1"
     vitest: "npm:^2.1.2"
   languageName: unknown
@@ -7047,13 +7046,6 @@ __metadata:
     section-matter: "npm:^1.0.0"
     strip-bom-string: "npm:^1.0.0"
   checksum: 10c0/e38489906dad4f162ca01e0dcbdbed96d1a53740cef446b9bf76d80bec66fa799af07776a18077aee642346c5e1365ed95e4c91854a12bf40ba0d4fb43a625a6
-  languageName: node
-  linkType: hard
-
-"hangul-js@npm:^0.2.6":
-  version: 0.2.6
-  resolution: "hangul-js@npm:0.2.6"
-  checksum: 10c0/3bfd2cbbaeef5f42f9cf887a7f458d305d9b84dc087c7988a95a507ccfb60ff97bb13ec5fe0c0f59227333fb56b650be6137228903291b671516cc99bbac6310
   languageName: node
   linkType: hard
 
