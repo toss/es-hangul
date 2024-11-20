@@ -8,6 +8,7 @@ import { Adopters } from '@/components/introduction/Adopters';
 When developing products that handle Hangul, tasks such as initial consonant search and accurate particle attachment often need to be performed. In addition, there are cases where you need to separate or combine Hangul elements like initial consonants, vowels, and final consonants. es-hangul helps to easily and quickly implement these frequently occurring Hangul-related functions in business.
 
 es-hangul provides an interface for complex Hangul string processing, including extraction and conversion of initial, medial, and final consonants. By combining the functions of es-hangul with basic JavaScript methods, you can handle all cases of Hangul string processing.
+
 <br />
 
 ## Key features
@@ -48,10 +49,9 @@ const result = getChoseong(searchWord); // ㄹㅁ
 
 // Check if the 'choseong' of the search word match the user input
 if (result === userInput) {
-  something()
+  something();
 }
 ```
-
 
 #### Disassembling Hangul Characters ([disassemble](./api/disassemble))
 
@@ -81,12 +81,10 @@ const sentence2 = josa(word2, '이/가') + ' 맛있습니다.';
 console.log(sentence2); // '바나나가 맛있습니다.'
 ```
 
-### Fast 
-
+### Fast
 
 es-hangul boasts **top-notch performance**, efficiently handling complex tasks such as Korean character composition and decomposition with incredible speed.
-[Benchmark tests]('./technical/benchmark') against other libraries have shown that es-hangul delivers **overwhelmingly superior performance**.
-
+[Benchmark tests]('./advantages/benchmark') against other libraries have shown that es-hangul delivers **overwhelmingly superior performance**.
 
 <Callout type="info">
 
