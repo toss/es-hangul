@@ -6,6 +6,9 @@ interface TypeSupportTableProps {
 
 export default function TypeSupportTable({ locale }: TypeSupportTableProps) {
   const isKorean = locale === 'ko';
+  const fully = isKorean ? '100% 지원' : '100% Supported';
+  const partial = isKorean ? '일부 지원' : 'Partially Supported';
+  const unsupported = isKorean ? '미지원' : 'Unsupported';
 
   return (
     <div className="relative overflow-x-auto">
@@ -46,7 +49,7 @@ export default function TypeSupportTable({ locale }: TypeSupportTableProps) {
             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
               {isKorean ? 'TypeScript 지원 여부' : 'TypeScript support status'}
             </th>
-            <td className="px-6 py-4">✅ ({supportStatus[locale].fully})</td>
+            <td className="px-6 py-4">✅ ({fully})</td>
             <td className="px-6 py-4">
               ⚠️ (
               <a className="text-gray-400" href="https://www.npmjs.com/package/@types/josa" target="_blank">
@@ -54,43 +57,43 @@ export default function TypeSupportTable({ locale }: TypeSupportTableProps) {
               </a>
               )
             </td>
-            <td className="px-6 py-4">⚠️ ({supportStatus[locale].partial})</td>
+            <td className="px-6 py-4">⚠️ ({partial})</td>
           </tr>
 
           <tr className="bg-white dark:bg-gray-800">
             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
               {isKorean ? '강력한 타입 시스템 제공' : 'Provide a strong type system'}
             </th>
-            <td className="px-6 py-4">✅ ({supportStatus[locale].fully})</td>
-            <td className="px-6 py-4">⚠️ ({supportStatus[locale].partial})</td>
-            <td className="px-6 py-4">⚠️ ({supportStatus[locale].partial})</td>
+            <td className="px-6 py-4">✅ ({fully})</td>
+            <td className="px-6 py-4">⚠️ ({partial})</td>
+            <td className="px-6 py-4">⚠️ ({partial})</td>
           </tr>
 
           <tr className="bg-white dark:bg-gray-800">
             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
               {isKorean ? '명확한 입력/출력 타입 제공' : 'Offer clear input/output types'}
             </th>
-            <td className="px-6 py-4">✅ ({supportStatus[locale].fully})</td>
-            <td className="px-6 py-4">⚠️ ({supportStatus[locale].partial})</td>
-            <td className="px-6 py-4">❌ ({supportStatus[locale].unsupported})</td>
+            <td className="px-6 py-4">✅ ({fully})</td>
+            <td className="px-6 py-4">⚠️ ({partial})</td>
+            <td className="px-6 py-4">❌ ({unsupported})</td>
           </tr>
 
           <tr className="bg-white dark:bg-gray-800">
             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
               {isKorean ? '주기적인 타입 업데이트' : 'Regular type updates'}
             </th>
-            <td className="px-6 py-4">✅ ({supportStatus[locale].fully})</td>
-            <td className="px-6 py-4">❌ ({supportStatus[locale].unsupported})</td>
-            <td className="px-6 py-4">❌ ({supportStatus[locale].unsupported})</td>
+            <td className="px-6 py-4">✅ ({fully})</td>
+            <td className="px-6 py-4">❌ ({unsupported})</td>
+            <td className="px-6 py-4">❌ ({unsupported})</td>
           </tr>
 
           <tr className="bg-white dark:bg-gray-800">
             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
               {isKorean ? 'IDE 자동 완성 지원' : 'Support IDE auto-completion'}
             </th>
-            <td className="px-6 py-4">✅ ({supportStatus[locale].fully})</td>
-            <td className="px-6 py-4">⚠️ ({supportStatus[locale].partial})</td>
-            <td className="px-6 py-4">❌ ({supportStatus[locale].unsupported})</td>
+            <td className="px-6 py-4">✅ ({fully})</td>
+            <td className="px-6 py-4">⚠️ ({partial})</td>
+            <td className="px-6 py-4">❌ ({unsupported})</td>
           </tr>
         </tbody>
       </table>
@@ -107,18 +110,3 @@ export default function TypeSupportTable({ locale }: TypeSupportTableProps) {
     </div>
   );
 }
-
-type SupportStatus = 'fully' | 'partial' | 'unsupported';
-
-const supportStatus: Record<Locale, Record<SupportStatus, string>> = {
-  ko: {
-    fully: '100% 지원',
-    partial: '일부 지원',
-    unsupported: '미지원',
-  },
-  en: {
-    fully: '100% Supported',
-    partial: 'Partially Supported',
-    unsupported: 'Unsupported',
-  },
-};
