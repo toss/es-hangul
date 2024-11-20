@@ -6,7 +6,7 @@ interface BenchmarkBarChart {
   locale: 'ko' | 'en';
 }
 
-export const BenchmarkBarChart = ({ locale }: BenchmarkBarChart) => {
+export default function BenchmarkBarChart({ locale }: BenchmarkBarChart) {
   const [filledPercentages, setFilledPercentages] = useState<number[]>(benchmarkData.map(() => 0));
   const [isVisible, setIsVisible] = useState(false);
   const chartRef = useRef<HTMLDivElement>(null);
@@ -120,7 +120,7 @@ export const BenchmarkBarChart = ({ locale }: BenchmarkBarChart) => {
       </a>
     </div>
   );
-};
+}
 
 const 천만 = 10000000;
 const benchmarkData = [
