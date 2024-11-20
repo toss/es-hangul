@@ -22,7 +22,7 @@ export default function TypeSupportTable({ locale }: TypeSupportTableProps) {
         <thead className="text-xs text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th scope="col" className="px-6 py-3">
-              {isKorean ? '기능' : 'Feature'}
+              {isKorean ? '라이브러리' : 'Library'}
             </th>
             <th scope="col" className="px-6 py-3">
               es-hangul
