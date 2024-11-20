@@ -10,7 +10,7 @@ export default function TypeSupportTable({ locale }: TypeSupportTableProps) {
   return (
     <div className="relative overflow-x-auto">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <caption className="caption-top">
+        <caption className="caption-top text-sm">
           {isKorean
             ? 'es-hangul, josa, hangul-js의 타입 시스템 비교'
             : 'Comparison of the type systems of es-hangul, josa, and hangul-js'}
@@ -40,9 +40,7 @@ export default function TypeSupportTable({ locale }: TypeSupportTableProps) {
             </th>
             <td className="px-6 py-4">TypeScript</td>
             <td className="px-6 py-4">JavaScript</td>
-            {/* <td className="px-6 py-4">JavaScript</td> */}
-            <td className="px-6 py-4">{supportStatus[locale].fully}</td>
-            {/* <td className="px-6 py-4">JavaScript</td> */}
+            <td className="px-6 py-4">JavaScript</td>
           </tr>
           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -96,6 +94,16 @@ export default function TypeSupportTable({ locale }: TypeSupportTableProps) {
           </tr>
         </tbody>
       </table>
+
+      <figure className="mt-12">
+        <figcaption className="mt-2 text-sm text-center text-gray-500">
+          {isKorean ? 'es-hangul의 강력한 타입 시스템' : 'The powerful type system of es-hangul'}
+        </figcaption>
+
+        <video className="rounded-lg" width="100%" controls muted preload="metadata">
+          <source src="/videos/type_support.mp4" type="video/mp4"></source>
+        </video>
+      </figure>
     </div>
   );
 }
