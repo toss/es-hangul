@@ -3,7 +3,6 @@ import { fakerKO as faker } from '@faker-js/faker';
 import { josa as autoJosa } from 'auto-josa';
 import { josa as esHangulJosa } from 'es-hangul';
 import { josa } from 'josa';
-import { ko } from 'k-popo';
 import { bench, describe } from 'vitest';
 
 const name = faker.person.firstName();
@@ -19,10 +18,6 @@ describe('하나의 조사', () => {
 
   bench('josa', () => {
     josa(`${name}#{이}`);
-  });
-
-  bench('k-popo', () => {
-    ko`${name}(이)가`;
   });
 });
 
@@ -50,12 +45,5 @@ describe(`네개의 조사 ${name}이/가 ${noun}을/를 ${city}은/는 ${street
     josa(`${name}#{을}`);
     josa(`${city}#{은}`);
     josa(`${street}#{와}`);
-  });
-
-  bench('k-popo', () => {
-    ko`${noun}(이)가`;
-    ko`${name}(을)를`;
-    ko`${city}(은)는`;
-    ko`${street}(와)과`;
   });
 });

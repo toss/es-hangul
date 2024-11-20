@@ -3649,8 +3649,8 @@ __metadata:
     auto-josa: "npm:^1.0.0"
     es-hangul: "workspace:^"
     esbuild: "npm:0.23.0"
+    hangul-js: "npm:^0.2.6"
     josa: "npm:^3.0.1"
-    k-popo: "npm:^2.0.5"
     vitest: "npm:^2.1.2"
   languageName: unknown
   linkType: soft
@@ -7050,6 +7050,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hangul-js@npm:^0.2.6":
+  version: 0.2.6
+  resolution: "hangul-js@npm:0.2.6"
+  checksum: 10c0/3bfd2cbbaeef5f42f9cf887a7f458d305d9b84dc087c7988a95a507ccfb60ff97bb13ec5fe0c0f59227333fb56b650be6137228903291b671516cc99bbac6310
+  languageName: node
+  linkType: hard
+
 "har-schema@npm:^2.0.0":
   version: 2.0.0
   resolution: "har-schema@npm:2.0.0"
@@ -8323,13 +8330,6 @@ __metadata:
     object.assign: "npm:^4.1.4"
     object.values: "npm:^1.1.6"
   checksum: 10c0/a32679e9cb55469cb6d8bbc863f7d631b2c98b7fc7bf172629261751a6e7bc8da6ae374ddb74d5fbd8b06cf0eb4572287b259813d92b36e384024ed35e4c13e1
-  languageName: node
-  linkType: hard
-
-"k-popo@npm:^2.0.5":
-  version: 2.0.5
-  resolution: "k-popo@npm:2.0.5"
-  checksum: 10c0/00e0e84bf04edf5cd61859891c210ed82b5cacc4546dc7302bb708a7409d648b38814ec3b791c2994ccf3f23285e1c88622af0d21614d39b4667a3d49640ba62
   languageName: node
   linkType: hard
 
