@@ -106,7 +106,7 @@ export default function TypeSupportTable({ locale }: TypeSupportTableProps) {
           {isKorean ? 'es-hangul의 강력한 타입 시스템' : 'The powerful type system of es-hangul'}
         </figcaption>
 
-        <video className="rounded-lg" width="100%" autoPlay muted preload="metadata" loop>
+        <video className="rounded-lg" width="100%" autoPlay muted preload="metadata" loop playsInline>
           <source src="/videos/type_support.mp4" type="video/mp4"></source>
         </video>
       </figure>
