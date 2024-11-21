@@ -46,6 +46,7 @@ export default function TypeSupportTable({ locale }: TypeSupportTableProps) {
               <td className="px-6 py-4">JavaScript</td>
               <td className="px-6 py-4">JavaScript</td>
             </tr>
+
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {isKorean ? 'TypeScript 지원 여부' : 'TypeScript support status'}
@@ -61,7 +62,7 @@ export default function TypeSupportTable({ locale }: TypeSupportTableProps) {
               <td className="px-6 py-4">⚠️ ({partial})</td>
             </tr>
 
-            <tr className="bg-white dark:bg-gray-800">
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {isKorean ? '강력한 타입 시스템 제공' : 'Provide a strong type system'}
               </th>
@@ -70,7 +71,7 @@ export default function TypeSupportTable({ locale }: TypeSupportTableProps) {
               <td className="px-6 py-4">⚠️ ({partial})</td>
             </tr>
 
-            <tr className="bg-white dark:bg-gray-800">
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {isKorean ? '명확한 입력/출력 타입 제공' : 'Offer clear input/output types'}
               </th>
@@ -79,7 +80,7 @@ export default function TypeSupportTable({ locale }: TypeSupportTableProps) {
               <td className="px-6 py-4">❌ ({unsupported})</td>
             </tr>
 
-            <tr className="bg-white dark:bg-gray-800">
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {isKorean ? '주기적인 타입 업데이트' : 'Regular type updates'}
               </th>
@@ -88,7 +89,7 @@ export default function TypeSupportTable({ locale }: TypeSupportTableProps) {
               <td className="px-6 py-4">❌ ({unsupported})</td>
             </tr>
 
-            <tr className="bg-white dark:bg-gray-800">
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {isKorean ? 'IDE 자동 완성 지원' : 'Support IDE auto-completion'}
               </th>
