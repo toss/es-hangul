@@ -1,0 +1,43 @@
+---
+title: removeLastCharacter
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# removeLastCharacter
+
+Removes the last character from a given Korean string and returns the result.
+
+For detailed examples, see below.
+
+```typescript
+function removeLastCharacter(
+  // Korean string
+  words: string
+): string;
+```
+
+## Examples
+
+```tsx
+removeLastCharacter('안녕하세요 값'); // '안녕하세요 갑'
+removeLastCharacter('프론트엔드'); // '프론트엔ㄷ'
+removeLastCharacter('일요일'); // '일요이'
+removeLastCharacter('전화'); // '전호'
+removeLastCharacter('신세계'); // '신세ㄱ'
+```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { removeLastCharacter } from 'es-hangul';
+
+console.log(removeLastCharacter('안녕하세요 값')); // '안녕하세요 갑'
+console.log(removeLastCharacter('프론트엔드')); // '프론트엔ㄷ'
+```
+
+</Sandpack>
