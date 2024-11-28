@@ -16,7 +16,7 @@ function getNumberWord(num: number): string {
   }
 
   const tensWord = hasProperty(DAYS_MAP, tens) ? DAYS_MAP[tens] : '';
-  const onesWord = hasProperty(DAYS_MAP, ones) ? DAYS_MAP[ones] : '';
+  const onesWord = DAYS_MAP[ones as keyof typeof DAYS_MAP];
 
   return `${tensWord}${onesWord}`;
 }
