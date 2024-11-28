@@ -15,7 +15,6 @@ export function numberToHangul(input: number, options?: { spacing?: boolean }): 
 
   while (remainingDigits.length > 0) {
     const currentPart = remainingDigits.slice(-4);
-    console.log('currentPart: ', currentPart);
 
     koreanParts.unshift(`${numberToKoreanUpToThousand(Number(currentPart))}${HANGUL_DIGITS[placeIndex]}`);
 
