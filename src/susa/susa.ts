@@ -1,5 +1,5 @@
 import { hasProperty } from '../_internal';
-import { SUSA_MAP, SUSA_CLASSIFIER_MAP } from './constants';
+import { SUSA_CLASSIFIER_MAP, SUSA_MAP } from './constants';
 
 /**
  * 숫자를 순 우리말 수사로 변환합니다. 주어진 숫자가 0보다 크고 100 이하일 때 유효합니다.
@@ -52,14 +52,9 @@ function getClassifierWord(num: number): string {
     return `${tensWord}${onesWord}`;
   }
 
-  if (hasProperty(SUSA_MAP, ones)) {
-    const onesWord = SUSA_MAP[ones];
+  const onesWord = SUSA_MAP[ones as keyof typeof SUSA_MAP];
 
-    return `${tensWord}${onesWord}`;
-  }
-
-  // `susa`에서` `validateNumber` 하기 때문에 도달할 수 없는 분기입니다. 타입 추론을 위해 에러를 던져줍니다.
-  throw new Error('지원하지 않는 숫자입니다.');
+  return `${tensWord}${onesWord}`;
 }
 
 function validateNumber(num: number): void {
