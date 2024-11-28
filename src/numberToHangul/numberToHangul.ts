@@ -1,6 +1,10 @@
 import { HANGUL_CARDINAL, HANGUL_DIGITS, HANGUL_NUMBERS } from '@/_internal/constants';
 
 export function numberToHangul(input: number, options?: { spacing?: boolean }): string {
+  if (!Number.isFinite(input) || Number.isNaN(input) || !Number.isInteger(input) || input < 0) {
+    throw new Error('유효한 0 이상의 정수를 입력해주세요.');
+  }
+
   if (input === 0) {
     return '영';
   }
@@ -29,10 +33,6 @@ export function numberToHangul(input: number, options?: { spacing?: boolean }): 
 }
 
 function numberToKoreanUpToThousand(num: number): string {
-  if (num < 0 || num > 9999) {
-    throw new Error('0 이상 9999 이하의 숫자만 입력 가능합니다.');
-  }
-
   const koreanDigits = num
     .toString()
     .split('')
@@ -42,5 +42,4 @@ function numberToKoreanUpToThousand(num: number): string {
     .join('');
 
   return koreanDigits.replace(/일천/, '천').replace(/일백/, '백').replace(/일십/, '십') || '';
-
 }
