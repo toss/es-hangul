@@ -40,4 +40,11 @@ describe('numberToHangul', () => {
     expect(numberToHangul(1_234)).toBe('천이백삼십사');
     expect(numberToHangul(9_999)).toBe('구천구백구십구');
   });
+
+  test('유효하지 않은 숫자에 대한 오류 처리', () => {
+    expect(() => numberToHangul(-1)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
+    expect(() => numberToHangul(-12345)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
+    expect(() => numberToHangul(NaN)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
+    expect(() => numberToHangul(Infinity)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
+  });
 });
