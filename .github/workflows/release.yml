@@ -17,8 +17,8 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
           cache: 'yarn'
+          node-version-file: '.nvmrc'
 
       - name: Install Dependencies
         run: yarn install
