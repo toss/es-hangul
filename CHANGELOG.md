@@ -1,5 +1,11 @@
 # es-hangul
 
+## 2.2.4
+
+### Patch Changes
+
+- [#299](https://github.com/toss/es-hangul/pull/299) [`44c840f`](https://github.com/toss/es-hangul/commit/44c840fa430d985c7d54302b8dabf5bec106cb8d) Thanks [@po4tion](https://github.com/po4tion)! - chore: susa 테스트 커버리지 보강
+
 ## 2.2.3
 
 ### Patch Changes
