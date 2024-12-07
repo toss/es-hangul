@@ -1,0 +1,38 @@
+---
+title: convertQwertyToAlphabet
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# convertQwertyToAlphabet
+
+Converts English alphabets into Korean phonemes that correspond to the QWERTY keyboard layout.
+
+```typescript
+function convertQwertyToAlphabet(word: string): string;
+```
+
+## Examples
+
+```typescript
+convertQwertyToAlphabet('abc'); // 'ㅁㅠㅊ'
+convertQwertyToAlphabet('ABC'); // 'ㅁㅠㅊ'
+convertQwertyToAlphabet('vm론트'); // 'ㅍㅡ론트'
+convertQwertyToAlphabet('RㅏㄱEㅜrl'); // 'ㄲㅏㄱㄸㅜㄱㅣ'
+```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { convertQwertyToAlphabet } from 'es-hangul';
+
+console.log(convertQwertyToAlphabet('abc'));
+console.log(convertQwertyToAlphabet('ABC'));
+console.log(convertQwertyToAlphabet('vm론트'));
+```
+
+</Sandpack>
