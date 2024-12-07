@@ -2,9 +2,9 @@ import { canBeChoseong } from '@/canBeChoseong';
 import { canBeJongseong } from '@/canBeJongseong';
 import { canBeJungseong } from '@/canBeJungseong';
 import { combineVowels } from '@/combineVowels';
+import { disassembleToGroups } from '@/disassembleToGroups';
 import assert, { excludeLastElement, isBlank, joinString } from '.';
 import { combineCharacter } from '../combineCharacter';
-import { disassembleToGroups } from '../disassemble';
 import { hasBatchim } from '../hasBatchim';
 import { removeLastCharacter } from '../removeLastCharacter';
 
