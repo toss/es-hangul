@@ -5,7 +5,9 @@ import {
   JONGSEONGS,
   JUNSEONGS,
 } from '@/_internal/constants';
-import { canBeChoseong, canBeJongseong, canBeJungseong } from '../canBe';
+import { canBeChoseong } from '@/canBeChoseong';
+import { canBeJongseong } from '@/canBeJongseong';
+import { canBeJungseong } from '@/canBeJungseong';
 
 /**
  * @name combineCharacter

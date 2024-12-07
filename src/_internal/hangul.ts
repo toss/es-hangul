@@ -1,5 +1,7 @@
+import { canBeChoseong } from '@/canBeChoseong';
+import { canBeJongseong } from '@/canBeJongseong';
+import { canBeJungseong } from '@/canBeJungseong';
 import assert, { excludeLastElement, isBlank, joinString } from '.';
-import { canBeChoseong, canBeJungseong, canBeJongseong } from '../canBe';
 import { combineCharacter, combineVowels, curriedCombineCharacter } from '../combineCharacter';
 import { disassembleToGroups } from '../disassemble';
 import { hasBatchim } from '../hasBatchim';

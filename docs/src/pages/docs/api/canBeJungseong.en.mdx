@@ -1,0 +1,38 @@
+---
+title: canBeJungseong
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# canBeJungseong
+
+Check if a given character can be a jungseong in Korean.
+
+```typescript
+function canBeJungseong(character: string): boolean;
+```
+
+### Examples
+
+```typescript
+canBeJungseong('ㅏ'); // true
+canBeJungseong('ㅗㅏ'); // true
+canBeJungseong('ㅏㅗ'); // false
+canBeJungseong('ㄱ'); // false
+canBeJungseong('ㄱㅅ'); // false
+canBeJungseong('가'); // false
+```
+
+### Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { canBeJungseong } from 'es-hangul';
+
+console.log(canBeJungseong('ㅏ'));
+```
+
+</Sandpack>

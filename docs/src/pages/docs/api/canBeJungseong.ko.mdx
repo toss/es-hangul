@@ -1,0 +1,38 @@
+---
+title: canBeJungseong
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# canBeJungseong
+
+인자로 받은 문자가 중성으로 위치할 수 있는 문자인지 검사합니다.
+
+```typescript
+function canBeJungseong(character: string): boolean;
+```
+
+## Examples
+
+```typescript
+canBeJungseong('ㅏ'); // true
+canBeJungseong('ㅗㅏ'); // true
+canBeJungseong('ㅏㅗ'); // false
+canBeJungseong('ㄱ'); // false
+canBeJungseong('ㄱㅅ'); // false
+canBeJungseong('가'); // false
+```
+
+## 사용해보기
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { canBeJungseong } from 'es-hangul';
+
+console.log(canBeJungseong('ㅏ'));
+```
+
+</Sandpack>
