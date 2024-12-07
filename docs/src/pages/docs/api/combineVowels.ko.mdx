@@ -1,0 +1,37 @@
+---
+title: combineVowels
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# combineVowels
+
+인자로 두 개의 모음을 받아 합성하여 겹모음을 생성합니다. 만약 올바른 한글 규칙으로 합성할 수 없는 모음들이라면 단순 Join합니다.
+
+```typescript
+function combineVowels(vowel1: string, vowel2: string): string;
+```
+
+## Examples
+
+```typescript
+combineVowels('ㅗ', 'ㅏ'); // 'ㅘ'
+combineVowels('ㅗ', 'ㅐ'); // 'ㅙ'
+combineVowels('ㅗ', 'ㅛ'); // 'ㅗㅛ'
+```
+
+## 사용해보기
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { combineVowels } from 'es-hangul';
+
+console.log(combineVowels('ㅗ', 'ㅏ'));
+console.log(combineVowels('ㅗ', 'ㅐ'));
+console.log(combineVowels('ㅗ', 'ㅛ'));
+```
+
+</Sandpack>

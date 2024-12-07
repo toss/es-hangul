@@ -1,0 +1,37 @@
+---
+title: combineVowels
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# combineVowels
+
+Given two vowel inputs, combine them to create a diphthong. If the vowels cannot be combined according to the correct Korean rules, simply join them together
+
+```typescript
+function combineVowels(vowel1: string, vowel2: string): string;
+```
+
+## Examples
+
+```typescript
+combineVowels('ㅗ', 'ㅏ'); // 'ㅘ'
+combineVowels('ㅗ', 'ㅐ'); // 'ㅙ'
+combineVowels('ㅗ', 'ㅛ'); // 'ㅗㅛ'
+```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { combineVowels } from 'es-hangul';
+
+console.log(combineVowels('ㅗ', 'ㅏ'));
+console.log(combineVowels('ㅗ', 'ㅐ'));
+console.log(combineVowels('ㅗ', 'ㅛ'));
+```
+
+</Sandpack>
