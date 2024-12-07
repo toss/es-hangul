@@ -1,0 +1,36 @@
+---
+title: disassembleCompleteCharacter
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# disassembleCompleteCharacter
+
+It separates a complete Korean string into choseong, jungseong, and jongseong.
+
+```typescript
+function disassembleCompleteCharacter(letter: string): ReturnTypeDisassembleCompleteCharacter | undefined;
+```
+
+## Examples
+
+```tsx
+disassembleCompleteCharacter('값'); // { choseong: 'ㄱ', jungseong: 'ㅏ', jongseong: 'ㅂㅅ' }
+disassembleCompleteCharacter('리'); // { choseong: 'ㄹ', jungseong: 'ㅣ', jongseong: '' }
+disassembleCompleteCharacter('빚'); // { choseong: 'ㅂ', jungseong: 'ㅣ', jongseong: 'ㅈ' }
+disassembleCompleteCharacter('박'); // { choseong: 'ㅂ', jungseong: 'ㅏ', jongseong: 'ㄱ' }
+```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { disassembleCompleteCharacter } from 'es-hangul';
+
+console.log(disassembleCompleteCharacter('값'));
+```
+
+</Sandpack>
