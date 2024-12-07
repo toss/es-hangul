@@ -17,6 +17,7 @@ import { DISASSEMBLED_VOWELS_BY_VOWEL } from '@/_internal/constants';
  * combineVowels('ㅗ', 'ㅐ') // 'ㅙ'
  * combineVowels('ㅗ', 'ㅛ') // 'ㅗㅛ'
  */
-export const combineVowels = (vowel1: string, vowel2: string) =>
+export function combineVowels(vowel1: string, vowel2: string) {
   Object.entries(DISASSEMBLED_VOWELS_BY_VOWEL).find(([, value]) => value === `${vowel1}${vowel2}`)?.[0] ??
-  `${vowel1}${vowel2}`;
+    `${vowel1}${vowel2}`;
+}
