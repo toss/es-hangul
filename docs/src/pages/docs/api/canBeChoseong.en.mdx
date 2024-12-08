@@ -1,0 +1,37 @@
+---
+title: canBeChoseong
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# canBeChoseong
+
+Check if a given character can be a choseong in Korean.
+
+```typescript
+function canBeChoseong(character: string): boolean;
+```
+
+## Examples
+
+```typescript
+canBeChoseong('ㄱ'); // true
+canBeChoseong('ㅃ'); // true
+canBeChoseong('ㄱㅅ'); // false
+canBeChoseong('ㅏ'); // false
+canBeChoseong('가'); // false
+```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { canBeChoseong } from 'es-hangul';
+
+console.log(canBeChoseong('ㄱ'));
+```
+
+</Sandpack>
