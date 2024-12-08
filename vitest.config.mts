@@ -1,6 +1,6 @@
+import path from 'path';
 import { defineConfig } from 'vitest/config';
 import packageJson from './package.json';
-import path from 'path';
 
 export default defineConfig({
   resolve: {
@@ -13,6 +13,7 @@ export default defineConfig({
     globals: true,
     coverage: {
       provider: 'istanbul',
+      reporter: ['json-summary', 'text'],
       include: ['src/**/*'],
     },
   },
