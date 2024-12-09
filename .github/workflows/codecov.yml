@@ -13,14 +13,25 @@ jobs:
   codecov:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: corepack enable
-      - uses: actions/setup-node@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: '.nvmrc'
           cache: 'yarn'
-      - run: yarn install
-      - run: yarn test
-      - uses: codecov/codecov-action@v4
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Test
+        run: yarn test
+
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v4
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
