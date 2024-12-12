@@ -15,7 +15,7 @@ export default function Reliability({ locale }: TypeSupportTableProps) {
 
   const { total: totalCoverage, ...fileEntries } = coverageJSON;
 
-  const filteredCoverage = (coverageFileEntries: typeof fileEntries, openAPIList: typeof apiList) => {
+  const filteredCoverage = (coverageFileEntries: typeof fileEntries, openAPIList: typeof deduplicationAPIList) => {
     return Object.entries(coverageFileEntries)
       .filter(([filePath]) => {
         const fileNameWithoutExt = filteredFilePath(filePath);
@@ -44,7 +44,7 @@ export default function Reliability({ locale }: TypeSupportTableProps) {
     return lastSegment.replace(/\.ts$/, '');
   };
 
-  const filteredFileName = (fileNameWithoutExt: string, openAPIList: typeof apiList) => {
+  const filteredFileName = (fileNameWithoutExt: string, openAPIList: typeof deduplicationAPIList) => {
     return openAPIList.some(api => {
       if (fileNameWithoutExt === api) {
         return true;
@@ -59,7 +59,7 @@ export default function Reliability({ locale }: TypeSupportTableProps) {
       return false;
     });
   };
-  console.log(filteredCoverage(fileEntries, apiList));
+
   return (
     <div>
       <div className="overflow-x-auto mb-10">
@@ -168,7 +168,7 @@ export default function Reliability({ locale }: TypeSupportTableProps) {
           </thead>
 
           <tbody>
-            {filteredCoverage(fileEntries, apiList).map(([api, coverage]) => (
+            {filteredCoverage(fileEntries, deduplicationAPIList).map(([api, coverage]) => (
               <tr key={api} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   <a href={`../api/${api}`}>{api} 🔗</a>
@@ -187,11 +187,12 @@ export default function Reliability({ locale }: TypeSupportTableProps) {
   );
 }
 
-const apiList = [
+const deduplicationAPIList = [
   'amountToHangul',
   'assemble',
   'canBe',
   'combine',
+  'convertQwerty',
   'days',
   'disassemble',
   'getChoseong',
@@ -203,12 +204,3 @@ const apiList = [
   'standardizePronunciation',
   'susa',
 ] as const;
-
-const apiDocsHrefList = {
-  amountToHangul: 'amountToHangul',
-  assemble: 'assemble',
-  canBe: 'canBe',
-  combineCharacter: 'combine',
-  days: 'date',
-  disassemble: 'disassemble',
-};
