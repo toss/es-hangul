@@ -1,7 +1,10 @@
+import { canBeChoseong } from '@/canBeChoseong';
+import { canBeJongseong } from '@/canBeJongseong';
+import { canBeJungseong } from '@/canBeJungseong';
+import { combineVowels } from '@/combineVowels';
+import { disassembleToGroups } from '@/disassembleToGroups';
 import assert, { excludeLastElement, isBlank, joinString } from '.';
-import { canBeChoseong, canBeJungseong, canBeJongseong } from '../canBe';
-import { combineCharacter, combineVowels, curriedCombineCharacter } from '../combineCharacter';
-import { disassembleToGroups } from '../disassemble';
+import { combineCharacter } from '../combineCharacter';
 import { hasBatchim } from '../hasBatchim';
 import { removeLastCharacter } from '../removeLastCharacter';
 
@@ -187,3 +190,18 @@ export function binaryAssemble(source: string, nextCharacter: string) {
     needJoinString ? joinString(lastCharacter, nextCharacter) : binaryAssembleCharacters(lastCharacter, nextCharacter)
   );
 }
+
+/**
+ * @name curriedCombineCharacter
+ * @description
+ * 인자로 초성, 중성, 종성을 받아 하나의 한글 문자를 반환하는 `combineCharacter` 함수의 커링된 버전입니다.
+ * @example
+ * const combineMiddleHangulCharacter = curriedCombineCharacter('ㄱ')
+ * const combineLastHangulCharacter = combineMiddleHangulCharacter('ㅏ')
+ * combineLastHangulCharacter('ㄱ') // '각'
+ */
+export const curriedCombineCharacter =
+  (choseong: string) =>
+  (jungseong: string) =>
+  (jongseong = '') =>
+    combineCharacter(choseong, jungseong, jongseong);

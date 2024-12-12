@@ -1,0 +1,35 @@
+---
+title: combineCharacter
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# combineCharacter
+
+Given inputs of an choseong, jungseong, and jongseong return a single Korean character
+
+```typescript
+function combineCharacter(choseong: string, jungseong: string, jongseong?: string): string;
+```
+
+## Examples
+
+```typescript
+combineCharacter('ㄱ', 'ㅏ', 'ㅂㅅ'); // '값'
+combineCharacter('ㅌ', 'ㅗ'); // '토'
+```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { combineCharacter } from 'es-hangul';
+
+console.log(combineCharacter('ㄱ', 'ㅏ', 'ㅂㅅ'));
+console.log(combineCharacter('ㅌ', 'ㅗ'));
+```
+
+</Sandpack>

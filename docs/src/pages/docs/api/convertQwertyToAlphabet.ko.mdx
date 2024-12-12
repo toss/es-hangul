@@ -1,0 +1,38 @@
+---
+title: convertQwertyToAlphabet
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# convertQwertyToAlphabet
+
+영어 알파벳을 qwerty 자판과 매칭되는 한글 음소로 변환합니다.
+
+```typescript
+function convertQwertyToAlphabet(word: string): string;
+```
+
+## Examples
+
+```typescript
+convertQwertyToAlphabet('abc'); // 'ㅁㅠㅊ'
+convertQwertyToAlphabet('ABC'); // 'ㅁㅠㅊ'
+convertQwertyToAlphabet('vm론트'); // 'ㅍㅡ론트'
+convertQwertyToAlphabet('RㅏㄱEㅜrl'); // 'ㄲㅏㄱㄸㅜㄱㅣ'
+```
+
+## 사용해보기
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { convertQwertyToAlphabet } from 'es-hangul';
+
+console.log(convertQwertyToAlphabet('abc'));
+console.log(convertQwertyToAlphabet('ABC'));
+console.log(convertQwertyToAlphabet('vm론트'));
+```
+
+</Sandpack>
