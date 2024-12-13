@@ -53,7 +53,7 @@
     "test:watch": "vitest --ui --coverage --typecheck",
     "typecheck": "tsc --noEmit",
     "docs:dev": "yarn workspace docs dev",
-    "docs:build": "yarn test && yarn workspace docs build",
+    "docs:build": "yarn workspace docs build",
     "docs:start": "yarn workspace docs start",
     "bench": "vitest bench"
   },
