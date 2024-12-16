@@ -5,7 +5,7 @@ import { SEOSUSA_MAP, SEOSUSA_SPECIAL_CASE_MAP } from './constants';
  * 숫자를 순 우리말 서수사로 변환합니다.
  *
  * @remarks
- * - **서수사**는 순서를 나타내는 우리말 단어입니다. 이 함수에서는 첫째, 둘째, 셋째 따위의 고유어 계통 단어를 다룹니다.
+ * - **서수사**는 순서를 나타내는 우리말 단어입니다. 이 함수에서는 첫째, 둘째, 셋째와 같은 고유어 계통 단어를 다룹니다.
  * - 1부터 99까지의 정수를 서수사 문자열로 변환합니다.
  *
  * @param num - 변환할 숫자 (1-99)
@@ -26,7 +26,7 @@ import { SEOSUSA_MAP, SEOSUSA_SPECIAL_CASE_MAP } from './constants';
  * seosusa(40); // '마흔째'
  * seosusa(99); // '아흔아홉째'
  *
- * @see seosusa를_설명하는_링크
+ * @see https://es-hangul.slash.page/docs/api/seosusa
  */
 export function seosusa(num: number): string {
   if (!isValidNumber(num)) {
