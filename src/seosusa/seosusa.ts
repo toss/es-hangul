@@ -29,16 +29,19 @@ import { SEOSUSA_MAP, SEOSUSA_SPECIAL_CASE_MAP } from './constants';
  * @see seosusa를_설명하는_링크
  */
 export function seosusa(num: number): string {
-  validateNumber(num);
+  if (!isValidNumber(num)) {
+    throw new Error('유효하지 않은 입력입니다. 1부터 99까지의 정수만 지원합니다.');
+  }
   return `${getOrdinalWord(num)}째`;
 }
 
-function validateNumber(num: number): void {
-  if (Number.isNaN(num) || !Number.isFinite(num) || !Number.isInteger(num) || num <= 0 || num >= 100) {
-    throw new Error('유효하지 않은 입력입니다. 1부터 99까지의 정수만 지원합니다.');
-  }
+/**
+ * 유효한 숫자 범위인지 확인합니다.
+ * 1부터 99까지의 숫자만 유효합니다.
+ */
+function isValidNumber(num: number): boolean {
+  return num >= 1 && num <= 99 && Number.isInteger(num);
 }
-
 function getOrdinalWord(num: number): string {
   if (hasProperty(SEOSUSA_SPECIAL_CASE_MAP, num)) {
     return SEOSUSA_SPECIAL_CASE_MAP[num];
