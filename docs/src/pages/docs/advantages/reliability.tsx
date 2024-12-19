@@ -15,49 +15,25 @@ export default function Reliability({ locale }: TypeSupportTableProps) {
 
   const { total: totalCoverage, ...fileEntries } = coverageJSON;
 
-  const filteredCoverage = (coverageFileEntries: typeof fileEntries, openAPIList: typeof deduplicationAPIList) => {
+  const isValidFilePath = (filePath: string): boolean => {
+    // src 뒤 2-depth까지의 경로를 필터링하며, anything.something.ts 등의 명칭을 가진 파일들은 반환되지 않도록 `.ts`로 끝나되 추가 점(`.`)이 없는 경우만 허용
+    const regex = /\/src\/[^/]+\/[^/]+(?<!\..+)\.ts$/;
+
+    return regex.test(filePath) && !filePath.endsWith('constants.ts') && !filePath.includes('_internal');
+  };
+
+  const extractFileName = (filePath: string): string | undefined => {
+    return filePath.split('/').pop()?.split('.')[0];
+  };
+
+  const filterValidFileEntries = (coverageFileEntries: typeof fileEntries) => {
     return Object.entries(coverageFileEntries)
-      .filter(([filePath]) => {
-        const fileNameWithoutExt = filteredFilePath(filePath);
+      .filter(([filePath]) => isValidFilePath(filePath))
+      .flatMap(([filePath, info]) => {
+        const filename = extractFileName(filePath);
 
-        if (!fileNameWithoutExt) {
-          return false;
-        }
-
-        return filteredFileName(fileNameWithoutExt, openAPIList);
-      })
-      .map(([filePath, coverage]) => {
-        const fileNameWithoutExt = filteredFilePath(filePath);
-
-        return [fileNameWithoutExt, coverage] as const;
+        return filename != null ? [[filename, info] as const] : [];
       });
-  };
-
-  const filteredFilePath = (filePath: string) => {
-    const segments = filePath.split('/');
-    const lastSegment = segments[segments.length - 1];
-
-    if (!lastSegment.endsWith('.ts')) {
-      return '';
-    }
-
-    return lastSegment.replace(/\.ts$/, '');
-  };
-
-  const filteredFileName = (fileNameWithoutExt: string, openAPIList: typeof deduplicationAPIList) => {
-    return openAPIList.some(api => {
-      if (fileNameWithoutExt === api) {
-        return true;
-      }
-
-      if (fileNameWithoutExt.startsWith(api) && fileNameWithoutExt.length > api.length) {
-        const nextChar = fileNameWithoutExt.charAt(api.length);
-
-        return nextChar === nextChar.toUpperCase() && nextChar !== nextChar.toLowerCase();
-      }
-
-      return false;
-    });
   };
 
   return (
@@ -142,9 +118,7 @@ export default function Reliability({ locale }: TypeSupportTableProps) {
       <div className="overflow-x-auto">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <caption className="caption-top text-sm">
-            {isKorean
-              ? 'es-hangul의 테스트 커버리지 현황 📆 2024.12.03'
-              : "es-hangul's test coverage status 📆 2024.12.03"}
+            {isKorean ? 'es-hangul의 테스트 커버리지 현황' : "es-hangul's test coverage status"}
           </caption>
 
           <thead className="text-xs text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -168,16 +142,16 @@ export default function Reliability({ locale }: TypeSupportTableProps) {
           </thead>
 
           <tbody>
-            {filteredCoverage(fileEntries, deduplicationAPIList).map(([api, coverage]) => (
-              <tr key={api} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            {filterValidFileEntries(fileEntries).map(([filename, info]) => (
+              <tr key={filename} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  <a href={`../api/${api}`}>{api} 🔗</a>
+                  <a href={`../api/${filename}`}>{filename} 🔗</a>
                 </th>
 
-                <td className="px-6 py-4">✅ ({coverage.statements.pct}%)</td>
-                <td className="px-6 py-4">✅ ({coverage.branches.pct}%)</td>
-                <td className="px-6 py-4">✅ ({coverage.functions.pct}%)</td>
-                <td className="px-6 py-4">✅ ({coverage.lines.pct}%)</td>
+                <td className="px-6 py-4">✅ ({info.statements.pct}%)</td>
+                <td className="px-6 py-4">✅ ({info.branches.pct}%)</td>
+                <td className="px-6 py-4">✅ ({info.functions.pct}%)</td>
+                <td className="px-6 py-4">✅ ({info.lines.pct}%)</td>
               </tr>
             ))}
           </tbody>
@@ -186,21 +160,3 @@ export default function Reliability({ locale }: TypeSupportTableProps) {
     </div>
   );
 }
-
-const deduplicationAPIList = [
-  'amountToHangul',
-  'assemble',
-  'canBe',
-  'combine',
-  'convertQwerty',
-  'days',
-  'disassemble',
-  'getChoseong',
-  'hasBatchim',
-  'josa',
-  'numberToHangul',
-  'removeLastCharacter',
-  'romanize',
-  'standardizePronunciation',
-  'susa',
-] as const;
