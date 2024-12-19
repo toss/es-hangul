@@ -4,7 +4,7 @@ import {
   ㄴㄹ이_덧나는_후속음절_모음,
   ㄴㄹ이_덧나서_받침_ㄴ_변환,
   ㄴㄹ이_덧나서_받침_ㄹ_변환,
-} from '../standardizePronunciation.constants';
+} from '../constants';
 import { ReturnSyllables, Syllable } from './rules.types';
 
 /**

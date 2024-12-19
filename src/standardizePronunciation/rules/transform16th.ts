@@ -1,10 +1,5 @@
 import { arrayIncludes } from '../../_internal';
-import {
-  음가가_없는_자음,
-  특별한_한글_자모,
-  특별한_한글_자모의_발음,
-  한글_자모,
-} from '../standardizePronunciation.constants';
+import { 음가가_없는_자음, 특별한_한글_자모, 특별한_한글_자모의_발음, 한글_자모 } from '../constants';
 import { ReturnSyllables, Syllable } from './rules.types';
 
 type Apply16항 = {

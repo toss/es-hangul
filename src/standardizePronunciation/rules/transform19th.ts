@@ -1,5 +1,5 @@
 import { arrayIncludes } from '../../_internal';
-import { 자음동화_받침_ㄴ_변환 } from '../standardizePronunciation.constants';
+import { 자음동화_받침_ㄴ_변환 } from '../constants';
 import { ReturnSyllables, Syllable } from './rules.types';
 
 /**
