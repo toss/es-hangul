@@ -1,0 +1,20 @@
+---
+title: includeOldHangul
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# includeOldHangul
+
+Checks if the input string contains old Hangul characters. Only supports Hangul normalized in NFD.
+
+```typescript
+function includeOldHangul(str: string): boolean;
+```
+
+## Examples
+
+```typescript
+includeOldHangul('나랏〮말〯ᄊᆞ미〮'); // true
+includeOldHangul('나라의 말이'); // false
+```
