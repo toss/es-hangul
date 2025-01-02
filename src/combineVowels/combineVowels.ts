@@ -17,9 +17,11 @@ import { DISASSEMBLED_VOWELS_BY_VOWEL } from '@/_internal/constants';
  * combineVowels('ㅗ', 'ㅐ') // 'ㅙ'
  * combineVowels('ㅗ', 'ㅛ') // 'ㅗㅛ'
  */
-export function combineVowels(vowel1: string, vowel2: string) {
-  return (
-    Object.entries(DISASSEMBLED_VOWELS_BY_VOWEL).find(([, value]) => value === `${vowel1}${vowel2}`)?.[0] ??
-    `${vowel1}${vowel2}`
-  );
+
+type Invert<T extends Record<string, string>> = { [K in keyof T as T[K]]: K };
+type CombineVowel = Invert<typeof DISASSEMBLED_VOWELS_BY_VOWEL>;
+
+export function combineVowels<V1 extends string, V2 extends string>(vowel1: V1, vowel2: V2) {
+  return (Object.entries(DISASSEMBLED_VOWELS_BY_VOWEL).find(([, value]) => value === `${vowel1}${vowel2}`)?.[0] ??
+    `${vowel1}${vowel2}`) as `${V1}${V2}` extends keyof CombineVowel ? CombineVowel[`${V1}${V2}`] : `${V1}${V2}`;
 }
