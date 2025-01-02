@@ -5,7 +5,7 @@ import {
   발음변환_첫소리_ㅎ,
   발음변환_첫소리_ㅎ_발음,
   음가가_없는_자음,
-} from '../standardizePronunciation.constants';
+} from '../constants';
 import { Nullable, NullableReturnSyllables, ReturnSyllables, Syllable } from './rules.types';
 import { replace받침ㅎ } from './rules.utils';
 

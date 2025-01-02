@@ -1,6 +1,5 @@
-import { arrayIncludes } from '../../_internal';
-import { hasProperty } from '../../_internal';
-import { 된소리, 된소리_받침, 어간_받침 } from '../standardizePronunciation.constants';
+import { arrayIncludes, hasProperty } from '../../_internal';
+import { 된소리, 된소리_받침, 어간_받침 } from '../constants';
 import { ReturnSyllables, Syllable } from './rules.types';
 
 /**

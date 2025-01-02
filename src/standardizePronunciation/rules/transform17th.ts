@@ -1,5 +1,5 @@
 import { hasProperty } from '../../_internal';
-import { 음의_동화_받침 } from '../standardizePronunciation.constants';
+import { 음의_동화_받침 } from '../constants';
 import { ReturnSyllables, Syllable } from './rules.types';
 
 /**
