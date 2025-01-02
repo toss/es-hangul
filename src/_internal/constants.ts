@@ -99,6 +99,37 @@ export const CHOSEONGS = [
  */
 export const JUNSEONGS = Object.values(DISASSEMBLED_VOWELS_BY_VOWEL);
 
+export const ASSEMBLED_JONSEOUNG = [
+  '',
+  'ㄱ',
+  'ㄲ',
+  'ㄳ',
+  'ㄴ',
+  'ㄵ',
+  'ㄶ',
+  'ㄷ',
+  'ㄹ',
+  'ㄺ',
+  'ㄻ',
+  'ㄼ',
+  'ㄽ',
+  'ㄾ',
+  'ㄿ',
+  'ㅀ',
+  'ㅁ',
+  'ㅂ',
+  'ㅄ',
+  'ㅅ',
+  'ㅆ',
+  'ㅇ',
+  'ㅈ',
+  'ㅊ',
+  'ㅋ',
+  'ㅌ',
+  'ㅍ',
+  'ㅎ',
+];
+
 /**
  * 종성으로 올 수 있는 한글 글자
  */
