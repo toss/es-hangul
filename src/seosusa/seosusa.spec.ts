@@ -24,9 +24,11 @@ describe('seosusa', () => {
     { num: 40, word: '마흔째' },
     { num: 90, word: '아흔째' },
     { num: 99, word: '아흔아홉째' },
+    { num: 100, word: '백째' },
+    { num: 101, word: '백일째' },
   ];
 
-  const invalidNumbers = [0, -1, 100, 101, 1.1, -1.1, Infinity, -Infinity, NaN];
+  const invalidNumbers = [0, -1, 1.1, -1.1, Infinity, -Infinity, NaN];
 
   validNumbers.forEach(({ num, word }) => {
     it(`${num} - 순 우리말 서수사로 변환한다.`, () => {
@@ -36,7 +38,7 @@ describe('seosusa', () => {
 
   invalidNumbers.forEach(num => {
     it(`${num} - 유효하지 않은 숫자에 대해 오류를 발생시켜야 한다.`, () => {
-      expect(() => seosusa(num)).toThrow(`유효하지 않은 입력입니다. 1부터 99까지의 정수만 지원합니다.`);
+      expect(() => seosusa(num)).toThrow('유효하지 않은 입력입니다. 1이상의 정수만 지원합니다.');
     });
   });
 });
