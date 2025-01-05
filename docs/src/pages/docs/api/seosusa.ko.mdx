@@ -6,11 +6,13 @@ import { Sandpack } from '@/components/Sandpack';
 
 # seosusa
 
-숫자를 순 우리말 서수사로 변환합니다.
+숫자를 한글 서수사로 변환합니다.
+1부터 99까지의 정수는 순우리말 서수사 문자열로 변환합니다.
+100 이상의 정수는 한자어 서수사 문자열로 변환합니다.
 
 ```typescript
 function seosusa(
-  // 변환할 숫자 (1부터 99까지의 정수일 때 유효)
+  // 변환할 숫자
   num: number
 ): string;
 ```
@@ -28,6 +30,7 @@ seosusa(13); // '열셋째'
 seosusa(20); // '스무째'
 seosusa(21); // '스물한째'
 seosusa(99); // '아흔아홉째'
+seosusa(100); // '백째'
 ```
 
 ## 사용해보기

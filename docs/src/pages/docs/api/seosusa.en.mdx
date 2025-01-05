@@ -6,11 +6,13 @@ import { Sandpack } from '@/components/Sandpack';
 
 # susa
 
-Convert numbers to native Korean ordinal words.
+Convert numbers to Korean ordinal words.
+Integers from 1 to 99 are converted to native Korean ordinal words.
+Integers greater than 100 are converted to Sino-Korean ordinal words.
 
 ```typescript
 function seosusa(
-  // Number to convert (Valid for integers from 1 to 99)
+  // Number to convert
   num: number
 ): string;
 ```
@@ -28,6 +30,7 @@ seosusa(13); // '열셋째'
 seosusa(20); // '스무째'
 seosusa(21); // '스물한째'
 seosusa(99); // '아흔아홉째'
+seosusa(100); // '백째'
 ```
 
 ## Demo
