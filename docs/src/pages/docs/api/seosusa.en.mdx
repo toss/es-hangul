@@ -1,0 +1,48 @@
+---
+title: seosusa
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# susa
+
+Convert numbers to Korean ordinal words.
+Integers from 1 to 99 are converted to native Korean ordinal words.
+Integers greater than 100 are converted to Sino-Korean ordinal words.
+
+```typescript
+function seosusa(
+  // Number to convert
+  num: number
+): string;
+```
+
+## Examples
+
+```typescript
+seosusa(1); // '첫째'
+seosusa(2); // '둘째'
+seosusa(3); // '셋째'
+seosusa(10); // '열째'
+seosusa(11); // '열한째'
+seosusa(12); // '열두째'
+seosusa(13); // '열셋째'
+seosusa(20); // '스무째'
+seosusa(21); // '스물한째'
+seosusa(99); // '아흔아홉째'
+seosusa(100); // '백째'
+```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { seosusa } from 'es-hangul';
+
+console.log(seosusa(1));
+```
+
+</Sandpack>

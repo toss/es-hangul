@@ -1,0 +1,48 @@
+---
+title: seosusa
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# seosusa
+
+숫자를 한글 서수사로 변환합니다.
+1부터 99까지의 정수는 순우리말 서수사 문자열로 변환합니다.
+100 이상의 정수는 한자어 서수사 문자열로 변환합니다.
+
+```typescript
+function seosusa(
+  // 변환할 숫자
+  num: number
+): string;
+```
+
+## Examples
+
+```typescript
+seosusa(1); // '첫째'
+seosusa(2); // '둘째'
+seosusa(3); // '셋째'
+seosusa(10); // '열째'
+seosusa(11); // '열한째'
+seosusa(12); // '열두째'
+seosusa(13); // '열셋째'
+seosusa(20); // '스무째'
+seosusa(21); // '스물한째'
+seosusa(99); // '아흔아홉째'
+seosusa(100); // '백째'
+```
+
+## 사용해보기
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { seosusa } from 'es-hangul';
+
+console.log(seosusa(1));
+```
+
+</Sandpack>
