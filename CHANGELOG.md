@@ -1,5 +1,11 @@
 # es-hangul
 
+## 2.2.5
+
+### Patch Changes
+
+- [#307](https://github.com/toss/es-hangul/pull/307) [`5244525`](https://github.com/toss/es-hangul/commit/5244525035fc774b4dd3591ce50b4316fdd73ffd) Thanks [@wet6123](https://github.com/wet6123)! - feat: 숫자를 순 우리말 서수사로 변환하는 함수 추가
+
 ## 2.2.4
 
 ### Patch Changes
