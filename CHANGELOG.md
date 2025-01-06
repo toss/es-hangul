@@ -1,5 +1,11 @@
 # es-hangul
 
+## 2.2.6
+
+### Patch Changes
+
+- [#308](https://github.com/toss/es-hangul/pull/308) [`7aac3ff`](https://github.com/toss/es-hangul/commit/7aac3ff3b5dd25a4a4ea210f17cd7771e6dda311) Thanks [@skiende74](https://github.com/skiende74)! - feat: combineVowels 리턴 타입 보강
+
 ## 2.2.5
 
 ### Patch Changes
