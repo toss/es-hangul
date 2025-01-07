@@ -5,6 +5,8 @@ describe('numberToHangul', () => {
     expect(numberToHangul(210_000)).toBe('이십일만');
     expect(numberToHangul(12_345)).toBe('일만이천삼백사십오');
     expect(numberToHangul(123_456_780)).toBe('일억이천삼백사십오만육천칠백팔십');
+    expect(numberToHangul(100_000_000)).toBe('일억');
+    expect(numberToHangul(1_000_000_000_000)).toBe('일조');
   });
 
   test('공백 포함 변환', () => {
