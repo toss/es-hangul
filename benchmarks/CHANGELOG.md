@@ -4,6 +4,13 @@
 
 ### Patch Changes
 
+- Updated dependencies [[`40ac51f`](https://github.com/toss/es-hangul/commit/40ac51f5daa3d1724bfa5226ef8c262fb5a2fee9)]:
+  - es-hangul@2.3.0
+
+## null
+
+### Patch Changes
+
 - Updated dependencies [[`7aac3ff`](https://github.com/toss/es-hangul/commit/7aac3ff3b5dd25a4a4ea210f17cd7771e6dda311)]:
   - es-hangul@2.2.6
 
