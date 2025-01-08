@@ -1,5 +1,11 @@
 # es-hangul
 
+## 2.3.0
+
+### Minor Changes
+
+- [#314](https://github.com/toss/es-hangul/pull/314) [`40ac51f`](https://github.com/toss/es-hangul/commit/40ac51f5daa3d1724bfa5226ef8c262fb5a2fee9) Thanks [@wet6123](https://github.com/wet6123)! - fix: numberToHangul로 큰 숫자 변환시 불필요한 단위 제거
+
 ## 2.2.6
 
 ### Patch Changes
