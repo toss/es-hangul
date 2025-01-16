@@ -42,6 +42,13 @@ We welcome contribution from everyone in the community. Read below for detailed 
 
 [CONTRIBUTING](https://github.com/toss/es-hangul/blob/main/.github/CONTRIBUTING.md)
 
+## Thanks to
+
+We would like to express our special thanks to the owners of the following libraries for their significant contributions to the JavaScript ecosystem related to Hangul and for inspiring many developers:
+[hangul-js](https://github.com/e-/Hangul.js): Jae-min Jo
+
+
+
 ## License
 
 MIT © Viva Republica, Inc. See [LICENSE](https://github.com/toss/es-hangul/blob/main/LICENSE) for details.
@@ -52,3 +59,4 @@ MIT © Viva Republica, Inc. See [LICENSE](https://github.com/toss/es-hangul/blob
     <img alt="토스" src="https://static.toss.im/logos/png/4x/logo-toss.png" width="100">
   </picture>
 </a>
+
