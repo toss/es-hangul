@@ -8,7 +8,7 @@ import { binaryAssemble } from '../_internal/hangul';
  * ```typescript
  * assemble(
  *   // 한글 문자와 문장을 담고 있는 배열
- *   words: string[]
+ *   fragments: string[]
  * ): string
  * ```
  * @example
@@ -16,7 +16,7 @@ import { binaryAssemble } from '../_internal/hangul';
  * assemble(['아버지가', ' ', '방에 ', '들어갑니다']) // 아버지가 방에 들어갑니다
  * assemble(['ㅇ', 'ㅏ', 'ㅂ', 'ㅓ', 'ㅈ', 'ㅣ']) // 아버지
  */
-export function assemble(words: string[]) {
-  const disassembled = disassemble(words.join('')).split('');
+export function assemble(fragments: string[]) {
+  const disassembled = disassemble(fragments.join('')).split('');
   return disassembled.reduce(binaryAssemble);
 }
