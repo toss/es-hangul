@@ -1,6 +1,10 @@
 import { HANGUL_DIGITS } from '@/_internal/constants';
 
 export function numberToHangulMixed(input: number, options?: { spacing?: boolean }): string {
+  if (!Number.isFinite(input) || Number.isNaN(input) || !Number.isInteger(input) || input < 0) {
+    throw new Error('유효한 0 이상의 정수를 입력해주세요.');
+  }
+
   if (input === 0) {
     return '0';
   }

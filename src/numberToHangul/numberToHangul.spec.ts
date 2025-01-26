@@ -48,5 +48,8 @@ describe('numberToHangul', () => {
     expect(() => numberToHangul(-12345)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
     expect(() => numberToHangul(NaN)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
     expect(() => numberToHangul(Infinity)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
+    expect(() => numberToHangul(0.1)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
+    expect(() => numberToHangul(12345.678)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
+    expect(() => numberToHangul(-0.1)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
   });
 });

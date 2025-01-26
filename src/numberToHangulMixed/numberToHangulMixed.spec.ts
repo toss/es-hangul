@@ -40,4 +40,14 @@ describe('numberToHangulMixed', () => {
     expect(numberToHangulMixed(1_234)).toBe('1,234');
     expect(numberToHangulMixed(9_999)).toBe('9,999');
   });
+
+  test('유효하지 않은 숫자에 대한 오류 처리', () => {
+    expect(() => numberToHangulMixed(-1)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
+    expect(() => numberToHangulMixed(-12345)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
+    expect(() => numberToHangulMixed(NaN)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
+    expect(() => numberToHangulMixed(Infinity)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
+    expect(() => numberToHangulMixed(0.1)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
+    expect(() => numberToHangulMixed(12345.678)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
+    expect(() => numberToHangulMixed(-0.1)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
+  });
 });
