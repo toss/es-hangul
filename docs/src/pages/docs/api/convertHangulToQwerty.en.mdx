@@ -1,0 +1,39 @@
+---
+title: convertHangulToQwerty
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# convertHangulToQwerty
+
+Converts Korean characters into English alphabets corresponding to the QWERTY keyboard layout.
+
+```typescript
+function convertHangulToQwerty(word: string): string;
+```
+
+## Examples
+
+```typescript
+convertHangulToQwerty('뮻'); // 'abc'
+convertHangulToQwerty('겨노'); // 'rush'
+convertHangulToQwerty('빠른 논의'); // 'Qkfms shsdml'
+convertHangulToQwerty('RㅏㄱEㅜrl'); // 'RkrEnrl'
+```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { convertHangulToQwerty } from 'es-hangul';
+
+console.log(convertHangulToQwerty('뮻'));
+console.log(convertHangulToQwerty('겨노'));
+console.log(convertHangulToQwerty('빠른 논의'));
+console.log(convertHangulToQwerty('RㅏㄱEㅜrl'));
+```
+
+</Sandpack>
