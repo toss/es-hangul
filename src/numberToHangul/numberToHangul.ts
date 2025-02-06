@@ -1,16 +1,29 @@
 import { HANGUL_CARDINAL, HANGUL_DIGITS, HANGUL_NUMBERS } from '@/_internal/constants';
 
 export function numberToHangul(input: number, options?: { spacing?: boolean }): string {
-  if (!Number.isFinite(input) || Number.isNaN(input) || !Number.isInteger(input) || input < 0) {
-    throw new Error('유효한 0 이상의 정수를 입력해주세요.');
+  if (typeof input !== 'number' || Number.isNaN(input)) {
+    throw new Error('유효한 숫자를 입력해주세요.');
   }
 
+  if (input === Infinity) {
+    return '무한대';
+  }
+  if (input === -Infinity) {
+    return options?.spacing ? '마이너스 무한대' : '마이너스무한대';
+  }
   if (input === 0) {
     return '영';
   }
 
+  const isNegative = input < 0;
+  if (isNegative) {
+    input = Math.abs(input);
+  }
+
+  const [integerPart, decimalPart] = input.toString().split('.');
+
   const koreanParts: string[] = [];
-  let remainingDigits = input.toString();
+  let remainingDigits = integerPart;
   let placeIndex = 0;
 
   while (remainingDigits.length > 0) {
@@ -25,14 +38,25 @@ export function numberToHangul(input: number, options?: { spacing?: boolean }): 
     placeIndex++;
   }
 
-  if (options?.spacing) {
-    return koreanParts
-      .filter(part => part !== '')
-      .join(' ')
-      .trim();
+  let result = koreanParts
+    .filter(part => part !== '')
+    .join(options?.spacing ? ' ' : '')
+    .trim();
+
+  if (integerPart === '0') {
+    result = '영';
   }
 
-  return koreanParts.join('');
+  if (decimalPart) {
+    const decimalKorean = decimalPart
+      .split('')
+      .map(digit => HANGUL_NUMBERS[Number(digit)])
+      .join('');
+
+    result += options?.spacing ? '점 ' + decimalKorean : '점' + decimalKorean;
+  }
+
+  return isNegative ? (options?.spacing ? '마이너스 ' + result : '마이너스' + result) : result;
 }
 
 function numberToKoreanUpToThousand(num: number): string {

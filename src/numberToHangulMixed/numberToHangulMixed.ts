@@ -1,16 +1,29 @@
 import { HANGUL_DIGITS } from '@/_internal/constants';
 
 export function numberToHangulMixed(input: number, options?: { spacing?: boolean }): string {
-  if (!Number.isFinite(input) || Number.isNaN(input) || !Number.isInteger(input) || input < 0) {
-    throw new Error('유효한 0 이상의 정수를 입력해주세요.');
+  if (typeof input !== 'number' || Number.isNaN(input)) {
+    throw new Error('유효한 숫자를 입력해주세요.');
   }
 
+  if (input === Infinity) {
+    return '무한대';
+  }
+  if (input === -Infinity) {
+    return '-무한대';
+  }
   if (input === 0) {
     return '0';
   }
 
+  const isNegative = input < 0;
+  if (isNegative) {
+    input = Math.abs(input);
+  }
+
+  const [integerPart, decimalPart] = input.toString().split('.');
+
   const koreanParts: string[] = [];
-  let remainingDigits = input.toString();
+  let remainingDigits = integerPart;
   let placeIndex = 0;
 
   while (remainingDigits.length > 0) {
@@ -26,12 +39,16 @@ export function numberToHangulMixed(input: number, options?: { spacing?: boolean
     placeIndex++;
   }
 
-  if (options?.spacing) {
-    return koreanParts
-      .filter(part => part !== '')
-      .join(' ')
-      .trim();
-  }
+  let result = koreanParts
+    .filter(part => part !== '')
+    .join(options?.spacing ? ' ' : '')
+    .trim();
 
-  return koreanParts.join('');
+  if (integerPart === '0') {
+    result = '0';
+  }
+  if (decimalPart) {
+    result += '.' + decimalPart;
+  }
+  return isNegative ? '-' + result : result;
 }

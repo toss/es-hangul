@@ -13,7 +13,7 @@ describe('numberToHangulMixed', () => {
     expect(numberToHangulMixed(123_456_780, { spacing: true })).toBe('1억 2,345만 6,780');
   });
 
-  test('0과 10,000보다 작은 경우', () => {
+  test('0 이상 10,000 미만인 경우', () => {
     expect(numberToHangulMixed(0)).toBe('0');
     expect(numberToHangulMixed(1)).toBe('1');
     expect(numberToHangulMixed(2)).toBe('2');
@@ -41,13 +41,34 @@ describe('numberToHangulMixed', () => {
     expect(numberToHangulMixed(9_999)).toBe('9,999');
   });
 
-  test('유효하지 않은 숫자에 대한 오류 처리', () => {
-    expect(() => numberToHangulMixed(-1)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
-    expect(() => numberToHangulMixed(-12345)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
-    expect(() => numberToHangulMixed(NaN)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
-    expect(() => numberToHangulMixed(Infinity)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
-    expect(() => numberToHangulMixed(0.1)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
-    expect(() => numberToHangulMixed(12345.678)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
-    expect(() => numberToHangulMixed(-0.1)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
+  test('음수', () => {
+    expect(numberToHangulMixed(-210_000)).toBe('-21만');
+    expect(numberToHangulMixed(-12_345)).toBe('-1만2,345');
+    expect(numberToHangulMixed(-123_456_780)).toBe('-1억2,345만6,780');
+    expect(numberToHangulMixed(-210_000, { spacing: true })).toBe('-21만');
+    expect(numberToHangulMixed(-12_345, { spacing: true })).toBe('-1만 2,345');
+    expect(numberToHangulMixed(-123_456_780, { spacing: true })).toBe('-1억 2,345만 6,780');
+  });
+
+  test('Infinity', () => {
+    expect(numberToHangulMixed(Infinity)).toBe('무한대');
+    expect(numberToHangulMixed(-Infinity)).toBe('-무한대');
+    expect(numberToHangulMixed(-Infinity, { spacing: true })).toBe('-무한대');
+  });
+
+  test('소수', () => {
+    expect(numberToHangulMixed(0.1)).toBe('0.1');
+    expect(numberToHangulMixed(12_345.678)).toBe('1만2,345.678');
+    expect(numberToHangulMixed(-0.1)).toBe('-0.1');
+    expect(numberToHangulMixed(-12_345.678)).toBe('-1만2,345.678');
+    expect(numberToHangulMixed(0.1, { spacing: true })).toBe('0.1');
+    expect(numberToHangulMixed(12_345.678, { spacing: true })).toBe('1만 2,345.678');
+    expect(numberToHangulMixed(-0.1, { spacing: true })).toBe('-0.1');
+    expect(numberToHangulMixed(-12_345.678, { spacing: true })).toBe('-1만 2,345.678');
+  });
+
+  test('유효하지 않은 입력에 대한 오류 처리', () => {
+    expect(() => numberToHangulMixed(NaN)).toThrow('유효한 숫자를 입력해주세요.');
+    expect(() => numberToHangulMixed('123' as unknown as number)).toThrow('유효한 숫자를 입력해주세요.');
   });
 });
