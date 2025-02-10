@@ -15,7 +15,7 @@ describe('numberToHangul', () => {
     expect(numberToHangul(123_456_780, { spacing: true })).toBe('일억 이천삼백사십오만 육천칠백팔십');
   });
 
-  test('0과 10,000보다 작은 경우', () => {
+  test('0 이상 10,000 미만인 경우', () => {
     expect(numberToHangul(0)).toBe('영');
     expect(numberToHangul(1)).toBe('일');
     expect(numberToHangul(2)).toBe('이');
@@ -43,10 +43,34 @@ describe('numberToHangul', () => {
     expect(numberToHangul(9_999)).toBe('구천구백구십구');
   });
 
-  test('유효하지 않은 숫자에 대한 오류 처리', () => {
-    expect(() => numberToHangul(-1)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
-    expect(() => numberToHangul(-12345)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
-    expect(() => numberToHangul(NaN)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
-    expect(() => numberToHangul(Infinity)).toThrow('유효한 0 이상의 정수를 입력해주세요.');
+  test('음수', () => {
+    expect(numberToHangul(-210_000)).toBe('마이너스이십일만');
+    expect(numberToHangul(-12_345)).toBe('마이너스일만이천삼백사십오');
+    expect(numberToHangul(-123_456_780)).toBe('마이너스일억이천삼백사십오만육천칠백팔십');
+    expect(numberToHangul(-210_000, { spacing: true })).toBe('마이너스 이십일만');
+    expect(numberToHangul(-12_345, { spacing: true })).toBe('마이너스 일만 이천삼백사십오');
+    expect(numberToHangul(-123_456_780, { spacing: true })).toBe('마이너스 일억 이천삼백사십오만 육천칠백팔십');
+  });
+
+  test('Infinity', () => {
+    expect(numberToHangul(Infinity)).toBe('무한대');
+    expect(numberToHangul(-Infinity)).toBe('마이너스무한대');
+    expect(numberToHangul(-Infinity, { spacing: true })).toBe('마이너스 무한대');
+  });
+
+  test('소수', () => {
+    expect(numberToHangul(0.1)).toBe('영점일');
+    expect(numberToHangul(12_345.678)).toBe('일만이천삼백사십오점육칠팔');
+    expect(numberToHangul(-0.1)).toBe('마이너스영점일');
+    expect(numberToHangul(-12_345.678)).toBe('마이너스일만이천삼백사십오점육칠팔');
+    expect(numberToHangul(0.1, { spacing: true })).toBe('영점 일');
+    expect(numberToHangul(12_345.678, { spacing: true })).toBe('일만 이천삼백사십오점 육칠팔');
+    expect(numberToHangul(-0.1, { spacing: true })).toBe('마이너스 영점 일');
+    expect(numberToHangul(-12_345.678, { spacing: true })).toBe('마이너스 일만 이천삼백사십오점 육칠팔');
+  });
+
+  test('유효하지 않은 입력에 대한 오류 처리', () => {
+    expect(() => numberToHangul(NaN)).toThrow('유효한 숫자를 입력해주세요.');
+    expect(() => numberToHangul('123' as unknown as number)).toThrow('유효한 숫자를 입력해주세요.');
   });
 });
