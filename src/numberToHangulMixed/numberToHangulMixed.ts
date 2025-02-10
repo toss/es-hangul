@@ -16,11 +16,9 @@ export function numberToHangulMixed(input: number, options?: { spacing?: boolean
   }
 
   const isNegative = input < 0;
-  if (isNegative) {
-    input = Math.abs(input);
-  }
+  const absoluteInput = Math.abs(input);
 
-  const [integerPart, decimalPart] = input.toString().split('.');
+  const [integerPart, decimalPart] = absoluteInput.toString().split('.');
 
   const koreanParts: string[] = [];
   let remainingDigits = integerPart;

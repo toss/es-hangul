@@ -16,11 +16,9 @@ export function numberToHangul(input: number, options?: { spacing?: boolean }): 
   }
 
   const isNegative = input < 0;
-  if (isNegative) {
-    input = Math.abs(input);
-  }
+  const absoluteInput = Math.abs(input);
 
-  const [integerPart, decimalPart] = input.toString().split('.');
+  const [integerPart, decimalPart] = absoluteInput.toString().split('.');
 
   const koreanParts: string[] = [];
   let remainingDigits = integerPart;
@@ -56,7 +54,10 @@ export function numberToHangul(input: number, options?: { spacing?: boolean }): 
     result += options?.spacing ? '점 ' + decimalKorean : '점' + decimalKorean;
   }
 
-  return isNegative ? (options?.spacing ? '마이너스 ' + result : '마이너스' + result) : result;
+  if (isNegative) {
+    result = options?.spacing ? `마이너스 ${result}` : `마이너스${result}`;
+  }
+  return result;
 }
 
 function numberToKoreanUpToThousand(num: number): string {
