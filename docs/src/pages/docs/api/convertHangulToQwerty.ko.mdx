@@ -17,8 +17,10 @@ function convertHangulToQwerty(word: string): string;
 ```typescript
 convertHangulToQwerty('뮻'); // 'abc'
 convertHangulToQwerty('겨노'); // 'rush'
-convertHangulToQwerty('빠른 논의'); // 'Qkfms shsdml'
+convertHangulToQwerty('님노'); // 'slash'
 convertHangulToQwerty('RㅏㄱEㅜrl'); // 'RkrEnrl'
+convertHangulToQwerty('ㅙㅜㅎ 햐ㅣ애ㅜㅎ'); // 'hong gildong'
+convertHangulToQwerty('ㄴ대ㅕㅣ, ㅏㅐㄱㄷㅁ'); // 'seoul, korea'
 ```
 
 ## 사용해보기
@@ -32,8 +34,10 @@ import { convertHangulToQwerty } from 'es-hangul';
 
 console.log(convertHangulToQwerty('뮻'));
 console.log(convertHangulToQwerty('겨노'));
-console.log(convertHangulToQwerty('빠른 논의'));
+console.log(convertHangulToQwerty('님노'));
 console.log(convertHangulToQwerty('RㅏㄱEㅜrl'));
+console.log(convertHangulToQwerty('ㅙㅜㅎ 햐ㅣ애ㅜㅎ'));
+console.log(convertHangulToQwerty('ㄴ대ㅕㅣ, ㅏㅐㄱㄷㅁ'));
 ```
 
 </Sandpack>
