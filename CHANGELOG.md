@@ -1,5 +1,13 @@
 # es-hangul
 
+## 2.3.1
+
+### Patch Changes
+
+- [#324](https://github.com/toss/es-hangul/pull/324) [`505b947`](https://github.com/toss/es-hangul/commit/505b947e0d37ac3a77d19e955986daf67fa90fc2) Thanks [@gunhoflash](https://github.com/gunhoflash)! - feat: 한글 문자를 쿼티 자판에 맞는 영문 알파벳으로 변환 하는 함수를 새로 추가합니다 합니
+
+- [#323](https://github.com/toss/es-hangul/pull/323) [`2dca19c`](https://github.com/toss/es-hangul/commit/2dca19c2e002712e3ff9902238d0d7683a6ab1c4) Thanks [@gs18004](https://github.com/gs18004)! - fix: numberToHangulMixed 및 numberToHangul에 모든 number 처리
+
 ## 2.3.0
 
 ### Minor Changes
