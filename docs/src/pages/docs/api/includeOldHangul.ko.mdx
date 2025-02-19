@@ -1,0 +1,35 @@
+---
+title: includeOldHangul
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# includeOldHangul
+
+입력된 문자열에 옛한글이 포함되어 있는지 확인합니다. NFD 정규화된 한글만 지원합니다.
+
+```typescript
+function includeOldHangul(str: string): boolean;
+```
+
+## Examples
+
+```typescript
+includeOldHangul('나랏〮말〯ᄊᆞ미〮'); // true
+includeOldHangul('나라의 말이'); // false
+```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { includeOldHangul } from 'es-hangul';
+
+console.log(includeOldHangul('나랏〮말〯ᄊᆞ미〮')); // true
+console.log(includeOldHangul('나라의 말이')); // false
+```
+
+</Sandpack>
