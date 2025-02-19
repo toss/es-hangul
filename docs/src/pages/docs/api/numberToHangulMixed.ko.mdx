@@ -6,8 +6,8 @@ import { Sandpack } from '@/components/Sandpack';
 
 # numberToHangulMixed
 
-주어진 숫자에 **4자리 마다 바뀌는 한글의 숫자 단위**를 붙여줍니다.
-다양한 요구사항에 대응하도록 '만(萬)' 단위로 띄어쓰기를 지원합니다.
+주어진 숫자에 대해 4자리마다 달라지는 한글의 숫자 단위를 자동으로 붙여주며,
+다양한 요구 사항에 맞춰 '만(萬)' 단위 기준으로 띄어쓰기도 지원합니다.
 
 ```typescript
 function numberToHangulMixed(input: number, options?: { spacing?: boolean }): string;
@@ -19,6 +19,7 @@ function numberToHangulMixed(input: number, options?: { spacing?: boolean }): st
 numberToHangulMixed(210_000); // '21만';
 numberToHangulMixed(12_345); // '1만2,345';
 numberToHangulMixed(123_456_780); // '1억2,345만6,780';
+numberToHangulMixed(-12_345.678); // '-1만2,345.678';
 numberToHangulMixed(123_456_780, { spacing: true }); // '1억 2,345만 6,780';
 ```
 

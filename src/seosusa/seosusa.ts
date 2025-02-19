@@ -32,7 +32,7 @@ import { SEOSUSA_MAP, SEOSUSA_SPECIAL_CASE_MAP } from './constants';
  * @see https://es-hangul.slash.page/docs/api/seosusa
  */
 export function seosusa(num: number): string {
-  if (num === 0 || !Number.isInteger(num)) {
+  if (num <= 0 || !Number.isInteger(num)) {
     throw new Error('유효하지 않은 입력입니다. 1이상의 정수만 지원합니다.');
   }
 
