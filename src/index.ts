@@ -5,6 +5,7 @@ export { canBeJongseong } from './canBeJongseong';
 export { canBeJungseong } from './canBeJungseong';
 export { combineCharacter } from './combineCharacter';
 export { combineVowels } from './combineVowels';
+export { convertHangulToQwerty } from './convertHangulToQwerty';
 export { convertQwertyToAlphabet } from './convertQwertyToAlphabet';
 export { convertQwertyToHangul } from './convertQwertyToHangul';
 export { days } from './days';
