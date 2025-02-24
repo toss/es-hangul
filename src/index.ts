@@ -21,3 +21,4 @@ export { removeLastCharacter } from './removeLastCharacter';
 export { romanize } from './romanize';
 export { standardizePronunciation } from './standardizePronunciation';
 export { susa } from './susa';
+export { seosusa } from './seosusa';
