@@ -1,6 +1,6 @@
 import { convertHangulToQwerty } from './convertHangulToQwerty';
 
-describe('convertQwertyToHangul', () => {
+describe('convertHangulToQwerty', () => {
   it('한글을 알파벳으로 변환한다.', () => {
     expect(convertHangulToQwerty('뮻')).toBe('abc');
     expect(convertHangulToQwerty('겨노')).toBe('rush');
