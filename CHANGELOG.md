@@ -1,5 +1,11 @@
 # es-hangul
 
+## 2.3.2
+
+### Patch Changes
+
+- [#328](https://github.com/toss/es-hangul/pull/328) [`fd02373`](https://github.com/toss/es-hangul/commit/fd023736ba9d6046cfb4c7ee390b9a034cb2ed65) Thanks [@kimhan0421](https://github.com/kimhan0421)! - feat: 서수사 함수를 사용할 수 있도록 export 시킵니다
+
 ## 2.3.1
 
 ### Patch Changes
