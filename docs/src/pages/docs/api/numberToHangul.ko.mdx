@@ -19,7 +19,7 @@ function numberToHangul(input: number, options?: { spacing?: boolean }): string;
 numberToHangul(210_000); // '이십일만';
 numberToHangul(12_345); // '일만이천삼백사십오';
 numberToHangul(123_456_780); // '일억이천삼백사십오만육천칠백팔십';
-numberToHangulMixed(-12_345.678); // '마이너스일만이천삼백사십오점육칠팔';
+numberToHangul(-12_345.678); // '마이너스일만이천삼백사십오점육칠팔';
 numberToHangul(123_456_780, { spacing: true }); // '일억 이천삼백사십오만 육천칠백팔십';
 ```
 
