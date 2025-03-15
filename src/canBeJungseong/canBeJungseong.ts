@@ -14,6 +14,7 @@ import { JUNSEONGS } from '@/_internal/constants';
  * @example
  * canBeJungseong('ㅏ') // true
  * canBeJungseong('ㅗㅏ') // true
+ * canBeJungseong('ㅘ') // true
  * canBeJungseong('ㅏㅗ') // false
  * canBeJungseong('ㄱ') // false
  * canBeJungseong('ㄱㅅ') // false
