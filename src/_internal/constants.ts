@@ -97,16 +97,7 @@ export const CHOSEONGS = [
 /**
  * 중성으로 올 수 있는 한글 글자
  */
-export const JUNSEONGS = [
-  ...Object.values(DISASSEMBLED_VOWELS_BY_VOWEL),
-  'ㅘ',
-  'ㅙ',
-  'ㅚ',
-  'ㅝ',
-  'ㅞ',
-  'ㅟ',
-  'ㅢ',
-] as const;
+export const JUNSEONGS = Object.values(DISASSEMBLED_VOWELS_BY_VOWEL);
 
 /**
  * 종성으로 올 수 있는 한글 글자

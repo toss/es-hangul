@@ -1,5 +1,5 @@
 import { hasValueInReadOnlyStringList } from '@/_internal';
-import { JUNSEONGS } from '@/_internal/constants';
+import { DISASSEMBLED_VOWELS_BY_VOWEL, JUNSEONGS } from '@/_internal/constants';
 
 /**
  * @name canBeJungseong
@@ -21,5 +21,15 @@ import { JUNSEONGS } from '@/_internal/constants';
  * canBeJungseong('가') // false
  */
 export function canBeJungseong(character: string): character is (typeof JUNSEONGS)[number] {
+  if (!character) {
+    return false;
+  }
+
+  // 단일 이중모음 문자인 경우 (ㅘ, ㅝ 등)
+  if (character in DISASSEMBLED_VOWELS_BY_VOWEL) {
+    return true;
+  }
+
+  // 분해된 이중모음 문자인 경우 (ㅗㅏ, ㅜㅓ 등)
   return hasValueInReadOnlyStringList(JUNSEONGS, character);
 }
