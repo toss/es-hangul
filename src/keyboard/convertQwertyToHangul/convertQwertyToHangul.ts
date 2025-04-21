@@ -1,5 +1,5 @@
-import { assemble } from '@/assemble';
-import { convertQwertyToAlphabet } from '@/convertQwertyToAlphabet';
+import { assemble } from '@/core/assemble';
+import { convertQwertyToAlphabet } from '@/keyboard/convertQwertyToAlphabet';
 
 /**
  * @name convertQwertyToHangul

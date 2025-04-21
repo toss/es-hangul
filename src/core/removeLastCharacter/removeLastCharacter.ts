@@ -1,6 +1,6 @@
-import { canBeJungseong } from '@/canBeJungseong';
-import { disassembleToGroups } from '@/disassembleToGroups';
-import { excludeLastElement } from '../_internal';
+import { canBeJungseong } from '@/core/canBeJungseong';
+import { disassembleToGroups } from '@/core/disassembleToGroups';
+import { excludeLastElement } from '@/_internal';
 import { combineCharacter } from '../combineCharacter';
 
 /**

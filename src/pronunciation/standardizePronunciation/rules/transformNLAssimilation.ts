@@ -1,15 +1,15 @@
-import { arrayIncludes } from '../../_internal';
+import { arrayIncludes } from '@/_internal';
 import {
   ㄴㄹ이_덧나는_모음,
   ㄴㄹ이_덧나는_후속음절_모음,
   ㄴㄹ이_덧나서_받침_ㄴ_변환,
   ㄴㄹ이_덧나서_받침_ㄹ_변환,
 } from '../constants';
-import { ReturnSyllables, Syllable } from './rules.types';
+import type { ReturnSyllables, Syllable } from './rules.types';
 
 /**
  * 'ㄴ,ㄹ'이 덧나는 경우(동화작용)를 적용합니다.
- * @description 합성어에서 둘째 요소가 ‘야, 여, 요, 유, 얘, 예’ 등으로 시작되는 말이면 ‘ㄴ, ㄹ’이 덧난다
+ * @description 합성어에서 둘째 요소가 '야, 여, 요, 유, 얘, 예' 등으로 시작되는 말이면 'ㄴ, ㄹ'이 덧난다
  * @link https://www.youtube.com/watch?v=Mm2JX2naqWk
  * @link http://contents2.kocw.or.kr/KOCW/data/document/2020/seowon/choiyungon0805/12.pdf
  * @param currentSyllable 현재 음절을 입력합니다.

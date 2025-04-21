@@ -1,6 +1,6 @@
-import { hasProperty } from '../../_internal';
+import { hasProperty } from '@/_internal';
 import { 받침_대표음_발음, 음가가_없는_자음 } from '../constants';
-import { Nullable, ReturnSyllables, Syllable } from './rules.types';
+import type { Nullable, ReturnSyllables, Syllable } from './rules.types';
 
 /**
  * 제9, 10항, 11항을 적용합니다.

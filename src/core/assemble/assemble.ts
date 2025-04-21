@@ -1,5 +1,5 @@
 import { disassemble } from '../disassemble';
-import { binaryAssemble } from '../_internal/hangul';
+import { binaryAssemble } from '@/_internal/hangul';
 
 /**
  * @name assemble

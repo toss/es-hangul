@@ -1,4 +1,4 @@
-import { disassembleCompleteCharacter } from '@/disassembleCompleteCharacter';
+import { disassembleCompleteCharacter } from '@/core/disassembleCompleteCharacter';
 import { hasBatchim } from '../hasBatchim';
 
 type JosaOption =

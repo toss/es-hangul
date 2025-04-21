@@ -1,6 +1,6 @@
-import { arrayIncludes } from '../../_internal';
+import { arrayIncludes } from '@/_internal';
 import { 자음동화_받침_ㄴ_변환 } from '../constants';
-import { ReturnSyllables, Syllable } from './rules.types';
+import type { ReturnSyllables, Syllable } from './rules.types';
 
 /**
  * 제19항을 적용합니다.

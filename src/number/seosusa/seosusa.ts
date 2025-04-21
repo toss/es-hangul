@@ -1,5 +1,5 @@
-import { numberToHangul } from '@/numberToHangul';
-import { hasProperty } from '../_internal';
+import { numberToHangul } from '@/number/numberToHangul';
+import { hasProperty } from '@/_internal';
 import { SEOSUSA_MAP, SEOSUSA_SPECIAL_CASE_MAP } from './constants';
 
 /**

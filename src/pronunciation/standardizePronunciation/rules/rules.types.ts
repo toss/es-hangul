@@ -1,4 +1,4 @@
-import { disassembleCompleteCharacter } from '../../disassembleCompleteCharacter';
+import type { disassembleCompleteCharacter } from '@/core/disassembleCompleteCharacter';
 
 export type NonUndefined<T> = T extends undefined ? never : T;
 export type Nullable<T> = T | null | undefined;

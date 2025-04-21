@@ -1,4 +1,4 @@
-import { hasProperty } from '../_internal';
+import { hasProperty } from '@/_internal';
 import { QWERTY_KEYBOARD_MAP } from './constants';
 
 /**

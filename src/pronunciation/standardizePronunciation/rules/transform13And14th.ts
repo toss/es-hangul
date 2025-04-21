@@ -1,6 +1,6 @@
-import { arrayIncludes } from '../../_internal';
+import { arrayIncludes } from '@/_internal';
 import { 음가가_없는_자음 } from '../constants';
-import { ReturnSyllables, Syllable } from './rules.types';
+import type { ReturnSyllables, Syllable } from './rules.types';
 
 const 받침의길이 = {
   홀받침: 1,

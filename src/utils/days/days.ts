@@ -1,4 +1,4 @@
-import { hasProperty } from '../_internal';
+import { hasProperty } from '@/_internal';
 import { DAYS_MAP, DAYS_ONLY_TENS_MAP } from './constants';
 
 export function days(num: number): string {

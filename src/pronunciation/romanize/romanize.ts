@@ -1,8 +1,8 @@
-import { canBeChoseong } from '@/canBeChoseong';
-import { isHangulCharacter } from '../_internal/hangul';
-import { assemble } from '../assemble';
+import { canBeChoseong } from '@/core/canBeChoseong';
+import { isHangulCharacter } from '@/_internal/hangul';
+import { assemble } from '@/core/assemble';
 
-import { disassembleCompleteCharacter } from '../disassembleCompleteCharacter';
+import { disassembleCompleteCharacter } from '@/core/disassembleCompleteCharacter';
 import { standardizePronunciation } from '../standardizePronunciation';
 import { 종성_알파벳_발음, 중성_알파벳_발음, 초성_알파벳_발음 } from './constants';
 

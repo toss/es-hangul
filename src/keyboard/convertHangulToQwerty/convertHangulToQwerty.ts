@@ -1,5 +1,5 @@
 import { hasProperty } from '@/_internal';
-import { disassemble } from '@/disassemble';
+import { disassemble } from '@/core/disassemble';
 import { HANGUL_TO_QWERTY_KEYBOARD_MAP } from './constants';
 
 /**
@@ -21,7 +21,7 @@ export function convertHangulToQwerty(word: string): string {
   }
   return disassemble(word)
     .split('')
-    .map(inputText =>
+    .map((inputText: string) =>
       hasProperty(HANGUL_TO_QWERTY_KEYBOARD_MAP, inputText) ? HANGUL_TO_QWERTY_KEYBOARD_MAP[inputText] : inputText
     )
     .join('');

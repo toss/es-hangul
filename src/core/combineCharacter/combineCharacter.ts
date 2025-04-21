@@ -1,7 +1,7 @@
 import { CHOSEONGS, COMPLETE_HANGUL_START_CHARCODE, JONGSEONGS, JUNSEONGS } from '@/_internal/constants';
-import { canBeChoseong } from '@/canBeChoseong';
-import { canBeJongseong } from '@/canBeJongseong';
-import { canBeJungseong } from '@/canBeJungseong';
+import { canBeChoseong } from '@/core/canBeChoseong';
+import { canBeJongseong } from '@/core/canBeJongseong';
+import { canBeJungseong } from '@/core/canBeJungseong';
 
 /**
  * @name combineCharacter
