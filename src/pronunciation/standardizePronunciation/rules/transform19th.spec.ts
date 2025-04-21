@@ -1,5 +1,5 @@
-import { defined } from '../../_internal';
-import { disassembleCompleteCharacter } from '../../disassembleCompleteCharacter';
+import { defined } from '@/_internal';
+import { disassembleCompleteCharacter } from '@/core/disassembleCompleteCharacter';
 import { transform19th } from './transform19th';
 
 describe('transform19th', () => {
