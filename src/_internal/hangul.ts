@@ -1,12 +1,12 @@
-import { canBeChoseong } from '@/canBeChoseong';
-import { canBeJongseong } from '@/canBeJongseong';
-import { canBeJungseong } from '@/canBeJungseong';
-import { combineVowels } from '@/combineVowels';
-import { disassembleToGroups } from '@/disassembleToGroups';
+import { canBeChoseong } from '@/core/canBeChoseong';
+import { canBeJongseong } from '@/core/canBeJongseong';
+import { canBeJungseong } from '@/core/canBeJungseong';
+import { combineVowels } from '@/core/combineVowels';
+import { disassembleToGroups } from '@/core/disassembleToGroups';
 import assert, { excludeLastElement, isBlank, joinString } from '.';
-import { combineCharacter } from '../combineCharacter';
-import { hasBatchim } from '../hasBatchim';
-import { removeLastCharacter } from '../removeLastCharacter';
+import { combineCharacter } from '@/core/combineCharacter';
+import { hasBatchim } from '@/core/hasBatchim';
+import { removeLastCharacter } from '@/core/removeLastCharacter';
 
 export function isHangulCharacter(character: string) {
   return /^[가-힣]$/.test(character);

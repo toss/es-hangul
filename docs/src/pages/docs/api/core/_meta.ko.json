@@ -1,0 +1,15 @@
+{
+  "assemble": "assemble",
+  "combineVowels": "combineVowels",
+  "removeLastCharacter": "removeLastCharacter",
+  "disassembleToGroups": "disassembleToGroups",
+  "disassemble": "disassemble",
+  "canBeJungseong": "canBeJungseong",
+  "combineCharacter": "combineCharacter",
+  "canBeChoseong": "canBeChoseong",
+  "canBeJongseong": "canBeJongseong",
+  "josa": "josa",
+  "disassembleCompleteCharacter": "disassembleCompleteCharacter",
+  "hasBatchim": "hasBatchim",
+  "getChoseong": "getChoseong"
+} 
