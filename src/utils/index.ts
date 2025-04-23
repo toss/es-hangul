@@ -1,1 +1,0 @@
-export { days } from './days'; 
