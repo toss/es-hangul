@@ -17,14 +17,13 @@ es-hangul provides an interface for complex Hangul string processing, including 
 
 ### Lightweight and Tree-shakable
 
-By using ECMAScript Modules, you can include only the functions you use in your application. For example, if you use the `josa` function, only the related logic is included in the application.
+By using ECMAScript Modules, you can include only the functions you use in your application. For example, if you use the [`josa`](./api/core/josa) function, only the related logic is included in the application.
 Additionally, by providing the minimum necessary code for handling Hangul, you can reduce the size of the JavaScript downloaded by users.
 [![es-hangul's bundle size](https://deno.bundlejs.com/?q=es-hangul&badge=detailed)](https://bundlejs.com/?q=es-hangul)
 
 ### Battle-tested
 
-We strive to test all features with the goal of achieving 100% coverage.
-
+We [strive to test](./advantages/reliability) all features with the goal of achieving 100% coverage.
 [![codecov](https://codecov.io/gh/toss/es-hangul/branch/main/graph/badge.svg?token=토큰추가가필요합니다)](https://codecov.io/gh/toss/es-hangul)
 
 ### TypeScript Support
@@ -33,9 +32,9 @@ Our library [provides strong typing](./advantages/type-support), allowing for ea
 
 ### Full Support for Hangul-related Features
 
-Our library provides a [modern API](./api/getChoseong) that can be conveniently used in various applications.
+Our library provides a [modern API](./api/core/assemble) that can be conveniently used in various applications.
 
-#### First Consonant Search ([getChoseong](./api/getChoseong))
+#### First Consonant Search ([getChoseong](./api/core/getChoseong))
 
 It can get choseong from specific word. For example, you can easily find out if the word '라면' (ramyeon) contains the choseong 'ㄹㅁ'.
 
@@ -53,7 +52,7 @@ if (result === userInput) {
 }
 ```
 
-#### Disassembling Hangul Characters ([disassemble](./api/disassemble))
+#### Disassembling Hangul Characters ([disassemble](./api/core/disassemble))
 
 You can decompose a given Hangul string into initial consonants, vowels, and final consonants, and return it in array form to allow for more detailed analysis or modification of the string.
 
@@ -65,7 +64,7 @@ const disassembled = disassemble(word);
 console.log(disassembled); // 'ㅇㅏㄴㄴㅕㅇㅎㅏㅅㅔㅇㅛ'
 ```
 
-#### Handling Particles ([josa](./api/josa))
+#### Handling Particles ([josa](./api/core/josa))
 
 It automatically selects the appropriate particle based on whether the last letter of a word has a final consonant or not.
 
@@ -84,7 +83,7 @@ console.log(sentence2); // '바나나가 맛있습니다.'
 ### Fast
 
 es-hangul boasts **top-notch performance**, efficiently handling complex tasks such as Korean character composition and decomposition with incredible speed.
-[Benchmark tests]('./advantages/benchmark') against other libraries have shown that es-hangul delivers **overwhelmingly superior performance**.
+[Benchmark tests](./advantages/benchmark) against other libraries have shown that es-hangul delivers **overwhelmingly superior performance**.
 
 <Callout type="info">
 
