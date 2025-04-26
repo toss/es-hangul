@@ -125,6 +125,7 @@ function applyRules(params: ApplyParameters): {
     ({ current, next } = transform17th(current, next));
     ({ next } = transform19th(current, next));
     ({ current, next } = transformNLAssimilation(current, next));
+
     ({ current } = transform18th(current, next));
     ({ current, next } = transform20th(current, next));
   }

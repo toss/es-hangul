@@ -82,6 +82,10 @@ describe('standardizePronunciation', () => {
         expect(standardizePronunciation('고양이')).toBe('고양이');
         expect(standardizePronunciation('윤여정')).toBe('윤녀정');
       });
+
+      it('ㄴ/ㄹ이 되기 위한 조건이면서 현재 음절의 중성의 ∙(아래아)가 하나가 아닐 경우지만, 현재 종성이 "자음군 단순화"의 대상이라면 연음규칙이 적용되지 않고 둘 중 하나의 자음만 남고 나머지 자음은 탈락한다', () => {
+        expect(standardizePronunciation('힘듦이 있다')).toBe('힘드미 읻따');
+      });
     });
 
     describe('19항', () => {

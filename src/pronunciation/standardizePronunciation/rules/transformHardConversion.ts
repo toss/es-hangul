@@ -1,12 +1,6 @@
 import { arrayIncludes, hasProperty } from '@/_internal';
-import { 된소리, 된소리_받침, 어간_받침 } from '../constants';
+import { 된소리, 된소리_받침, 어간_받침, 자음군_단순화 } from '../constants';
 import type { ReturnSyllables, Syllable } from './rules.types';
-
-/**
- * @description 'ㄹㅁ'과 같은 복합 받침은 발음 과정에서 단순화될 수 있다.
- * @see {@link https://encykorea.aks.ac.kr/Article/E0074523 자음군 단순화 설명 링크}
- */
-const 자음군_단순화 = ['ㄹㅁ', 'ㄱㅅ', 'ㄹㄱ', 'ㄹㅂ', 'ㄹㅅ', 'ㅂㅅ', 'ㄴㅈ', 'ㄴㅎ', 'ㄹㅌ', 'ㄹㅍ', 'ㄹㅎ'] as const;
 
 /**
  * 제6장 경음화를 적용합니다.
