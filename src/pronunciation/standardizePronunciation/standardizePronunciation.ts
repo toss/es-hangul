@@ -16,6 +16,7 @@ import {
   type Nullable,
   type Syllable,
 } from './rules';
+import { 단일어_예외사항_단어모음 } from './constants';
 
 type Options = {
   hardConversion: boolean;
@@ -36,6 +37,10 @@ type NotHangul = {
 export function standardizePronunciation(hangul: string, options: Options = { hardConversion: true }): string {
   if (!hangul) {
     return '';
+  }
+
+  if (hangul in 단일어_예외사항_단어모음) {
+    return 단일어_예외사항_단어모음[hangul];
   }
 
   const processSyllables = (syllables: Syllable[], phrase: string, options: Options) =>

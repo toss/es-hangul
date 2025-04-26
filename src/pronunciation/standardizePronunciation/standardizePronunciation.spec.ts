@@ -355,4 +355,10 @@ describe('standardizePronunciation', () => {
       ).toBe('널게');
     });
   });
+
+  describe('단일어 예외사항 단어는 단어모음에서 바로 반환한다', () => {
+    it('전역', () => {
+      expect(standardizePronunciation('전역')).toBe('저녁');
+    });
+  });
 });

@@ -53,7 +53,6 @@ function applyㄴㄹ덧남(current: Syllable, next: Syllable): ReturnSyllables {
       updatedNext.choseong = 'ㄹ';
     }
   } else {
-    console.log(updatedCurrent.jongseong);
     // ㄴ/ㄹ이 되기 위한 조건이지만 현재 음절의 중성의 ∙(아래아)가 하나가 아닐 경우에는 덧나지 않고 연음규칙이 적용된다
     if (arrayIncludes(자음군_단순화, updatedCurrent.jongseong)) {
       updatedCurrent.jongseong = 자음군_단순화_결과[updatedCurrent.jongseong];
