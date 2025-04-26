@@ -22,8 +22,6 @@ export function transformHardConversion(
 ): Pick<ReturnSyllables, 'next'> {
   const next = { ...nextSyllable };
 
-  console.log(currentSyllable, nextSyllable);
-
   if (hasProperty(된소리, next.choseong)) {
     // [예외 처리]
     // 다음 글자의 종성(받침)이 자음군 단순화 대상에 해당할 경우,
