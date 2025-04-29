@@ -1,12 +1,12 @@
 {
   "introduction": "소개",
   "installation": "설치하기",
+  "advantages": "이점",
   "api": {
     "title": "API",
     "theme": {
       "collapsed": false
     }
   },
-  "advantages": "이점",
-  "migration": "마이그레이션",
+  "migration": "마이그레이션"
 }
