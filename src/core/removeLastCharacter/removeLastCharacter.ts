@@ -39,9 +39,9 @@ export function removeLastCharacter(words: string) {
 
       return first;
     } else {
-      const [first, firstJungsung, secondJungsung, firstJongsung] = lastCharacterWithoutLastAlphabet;
+      const [first, firstJungseong, secondJungseong, firstJongseong] = lastCharacterWithoutLastAlphabet;
 
-      return combineCharacter(first, `${firstJungsung}${secondJungsung}`, firstJongsung);
+      return combineCharacter(first, `${firstJungseong}${secondJungseong}`, firstJongseong);
     }
   })();
 
