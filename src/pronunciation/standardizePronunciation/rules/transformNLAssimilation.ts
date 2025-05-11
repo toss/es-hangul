@@ -4,6 +4,7 @@ import {
   ㄴㄹ이_덧나는_후속음절_모음,
   ㄴㄹ이_덧나서_받침_ㄴ_변환,
   ㄴㄹ이_덧나서_받침_ㄹ_변환,
+  음가가_없는_자음,
 } from '../constants';
 import type { ReturnSyllables, Syllable } from './rules.types';
 
@@ -22,7 +23,9 @@ export function transformNLAssimilation(currentSyllable: Syllable, nextSyllable:
   const ㄴㄹ이덧나는조건 =
     current.jongseong && next.choseong === 'ㅇ' && arrayIncludes(ㄴㄹ이_덧나는_후속음절_모음, next.jungseong);
 
-  if (!ㄴㄹ이덧나는조건) {
+  const is이 = next.choseong === 음가가_없는_자음 && next.jungseong === 'ㅣ' && !next.jongseong;
+
+  if (!ㄴㄹ이덧나는조건 || is이) {
     return {
       current,
       next,
