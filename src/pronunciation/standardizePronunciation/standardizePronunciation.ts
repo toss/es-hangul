@@ -2,6 +2,7 @@ import { isNotUndefined, joinString } from '@/_internal';
 import { isHangulAlphabet, isHangulCharacter } from '@/_internal/hangul';
 import { combineCharacter } from '@/core/combineCharacter';
 import { disassembleCompleteCharacter } from '@/core/disassembleCompleteCharacter';
+import { 사이시옷_에외사항_목록 } from './exceptionWords.constants';
 import {
   transform12th,
   transform13And14th,
@@ -36,6 +37,10 @@ type NotHangul = {
 export function standardizePronunciation(hangul: string, options: Options = { hardConversion: true }): string {
   if (!hangul) {
     return '';
+  }
+
+  if (hangul in 사이시옷_에외사항_목록) {
+    return 사이시옷_에외사항_목록[hangul];
   }
 
   const processSyllables = (syllables: Syllable[], phrase: string, options: Options) =>
