@@ -353,7 +353,7 @@ describe('standardizePronunciation', () => {
   });
 
   describe('예외사항은 정의된 단어 모음에서 반환한다', () => {
-    it('사이시옷 예외사항 단어는 단어모음에 바로 반환한다', () => {
+    it('사이시옷 예외사항 단어는 단어모음에서 찾아 반환한다', () => {
       expect(standardizePronunciation('베갯잇')).toBe('베갠닏');
       expect(standardizePronunciation('깻잎')).toBe('깬닙');
       expect(standardizePronunciation('나뭇잎')).toBe('나문닙');
