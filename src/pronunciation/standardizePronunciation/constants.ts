@@ -135,7 +135,3 @@ export const 자음군_단순화_결과 = {
   ㄹㅎ: 'ㄹ',
   ㅂㅅ: 'ㅂ',
 } as const;
-
-export const 단일어_예외사항_단어모음: Record<string, string> = {
-  전역: '저녁',
-};

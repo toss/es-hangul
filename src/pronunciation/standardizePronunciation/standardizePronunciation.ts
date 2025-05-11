@@ -2,6 +2,7 @@ import { isNotUndefined, joinString } from '@/_internal';
 import { isHangulAlphabet, isHangulCharacter } from '@/_internal/hangul';
 import { combineCharacter } from '@/core/combineCharacter';
 import { disassembleCompleteCharacter } from '@/core/disassembleCompleteCharacter';
+import { 단일어_예외사항_단어모음 } from './exceptionWords.constants';
 import {
   transform12th,
   transform13And14th,
@@ -16,7 +17,6 @@ import {
   type Nullable,
   type Syllable,
 } from './rules';
-import { 단일어_예외사항_단어모음 } from './constants';
 
 type Options = {
   hardConversion: boolean;

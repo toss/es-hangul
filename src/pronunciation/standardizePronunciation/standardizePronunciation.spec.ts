@@ -356,8 +356,8 @@ describe('standardizePronunciation', () => {
     });
   });
 
-  describe('단일어 예외사항 단어는 단어모음에서 바로 반환한다', () => {
-    it('전역', () => {
+  describe('예외사항은 정의된 단어 모음에서 반환한다', () => {
+    it('파생어/합성어 예외사항 단어는 단어모음에서 찾아 반환한다', () => {
       expect(standardizePronunciation('전역')).toBe('저녁');
     });
   });
