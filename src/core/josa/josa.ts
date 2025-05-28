@@ -47,11 +47,5 @@ function josaPicker<T extends JosaOption>(word: string, josa: T): ExtractJosaOpt
     index = index === 0 ? 1 : 0;
   }
 
-  const isEndsWith이 = word[word.length - 1] === '이';
-
-  if (josa === '이에요/예요' && isEndsWith이) {
-    index = 1;
-  }
-
   return josa.split('/')[index] as ExtractJosaOption<T>;
 }
