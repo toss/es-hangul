@@ -12,6 +12,8 @@ describe('romanize', () => {
   it('ㄴ, ㄹ’이 덧나는 경우', () => {
     expect(romanize('학여울')).toBe('hangnyeoul');
     expect(romanize('알약')).toBe('allyak');
+    expect(romanize('호랑이')).toBe('horangi');
+    expect(romanize('빨간색이에요')).toBe('ppalgansaegieyo');
   });
 
   it('구개음화가 되는 경우', () => {

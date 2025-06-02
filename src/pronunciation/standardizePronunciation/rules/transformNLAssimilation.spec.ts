@@ -39,6 +39,24 @@ describe('transformNLAssimilation', () => {
     });
   });
 
+  it('ㄴ/ㄹ이 되기 위한 조건이지만 다음 음절이 받침이 없는 "이"로 이어지는 경우', () => {
+    const current = defined(disassembleCompleteCharacter('랑'));
+    const next = defined(disassembleCompleteCharacter('이'));
+
+    expect(transformNLAssimilation(current, next)).toEqual({
+      current: {
+        choseong: 'ㄹ',
+        jungseong: 'ㅏ',
+        jongseong: 'ㅇ',
+      },
+      next: {
+        choseong: 'ㅇ',
+        jungseong: 'ㅣ',
+        jongseong: '',
+      },
+    });
+  });
+
   it('ㄴ/ㄹ이 되기 위한 조건이지만 현재 음절의 중성의 ∙(아래아)가 하나가 아닐 경우에는 덧나지 않고 연음규칙이 적용된다', () => {
     const current = defined(disassembleCompleteCharacter('양'));
     const next = defined(disassembleCompleteCharacter('이'));
