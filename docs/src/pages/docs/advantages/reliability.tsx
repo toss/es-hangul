@@ -16,8 +16,8 @@ export default function Reliability({ locale }: TypeSupportTableProps) {
   const { total: totalCoverage, ...fileEntries } = coverageJSON;
 
   const isValidFilePath = (filePath: string): boolean => {
-    // src 뒤 2-depth까지의 경로를 필터링하며, anything.something.ts 등의 명칭을 가진 파일들은 반환되지 않도록 `.ts`로 끝나되 추가 점(`.`)이 없는 경우만 허용
-    const regex = /\/src\/[^/]+\/[^/]+(?<!\..+)\.ts$/;
+    // src 뒤 3-depth까지의 경로를 필터링하며, anything.something.ts 등의 명칭을 가진 파일들은 반환되지 않도록 `.ts`로 끝나되 추가 점(`.`)이 없는 경우만 허용
+    const regex = /\/src\/[^/]+\/[^/]+\/[^/]+(?<!\..+)\.ts$/;
 
     return regex.test(filePath) && !filePath.endsWith('constants.ts') && !filePath.includes('_internal');
   };
@@ -26,13 +26,19 @@ export default function Reliability({ locale }: TypeSupportTableProps) {
     return filePath.split('/').pop()?.split('.')[0];
   };
 
+  const extractCategory = (filePath: string): string | undefined => {
+    // src 다음의 첫번째 디렉토리 이름 추출
+    const match = filePath.match(/\/src\/([^/]+)\//);
+    return match ? match[1] : undefined;
+  };
+
   const filterValidFileEntries = (coverageFileEntries: typeof fileEntries) => {
     return Object.entries(coverageFileEntries)
       .filter(([filePath]) => isValidFilePath(filePath))
       .flatMap(([filePath, info]) => {
-        const filename = extractFileName(filePath);
-
-        return filename != null ? [[filename, info] as const] : [];
+        const fileName = extractFileName(filePath);
+        const category = extractCategory(filePath);
+        return fileName != null && category != null ? [[fileName, category, info] as const] : [];
       });
   };
 
@@ -142,10 +148,10 @@ export default function Reliability({ locale }: TypeSupportTableProps) {
           </thead>
 
           <tbody>
-            {filterValidFileEntries(fileEntries).map(([filename, info]) => (
-              <tr key={filename} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            {filterValidFileEntries(fileEntries).map(([fileName, category, info]) => (
+              <tr key={fileName} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  <a href={`../api/${filename}`}>{filename} 🔗</a>
+                  <a href={`../api/${category}/${fileName}`}>{fileName} 🔗</a>
                 </th>
 
                 <td className="px-6 py-4">✅ ({info.statements.pct}%)</td>
