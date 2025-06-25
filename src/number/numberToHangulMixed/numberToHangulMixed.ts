@@ -26,27 +26,27 @@ export function numberToHangulMixed(input: number, options?: { spacing?: boolean
 
   while (remainingDigits.length > 0) {
     const currentPart = remainingDigits.slice(-4);
+    const numericValue = Number(currentPart);
 
-    if (Number(currentPart) > 0) {
-      koreanParts.unshift(`${Number(currentPart).toLocaleString()}${HANGUL_DIGITS[placeIndex]}`);
+    if (numericValue > 0) {
+      const formattedPart = `${numericValue.toLocaleString()}${HANGUL_DIGITS[placeIndex]}`;
+      koreanParts.unshift(formattedPart);
     }
-
-    koreanParts.unshift('');
 
     remainingDigits = remainingDigits.slice(0, -4);
     placeIndex++;
   }
 
-  let result = koreanParts
-    .filter(part => part !== '')
-    .join(options?.spacing ? ' ' : '')
-    .trim();
-
+  let result: string;
   if (integerPart === '0') {
     result = '0';
+  } else {
+    result = options?.spacing ? koreanParts.join(' ') : koreanParts.join('');
   }
+
   if (decimalPart) {
     result += '.' + decimalPart;
   }
+
   return isNegative ? '-' + result : result;
 }
