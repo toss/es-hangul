@@ -1,5 +1,11 @@
 # es-hangul
 
+## 2.3.5
+
+### Patch Changes
+
+- [#352](https://github.com/toss/es-hangul/pull/352) [`da715e4`](https://github.com/toss/es-hangul/commit/da715e4438577811bbe46c67e511d57bea483872) Thanks [@bbungjin](https://github.com/bbungjin)! - fix: '이에요/예요' 조사에서 '이'로 끝나는 단어에 대한 불필요한 예외 제거
+
 ## 2.3.4
 
 ### Patch Changes
