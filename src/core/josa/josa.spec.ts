@@ -148,4 +148,35 @@ describe('josa.pick', () => {
   it('어떤 행동의 출발점이나 비롯되는 대상임을 나타내는 격 조사 ㄹ 받침 예외 처리', () => {
     expect(josa.pick('동굴', '으로부터/로부터')).toBe('로부터');
   });
+
+  it('영어로된 약어일 경우, 마지막 알파벳을 한국어로 바꾼뒤 조사를 붙인다.', () => {
+    expect(josa('URL', '을/를')).toBe('URL을');
+    expect(josa('CSS', '을/를')).toBe('CSS를');
+
+    expect(josa('URL', '은/는')).toBe('URL은');
+    expect(josa('CSS', '은/는')).toBe('CSS는');
+
+    expect(josa('URL', '이/가')).toBe('URL이');
+    expect(josa('CSS', '이/가')).toBe('CSS가');
+
+    expect(josa('URL', '와/과')).toBe('URL과');
+    expect(josa('CSS', '와/과')).toBe('CSS와');
+
+    expect(josa('URL', '으로/로')).toBe('URL로');
+
+    expect(josa('URL', '이나/나')).toBe('URL이나');
+    expect(josa('CSS', '이나/나')).toBe('CSS나');
+
+    expect(josa('URL', '이란/란')).toBe('URL이란');
+    expect(josa('CSS', '이란/란')).toBe('CSS란');
+
+    expect(josa('URL', '아/야')).toBe('URL아');
+    expect(josa('CSS', '아/야')).toBe('CSS야');
+
+    expect(josa('URL', '이랑/랑')).toBe('URL이랑');
+    expect(josa('CSS', '이랑/랑')).toBe('CSS랑');
+
+    expect(josa('URL', '이에요/예요')).toBe('URL이에요');
+    expect(josa('CSS', '이에요/예요')).toBe('CSS예요');
+  });
 });
