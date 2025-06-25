@@ -41,4 +41,30 @@ describe('transformHardConversion', () => {
       },
     });
   });
+
+  it('예외사항 - 현재 음절이 경음화를 적용할 수 있는 받침에 해당하지만, 다음 음절의 받침이 "자음군 단순화" 음운현상이 생긴다면 된소리로 발음하지 않는다', () => {
+    const current = defined(disassembleCompleteCharacter('힘'));
+    const next = defined(disassembleCompleteCharacter('듦'));
+
+    expect(transformHardConversion(current, next)).toEqual({
+      next: {
+        choseong: 'ㄷ',
+        jungseong: 'ㅡ',
+        jongseong: 'ㄹㅁ',
+      },
+    });
+  });
+
+  it('번외 - 현재 음절의 받침이 "자음군 단순화" 대상에 해당하지만, 다음 음절의 초성이 "음가가 없는 자음"일 경우에는 된소리로 발음하지 않는다', () => {
+    const current = defined(disassembleCompleteCharacter('삶'));
+    const next = defined(disassembleCompleteCharacter('은'));
+
+    expect(transformHardConversion(current, next)).toEqual({
+      next: {
+        choseong: 'ㅇ',
+        jungseong: 'ㅡ',
+        jongseong: 'ㄴ',
+      },
+    });
+  });
 });
