@@ -1,4 +1,4 @@
-import { CHOSEONGS, COMPLETE_HANGUL_START_CHARCODE, JONGSEONGS, JUNSEONGS } from '@/_internal/constants';
+import { CHOSEONGS, COMPLETE_HANGUL_START_CHARCODE, JONGSEONGS, JUNGSEONGS } from '@/_internal/constants';
 import { canBeChoseong } from '@/core/canBeChoseong';
 import { canBeJongseong } from '@/core/canBeJongseong';
 import { canBeJungseong } from '@/core/canBeJungseong';
@@ -26,11 +26,11 @@ export function combineCharacter(choseong: string, jungseong: string, jongseong 
     throw new Error(`Invalid hangul Characters: ${choseong}, ${jungseong}, ${jongseong}`);
   }
 
-  const numOfJungseongs = JUNSEONGS.length;
+  const numOfJungseongs = JUNGSEONGS.length;
   const numOfJongseongs = JONGSEONGS.length;
 
   const choseongIndex = CHOSEONGS.indexOf(choseong as (typeof CHOSEONGS)[number]);
-  const jungseongIndex = JUNSEONGS.indexOf(jungseong as (typeof JUNSEONGS)[number]);
+  const jungseongIndex = JUNGSEONGS.indexOf(jungseong as (typeof JUNGSEONGS)[number]);
   const jongseongIndex = JONGSEONGS.indexOf(jongseong as (typeof JONGSEONGS)[number]);
 
   const choseongOfTargetConsonant = choseongIndex * numOfJungseongs * numOfJongseongs;

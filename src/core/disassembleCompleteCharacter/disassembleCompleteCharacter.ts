@@ -3,14 +3,14 @@ import {
   COMPLETE_HANGUL_END_CHARCODE,
   COMPLETE_HANGUL_START_CHARCODE,
   JONGSEONGS,
-  JUNSEONGS,
+  JUNGSEONGS,
   NUMBER_OF_JONGSEONG,
   NUMBER_OF_JUNGSEONG,
 } from '@/_internal/constants';
 
 interface ReturnTypeDisassembleCompleteCharacter {
   choseong: (typeof CHOSEONGS)[number];
-  jungseong: (typeof JUNSEONGS)[number];
+  jungseong: (typeof JUNGSEONGS)[number];
   jongseong: (typeof JONGSEONGS)[number];
 }
 
@@ -45,7 +45,7 @@ export function disassembleCompleteCharacter(letter: string): ReturnTypeDisassem
 
   return {
     choseong: CHOSEONGS[choseongIndex],
-    jungseong: JUNSEONGS[jungseongIndex],
+    jungseong: JUNGSEONGS[jungseongIndex],
     jongseong: JONGSEONGS[jongseongIndex],
   } as const;
 }
