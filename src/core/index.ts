@@ -5,6 +5,7 @@ export { disassembleToGroups } from './disassembleToGroups';
 export { combineCharacter } from './combineCharacter';
 export { combineVowels } from './combineVowels';
 export { getChoseong } from './getChoseong';
+export { getJungseong } from './getJungseong';
 export { canBeChoseong } from './canBeChoseong';
 export { canBeJungseong } from './canBeJungseong';
 export { canBeJongseong } from './canBeJongseong';

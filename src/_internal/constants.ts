@@ -95,6 +95,33 @@ export const CHOSEONGS = [
 ] as const;
 
 /**
+ * 중성 매핑 (NFD ᅡ-ᅵ -> NFC ㅏ-ㅣ)
+ */
+export const JUNGSEONGS = [
+  'ㅏ',
+  'ㅐ',
+  'ㅑ',
+  'ㅒ',
+  'ㅓ',
+  'ㅔ',
+  'ㅕ',
+  'ㅖ',
+  'ㅗ',
+  'ㅘ',
+  'ㅙ',
+  'ㅚ',
+  'ㅛ',
+  'ㅜ',
+  'ㅝ',
+  'ㅞ',
+  'ㅟ',
+  'ㅠ',
+  'ㅡ',
+  'ㅢ',
+  'ㅣ',
+] as const;
+
+/**
  * 중성으로 올 수 있는 한글 글자
  */
 export const JUNSEONGS = Object.values(DISASSEMBLED_VOWELS_BY_VOWEL);
