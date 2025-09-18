@@ -97,7 +97,7 @@ export const CHOSEONGS = [
 /**
  * 중성으로 올 수 있는 한글 글자
  */
-export const JUNSEONGS = Object.values(DISASSEMBLED_VOWELS_BY_VOWEL);
+export const JUNGSEONGS = Object.values(DISASSEMBLED_VOWELS_BY_VOWEL);
 
 /**
  * 종성으로 올 수 있는 한글 글자
