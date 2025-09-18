@@ -1,5 +1,6 @@
 import { disassembleCompleteCharacter } from '@/core/disassembleCompleteCharacter';
 import { hasBatchim } from '../hasBatchim';
+import { ALPHABET_TO_KOREAN } from '@/_internal/constants';
 
 type JosaOption =
   | '이/가'
@@ -24,6 +25,13 @@ type ExtractJosaOption<T> = T extends `${infer A}/${infer B}` ? A | B : never;
 export function josa<T extends string, U extends JosaOption>(word: T, josa: U): `${T}${ExtractJosaOption<U>}` {
   if (word.length === 0) {
     return word as `${T}${ExtractJosaOption<U>}`;
+  }
+
+  if (/^[A-Z]+$/.test(word)) {
+    const lastChar = word[word.length - 1];
+    const koreanPronunciationOfLastChar = ALPHABET_TO_KOREAN[lastChar];
+
+    return (word + josaPicker(koreanPronunciationOfLastChar, josa)) as `${T}${ExtractJosaOption<U>}`;
   }
 
   return (word + josaPicker(word, josa)) as `${T}${ExtractJosaOption<U>}`;
