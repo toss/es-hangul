@@ -57,3 +57,22 @@ console.log(standardizePronunciation('곧이듣다', { hardConversion: false }))
 ```
 
 </Sandpack>
+
+## Notice on Exception Cases
+
+According to the [Regulations on Korean Orthography](https://korean.go.kr/kornorms/regltn/regltnView.do?regltn_code=0002&regltn_no=346#a422), Chapter 7 "Addition of Sounds" - Article 29 states:
+
+"In compound words and derivatives, when the final sound of the first word or prefix is a consonant and the first syllable of the following word or suffix begins with '이, 야, 여, 요, 유' (i, ya, yeo, yo, yu), the sound 'ㄴ' (n) is added, making it '니, 냐, 녀, 뇨, 뉴' (ni, nya, nyeo, nyo, nyu)."
+
+For example:
+
+맨입 (maen-ip) is pronounced as 맨닙 (maen-nip)
+
+꽃잎 (kkot-ip) is pronounced as 꼰닙 (kkon-nip)
+
+However, in the case of 전역 (jeon-yeok), according to this rule, it should be pronounced as 전녁 (jeon-nyeok).
+But since 전역 is not a compound or derivative word, it is exceptionally pronounced as 저녁 (jeo-nyeok).
+
+Since it is impossible to accurately determine whether a word is compound or derivative using only pure TypeScript logic without external linguistic data, these exceptions are managed in a separate constant list.
+
+Therefore, if you come across any additional words that require such exception handling, we highly encourage your contributions and feedback.
