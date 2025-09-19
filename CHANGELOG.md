@@ -1,5 +1,11 @@
 # es-hangul
 
+## 2.3.6
+
+### Patch Changes
+
+- [#359](https://github.com/toss/es-hangul/pull/359) [`d550b0c`](https://github.com/toss/es-hangul/commit/d550b0c97af39cf241f4265d423451bb6c7b6fc6) Thanks [@grimza99](https://github.com/grimza99)! - feat : 영어로 된 약어에 대한 조사 조건부 처리
+
 ## 2.3.5
 
 ### Patch Changes
