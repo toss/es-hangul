@@ -1,4 +1,4 @@
-import { HANGUL_CARDINAL, HANGUL_DIGITS, HANGUL_NUMBERS } from '@/_internal/constants';
+import { HANGUL_CARDINAL, HANGUL_DIGITS, HANGUL_NUMBERS, HANGUL_NUMBERS_FOR_DECIMAL } from '@/_internal/constants';
 
 export function numberToHangul(input: number, options?: { spacing?: boolean }): string {
   if (typeof input !== 'number' || Number.isNaN(input)) {
@@ -48,7 +48,7 @@ export function numberToHangul(input: number, options?: { spacing?: boolean }): 
   if (decimalPart) {
     const decimalKorean = decimalPart
       .split('')
-      .map(digit => HANGUL_NUMBERS[Number(digit)])
+      .map(digit => HANGUL_NUMBERS_FOR_DECIMAL[Number(digit)])
       .join('');
 
     result += options?.spacing ? '점 ' + decimalKorean : '점' + decimalKorean;

@@ -1,4 +1,5 @@
 import { seosusa } from './seosusa';
+import * as numberToHangulModule from '@/number/numberToHangul';
 
 describe('seosusa', () => {
   const validNumbers = [
@@ -39,6 +40,19 @@ describe('seosusa', () => {
   invalidNumbers.forEach(num => {
     it(`${num} - 유효하지 않은 숫자에 대해 오류를 발생시켜야 한다.`, () => {
       expect(() => seosusa(num)).toThrow('유효하지 않은 입력입니다. 1이상의 정수만 지원합니다.');
+    });
+  });
+
+  describe('에러 처리', () => {
+    it('numberToHangul에서 에러가 발생하면 적절한 에러 메시지를 반환한다', () => {
+      const mockNumberToHangul = vi.spyOn(numberToHangulModule, 'numberToHangul');
+      mockNumberToHangul.mockImplementation(() => {
+        throw new Error('Mock error from numberToHangul');
+      });
+
+      expect(() => seosusa(100)).toThrow('유효하지 않은 입력입니다. 1이상의 정수만 지원합니다.');
+
+      mockNumberToHangul.mockRestore();
     });
   });
 });

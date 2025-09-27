@@ -78,6 +78,13 @@ describe('standardizePronunciation', () => {
         expect(standardizePronunciation('불여우')).toBe('불려우');
       });
 
+      it('ㄴ/ㄹ이 되기 위한 조건이지만 다음 음절이 받침이 없는 "이"로 이어지는 경우', () => {
+        expect(standardizePronunciation('호랑이')).toBe('호랑이');
+        expect(standardizePronunciation('개구쟁이')).toBe('개구쟁이');
+        expect(standardizePronunciation('공이')).toBe('공이');
+        expect(standardizePronunciation('손잡이', { hardConversion: false })).toBe('손자비');
+      });
+
       it('ㄴ/ㄹ이 되기 위한 조건이지만 현재 음절의 중성의 ∙(아래아)가 하나가 아닐 경우에는 덧나지 않고 연음규칙이 적용된다', () => {
         expect(standardizePronunciation('고양이')).toBe('고양이');
         expect(standardizePronunciation('윤여정')).toBe('윤녀정');
