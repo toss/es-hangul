@@ -39,8 +39,17 @@ const exceptionCheckers: ExceptionChecker[] = [
   createExceptionChecker(단일어_예외사항_단어모음),
 ];
 
-const findFirstException = (hangul: string) =>
-  exceptionCheckers.map(checker => checker(hangul)).find(result => result !== undefined);
+const findFirstException = (hangul: string): string | null => {
+  for (const checker of exceptionCheckers) {
+    const result = checker(hangul);
+
+    if (isNotUndefined(result)) {
+      return result;
+    }
+  }
+
+  return null;
+};
 
 /**
  * 주어진 한글 문자열을 표준 발음으로 변환합니다.
