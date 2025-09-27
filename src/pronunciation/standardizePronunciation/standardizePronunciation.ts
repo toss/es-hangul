@@ -2,7 +2,7 @@ import { isNotUndefined, joinString } from '@/_internal';
 import { isHangulAlphabet, isHangulCharacter } from '@/_internal/hangul';
 import { combineCharacter } from '@/core/combineCharacter';
 import { disassembleCompleteCharacter } from '@/core/disassembleCompleteCharacter';
-import { 단일어_예외사항_단어모음 } from './exceptionWords.constants';
+import { 단일어_예외사항_단어모음, 사이시옷_에외사항_목록 } from './exceptionWords.constants';
 import {
   transform12th,
   transform13And14th,
@@ -27,6 +27,30 @@ type NotHangul = {
   syllable: string;
 };
 
+type ExceptionChecker = (hangul: string) => string | undefined;
+
+const createExceptionChecker =
+  (exceptionMap: Record<string, string>): ExceptionChecker =>
+  (hangul: string) =>
+    exceptionMap[hangul];
+
+const exceptionCheckers: ExceptionChecker[] = [
+  createExceptionChecker(사이시옷_에외사항_목록),
+  createExceptionChecker(단일어_예외사항_단어모음),
+];
+
+const findFirstException = (hangul: string): string | null => {
+  for (const checker of exceptionCheckers) {
+    const result = checker(hangul);
+
+    if (isNotUndefined(result)) {
+      return result;
+    }
+  }
+
+  return null;
+};
+
 /**
  * 주어진 한글 문자열을 표준 발음으로 변환합니다.
  * @param hangul 한글 문자열을 입력합니다.
@@ -39,8 +63,10 @@ export function standardizePronunciation(hangul: string, options: Options = { ha
     return '';
   }
 
-  if (hangul in 단일어_예외사항_단어모음) {
-    return 단일어_예외사항_단어모음[hangul];
+  const exceptionResult = findFirstException(hangul);
+
+  if (exceptionResult) {
+    return exceptionResult;
   }
 
   const processSyllables = (syllables: Syllable[], phrase: string, options: Options) =>
