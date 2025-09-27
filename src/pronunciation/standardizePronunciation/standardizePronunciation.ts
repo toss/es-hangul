@@ -27,6 +27,21 @@ type NotHangul = {
   syllable: string;
 };
 
+type ExceptionChecker = (hangul: string) => string | undefined;
+
+const createExceptionChecker =
+  (exceptionMap: Record<string, string>): ExceptionChecker =>
+  (hangul: string) =>
+    exceptionMap[hangul];
+
+const exceptionCheckers: ExceptionChecker[] = [
+  createExceptionChecker(사이시옷_에외사항_목록),
+  createExceptionChecker(단일어_예외사항_단어모음),
+];
+
+const findFirstException = (hangul: string) =>
+  exceptionCheckers.map(checker => checker(hangul)).find(result => result !== undefined);
+
 /**
  * 주어진 한글 문자열을 표준 발음으로 변환합니다.
  * @param hangul 한글 문자열을 입력합니다.
@@ -39,12 +54,10 @@ export function standardizePronunciation(hangul: string, options: Options = { ha
     return '';
   }
 
-  if (hangul in 사이시옷_에외사항_목록) {
-    return 사이시옷_에외사항_목록[hangul];
-  }
+  const exceptionResult = findFirstException(hangul);
 
-  if (hangul in 단일어_예외사항_단어모음) {
-    return 단일어_예외사항_단어모음[hangul];
+  if (exceptionResult) {
+    return exceptionResult;
   }
 
   const processSyllables = (syllables: Syllable[], phrase: string, options: Options) =>
