@@ -25,7 +25,11 @@ export function transformNLAssimilation(currentSyllable: Syllable, nextSyllable:
   const ㄴㄹ이덧나는조건 =
     current.jongseong && next.choseong === 'ㅇ' && arrayIncludes(ㄴㄹ이_덧나는_후속음절_모음, next.jungseong);
 
-  const is이 = next.choseong === 음가가_없는_자음 && next.jungseong === 'ㅣ' && !next.jongseong;
+  const is이 =
+    next.choseong === 음가가_없는_자음 &&
+    next.jungseong === 'ㅣ' &&
+    !next.jongseong &&
+    !arrayIncludes(자음군_단순화, current.jongseong);
 
   if (!ㄴㄹ이덧나는조건 || is이) {
     return {
