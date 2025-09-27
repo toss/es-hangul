@@ -1,5 +1,15 @@
 # es-hangul
 
+## 2.3.7
+
+### Patch Changes
+
+- [#350](https://github.com/toss/es-hangul/pull/350) [`ec26b5f`](https://github.com/toss/es-hangul/commit/ec26b5fa95394ca48ebac2aa94ef0c771338723b) Thanks [@po4tion](https://github.com/po4tion)! - fix: 사이시옷 단어 모음 추가
+
+- [#351](https://github.com/toss/es-hangul/pull/351) [`4969bf6`](https://github.com/toss/es-hangul/commit/4969bf6f4b5b5a8d40e2e6ca3543c8842aed702f) Thanks [@po4tion](https://github.com/po4tion)! - fix: ㄴ/ㄹ 덧나는 현상에 부가 조건을 추가합니다.
+
+- [#341](https://github.com/toss/es-hangul/pull/341) [`d329225`](https://github.com/toss/es-hangul/commit/d32922544537fa1ef2087f8f18337346d04a9dbe) Thanks [@po4tion](https://github.com/po4tion)! - fix: '자음군 단순화' 음운규칙을 적용하여 standardizePronunciation 오류 해결
+
 ## 2.3.6
 
 ### Patch Changes
