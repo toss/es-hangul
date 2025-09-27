@@ -63,6 +63,7 @@ describe('numberToHangul', () => {
     expect(numberToHangul(12_345.678)).toBe('일만이천삼백사십오점육칠팔');
     expect(numberToHangul(-0.1)).toBe('마이너스영점일');
     expect(numberToHangul(-12_345.678)).toBe('마이너스일만이천삼백사십오점육칠팔');
+    expect(numberToHangul(0.0102)).toEqual('영점영일영이');
     expect(numberToHangul(0.1, { spacing: true })).toBe('영점 일');
     expect(numberToHangul(12_345.678, { spacing: true })).toBe('일만 이천삼백사십오점 육칠팔');
     expect(numberToHangul(-0.1, { spacing: true })).toBe('마이너스 영점 일');

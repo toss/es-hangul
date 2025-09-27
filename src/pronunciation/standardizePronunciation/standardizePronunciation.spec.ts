@@ -78,9 +78,20 @@ describe('standardizePronunciation', () => {
         expect(standardizePronunciation('불여우')).toBe('불려우');
       });
 
+      it('ㄴ/ㄹ이 되기 위한 조건이지만 다음 음절이 받침이 없는 "이"로 이어지는 경우', () => {
+        expect(standardizePronunciation('호랑이')).toBe('호랑이');
+        expect(standardizePronunciation('개구쟁이')).toBe('개구쟁이');
+        expect(standardizePronunciation('공이')).toBe('공이');
+        expect(standardizePronunciation('손잡이', { hardConversion: false })).toBe('손자비');
+      });
+
       it('ㄴ/ㄹ이 되기 위한 조건이지만 현재 음절의 중성의 ∙(아래아)가 하나가 아닐 경우에는 덧나지 않고 연음규칙이 적용된다', () => {
         expect(standardizePronunciation('고양이')).toBe('고양이');
         expect(standardizePronunciation('윤여정')).toBe('윤녀정');
+      });
+
+      it('ㄴ/ㄹ이 되기 위한 조건이면서 현재 음절의 중성의 ∙(아래아)가 하나가 아닐 경우지만, 현재 종성이 "자음군 단순화"의 대상이라면 연음규칙이 적용되지 않고 둘 중 하나의 자음만 남고 나머지 자음은 탈락한다', () => {
+        expect(standardizePronunciation('힘듦이 있다')).toBe('힘드미 읻따');
       });
     });
 
@@ -359,6 +370,10 @@ describe('standardizePronunciation', () => {
       expect(standardizePronunciation('나뭇잎')).toBe('나문닙');
       expect(standardizePronunciation('도리깻열')).toBe('도리깬녈');
       expect(standardizePronunciation('뒷윷')).toBe('뒨뉻');
+    });
+
+    it('파생어/합성어 예외사항 단어는 단어모음에서 찾아 반환한다', () => {
+      expect(standardizePronunciation('전역')).toBe('저녁');
     });
   });
 });

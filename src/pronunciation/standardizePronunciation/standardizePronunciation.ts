@@ -2,7 +2,7 @@ import { isNotUndefined, joinString } from '@/_internal';
 import { isHangulAlphabet, isHangulCharacter } from '@/_internal/hangul';
 import { combineCharacter } from '@/core/combineCharacter';
 import { disassembleCompleteCharacter } from '@/core/disassembleCompleteCharacter';
-import { 사이시옷_에외사항_목록 } from './exceptionWords.constants';
+import { 단일어_예외사항_단어모음, 사이시옷_에외사항_목록 } from './exceptionWords.constants';
 import {
   transform12th,
   transform13And14th,
@@ -41,6 +41,10 @@ export function standardizePronunciation(hangul: string, options: Options = { ha
 
   if (hangul in 사이시옷_에외사항_목록) {
     return 사이시옷_에외사항_목록[hangul];
+  }
+
+  if (hangul in 단일어_예외사항_단어모음) {
+    return 단일어_예외사항_단어모음[hangul];
   }
 
   const processSyllables = (syllables: Syllable[], phrase: string, options: Options) =>
@@ -130,6 +134,7 @@ function applyRules(params: ApplyParameters): {
     ({ current, next } = transform17th(current, next));
     ({ next } = transform19th(current, next));
     ({ current, next } = transformNLAssimilation(current, next));
+
     ({ current } = transform18th(current, next));
     ({ current, next } = transform20th(current, next));
   }

@@ -5,6 +5,9 @@ describe('canBeJungseong', () => {
     it('ㅗㅏ', () => {
       expect(canBeJungseong('ㅗㅏ')).toBe(true);
     });
+    it('ㅘ', () => {
+      expect(canBeJungseong('ㅘ')).toBe(true);
+    });
     it('ㅏ', () => {
       expect(canBeJungseong('ㅏ')).toBe(true);
     });
