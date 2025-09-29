@@ -8,6 +8,7 @@ on:
 
 jobs:
   broken-link-checker:
+    if: github.repository == 'toss/es-hangul'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
