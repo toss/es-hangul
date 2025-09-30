@@ -45,8 +45,8 @@
   "scripts": {
     "attw": "attw --pack",
     "build": "tsup",
-    "changeset:publish": "changeset publish",
-    "changeset:version": "changeset version",
+    "changeset:publish": "yarn changeset publish",
+    "changeset:version": "yarn changeset version",
     "packlint": "packlint sort -R",
     "publint": "publint --strict",
     "test": "vitest run --coverage --typecheck",
@@ -59,8 +59,8 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.15.3",
-    "@changesets/changelog-github": "^0.5.0",
-    "@changesets/cli": "^2.27.1",
+    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/cli": "^2.29.2",
     "@cspell/eslint-plugin": "^8.10.0",
     "@netlify/plugin-nextjs": "^5.0.0",
     "@types/broken-link-checker": "^0",
