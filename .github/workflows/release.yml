@@ -26,6 +26,9 @@ jobs:
       - name: Install Dependencies
         run: yarn install
 
+      - name: Update npm
+        run: npm install -g npm@11.5.1
+
       - name: Build
         run: yarn build
 
@@ -41,4 +44,4 @@ jobs:
           publish: yarn changeset:publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
