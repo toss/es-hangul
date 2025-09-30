@@ -18,17 +18,22 @@ describe('days', () => {
     { num: 30, word: '서른날' },
   ];
 
-  const invalidNumbers = [0, -1, 31, 1.1, -1.1, Infinity, -Infinity, NaN];
+  const invalidNumbers = [
+    { num: 0 },
+    { num: -1 },
+    { num: 31 },
+    { num: 1.1 },
+    { num: -1.1 },
+    { num: Infinity },
+    { num: -Infinity },
+    { num: NaN },
+  ];
 
-  validNumbers.forEach(({ num, word }) => {
-    it(`${num} - 순 우리말 날짜 ${word}로 바꿔 반환해야 한다.`, () => {
-      expect(days(num)).toBe(word);
-    });
+  it.each(validNumbers)('$num - 순 우리말 날짜($word)로 바꿔 반환해야 한다.', ({ num, word }) => {
+    expect(days(num)).toBe(word);
   });
 
-  invalidNumbers.forEach(num => {
-    it(`유효하지 않은 숫자 ${num}에 대해 오류를 발생시켜야 한다.`, () => {
-      expect(() => days(num)).toThrow('지원하지 않는 숫자입니다.');
-    });
+  it.each(invalidNumbers)('$num - 유효하지 않은 숫자에 대해 오류를 발생시켜야 한다.', ({ num }) => {
+    expect(() => days(num)).toThrow('지원하지 않는 숫자입니다.');
   });
 });
