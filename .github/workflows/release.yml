@@ -18,8 +18,8 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v5
         with:
-          cache: 'yarn'
           node-version-file: '.nvmrc'
+          cache: 'yarn'
 
       - name: Install Dependencies
         run: yarn install
