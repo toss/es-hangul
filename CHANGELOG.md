@@ -1,5 +1,11 @@
 # es-hangul
 
+## 2.3.8
+
+### Patch Changes
+
+- [#372](https://github.com/toss/es-hangul/pull/372) [`c5b01d0`](https://github.com/toss/es-hangul/commit/c5b01d029509dc6e39a5fd9376fad7dbe116bc9c) Thanks [@manudeli](https://github.com/manudeli)! - ci: oidc
+
 ## 2.3.7
 
 ### Patch Changes
