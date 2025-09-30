@@ -16,7 +16,7 @@
   ],
   "repository": "github:toss/es-hangul",
   "license": "MIT",
-  "packageManager": "yarn@4.1.1",
+  "packageManager": "yarn@4.10.2",
   "type": "commonjs",
   "exports": {
     ".": {
