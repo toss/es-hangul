@@ -29,18 +29,22 @@ describe('seosusa', () => {
     { num: 101, word: '백일째' },
   ];
 
-  const invalidNumbers = [0, -1, 1.1, -1.1, Infinity, -Infinity, NaN];
+  const invalidNumbers = [
+    { num: 0 },
+    { num: -1 },
+    { num: 1.1 },
+    { num: -1.1 },
+    { num: Infinity },
+    { num: -Infinity },
+    { num: NaN },
+  ];
 
-  validNumbers.forEach(({ num, word }) => {
-    it(`${num} - 순 우리말 서수사로 변환한다.`, () => {
-      expect(seosusa(num)).toBe(word);
-    });
+  it.each(validNumbers)('$num - 순 우리말 서수사로 변환한다.', ({ num, word }) => {
+    expect(seosusa(num)).toBe(word);
   });
 
-  invalidNumbers.forEach(num => {
-    it(`${num} - 유효하지 않은 숫자에 대해 오류를 발생시켜야 한다.`, () => {
-      expect(() => seosusa(num)).toThrow('유효하지 않은 입력입니다. 1이상의 정수만 지원합니다.');
-    });
+  it.each(invalidNumbers)('$num - 유효하지 않은 숫자에 대해 오류를 발생시켜야 한다.', ({ num }) => {
+    expect(() => seosusa(num)).toThrow('유효하지 않은 입력입니다. 1이상의 정수만 지원합니다.');
   });
 
   describe('에러 처리', () => {

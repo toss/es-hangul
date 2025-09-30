@@ -21,22 +21,30 @@ describe('susa', () => {
     { num: 100, word: '백', classifier: '백' },
   ];
 
-  const invalidNumbers = [0, -1, 101, 1.1, -1.1, Infinity, -Infinity, NaN];
+  const invalidNumbers = [
+    { num: 0 },
+    { num: -1 },
+    { num: 101 },
+    { num: 1.1 },
+    { num: -1.1 },
+    { num: Infinity },
+    { num: -Infinity },
+    { num: NaN },
+  ];
 
-  validNumbers.forEach(({ num, word, classifier }) => {
-    it(`${num} - 순 우리말 수사로 바꿔 반환해야 한다.`, () => {
-      expect(susa(num, false)).toBe(word);
-    });
-
-    it(`${num} - 순 우리말 수 관형사가 있다면 수 관형사로 없다면 수사로 반환해야 한다.`, () => {
-      expect(susa(num, true)).toBe(classifier);
-    });
+  it.each(validNumbers)('$num - 순 우리말 수사로 바꿔 반환해야 한다.', ({ num, word }) => {
+    expect(susa(num, false)).toBe(word);
   });
 
-  invalidNumbers.forEach(num => {
-    it(`유효하지 않은 숫자 ${num}에 대해 오류를 발생시켜야 한다.`, () => {
-      expect(() => susa(num, false)).toThrow('지원하지 않는 숫자입니다.');
-      expect(() => susa(num, true)).toThrow('지원하지 않는 숫자입니다.');
-    });
+  it.each(validNumbers)(
+    '$num - 순 우리말 수 관형사가 있다면 수 관형사로 없다면 수사로 반환해야 한다.',
+    ({ num, classifier }) => {
+      expect(susa(num, true)).toBe(classifier);
+    }
+  );
+
+  it.each(invalidNumbers)('$num - 유효하지 않은 숫자에 대해 오류를 발생시켜야 한다.', ({ num }) => {
+    expect(() => susa(num, false)).toThrow('지원하지 않는 숫자입니다.');
+    expect(() => susa(num, true)).toThrow('지원하지 않는 숫자입니다.');
   });
 });
