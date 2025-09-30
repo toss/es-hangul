@@ -39,7 +39,7 @@ describe('seosusa', () => {
     { num: NaN },
   ];
 
-  it.each(validNumbers)('$num - 순 우리말 서수사로 변환한다.', ({ num, word }) => {
+  it.each(validNumbers)('$num - 순 우리말 서수사($word)로 변환한다.', ({ num, word }) => {
     expect(seosusa(num)).toBe(word);
   });
 

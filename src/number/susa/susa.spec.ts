@@ -32,12 +32,12 @@ describe('susa', () => {
     { num: NaN },
   ];
 
-  it.each(validNumbers)('$num - 순 우리말 수사로 바꿔 반환해야 한다.', ({ num, word }) => {
+  it.each(validNumbers)('$num - 순 우리말 수사($word)로 바꿔 반환해야 한다.', ({ num, word }) => {
     expect(susa(num, false)).toBe(word);
   });
 
   it.each(validNumbers)(
-    '$num - 순 우리말 수 관형사가 있다면 수 관형사로 없다면 수사로 반환해야 한다.',
+    '$num - 순 우리말 수 관형사가 있다면 수 관형사($classifier)로 없다면 수사($word)로 반환해야 한다.',
     ({ num, classifier }) => {
       expect(susa(num, true)).toBe(classifier);
     }
