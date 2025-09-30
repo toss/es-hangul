@@ -25,7 +25,7 @@ jobs:
         run: yarn install
 
       - name: Update npm
-        run: yarn global add npm@11.5.1
+        run: yarn add --global-folder npm@11.5.1
 
       - name: Build
         run: yarn build
