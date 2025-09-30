@@ -8,6 +8,9 @@ jobs:
   release:
     if: github.repository == 'toss/es-hangul'
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v5
@@ -23,9 +26,6 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install
-
-      - name: Update npm
-        run: yarn add -D npm@11.5.1
 
       - name: Build
         run: yarn build
