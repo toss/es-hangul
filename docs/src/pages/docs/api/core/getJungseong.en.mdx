@@ -1,0 +1,39 @@
+---
+title: getJungseong
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# getJungseong
+
+Extracts the Jungseong (vowels) from a Korean word. (Example: 사과 -> 'ㅏㅘ')
+
+```typescript
+function getJungseong(
+  // Korean string from which to extract the jungseong
+  word: string
+): string;
+```
+
+## Examples
+
+```tsx
+getJungseong('사과');      // 'ㅏㅘ'
+getJungseong('하늘');      // 'ㅏㅡ'
+getJungseong('띄어 쓰기'); // 'ㅢㅓ ㅡㅣ'
+```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { getJungseong } from 'es-hangul';
+
+console.log(getJungseong('사과'));
+```
+
+</Sandpack>
+
