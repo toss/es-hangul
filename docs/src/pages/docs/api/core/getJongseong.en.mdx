@@ -1,0 +1,41 @@
+---
+title: getJongseong
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# getJongseong
+
+Extracts the Jongseong (final consonants) from a Korean word. (Example: 별 -> 'ㄹ')
+
+```typescript
+function getJongseong(
+  // Korean string from which to extract the jongseong
+  word: string
+): string;
+```
+
+## Examples
+
+```tsx
+getJongseong('별');        // 'ㄹ'
+getJongseong('하늘');      // 'ㄹ'
+getJongseong('띄어 쓰기'); // ' '
+getJongseong('파이팅');    // 'ㅇ'
+```
+
+## Demo
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { getJongseong } from 'es-hangul';
+
+console.log(getJongseong('별'));
+```
+
+</Sandpack>
+
+

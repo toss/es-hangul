@@ -1,0 +1,43 @@
+---
+title: getJongseong
+---
+
+import { Sandpack } from '@/components/Sandpack';
+
+# getJongseong
+
+단어에서 종성을 추출합니다. (예: `별` -> `'ㄹ'`)
+
+자세한 예시는 아래 Example을 참고하세요.
+
+```typescript
+function getJongseong(
+  // 종성을 추출할 한글 문자열
+  word: string
+): string;
+```
+
+## Examples
+
+```tsx
+getJongseong('별');        // 'ㄹ'
+getJongseong('하늘');      // 'ㄹ'
+getJongseong('띄어 쓰기'); // ' '
+getJongseong('파이팅');    // 'ㅇ'
+```
+
+## 사용해보기
+
+<br />
+
+<Sandpack>
+
+```ts index.ts
+import { getJongseong } from 'es-hangul';
+
+console.log(getJongseong('별'));
+```
+
+</Sandpack>
+
+
