@@ -58,7 +58,7 @@ function getClassifierWord(num: number): string {
 }
 
 function validateNumber(num: number): void {
-  if (Number.isNaN(num) || num <= 0 || num > 100 || !Number.isInteger(num) || !Number.isFinite(num)) {
+  if (!Number.isInteger(num) || num <= 0 || num > 100) {
     throw new Error('지원하지 않는 숫자입니다.');
   }
 }
