@@ -124,4 +124,34 @@ describe('transform12th', () => {
       next: null,
     });
   });
+
+  it('받침 "ㅅ, ㅆ, ㅊ, ㅌ"이 뒤 음절 첫소리 "ㅎ"과 결합되는 경우에도 두 음을 합쳐서 "ㅌ"으로 발음한다 (제12항 붙임 2)', () => {
+    const current1 = defined(disassembleCompleteCharacter('숱'));
+    const next1 = defined(disassembleCompleteCharacter('하'));
+    expect(transform12th(current1, next1)).toEqual({
+      current: { choseong: 'ㅅ', jungseong: 'ㅜ', jongseong: '' },
+      next: { choseong: 'ㅌ', jungseong: 'ㅏ', jongseong: '' },
+    });
+
+    const current2 = defined(disassembleCompleteCharacter('옷'));
+    const next2 = defined(disassembleCompleteCharacter('하'));
+    expect(transform12th(current2, next2)).toEqual({
+      current: { choseong: 'ㅇ', jungseong: 'ㅗ', jongseong: '' },
+      next: { choseong: 'ㅌ', jungseong: 'ㅏ', jongseong: '' },
+    });
+
+    const current3 = defined(disassembleCompleteCharacter('꽃'));
+    const next3 = defined(disassembleCompleteCharacter('하'));
+    expect(transform12th(current3, next3)).toEqual({
+      current: { choseong: 'ㄲ', jungseong: 'ㅗ', jongseong: '' },
+      next: { choseong: 'ㅌ', jungseong: 'ㅏ', jongseong: '' },
+    });
+
+    const current4 = defined(disassembleCompleteCharacter('있'));
+    const next4 = defined(disassembleCompleteCharacter('하'));
+    expect(transform12th(current4, next4)).toEqual({
+      current: { choseong: 'ㅇ', jungseong: 'ㅣ', jongseong: '' },
+      next: { choseong: 'ㅌ', jungseong: 'ㅏ', jongseong: '' },
+    });
+  });
 });
