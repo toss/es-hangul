@@ -1,3 +1,4 @@
+import { isHangulAlphabet, isHangulCharacter } from '@/_internal/hangul';
 import { assemble } from '@/core/assemble';
 import { convertQwertyToAlphabet } from '@/keyboard/convertQwertyToAlphabet';
 
@@ -17,10 +18,8 @@ export function convertQwertyToHangul(word: string): string {
   let result = '';
   let hangulBuffer: string[] = [];
 
-  const HANGUL_REGEX = /[ㄱ-ㅎㅏ-ㅣ가-힣]/;
-
   for (const char of converted) {
-    if (HANGUL_REGEX.test(char)) {
+    if (isHangulAlphabet(char) || isHangulCharacter(char)) {
       hangulBuffer.push(char);
     } else {
       if (hangulBuffer.length > 0) {
@@ -37,3 +36,4 @@ export function convertQwertyToHangul(word: string): string {
 
   return result;
 }
+
