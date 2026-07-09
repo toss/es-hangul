@@ -55,7 +55,6 @@ chosungIncludes('바나나', 'ㅂㄴㄴ');
 choseongIncludes('바나나', 'ㅂㄴㄴ');
 
 // TOBE
-
 const choseonged = getChoseong('바나나');
 choseonged.includes('ㅂㄴㄴ');
 ```
@@ -67,7 +66,6 @@ The curriedCombineHangulCharacter function was removed as it was not intended fo
 If needed, you can implement it as follows:
 
 ```tsx
-
 export const curriedCombineHangulCharacter=
   (firstCharacter: string) =>
   (middleCharacter: string) =>
@@ -168,7 +166,6 @@ export function hasValueInReadOnlyStringList<T extends string>(list: readonly T[
 export function hasProperty<T extends object, K extends PropertyKey>(obj: T, key: K): key is K & keyof T {
   return Object.prototype.hasOwnProperty.call(obj, key);
 }
-
 ```
 
 ### The hasSingleBatchim function has been removed.
