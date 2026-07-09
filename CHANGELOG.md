@@ -1,5 +1,19 @@
 # es-hangul
 
+## 2.4.0
+
+### Minor Changes
+
+- [#387](https://github.com/toss/es-hangul/pull/387) [`000ed01`](https://github.com/toss/es-hangul/commit/000ed0182672897a804335adfc36e6df4565b1af) Thanks [@okinawaa](https://github.com/okinawaa)! - feat: 중성을 추출하는 `getJungseong`과 종성을 추출하는 `getJongseong` 함수를 추가합니다. `getChoseong`과 동일하게 존재하는 자모만 추출하고 공백은 유지합니다. (예: `getJungseong('사과')` → `'ㅏㅘ'`, `getJongseong('값')` → `'ㅄ'`)
+
+### Patch Changes
+
+- [#386](https://github.com/toss/es-hangul/pull/386) [`ea06e34`](https://github.com/toss/es-hangul/commit/ea06e349cc06885bbf6c7f92fb047148719b8fd6) Thanks [@okinawaa](https://github.com/okinawaa)! - fix(assemble): 숫자나 기호 등 한글이 아닌 문자가 섞인 경우 오류가 발생하던 문제를 수정합니다. 이제 한글로 조합할 수 없는 문자는 그대로 유지됩니다. 이로써 `convertQwertyToHangul('slash123')`이 `'님노123'`을 반환합니다.
+
+- [#385](https://github.com/toss/es-hangul/pull/385) [`79e7ef3`](https://github.com/toss/es-hangul/commit/79e7ef3d62842be05f77963abd6c3b5baa90fb1d) Thanks [@okinawaa](https://github.com/okinawaa)! - fix(standardizePronunciation): 제12항 [붙임 2]를 적용합니다. 'ㄷ'으로 발음되는 받침 'ㅅ, ㅆ, ㅊ, ㅌ'이 뒤 음절 첫소리 'ㅎ'과 결합되는 경우 [ㅌ]으로 발음합니다. (예: `숱하다` → `수타다`, `옷한벌` → `오탄벌`)
+
+- [#382](https://github.com/toss/es-hangul/pull/382) [`920119b`](https://github.com/toss/es-hangul/commit/920119bfb90db9605376d8ff4c29cb5321ad1044) Thanks [@dohy-eon](https://github.com/dohy-eon)! - feat: getChoseong에 keepNonHangul 옵션을 추가합니다. true일 때 NFD 중성·종성만 제거하고 숫자·기호 등 비한글 문자를 유지합니다.
+
 ## 2.3.8
 
 ### Patch Changes
