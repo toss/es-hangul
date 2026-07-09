@@ -3,6 +3,7 @@ import {
   발음변환_받침_ㅎ,
   발음변환_받침_ㅎ_발음,
   발음변환_첫소리_ㅎ,
+  발음변환_첫소리_ㅎ_ㄷ대표음,
   발음변환_첫소리_ㅎ_발음,
   음가가_없는_자음,
 } from '../constants';
@@ -109,6 +110,13 @@ function handleNextChoseongIsㅎ(current: Syllable, next: Nullable<Syllable>): N
     } else {
       updatedCurrent.jongseong = updatedCurrent.jongseong[0] as Syllable['jongseong'];
     }
+  } else if (
+    // 제12항 [붙임 2] 'ㄷ'으로 발음되는 받침(ㅅ, ㅆ, ㅊ, ㅌ)이 첫소리 'ㅎ'과 결합되면 [ㅌ]으로 발음한다.
+    arrayIncludes(발음변환_첫소리_ㅎ_ㄷ대표음, updatedCurrent.jongseong) &&
+    arrayIncludes(['ㅎ'], updatedNext?.choseong)
+  ) {
+    updatedNext.choseong = 'ㅌ';
+    updatedCurrent.jongseong = '';
   }
   return { current: updatedCurrent, next: updatedNext };
 }
