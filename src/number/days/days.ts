@@ -22,7 +22,7 @@ function getNumberWord(num: number): string {
 }
 
 function validateNumber(num: number): void {
-  if (Number.isNaN(num) || num <= 0 || num > 30 || !Number.isInteger(num) || !Number.isFinite(num)) {
+  if (!Number.isInteger(num) || num <= 0 || num > 30) {
     throw new Error('지원하지 않는 숫자입니다.');
   }
 }
