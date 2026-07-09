@@ -176,6 +176,18 @@ describe('standardizePronunciation', () => {
         expect(standardizePronunciation('앉히다')).toBe('안치다');
       });
 
+      it('[붙임 2] "ㄷ"으로 발음되는 받침 "ㅅ, ㅆ, ㅊ, ㅌ"이 뒤 음절 첫소리 "ㅎ"과 결합되는 경우에도 합쳐서 "ㅌ"으로 발음한다', () => {
+        expect(standardizePronunciation('숱하다')).toBe('수타다');
+        expect(standardizePronunciation('옷한벌')).toBe('오탄벌');
+        expect(standardizePronunciation('빛하고')).toBe('비타고');
+        expect(standardizePronunciation('밭한마지기')).toBe('바탄마지기');
+      });
+
+      it('[붙임 2]에서 받침 "ㅈ"은 [붙임 1] 규칙에 따라 "ㅊ"으로 발음한다 (예: 맞히다[마치다])', () => {
+        expect(standardizePronunciation('맞히다')).toBe('마치다');
+        expect(standardizePronunciation('꽂히다')).toBe('꼬치다');
+      });
+
       it('"ㅎ, ㄶ, ㅀ" 뒤에 "ㅅ"이 결합되는 경우에는, "ㅅ"을 "ㅆ"으로 발음한다', () => {
         expect(standardizePronunciation('닿소')).toBe('다쏘');
         expect(standardizePronunciation('많소')).toBe('만쏘');
