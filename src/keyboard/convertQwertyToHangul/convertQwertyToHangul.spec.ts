@@ -24,6 +24,12 @@ describe('convertQwertyToHangul', () => {
     expect(convertQwertyToHangul('ㅇPdml')).toBe('예의');
   });
 
+  it('숫자가 포함된 문자열은 숫자를 그대로 유지한 채 한글로 합성한다.', () => {
+    expect(convertQwertyToHangul('slash123')).toBe('님노123');
+    expect(convertQwertyToHangul('dkdlvhs16')).toBe('아이폰16');
+    expect(convertQwertyToHangul('1qkr2dlf')).toBe('1박2일');
+  });
+
   it('빈 문자열은 빈 문자열을 반환한다.', () => {
     expect(convertQwertyToHangul('')).toBe('');
   });

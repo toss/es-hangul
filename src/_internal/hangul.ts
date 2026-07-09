@@ -183,7 +183,12 @@ export function binaryAssembleCharacters(source: string, nextCharacter: string) 
  */
 export function binaryAssemble(source: string, nextCharacter: string) {
   const [rest, lastCharacter] = excludeLastElement(source.split(''));
-  const needJoinString = isBlank(lastCharacter) || isBlank(nextCharacter);
+  // 공백이거나 한글 자모로 조합할 수 없는 문자(숫자, 기호 등)는 조합하지 않고 그대로 이어 붙인다.
+  const needJoinString =
+    isBlank(lastCharacter) ||
+    isBlank(nextCharacter) ||
+    !(isHangulCharacter(lastCharacter) || isHangulAlphabet(lastCharacter)) ||
+    !isHangulAlphabet(nextCharacter);
 
   return joinString(
     ...rest,
