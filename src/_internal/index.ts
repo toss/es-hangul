@@ -38,3 +38,17 @@ export function hasValueInReadOnlyStringList<T extends string>(list: readonly T[
 export function hasProperty<T extends object, K extends PropertyKey>(obj: T, key: K): key is K & keyof T {
   return Object.prototype.hasOwnProperty.call(obj, key);
 }
+
+export function invert<K extends PropertyKey, V extends PropertyKey>(obj: Record<K, V>): Record<V, K> {
+  const result = {} as Record<V, K>;
+
+  const keys = Object.keys(obj) as K[];
+
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
+    const value = obj[key];
+    result[value] = key;
+  }
+
+  return result;
+}

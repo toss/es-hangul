@@ -1,5 +1,6 @@
 import { DISASSEMBLED_CONSONANTS_BY_CONSONANT, JONGSEONGS } from '@/_internal/constants';
 import { JASO_HANGUL_NFD } from '../getChoseong/constants';
+import { invert } from '@/_internal';
 
 /**
  * @name getJongseong
@@ -35,9 +36,7 @@ const CHOOSE_NFD_JONGSEONG_REGEX = new RegExp(
   'g'
 );
 
-const CONSONANT_BY_DISASSEMBLED_CONSONANT = Object.fromEntries(
-  Object.entries(DISASSEMBLED_CONSONANTS_BY_CONSONANT).map(([key, val]) => [val, key])
-);
+const CONSONANT_BY_DISASSEMBLED_CONSONANT = invert(DISASSEMBLED_CONSONANTS_BY_CONSONANT);
 
 const JONGSEONGS_COMPOSITE = JONGSEONGS.slice(1).map(d => CONSONANT_BY_DISASSEMBLED_CONSONANT[d]);
 
