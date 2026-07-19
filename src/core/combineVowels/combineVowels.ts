@@ -1,3 +1,4 @@
+import { invert } from '@/_internal';
 import { DISASSEMBLED_VOWELS_BY_VOWEL } from '@/_internal/constants';
 
 /**
@@ -21,7 +22,9 @@ import { DISASSEMBLED_VOWELS_BY_VOWEL } from '@/_internal/constants';
 type Invert<T extends Record<string, string>> = { [K in keyof T as T[K]]: K };
 type CombineVowel = Invert<typeof DISASSEMBLED_VOWELS_BY_VOWEL>;
 
+const VOWEL_BY_DISASSEMBLED_VOWELS = invert(DISASSEMBLED_VOWELS_BY_VOWEL);
+
 export function combineVowels<V1 extends string, V2 extends string>(vowel1: V1, vowel2: V2) {
-  return (Object.entries(DISASSEMBLED_VOWELS_BY_VOWEL).find(([, value]) => value === `${vowel1}${vowel2}`)?.[0] ??
+  return (VOWEL_BY_DISASSEMBLED_VOWELS[`${vowel1}${vowel2}` as keyof CombineVowel] ??
     `${vowel1}${vowel2}`) as `${V1}${V2}` extends keyof CombineVowel ? CombineVowel[`${V1}${V2}`] : `${V1}${V2}`;
 }
