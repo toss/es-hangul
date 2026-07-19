@@ -35,9 +35,9 @@ const CHOOSE_NFD_JONGSEONG_REGEX = new RegExp(
   'g'
 );
 
-const JONGSEONGS_COMPOSITE = JONGSEONGS.slice(1).map(
-  d => Object.fromEntries(
-    Object.entries(DISASSEMBLED_CONSONANTS_BY_CONSONANT).map(([key, val]) => [val, key])
-  )[d]
+const CONSONANT_BY_DISASSEMBLED_CONSONANT = Object.fromEntries(
+  Object.entries(DISASSEMBLED_CONSONANTS_BY_CONSONANT).map(([key, val]) => [val, key])
 );
+
+const JONGSEONGS_COMPOSITE = JONGSEONGS.slice(1).map(d => CONSONANT_BY_DISASSEMBLED_CONSONANT[d]);
 
