@@ -12,6 +12,7 @@ import {
   transform19th,
   transform20th,
   transform9And10And11th,
+  transform10thException,
   transformHardConversion,
   transformNLAssimilation,
   type Nullable,
@@ -141,6 +142,8 @@ function applyRules(params: ApplyParameters): {
 
   let current = { ...currentSyllable };
   let next = nextSyllable ? { ...nextSyllable } : nextSyllable;
+
+  ({ current } = transform10thException(current, next));
 
   if (next && options.hardConversion) {
     ({ next } = transformHardConversion(current, next));

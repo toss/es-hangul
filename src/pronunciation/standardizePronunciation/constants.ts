@@ -31,7 +31,8 @@ export const 자음동화_받침_ㄴ_변환 = ['ㅁ', 'ㅇ', 'ㄱ', 'ㅂ'] as co
 // 18항
 export const 비음화_받침_ㅇ_변환 = ['ㄱ', 'ㄲ', 'ㅋ', 'ㄱㅅ', 'ㄹㄱ'] as const;
 export const 비음화_받침_ㄴ_변환 = ['ㄷ', 'ㅅ', 'ㅆ', 'ㅈ', 'ㅊ', 'ㅌ', 'ㅎ'] as const;
-export const 비음화_받침_ㅁ_변환 = ['ㅂ', 'ㅍ', 'ㄹㅂ', 'ㄹㅍ', 'ㅂㅅ'] as const;
+// 'ㄹㅂ'은 '밟-'에서만 [ㅂ]으로 발음되므로(제10항 다만) transform10thException에서 처리한다
+export const 비음화_받침_ㅁ_변환 = ['ㅂ', 'ㅍ', 'ㄹㅍ', 'ㅂㅅ'] as const;
 
 // 12항
 export const 발음변환_받침_ㅎ = ['ㅎ', 'ㄴㅎ', 'ㄹㅎ'] as const;

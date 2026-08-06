@@ -7,5 +7,6 @@ export { transform18th } from './transform18th';
 export { transform19th } from './transform19th';
 export { transform20th } from './transform20th';
 export { transform9And10And11th } from './transform9And10And11th';
+export { transform10thException } from './transform10thException';
 export { transformHardConversion } from './transformHardConversion';
 export { transformNLAssimilation } from './transformNLAssimilation';
