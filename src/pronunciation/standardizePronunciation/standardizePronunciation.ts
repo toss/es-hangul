@@ -2,7 +2,7 @@ import { isNotUndefined, joinString } from '@/_internal';
 import { isHangulAlphabet, isHangulCharacter } from '@/_internal/hangul';
 import { combineCharacter } from '@/core/combineCharacter';
 import { disassembleCompleteCharacter } from '@/core/disassembleCompleteCharacter';
-import { 단일어_예외사항_단어모음, 사이시옷_에외사항_목록 } from './exceptionWords.constants';
+import { 단일어_예외사항_단어모음, 사이시옷_예외사항_목록 } from './exceptionWords.constants';
 import {
   transform12th,
   transform13And14th,
@@ -35,7 +35,7 @@ const createExceptionChecker =
     exceptionMap[hangul];
 
 const exceptionCheckers: ExceptionChecker[] = [
-  createExceptionChecker(사이시옷_에외사항_목록),
+  createExceptionChecker(사이시옷_예외사항_목록),
   createExceptionChecker(단일어_예외사항_단어모음),
 ];
 

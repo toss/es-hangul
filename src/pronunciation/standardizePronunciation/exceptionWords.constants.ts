@@ -1,4 +1,4 @@
-export const 사이시옷_에외사항_목록: Record<string, string> = {
+export const 사이시옷_예외사항_목록: Record<string, string> = {
   베갯잇: '베갠닏',
   깻잎: '깬닙',
   나뭇잎: '나문닙',
