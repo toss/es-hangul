@@ -9,6 +9,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions: 
+  contents: read
+  id-token: write
+
 jobs:
   codecov:
     runs-on: ubuntu-latest
@@ -33,5 +37,5 @@ jobs:
 
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v5
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          use_oidc: true
