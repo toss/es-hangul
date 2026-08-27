@@ -140,6 +140,31 @@ describe('standardizePronunciation', () => {
       });
     });
 
+    describe('10항 다만', () => {
+      it('"밟-"은 자음 앞에서 [밥]으로 발음한다', () => {
+        expect(standardizePronunciation('밟다')).toBe('밥따');
+        expect(standardizePronunciation('밟소')).toBe('밥쏘');
+        expect(standardizePronunciation('밟지')).toBe('밥찌');
+        expect(standardizePronunciation('밟게')).toBe('밥께');
+        expect(standardizePronunciation('밟고')).toBe('밥꼬');
+      });
+
+      it('"넓-"은 "넓죽하다, 넓둥글다, 넓적하다"의 경우에 [넙]으로 발음한다', () => {
+        expect(standardizePronunciation('넓죽하다')).toBe('넙쭈카다');
+        expect(standardizePronunciation('넓둥글다')).toBe('넙뚱글다');
+        expect(standardizePronunciation('넓적하다')).toBe('넙쩌카다');
+      });
+
+      it('"밟-", "넓죽/넓둥/넓적"이 아닌 "ㄼ" 받침은 [ㄹ]로 발음한다', () => {
+        expect(standardizePronunciation('여덟만')).toBe('여덜만');
+        expect(standardizePronunciation('넓게')).toBe('널께');
+      });
+
+      it('모음 앞에서는 연음되므로 적용하지 않는다', () => {
+        expect(standardizePronunciation('밟아')).toBe('발바');
+      });
+    });
+
     describe('20항', () => {
       it('"ㄴ"은 "ㄹ"의 앞이나 뒤에서 "ㄹ"로 발음한다', () => {
         expect(standardizePronunciation('난로')).toBe('날로');
