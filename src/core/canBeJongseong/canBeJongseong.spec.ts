@@ -26,5 +26,13 @@ describe('canBeJongseong', () => {
     it('가', () => {
       expect(canBeJongseong('ㅏ')).toBe(false);
     });
+    it.each([
+      { category: '영어', character: 'A' },
+      { category: '빈칸', character: ' ' },
+      { category: '다른 언어', character: 'あ' },
+      { category: '특수문자', character: '!' },
+    ])('$category 문자', ({ character }) => {
+      expect(canBeJongseong(character)).toBe(false);
+    });
   });
 });
