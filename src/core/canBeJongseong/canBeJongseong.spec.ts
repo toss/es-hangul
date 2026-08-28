@@ -24,7 +24,7 @@ describe('canBeJongseong', () => {
       expect(canBeJongseong('ㅏ')).toBe(false);
     });
     it('가', () => {
-      expect(canBeJongseong('ㅏ')).toBe(false);
+      expect(canBeJongseong('가')).toBe(false);
     });
   });
 });
