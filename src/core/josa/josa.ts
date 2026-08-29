@@ -1,6 +1,6 @@
 import { disassembleCompleteCharacter } from '@/core/disassembleCompleteCharacter';
 import { hasBatchim } from '../hasBatchim';
-import { ALPHABET_TO_KOREAN } from '@/_internal/constants';
+import { ALPHABET_TO_KOREAN, HANGUL_NUMBERS_FOR_DECIMAL } from '@/_internal/constants';
 
 type JosaOption =
   | '이/가'
@@ -27,13 +27,6 @@ export function josa<T extends string, U extends JosaOption>(word: T, josa: U): 
     return word as `${T}${ExtractJosaOption<U>}`;
   }
 
-  if (/^[A-Z]+$/.test(word)) {
-    const lastChar = word[word.length - 1];
-    const koreanPronunciationOfLastChar = ALPHABET_TO_KOREAN[lastChar];
-
-    return (word + josaPicker(koreanPronunciationOfLastChar, josa)) as `${T}${ExtractJosaOption<U>}`;
-  }
-
   return (word + josaPicker(word, josa)) as `${T}${ExtractJosaOption<U>}`;
 }
 
@@ -44,10 +37,11 @@ function josaPicker<T extends JosaOption>(word: string, josa: T): ExtractJosaOpt
     return josa.split('/')[0] as ExtractJosaOption<T>;
   }
 
-  const has받침 = hasBatchim(word);
+  const wordForJosa = getWordForJosa(word);
+  const has받침 = hasBatchim(wordForJosa);
   let index = has받침 ? 0 : 1;
 
-  const is종성ㄹ = has받침 && disassembleCompleteCharacter(word[word.length - 1])?.jongseong === 'ㄹ';
+  const is종성ㄹ = has받침 && disassembleCompleteCharacter(wordForJosa[wordForJosa.length - 1])?.jongseong === 'ㄹ';
 
   const isCaseOf로 = has받침 && is종성ㄹ && 로_조사.includes(josa);
 
@@ -56,4 +50,18 @@ function josaPicker<T extends JosaOption>(word: string, josa: T): ExtractJosaOpt
   }
 
   return josa.split('/')[index] as ExtractJosaOption<T>;
+}
+
+function getWordForJosa(word: string) {
+  const lastChar = word[word.length - 1];
+
+  if (/^[A-Z]+$/.test(word)) {
+    return ALPHABET_TO_KOREAN[lastChar];
+  }
+
+  if (/^[0-9]$/.test(lastChar)) {
+    return HANGUL_NUMBERS_FOR_DECIMAL[Number(lastChar)];
+  }
+
+  return word;
 }
