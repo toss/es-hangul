@@ -22,19 +22,23 @@ const 로_조사: JosaOption[] = ['으로/로', '으로서/로서', '으로써/�
 
 type ExtractJosaOption<T> = T extends `${infer A}/${infer B}` ? A | B : never;
 
-export function josa<T extends string, U extends JosaOption>(word: T, josa: U): `${T}${ExtractJosaOption<U>}` {
+type JosaReturnType<T extends string, U extends JosaOption> =
+  | `${Exclude<T, ''>}${ExtractJosaOption<U>}`
+  | ('' extends T ? '' : T & '');
+
+export function josa<T extends string, U extends JosaOption>(word: T, josa: U): JosaReturnType<T, U> {
   if (word.length === 0) {
-    return word as `${T}${ExtractJosaOption<U>}`;
+    return word as JosaReturnType<T, U>;
   }
 
   if (/^[A-Z]+$/.test(word)) {
     const lastChar = word[word.length - 1];
     const koreanPronunciationOfLastChar = ALPHABET_TO_KOREAN[lastChar];
 
-    return (word + josaPicker(koreanPronunciationOfLastChar, josa)) as `${T}${ExtractJosaOption<U>}`;
+    return (word + josaPicker(koreanPronunciationOfLastChar, josa)) as JosaReturnType<T, U>;
   }
 
-  return (word + josaPicker(word, josa)) as `${T}${ExtractJosaOption<U>}`;
+  return (word + josaPicker(word, josa)) as JosaReturnType<T, U>;
 }
 
 josa.pick = josaPicker;
