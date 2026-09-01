@@ -27,4 +27,19 @@ describe('disassembleToGroups', () => {
   it('ㅘ', () => {
     expect(disassembleToGroups('ㅘ')).toEqual([['ㅗ', 'ㅏ']]);
   });
+
+  describe('한글이 아닌 문자 처리', () => {
+    it('영어는 분해하지 않고 한 글자씩 그룹으로 유지한다.', () => {
+      expect(disassembleToGroups('값abc')).toEqual([['ㄱ', 'ㅏ', 'ㅂ', 'ㅅ'], ['a'], ['b'], ['c']]);
+    });
+
+    it('특수문자와 한글이 아닌 다른 언어는 그대로 유지한다.', () => {
+      expect(disassembleToGroups('a!')).toEqual([['a'], ['!']]);
+      expect(disassembleToGroups('あ')).toEqual([['あ']]);
+    });
+
+    it('빈 문자열은 빈 배열을 반환한다.', () => {
+      expect(disassembleToGroups('')).toEqual([]);
+    });
+  });
 });

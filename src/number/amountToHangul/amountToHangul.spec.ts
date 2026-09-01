@@ -16,6 +16,12 @@ describe('amountToHangul', () => {
 
   it('숫자 외 문자를 무시하여 반환', () => {
     expect(amountToHangul('120,030원')).toEqual('일십이만삼십');
+    expect(amountToHangul('123abc')).toEqual('일백이십삼');
+    expect(amountToHangul('12!@#')).toEqual('일십이');
+  });
+
+  it('숫자가 없는 문자열은 빈 문자열을 반환', () => {
+    expect(amountToHangul('abc')).toEqual('');
   });
 
   it('소수점이 있는 경우도 표기', () => {

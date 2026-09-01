@@ -80,4 +80,8 @@ describe('romanize', () => {
     expect(romanize('한국은korea')).toBe('hangugeunkorea');
     expect(romanize('고양이는cat')).toBe('goyangineuncat');
   });
+
+  it('한글이 아닌 다른 언어는 그대로 반환된다', () => {
+    expect(romanize('안녕あ')).toBe('annyeongあ');
+  });
 });

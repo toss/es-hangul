@@ -14,4 +14,13 @@ describe('combineVowels', () => {
     expect(combineVowels('ㅘ', 'ㅏ')).toBe('ㅘㅏ');
     expect(combineVowels('ㅝ', 'ㅣ')).toBe('ㅝㅣ');
   });
+
+  it('영어 등 모음이 아닌 문자가 입력되면 Join한다.', () => {
+    expect(combineVowels('a', 'b')).toBe('ab');
+    expect(combineVowels('ㅗ', 'a')).toBe('ㅗa');
+  });
+
+  it('빈 문자열이 입력되면 빈 문자열을 반환한다.', () => {
+    expect(combineVowels('', '')).toBe('');
+  });
 });

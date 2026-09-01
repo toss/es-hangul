@@ -28,4 +28,11 @@ describe('combineCharacter', () => {
   it('온전한 한글 문자가 하나라도 입력되면 에러를 반환한다. (가, ㅏ, ㄱ)', () => {
     expect(() => combineCharacter('가', 'ㅏ', 'ㄱ')).toThrowError('Invalid hangul Characters: 가, ㅏ, ㄱ');
   });
+
+  it('영어, 특수문자, 빈 문자열 등 한글이 아닌 문자가 입력되면 에러를 반환한다.', () => {
+    expect(() => combineCharacter('a', 'ㅏ')).toThrowError('Invalid hangul Characters: a, ㅏ, ');
+    expect(() => combineCharacter('ㄱ', 'a')).toThrowError('Invalid hangul Characters: ㄱ, a, ');
+    expect(() => combineCharacter('ㄱ', 'ㅏ', '!')).toThrowError('Invalid hangul Characters: ㄱ, ㅏ, !');
+    expect(() => combineCharacter('', '')).toThrowError('Invalid hangul Characters: , , ');
+  });
 });

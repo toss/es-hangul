@@ -17,4 +17,10 @@ describe('assemble', () => {
     expect(assemble(['ㄱ', 'ㅏ', '!', 'ㄴ', 'ㅏ'])).toEqual('가!나');
     expect(assemble(['ㅇ', 'ㅑ', '1', 'ㅎ', 'ㅏ'])).toEqual('야1하');
   });
+
+  it('영어나 한글이 아닌 다른 언어도 조합하지 않고 그대로 유지한다', () => {
+    expect(assemble(['a', 'b'])).toEqual('ab');
+    expect(assemble(['ㄱ', 'a'])).toEqual('ㄱa');
+    expect(assemble(['안', 'あ'])).toEqual('안あ');
+  });
 });

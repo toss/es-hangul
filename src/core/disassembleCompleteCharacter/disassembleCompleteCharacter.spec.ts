@@ -37,4 +37,11 @@ describe('disassembleCompleteCharacter', () => {
     expect(disassembleCompleteCharacter('ㄱ')).toBeUndefined();
     expect(disassembleCompleteCharacter('ㅏ')).toBeUndefined();
   });
+
+  it('영어, 특수문자, 다른 언어, 빈 문자열도 undefined를 반환해야 합니다.', () => {
+    expect(disassembleCompleteCharacter('a')).toBeUndefined();
+    expect(disassembleCompleteCharacter('!')).toBeUndefined();
+    expect(disassembleCompleteCharacter('あ')).toBeUndefined();
+    expect(disassembleCompleteCharacter('')).toBeUndefined();
+  });
 });
