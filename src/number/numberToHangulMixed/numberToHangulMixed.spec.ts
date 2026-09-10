@@ -71,4 +71,21 @@ describe('numberToHangulMixed', () => {
     expect(() => numberToHangulMixed(NaN)).toThrow('유효한 숫자를 입력해주세요.');
     expect(() => numberToHangulMixed('123' as unknown as number)).toThrow('유효한 숫자를 입력해주세요.');
   });
+
+  test('변환 범위를 벗어난 입력에 대한 오류 처리', () => {
+    // 1e21 이상의 수는 toString()이 과학적 표기법("1e+21")을 반환해 겉보기에 그럴듯한
+    // 잘못된 문자열("1만" 등)이 조용히 노출되었다
+    expect(() => numberToHangulMixed(1e21)).toThrow('변환할 수 있는 범위를 벗어난 숫자입니다.');
+    expect(() => numberToHangulMixed(1e30)).toThrow('변환할 수 있는 범위를 벗어난 숫자입니다.');
+    expect(() => numberToHangulMixed(-1e21)).toThrow('변환할 수 있는 범위를 벗어난 숫자입니다.');
+    expect(() => numberToHangulMixed(3.14e25)).toThrow('변환할 수 있는 범위를 벗어난 숫자입니다.');
+    expect(() => numberToHangulMixed(Number.MAX_VALUE)).toThrow('변환할 수 있는 범위를 벗어난 숫자입니다.');
+    // 1e-6 미만의 소수도 동일한 이유로 과학적 표기법이 된다
+    expect(() => numberToHangulMixed(1e-7)).toThrow('변환할 수 있는 범위를 벗어난 숫자입니다.');
+  });
+
+  test('변환 범위 경계값은 정상 동작한다', () => {
+    expect(numberToHangulMixed(1e20)).toBe('1해');
+    expect(numberToHangulMixed(1e-6)).toBe('0.000001');
+  });
 });

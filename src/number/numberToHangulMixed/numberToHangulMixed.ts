@@ -16,7 +16,15 @@ export function numberToHangulMixed(input: number, options?: { spacing?: boolean
   }
 
   const isNegative = input < 0;
+
   const absoluteInput = Math.abs(input);
+
+  // 1e21 이상의 수와 1e-6 미만의 소수는 Number.prototype.toString()이 과학적 표기법
+  // 문자열("1e+21" 등)을 반환하므로(ECMA-262), 그대로 변환하면 "undefined"가 섞인 문자열이나
+  // 잘못된 값이 조용히 노출된다. 기존 유효성 검증처럼 에러를 던져 silent failure를 막는다.
+  if (absoluteInput >= 1e21 || (absoluteInput !== 0 && absoluteInput < 1e-6)) {
+    throw new Error('변환할 수 있는 범위를 벗어난 숫자입니다.');
+  }
 
   const [integerPart, decimalPart] = absoluteInput.toString().split('.');
 
