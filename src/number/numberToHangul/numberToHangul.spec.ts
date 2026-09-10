@@ -74,4 +74,21 @@ describe('numberToHangul', () => {
     expect(() => numberToHangul(NaN)).toThrow('유효한 숫자를 입력해주세요.');
     expect(() => numberToHangul('123' as unknown as number)).toThrow('유효한 숫자를 입력해주세요.');
   });
+
+  test('변환 범위를 벗어난 입력에 대한 오류 처리', () => {
+    // 1e21 이상의 수는 toString()이 과학적 표기법("1e+21")을 반환해 잘못된 결과가 조용히 노출되었다
+    expect(() => numberToHangul(1e21)).toThrow('변환할 수 있는 범위를 벗어난 숫자입니다.');
+    expect(() => numberToHangul(1e30)).toThrow('변환할 수 있는 범위를 벗어난 숫자입니다.');
+    expect(() => numberToHangul(-1e21)).toThrow('변환할 수 있는 범위를 벗어난 숫자입니다.');
+    expect(() => numberToHangul(Number.MAX_VALUE)).toThrow('변환할 수 있는 범위를 벗어난 숫자입니다.');
+    // 1e-6 미만의 소수도 동일한 이유로 과학적 표기법이 된다
+    expect(() => numberToHangul(1e-7)).toThrow('변환할 수 있는 범위를 벗어난 숫자입니다.');
+    expect(() => numberToHangul(-1e-7)).toThrow('변환할 수 있는 범위를 벗어난 숫자입니다.');
+  });
+
+  test('변환 범위 경계값은 정상 동작한다', () => {
+    expect(numberToHangul(1e20)).toBe('일해');
+    expect(numberToHangul(999_999_999_999_999_900_000)).toBe('구해구천구백구십구경구천구백구십구조구천구백구십구억구천구백구십만');
+    expect(numberToHangul(1e-6)).toBe('영점영영영영영일');
+  });
 });
