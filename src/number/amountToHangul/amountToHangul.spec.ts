@@ -37,4 +37,17 @@ describe('amountToHangul', () => {
     expect(amountToHangul('001023')).toEqual('일천이십삼');
     expect(amountToHangul('0001023')).toEqual('일천이십삼');
   });
+
+  it('음수인 경우 마이너스를 붙여 반환', () => {
+    expect(amountToHangul(-100)).toEqual('마이너스일백');
+    expect(amountToHangul('-100')).toEqual('마이너스일백');
+    expect(amountToHangul(-100.25)).toEqual('마이너스일백점이오');
+    expect(amountToHangul('-120,030원')).toEqual('마이너스일십이만삼십');
+  });
+
+  it('음수 0은 부호 없이 영으로 반환', () => {
+    expect(amountToHangul(-0)).toEqual('영');
+    expect(amountToHangul('-0')).toEqual('영');
+    expect(amountToHangul('-0.000')).toEqual('영');
+  });
 });
