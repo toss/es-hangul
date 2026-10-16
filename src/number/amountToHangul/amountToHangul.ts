@@ -10,6 +10,7 @@ import {
  * @deprecated 더 유연하게 사용 가능한 `numberToHangul`을 이용해 주세요
  */
 export function amountToHangul(amount: string | number) {
+  const isNegative = String(amount).trim().startsWith('-');
   const [rawIntegerPart, rawDecimalPart] = String(amount)
     .replace(/[^\d.]+/g, '')
     .split('.');
@@ -57,6 +58,12 @@ export function amountToHangul(amount: string | number) {
     for (let i = 0; i < decimalPart.length; i++) {
       result.push(HANGUL_NUMBERS_FOR_DECIMAL[Number(decimalPart[i])]);
     }
+  }
+
+  const isZero = result.every(part => part === HANGUL_NUMBERS_FOR_DECIMAL[0]);
+
+  if (isNegative && !isZero) {
+    result.unshift('마이너스');
   }
 
   return result.join('');
