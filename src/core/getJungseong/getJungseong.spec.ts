@@ -17,6 +17,14 @@ describe('getJungseong', () => {
   it('"띄어 쓰기" 문장에서 중성 "ㅢㅓ ㅡㅣ"을 추출한다.', () => {
     expect(getJungseong('띄어 쓰기')).toBe('ㅢㅓ ㅡㅣ');
   });
+
+  it('keepNonHangul이 false이면 숫자 등 비한글을 제거한다.', () => {
+    expect(getJungseong('네이버123')).toBe('ㅔㅣㅓ');
+  });
+
+  it('keepNonHangul이 true이면 숫자 등 비한글을 유지한다.', () => {
+    expect(getJungseong('네이버123', { keepNonHangul: true })).toBe('ㅔㅣㅓ123');
+  });
 });
 
 

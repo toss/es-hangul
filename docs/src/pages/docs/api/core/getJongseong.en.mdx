@@ -10,8 +10,8 @@ Extracts the Jongseong (final consonants) from a Korean word. (Example: 별 -> '
 
 ```typescript
 function getJongseong(
-  // Korean string from which to extract the jongseong
-  word: string
+  word: string,
+  options?: { keepNonHangul?: boolean }
 ): string;
 ```
 
@@ -22,6 +22,7 @@ getJongseong('별');        // 'ㄹ'
 getJongseong('하늘');      // 'ㄹ'
 getJongseong('띄어 쓰기'); // ' '
 getJongseong('파이팅');    // 'ㅇ'
+getJongseong('값123', { keepNonHangul: true }); // 'ㅄ123'
 ```
 
 ## Demo
@@ -37,5 +38,3 @@ console.log(getJongseong('별'));
 ```
 
 </Sandpack>
-
-

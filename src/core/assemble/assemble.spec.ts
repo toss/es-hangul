@@ -17,4 +17,8 @@ describe('assemble', () => {
     expect(assemble(['ㄱ', 'ㅏ', '!', 'ㄴ', 'ㅏ'])).toEqual('가!나');
     expect(assemble(['ㅇ', 'ㅑ', '1', 'ㅎ', 'ㅏ'])).toEqual('야1하');
   });
+
+  it('빈 배열은 빈 문자열을 반환한다', () => {
+    expect(assemble([])).toEqual('');
+  });
 });
