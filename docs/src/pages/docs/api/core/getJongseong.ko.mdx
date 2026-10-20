@@ -12,8 +12,8 @@ import { Sandpack } from '@/components/Sandpack';
 
 ```typescript
 function getJongseong(
-  // 종성을 추출할 한글 문자열
-  word: string
+  word: string,
+  options?: { keepNonHangul?: boolean }
 ): string;
 ```
 
@@ -24,6 +24,7 @@ getJongseong('별');        // 'ㄹ'
 getJongseong('하늘');      // 'ㄹ'
 getJongseong('띄어 쓰기'); // ' '
 getJongseong('파이팅');    // 'ㅇ'
+getJongseong('값123', { keepNonHangul: true }); // 'ㅄ123'
 ```
 
 ## 사용해보기
@@ -39,5 +40,3 @@ console.log(getJongseong('별'));
 ```
 
 </Sandpack>
-
-

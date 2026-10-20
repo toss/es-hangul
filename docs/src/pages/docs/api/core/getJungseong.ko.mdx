@@ -12,8 +12,8 @@ import { Sandpack } from '@/components/Sandpack';
 
 ```typescript
 function getJungseong(
-  // 중성을 추출할 한글 문자열
-  word: string
+  word: string,
+  options?: { keepNonHangul?: boolean }
 ): string;
 ```
 
@@ -23,6 +23,7 @@ function getJungseong(
 getJungseong('사과');      // 'ㅏㅘ'
 getJungseong('하늘');      // 'ㅏㅡ'
 getJungseong('띄어 쓰기'); // 'ㅢㅓ ㅡㅣ'
+getJungseong('네이버123', { keepNonHangul: true }); // 'ㅔㅣㅓ123'
 ```
 
 ## 사용해보기
@@ -38,5 +39,3 @@ console.log(getJungseong('사과'));
 ```
 
 </Sandpack>
-
-

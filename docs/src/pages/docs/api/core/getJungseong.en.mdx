@@ -10,8 +10,8 @@ Extracts the Jungseong (vowels) from a Korean word. (Example: 사과 -> 'ㅏㅘ'
 
 ```typescript
 function getJungseong(
-  // Korean string from which to extract the jungseong
-  word: string
+  word: string,
+  options?: { keepNonHangul?: boolean }
 ): string;
 ```
 
@@ -21,6 +21,7 @@ function getJungseong(
 getJungseong('사과');      // 'ㅏㅘ'
 getJungseong('하늘');      // 'ㅏㅡ'
 getJungseong('띄어 쓰기'); // 'ㅢㅓ ㅡㅣ'
+getJungseong('네이버123', { keepNonHangul: true }); // 'ㅔㅣㅓ123'
 ```
 
 ## Demo
@@ -36,4 +37,3 @@ console.log(getJungseong('사과'));
 ```
 
 </Sandpack>
-
