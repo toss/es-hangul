@@ -18,5 +18,5 @@ import { binaryAssemble } from '@/_internal/hangul';
  */
 export function assemble(fragments: string[]) {
   const disassembled = disassemble(fragments.join('')).split('');
-  return disassembled.reduce(binaryAssemble);
+  return disassembled.reduce(binaryAssemble, '');
 }
