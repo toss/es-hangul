@@ -13,6 +13,21 @@ describe('combineCharacter', () => {
     expect(combineCharacter('ㅌ', 'ㅗ', 'ㅅ')).toEqual('톳');
   });
 
+  it('중성으로 합쳐진 이중모음(ㅘ, ㅙ, ㅚ, ㅝ, ㅞ, ㅟ, ㅢ)을 받아도 올바른 문자로 합성한다.', () => {
+    expect(combineCharacter('ㄱ', 'ㅘ')).toEqual('과');
+    expect(combineCharacter('ㄱ', 'ㅙ')).toEqual('괘');
+    expect(combineCharacter('ㄱ', 'ㅚ')).toEqual('괴');
+    expect(combineCharacter('ㄱ', 'ㅝ')).toEqual('궈');
+    expect(combineCharacter('ㄱ', 'ㅞ')).toEqual('궤');
+    expect(combineCharacter('ㄱ', 'ㅟ')).toEqual('귀');
+    expect(combineCharacter('ㅇ', 'ㅢ')).toEqual('의');
+  });
+
+  it('합쳐진 이중모음과 분해된 이중모음은 같은 결과를 반환한다. (ㅘ, ㅗㅏ)', () => {
+    expect(combineCharacter('ㅇ', 'ㅘ', 'ㄴ')).toEqual(combineCharacter('ㅇ', 'ㅗㅏ', 'ㄴ'));
+    expect(combineCharacter('ㄷ', 'ㅝ', 'ㄹㄱ')).toEqual('둵');
+  });
+
   it('초성이 될 수 없는 문자가 초성으로 입력되면 에러를 반환한다. (ㅏ, ㅏ, ㄱ)', () => {
     expect(() => combineCharacter('ㅏ', 'ㅏ', 'ㄱ')).toThrowError('Invalid hangul Characters: ㅏ, ㅏ, ㄱ');
   });

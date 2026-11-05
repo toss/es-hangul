@@ -1,4 +1,11 @@
-import { CHOSEONGS, COMPLETE_HANGUL_START_CHARCODE, JONGSEONGS, JUNGSEONGS } from '@/_internal/constants';
+import { hasProperty } from '@/_internal';
+import {
+  CHOSEONGS,
+  COMPLETE_HANGUL_START_CHARCODE,
+  DISASSEMBLED_VOWELS_BY_VOWEL,
+  JONGSEONGS,
+  JUNGSEONGS,
+} from '@/_internal/constants';
 import { canBeChoseong } from '@/core/canBeChoseong';
 import { canBeJongseong } from '@/core/canBeJongseong';
 import { canBeJungseong } from '@/core/canBeJungseong';
@@ -30,7 +37,11 @@ export function combineCharacter(choseong: string, jungseong: string, jongseong 
   const numOfJongseongs = JONGSEONGS.length;
 
   const choseongIndex = CHOSEONGS.indexOf(choseong as (typeof CHOSEONGS)[number]);
-  const jungseongIndex = JUNGSEONGS.indexOf(jungseong as (typeof JUNGSEONGS)[number]);
+  // canBeJungseong은 'ㅘ'처럼 합쳐진 이중모음도 허용하지만, JUNGSEONGS는 'ㅗㅏ'처럼 분해된 형태만 담고 있다.
+  const disassembledJungseong = hasProperty(DISASSEMBLED_VOWELS_BY_VOWEL, jungseong)
+    ? DISASSEMBLED_VOWELS_BY_VOWEL[jungseong]
+    : jungseong;
+  const jungseongIndex = JUNGSEONGS.indexOf(disassembledJungseong as (typeof JUNGSEONGS)[number]);
   const jongseongIndex = JONGSEONGS.indexOf(jongseong as (typeof JONGSEONGS)[number]);
 
   const choseongOfTargetConsonant = choseongIndex * numOfJungseongs * numOfJongseongs;
