@@ -34,4 +34,9 @@ describe('removeLastCharacter', () => {
   it('빈 문자열일 경우 빈 문자열을 반환한다.', () => {
     expect(removeLastCharacter('')).toBe('');
   });
+  it('마지막 문자가 이모지처럼 코드 유닛 두 개로 된 문자인 경우 문자 전체를 지운다.', () => {
+    expect(removeLastCharacter('😀')).toBe('');
+    expect(removeLastCharacter('안녕😀')).toBe('안녕');
+    expect(removeLastCharacter('𠮷')).toBe('');
+  });
 });
