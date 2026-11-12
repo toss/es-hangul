@@ -27,13 +27,6 @@ export function josa<T extends string, U extends JosaOption>(word: T, josa: U): 
     return word as `${T}${ExtractJosaOption<U>}`;
   }
 
-  if (/^[A-Z]+$/.test(word)) {
-    const lastChar = word[word.length - 1];
-    const koreanPronunciationOfLastChar = ALPHABET_TO_KOREAN[lastChar];
-
-    return (word + josaPicker(koreanPronunciationOfLastChar, josa)) as `${T}${ExtractJosaOption<U>}`;
-  }
-
   return (word + josaPicker(word, josa)) as `${T}${ExtractJosaOption<U>}`;
 }
 
@@ -42,6 +35,11 @@ josa.pick = josaPicker;
 function josaPicker<T extends JosaOption>(word: string, josa: T): ExtractJosaOption<T> {
   if (word.length === 0) {
     return josa.split('/')[0] as ExtractJosaOption<T>;
+  }
+
+  // 대문자로만 이루어진 약어는 마지막 알파벳의 한글 발음을 기준으로 조사를 고른다.
+  if (/^[A-Z]+$/.test(word)) {
+    word = ALPHABET_TO_KOREAN[word[word.length - 1]];
   }
 
   const has받침 = hasBatchim(word);
