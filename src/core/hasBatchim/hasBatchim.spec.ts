@@ -35,6 +35,21 @@ describe('hasBatchim', () => {
       expect(hasBatchim('cat')).toBe(false);
       expect(hasBatchim('!')).toBe(false);
     });
+
+    it('다른 언어를 입력하면 false를 반환한다.', () => {
+      expect(hasBatchim('りんご')).toBe(false);
+      expect(hasBatchim('中國')).toBe(false);
+    });
+
+    it('공백을 입력하면 false를 반환한다.', () => {
+      expect(hasBatchim(' ')).toBe(false);
+    });
+
+    it('마지막 글자만 확인하므로 한글 뒤에 다른 문자가 오면 false를 반환한다.', () => {
+      expect(hasBatchim('값A')).toBe(false);
+      expect(hasBatchim('값 ')).toBe(false);
+      expect(hasBatchim('값!')).toBe(false);
+    });
   });
 });
 

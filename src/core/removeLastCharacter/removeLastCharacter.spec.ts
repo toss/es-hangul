@@ -34,4 +34,21 @@ describe('removeLastCharacter', () => {
   it('빈 문자열일 경우 빈 문자열을 반환한다.', () => {
     expect(removeLastCharacter('')).toBe('');
   });
+
+  describe('한글이 아닌 문자로 끝나는 경우', () => {
+    it('영어로 끝나면 마지막 글자를 지운다.', () => {
+      expect(removeLastCharacter('Hello')).toBe('Hell');
+      expect(removeLastCharacter('값A')).toBe('값');
+    });
+    it('특수문자로 끝나면 마지막 글자를 지운다.', () => {
+      expect(removeLastCharacter('안녕!')).toBe('안녕');
+    });
+    it('다른 언어로 끝나면 마지막 글자를 지운다.', () => {
+      expect(removeLastCharacter('りんご')).toBe('りん');
+      expect(removeLastCharacter('中國')).toBe('中');
+    });
+    it('공백으로 끝나면 공백을 지운다.', () => {
+      expect(removeLastCharacter('안녕 ')).toBe('안녕');
+    });
+  });
 });
