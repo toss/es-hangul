@@ -179,4 +179,11 @@ describe('josa.pick', () => {
     expect(josa('URL', '이에요/예요')).toBe('URL이에요');
     expect(josa('CSS', '이에요/예요')).toBe('CSS예요');
   });
+
+  it('영어로된 약어일 경우, josa.pick도 마지막 알파벳을 한국어로 바꾼뒤 조사를 고른다.', () => {
+    expect(josa.pick('URL', '이/가')).toBe('이');
+    expect(josa.pick('CSS', '이/가')).toBe('가');
+    expect(josa.pick('URL', '으로/로')).toBe('로');
+    expect(josa.pick('URL', '와/과')).toBe('과');
+  });
 });
