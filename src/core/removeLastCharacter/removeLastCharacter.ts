@@ -21,7 +21,8 @@ import { combineCharacter } from '../combineCharacter';
  * removeLastCharacter('신세계') // 신세ㄱ
  */
 export function removeLastCharacter(words: string) {
-  const lastCharacter = words[words.length - 1];
+  // 이모지처럼 코드 유닛 두 개로 된 문자를 반쪽만 지우지 않도록 코드 포인트 단위로 자른다.
+  const lastCharacter = Array.from(words).pop();
   if (lastCharacter == null) {
     return '';
   }
@@ -45,5 +46,5 @@ export function removeLastCharacter(words: string) {
     }
   })();
 
-  return [words.substring(0, words.length - 1), result].join('');
+  return [words.substring(0, words.length - lastCharacter.length), result].join('');
 }
